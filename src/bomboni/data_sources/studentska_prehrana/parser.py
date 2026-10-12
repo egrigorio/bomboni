@@ -24,6 +24,16 @@ def _price(raw: str | None) -> float | None:
     return float(match.group().replace(",", ".")) if match else None
 
 
+def _coordinate(raw: str | None) -> float | None:
+    if not raw:
+        return None
+    try:
+        value = float(raw)
+    except ValueError:
+        return None
+    return value if -180 <= value <= 180 else None
+
+
 def _restaurant_from_row(row: Tag) -> Restaurant | None:
     try:
         restaurant_id = int(row.get("data-posid", ""))
@@ -57,6 +67,8 @@ def _restaurant_from_row(row: Tag) -> Restaurant | None:
         additional_fee_eur=_price(row.get("data-doplacilo")),
         tags=tags,
         source_url=f"{BASE_URL}{detail_path}",
+        latitude=_coordinate(row.get("data-lat")),
+        longitude=_coordinate(row.get("data-lon")),
     )
 
 

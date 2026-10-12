@@ -2,9 +2,15 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .venv*/
+public/
+.npm-cache/
+.vercel-cli/
+.vercel/
 .env
 .DS_Store
 build/
 dist/
 *.egg-info/
 macos/BomboniMenuBar/dist/
+.vercel
+.env*

@@ -167,6 +167,7 @@ class RestaurantService:
                             {
                                 "restaurant": restaurant.to_dict(),
                                 "menu_date": result.date,
+                                "menu_retrieved_at": result.retrieved_at,
                                 "dish": dish.to_dict(),
                                 "matched_query_terms": matched_query_terms,
                                 "source_url": result.source_url,
@@ -191,5 +192,10 @@ class RestaurantService:
             "results_returned": len(visible_matches),
             "results_truncated": len(matches) > len(visible_matches),
             "results": visible_matches,
-            "note": "Dish names are preserved in the source language. Categories reflect the site's menu labels.",
+            "note": (
+                "These are dishes listed in the official student-meal portal for the requested date; "
+                "the listing is not a live stock or availability guarantee. menu_retrieved_at records "
+                "when the portal response was fetched. Dish names are preserved in the source language, "
+                "and categories reflect the site's menu labels."
+            ),
         }

@@ -15,6 +15,8 @@ class Restaurant:
     additional_fee_eur: float | None
     tags: tuple[str, ...]
     source_url: str
+    latitude: float | None = None
+    longitude: float | None = None
 
     def to_dict(self) -> dict[str, Any]:
         result = asdict(self)

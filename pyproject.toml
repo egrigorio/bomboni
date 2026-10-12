@@ -11,17 +11,21 @@ requires-python = ">=3.11"
 dependencies = [
   "beautifulsoup4>=4.12,<5",
   "httpx>=0.27,<1",
-  "mcp[cli]>=2,<3",
 ]
 
 [project.optional-dependencies]
+mcp = ["mcp[cli]>=2,<3"]
 dev = ["pytest>=8,<9", "pytest-mock>=3.14,<4"]
 
 [project.scripts]
 bomboni-mcp = "bomboni.adapters.mcp.server:main"
+bomboni-web = "bomboni.adapters.web.server:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+"bomboni.adapters.web" = ["static/*"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

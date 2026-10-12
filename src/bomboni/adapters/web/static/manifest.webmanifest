@@ -1,0 +1,17 @@
+{
+  "name": "Bomboni — refeições perto de si",
+  "short_name": "Bomboni",
+  "description": "Menus de refeições estudantis traduzidos para o seu idioma.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f5f3ed",
+  "theme_color": "#f5f3ed",
+  "lang": "pt",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

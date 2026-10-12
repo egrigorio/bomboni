@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import http.cookiejar
 from datetime import date, datetime, timezone
 from urllib.parse import urljoin
 
@@ -14,12 +15,20 @@ from bomboni.data_sources.studentska_prehrana.parser import (
 )
 
 
+class _StatelessCookieJar(http.cookiejar.CookieJar):
+    """Ignores incoming Set-Cookie headers so ASP.NET session state does not pin menus across calls."""
+
+    def set_cookie(self, cookie: http.cookiejar.Cookie) -> None:
+        pass
+
+
 class StudentskaPrehranaSource:
     """Read-only HTTP adapter for the public studentska-prehrana.si pages."""
 
     def __init__(self, *, timeout: float = 20.0, client: httpx.Client | None = None) -> None:
         self._client = client or httpx.Client(
             timeout=timeout,
+            cookies=_StatelessCookieJar(),
             headers={
                 "User-Agent": "bomboni/0.1 (+public directory reader)",
                 "Accept-Language": "en,sl;q=0.8",

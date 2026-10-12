@@ -9,7 +9,30 @@ Build a reusable Python data layer for the public restaurant directory and menu 
 - `core/`: domain models, source protocols, and application services. No MCP imports here.
 - `data_sources/studentska_prehrana/`: HTTP client and HTML parsing for the site's list, detail, and date-specific menu endpoints.
 - `adapters/mcp/`: thin MCP tools which call the shared service.
+- `adapters/web/`: PWA and JSON HTTP adapter over the same service; do not duplicate extraction rules here.
+- `api/`: Vercel serverless HTTP entry points; keep them thin and delegate to the shared web/domain adapters.
+- `data_sources/translation/`: translation provider adapter. Preserve original source text with machine translations.
 - Future transports (for example FastAPI) should be added as adapters over `core` services, not by duplicating scraping logic.
+- Vercel static assets are generated from `src/bomboni/adapters/web/static/` by `scripts/prepare_vercel.py`; do not edit generated `public/` assets as source files.
+- Keep the MCP SDK in the optional `mcp` extra so the web deployment installs only its HTTP/parsing dependencies.
+
+## Web and PWA design guardrails
+
+- Keep the current visual language: warm off-white canvas, dark green text, muted green accents, white restaurant cards, soft borders, and rounded corners. Keep typography and spacing calm and readable; avoid adding decorative copy or layers of tiny helper text.
+- Restaurant cards must show the restaurant name and address on separate lines with visible vertical spacing. Keep the selected restaurant menu visually distinct from the list.
+- On desktop with no restaurant selected, center the discovery column and cap its width. With a menu selected, use the two-column list/menu layout. On narrow screens, use a single-column list and a full-screen menu with a clear back action. Preserve the existing responsive breakpoints unless there is a concrete layout reason to change them.
+- Keep the canonical UI in `src/bomboni/adapters/web/static/`. Do not edit generated `public/` output. After changing JS, CSS, or service-worker behavior, update the asset query version or cache name in `index.html` and `service-worker.js` so installed PWAs do not keep a stale shell.
+- Keep component CSS beside its base component rule and responsive overrides inside the corresponding media queries. Avoid accumulating end-of-file overrides that make cascade order hard to understand; preserve the existing palette, type scale, card rhythm, and whitespace when making targeted fixes.
+- On phones, keep the bottom tab bar fixed above the iOS safe-area inset, with enough content padding that it never covers restaurant cards or menu items. Its tabs should remain usable when a restaurant menu is open.
+- Restaurant opening hours come from the official detail page, not from the directory badge `Opened at weekends`. Load hours only for visible restaurant cards through the bounded batch endpoint; calculate open/closed using the `Europe/Ljubljana` timezone, and display an unavailable state when the source has no schedule.
+
+## Web API route contract
+
+- The browser requests menus using `/api/restaurants/{restaurant_id}/menu?date=YYYY-MM-DD`. The local web server handles this route directly; Vercel rewrites it to the thin function at `/api/menu?restaurant_id=...`, retaining the requested date query.
+- Keep the frontend URL, local adapter route, and Vercel rewrite in sync when changing menu endpoints. A working restaurant list does not prove menu fetching works: verify a restaurant selection reaches the menu endpoint and renders dishes, and report HTTP failures in the page rather than leaving a spinner.
+- The frontend must only call endpoints implemented by both the local adapter and the deployed adapter (directly or through an explicit Vercel rewrite). Keep scraping, parsing, and menu selection in the shared service/source layers.
+- `/api/restaurant-hours?ids=...` accepts at most 20 restaurant IDs and retrieves official detail-page schedules with bounded concurrency. Keep local and Vercel implementations in sync; do not fetch details for the entire directory when rendering the list.
+- Every dish card must keep its image-search action inside the card, aligned to the right of the displayed dish name. Search Google Images with the original Slovenian dish name, open in a new tab, and keep the translated label as the main text.
 
 ## Source behavior confirmed
 
@@ -24,8 +47,11 @@ Build a reusable Python data layer for the public restaurant directory and menu 
 
 - Treat restaurant IDs as stable keys and names as display labels, never as unique keys.
 - Menus are date-specific and volatile. Return the requested/observed date and fetch timestamp with menu results.
+- A menu item returned by the portal is a published listing, not a live confirmation that the venue still has it in stock. Report the listing's date and fetch timestamp; do not guarantee current availability.
 - Cache directory metadata briefly; do not cache menus long enough to present stale menus as current. Keep cache policy in the service layer.
 - Menu category filtering must use the site's menu category, not the restaurant-level `Meatless` badge.
+- Restaurant index rows expose `data-lat` and `data-lon`; use these for proximity sorting and do not geocode addresses through a third party.
+- Ask for browser geolocation only in the web UI and use it only to calculate distances. Keep menu APIs network-only in the service worker so dated menus do not become stale offline.
 - When no menu/category data is available, report that clearly rather than guessing from restaurant names.
 
 ## Answering student meal questions in Antigravity

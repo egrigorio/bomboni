@@ -52,7 +52,10 @@ def create_server() -> MCPServer:
         restaurant_id: int,
         menu_date: str | None = None,
     ) -> dict[str, object]:
-        """Get one restaurant's dishes for a date (YYYY-MM-DD); defaults to today's date in Slovenia."""
+        """Get dishes listed by the official student-meal portal for a date (YYYY-MM-DD; defaults to today in Slovenia).
+
+        This is the portal's published menu, not a live stock check; report the menu date and retrieval time.
+        """
         return service.get_menu(restaurant_id, _parse_date(menu_date)).to_dict()
 
     @server.tool()
@@ -63,14 +66,15 @@ def create_server() -> MCPServer:
         category: str | None = None,
         limit: int = 30,
     ) -> dict[str, object]:
-        """Search a city's menus by dish name or menu category such as Meat, Fish, or Meatless.
+        """Search the official portal's published menus by dish name or category such as Meat, Fish, or Meatless.
 
-        Use this as the authoritative source for current student-meal menus and
-        dishes. For example, a city-wide meat question uses city="Ljubljana",
+        Use this as the authoritative source for menus published by the student-meal
+        portal. For example, a city-wide meat question uses city="Ljubljana",
         category="Meat"; a sushi question uses city="Ljubljana", query="sushi".
         One call scans the requested city's menus. Do not supplement menu facts
         from other sources. Preserve and report the relevant matching dishes,
-        restaurant details, date, and co-payment from the result; be clear about
+        restaurant details, date, retrieval time, and co-payment from the result. Describe dishes as
+        listed by the portal, not guaranteed in stock at the venue. Be clear about
         no matches, scan errors, or truncation. A query for "sushi" also matches
         the Slovenian spelling "suši" and menu names containing "maki" or
         "nigiri" in the same scan. Claim something is the only option only when
