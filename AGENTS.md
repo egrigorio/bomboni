@@ -28,6 +28,14 @@ Build a reusable Python data layer for the public restaurant directory and menu 
 - Menu category filtering must use the site's menu category, not the restaurant-level `Meatless` badge.
 - When no menu/category data is available, report that clearly rather than guessing from restaurant names.
 
+## Answering student meal questions in Antigravity
+
+- Treat ordinary questions about *boni*, student meal eligibility, participating restaurants, current menus, dishes, and co-payments as requests for Bomboni data even when the user does not name the MCP.
+- Bomboni is the source of truth for those facts. Use its MCP results and do not supplement them with web searches, delivery apps, restaurant sites, shell commands, or remembered menu data. Use another source only if the user explicitly asks for information outside Bomboni's coverage or an independent comparison.
+- Choose the appropriate Bomboni tool directly: use `search_menu_items` for a city-wide dish/category question, `get_restaurant_menu` for a known restaurant, and `search_restaurants` for a directory lookup. Do not issue preliminary searches or repeat equivalent calls when one call answers the question.
+- Give the relevant restaurant names, addresses, co-payments, menu date, and matching dishes from the returned data. Keep dish names in the source language and translate briefly when useful. Do not replace the requested information with a vague summary.
+- If the MCP reports no matches, errors, or truncated results, state that plainly. Do not fill gaps by guessing or silently present partial data as complete.
+
 ## Development
 
 - Python 3.11+.
