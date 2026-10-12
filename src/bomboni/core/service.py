@@ -4,6 +4,7 @@ import threading
 import unicodedata
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timedelta, timezone
+from time import perf_counter
 from zoneinfo import ZoneInfo
 
 from bomboni.core.models import DailyMenu, Restaurant, RestaurantDetails
@@ -126,6 +127,7 @@ class RestaurantService:
         not the number of menus scanned; keep it at the default or at most 50.
         """
         requested_date = menu_date or self.today()
+        search_started = perf_counter()
         restaurants = self.search_restaurants(city=city, limit=10_000)
         normalized_query = _normalize(query) if query else None
         normalized_category = _normalize(category) if category else None
@@ -168,6 +170,7 @@ class RestaurantService:
         return {
             "city": city,
             "menu_date": requested_date.isoformat(),
+            "elapsed_ms": round((perf_counter() - search_started) * 1000),
             "restaurants_scanned": len(restaurants),
             "restaurants_with_errors": len(errors),
             "errors": errors[:20],

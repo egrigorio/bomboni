@@ -66,9 +66,12 @@ def create_server() -> MCPServer:
         """Search a city's menus by dish name or menu category such as Meat, Fish, or Meatless.
 
         For questions like "where can I eat meat in Ljubljana?", call this tool
-        once with city="Ljubljana", category="Meat". Do not list restaurants
-        first or fetch menus individually. Leave limit at 30 (or use at most 50):
-        it caps returned dish records, not the number of menus scanned.
+        once with city="Ljubljana", category="Meat". For sushi, use
+        city="Ljubljana", query="sushi". Do not list restaurants first, fetch
+        menus individually, run shell scripts, or search the web for menu data.
+        Report only what this site's current menus support; if there are no
+        matches, say so. Leave limit at 30 (maximum 50): it caps returned dishes,
+        not menus scanned. The result includes elapsed_ms for lookup time.
         """
         if not query and not category:
             raise ValueError("Provide a dish query, a category, or both.")
