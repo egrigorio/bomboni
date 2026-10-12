@@ -13,8 +13,15 @@ struct MenuBarPanel: View {
             footer
         }
         .padding(18)
-        .frame(width: 380)
-        .background(Color(nsColor: .windowBackgroundColor))
+        .frame(width: 390)
+        .background {
+            Rectangle()
+                .fill(.ultraThinMaterial)
+                .overlay(alignment: .topLeading) {
+                    Circle().fill(Color.accentColor.opacity(0.12)).frame(width: 220, height: 220).blur(radius: 70).offset(x: -85, y: -110)
+                }
+                .ignoresSafeArea()
+        }
         .alert("Não foi possível configurar", isPresented: Binding(
             get: { model.errorMessage != nil },
             set: { if !$0 { model.errorMessage = nil } }
@@ -60,7 +67,9 @@ struct MenuBarPanel: View {
             }
         }
         .padding(12)
-        .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 10))
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 15, style: .continuous).strokeBorder(.white.opacity(0.18), lineWidth: 1))
+        .shadow(color: .black.opacity(0.07), radius: 12, y: 5)
     }
 
     private var clientsCard: some View {
@@ -83,7 +92,9 @@ struct MenuBarPanel: View {
                 .padding(.top, 2)
         }
         .padding(12)
-        .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 10))
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 15, style: .continuous).strokeBorder(.white.opacity(0.18), lineWidth: 1))
+        .shadow(color: .black.opacity(0.07), radius: 12, y: 5)
     }
 
     private func clientRow(_ client: MCPClient) -> some View {
@@ -147,7 +158,8 @@ struct MenuBarPanel: View {
         }
         .padding(10)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.accentColor.opacity(0.07), in: RoundedRectangle(cornerRadius: 9))
+        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).strokeBorder(Color.accentColor.opacity(0.13), lineWidth: 1))
     }
 
     private var configureButton: some View {
@@ -165,6 +177,7 @@ struct MenuBarPanel: View {
             .frame(maxWidth: .infinity)
         }
         .buttonStyle(.borderedProminent)
+        .tint(Color.accentColor)
         .disabled(model.isConfiguring || model.selectedClients.isEmpty)
         .keyboardShortcut(.return, modifiers: [.command])
     }

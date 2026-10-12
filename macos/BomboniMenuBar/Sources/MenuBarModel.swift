@@ -200,10 +200,22 @@ enum MCPConfigurator {
             var root: [String: Any] = [:]
             if manager.fileExists(atPath: configURL.path) {
                 let data = try Data(contentsOf: configURL)
-                guard let parsed = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-                    throw SetupError.invalidConfiguration("O arquivo \(configURL.path) não contém um objeto JSON.")
+                // Antigravity may create this file before it has any settings.
+                // A zero-byte file is therefore an empty configuration, not invalid JSON.
+                if !data.isEmpty {
+                    do {
+                        guard let parsed = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                            throw SetupError.invalidConfiguration("O arquivo \(configURL.path) precisa conter um objeto JSON na raiz.")
+                        }
+                        root = parsed
+                    } catch let error as SetupError {
+                        throw error
+                    } catch {
+                        throw SetupError.invalidConfiguration(
+                            "O arquivo de configuração do Antigravity existe, mas não contém JSON válido (\(configURL.path)). Detalhe: \(error.localizedDescription). O original foi preservado no backup ao lado do arquivo."
+                        )
+                    }
                 }
-                root = parsed
             }
             if root["mcpServers"] != nil && !(root["mcpServers"] is [String: Any]) {
                 throw SetupError.invalidConfiguration("A chave mcpServers não é um objeto JSON em \(configURL.path).")
