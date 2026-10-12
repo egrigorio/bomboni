@@ -47,7 +47,7 @@ mcp dev src/bomboni/adapters/mcp/server.py
 
 ## Freshness and menu search
 
-The directory is cached briefly in memory. Menu lookups include the requested date and retrieval time. Broad menu searches fetch menus for restaurants in the requested city with bounded concurrency; the first search for a city/date can take longer than a simple restaurant lookup. Restaurant badges and menu dish categories are separate fields: use dish categories for questions like “where can I eat meat?”.
+The directory is cached briefly in memory and each fetched menu is cached for five minutes while the MCP process stays running. Menu lookups include the requested date and retrieval time. A broad menu search fetches menus for restaurants in the requested city with bounded concurrency; the first search for a city/date will take longer than a simple restaurant lookup. For city-wide questions, call `search_menu_items` once with the city and category (for example, `city="Ljubljana", category="Meat"`); do not list restaurants first or fetch menus individually. `limit` caps returned dish records, not the menus scanned, and the server caps results at 50. Restaurant badges and menu dish categories are separate fields: use dish categories for questions like “where can I eat meat?”.
 
 The site currently returns menu fragments as HTML from its date lookup endpoint, so the source adapter parses those fragments into the shared domain models. It preserves original Slovenian dish names and source links.
 

@@ -63,7 +63,13 @@ def create_server() -> MCPServer:
         category: str | None = None,
         limit: int = 30,
     ) -> dict[str, object]:
-        """Search menus in a city by dish text or site category (e.g. Meat, Fish, Meatless)."""
+        """Search a city's menus by dish name or menu category such as Meat, Fish, or Meatless.
+
+        For questions like "where can I eat meat in Ljubljana?", call this tool
+        once with city="Ljubljana", category="Meat". Do not list restaurants
+        first or fetch menus individually. Leave limit at 30 (or use at most 50):
+        it caps returned dish records, not the number of menus scanned.
+        """
         if not query and not category:
             raise ValueError("Provide a dish query, a category, or both.")
         return service.search_menu_items(

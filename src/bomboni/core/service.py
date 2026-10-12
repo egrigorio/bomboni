@@ -9,6 +9,8 @@ from zoneinfo import ZoneInfo
 from bomboni.core.models import DailyMenu, Restaurant, RestaurantDetails
 from bomboni.core.protocols import RestaurantDataSource
 
+MAX_MENU_SEARCH_RESULTS = 50
+
 
 def _normalize(value: str) -> str:
     decomposed = unicodedata.normalize("NFKD", value.casefold())
@@ -117,7 +119,12 @@ class RestaurantService:
         category: str | None = None,
         limit: int = 30,
     ) -> dict[str, object]:
-        """Search a city's menus for dish text or a site category (e.g. Meat)."""
+        """Search a city's menus for dish text or a site category (e.g. Meat).
+
+        This is the one-call path for city-wide menu questions. Do not first list
+        restaurants or fetch menus one by one. `limit` caps returned dish records,
+        not the number of menus scanned; keep it at the default or at most 50.
+        """
         requested_date = menu_date or self.today()
         restaurants = self.search_restaurants(city=city, limit=10_000)
         normalized_query = _normalize(query) if query else None
@@ -156,6 +163,8 @@ class RestaurantService:
             _normalize(str(item["restaurant"]["name"])),
             _normalize(str(item["dish"]["name"])),
         ))
+        result_limit = min(MAX_MENU_SEARCH_RESULTS, max(1, limit))
+        visible_matches = matches[:result_limit]
         return {
             "city": city,
             "menu_date": requested_date.isoformat(),
@@ -163,6 +172,8 @@ class RestaurantService:
             "restaurants_with_errors": len(errors),
             "errors": errors[:20],
             "match_count": len(matches),
-            "results": matches[: max(1, limit)],
+            "results_returned": len(visible_matches),
+            "results_truncated": len(matches) > len(visible_matches),
+            "results": visible_matches,
             "note": "Dish names are preserved in the source language. Categories reflect the site's menu labels.",
         }
