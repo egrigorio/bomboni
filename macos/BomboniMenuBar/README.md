@@ -28,3 +28,9 @@ The app does not restart the clients. Quit and reopen selected clients after con
 - Claude Desktop: `~/Library/Application Support/Claude/claude_desktop_config.json`
 
 The app only writes the `bomboni` MCP entry. Existing configuration files remain local to the Mac and are not uploaded.
+
+## Menu bar actions
+
+- Left-click the Bomboni icon to open setup and client settings.
+- Right-click or double-click the icon to open the task menu.
+- Choose **Reiniciar Bomboni no…** for a configured client. Because stdio MCP servers are child processes of their client app, this gracefully closes and reopens that client so it can reconnect to Bomboni. The app asks for confirmation first; active conversations may be interrupted.
