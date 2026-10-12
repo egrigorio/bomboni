@@ -11,6 +11,10 @@ from bomboni.core.models import DailyMenu, Restaurant, RestaurantDetails
 from bomboni.core.protocols import RestaurantDataSource
 
 MAX_MENU_SEARCH_RESULTS = 50
+MENU_QUERY_ALIASES: dict[str, tuple[str, ...]] = {
+    "sushi": ("sushi", "suši", "maki", "nigiri"),
+    "susi": ("sushi", "suši", "maki", "nigiri"),
+}
 
 
 def _normalize(value: str) -> str:
@@ -130,6 +134,7 @@ class RestaurantService:
         search_started = perf_counter()
         restaurants = self.search_restaurants(city=city, limit=10_000)
         normalized_query = _normalize(query) if query else None
+        query_terms = MENU_QUERY_ALIASES.get(normalized_query or "", (query,) if query else ())
         normalized_category = _normalize(category) if category else None
         matches: list[dict[str, object]] = []
         errors: list[dict[str, object]] = []
@@ -148,7 +153,12 @@ class RestaurantService:
                     errors.append({"restaurant_id": restaurant.id, "error": str(result)})
                     continue
                 for dish in result.dishes:
-                    has_query = normalized_query is None or normalized_query in _normalize(dish.name)
+                    normalized_dish_name = _normalize(dish.name)
+                    matched_query_terms = [
+                        term for term in query_terms
+                        if _normalize(term) in normalized_dish_name
+                    ]
+                    has_query = not query_terms or bool(matched_query_terms)
                     has_category = normalized_category is None or normalized_category in {
                         _normalize(value) for value in dish.categories
                     }
@@ -158,6 +168,7 @@ class RestaurantService:
                                 "restaurant": restaurant.to_dict(),
                                 "menu_date": result.date,
                                 "dish": dish.to_dict(),
+                                "matched_query_terms": matched_query_terms,
                                 "source_url": result.source_url,
                             }
                         )
@@ -171,8 +182,10 @@ class RestaurantService:
             "city": city,
             "menu_date": requested_date.isoformat(),
             "elapsed_ms": round((perf_counter() - search_started) * 1000),
+            "query_terms_used": list(query_terms),
             "restaurants_scanned": len(restaurants),
             "restaurants_with_errors": len(errors),
+            "scan_complete": len(errors) == 0,
             "errors": errors[:20],
             "match_count": len(matches),
             "results_returned": len(visible_matches),

@@ -34,7 +34,7 @@ Build a reusable Python data layer for the public restaurant directory and menu 
 - Bomboni is the source of truth for those facts. Use its MCP results and do not supplement them with web searches, delivery apps, restaurant sites, shell commands, or remembered menu data. Use another source only if the user explicitly asks for information outside Bomboni's coverage or an independent comparison.
 - Choose the appropriate Bomboni tool directly: use `search_menu_items` for a city-wide dish/category question, `get_restaurant_menu` for a known restaurant, and `search_restaurants` for a directory lookup. Do not issue preliminary searches or repeat equivalent calls when one call answers the question.
 - Give the relevant restaurant names, addresses, co-payments, menu date, and matching dishes from the returned data. Keep dish names in the source language and translate briefly when useful. Do not replace the requested information with a vague summary.
-- If the MCP reports no matches, errors, or truncated results, state that plainly. Do not fill gaps by guessing or silently present partial data as complete.
+- If the MCP reports no matches, errors, or truncated results, state that plainly. Do not fill gaps by guessing or silently present partial data as complete. Only claim a result is unique when `scan_complete` is true and `results_truncated` is false.
 
 ## Development
 
