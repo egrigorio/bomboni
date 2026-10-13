@@ -2,6 +2,8 @@ from datetime import date
 
 import pytest
 
+pytest.importorskip("mcp")
+
 from bomboni.adapters.mcp.server import _parse_date
 from bomboni.core.service import RestaurantService
 
