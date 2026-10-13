@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=profile-v4">
+    <link rel="stylesheet" href="/styles.css?v=profile-v5">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body>
@@ -29,6 +29,7 @@
             <select id="language-select">
               <option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option>
               <option value="de">DE</option><option value="it">IT</option><option value="fr">FR</option>
+              <option value="ca">CA</option>
             </select>
             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
           </label>
@@ -331,7 +332,7 @@
       </button>
     </nav>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=profile-v4" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=19').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=profile-v5" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=20').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>

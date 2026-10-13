@@ -1,83 +1,126 @@
-# Project context for coding agents
+# Project Context for Coding Agents (Google Jules, Bolt & Antigravity)
 
 ## Purpose
 
-Build a reusable Python data layer for the public restaurant directory and menu pages at `studentska-prehrana.si`, then expose it through an MCP adapter. Keep the extraction and domain logic independent of MCP so a future HTTP API or another adapter can reuse it.
+Build and maintain a reusable Python data layer for the public restaurant directory and menu pages at `studentska-prehrana.si`, exposed via a fast PWA and an MCP adapter. Domain and extraction logic remain strictly decoupled from presentation/transport layers.
 
-## Architecture
+---
 
-- `core/`: domain models, source protocols, and application services. No MCP imports here.
-- `data_sources/studentska_prehrana/`: HTTP client and HTML parsing for the site's list, detail, and date-specific menu endpoints.
-- `adapters/mcp/`: thin MCP tools which call the shared service.
-- `adapters/web/`: PWA and JSON HTTP adapter over the same service; do not duplicate extraction rules here.
-- `api/`: Vercel serverless HTTP entry points; keep them thin and delegate to the shared web/domain adapters.
-- `data_sources/translation/`: translation provider adapter. Preserve original source text with machine translations.
-- Future transports (for example FastAPI) should be added as adapters over `core` services, not by duplicating scraping logic.
-- Vercel static assets are generated from `src/bomboni/adapters/web/static/` by `scripts/prepare_vercel.py`; do not edit generated `public/` assets as source files.
-- Keep the MCP SDK in the optional `mcp` extra so the web deployment installs only its HTTP/parsing dependencies.
+## 1. Stack e Arquitetura
 
-## Web and PWA design guardrails
+### Frontend (PWA & Client-side)
+- **Vanilla JavaScript**: O frontend é desenvolvido em JavaScript puro (ES6+), HTML5 semântico e CSS3 puro, sem frameworks pesados (sem React, Vue ou Angular).
+- **Zero Bundler**: Não utilizamos Webpack, Vite, Parcel, Rollup, Babel ou compilações npm. Os arquivos são servidos e executados diretamente pelo navegador.
+- **PWA & Service Worker**:
+  - `src/bomboni/adapters/web/static/service-worker.js`: implementa o cache offline para o shell da aplicação (HTML, CSS, JS, manifest e ícones) e política estritamente **network-only** para `/api/*`.
+  - Invalidação controlada por versão de cache e query strings nos assets (`?v=...`).
+- **Arquivos Canônicos da UI**:
+  - `src/bomboni/adapters/web/static/index.html`
+  - `src/bomboni/adapters/web/static/app.js`
+  - `src/bomboni/adapters/web/static/styles.css`
+  - `src/bomboni/adapters/web/static/service-worker.js`
+  - `src/bomboni/adapters/web/static/manifest.webmanifest`
 
-- Keep the current visual language: warm off-white canvas, dark green text, muted green accents, white restaurant cards, soft borders, and rounded corners. Keep typography and spacing calm and readable; avoid adding decorative copy or layers of tiny helper text.
-- Restaurant cards must show the restaurant name and address on separate lines with visible vertical spacing. Keep the selected restaurant menu visually distinct from the list.
-- On desktop with no restaurant selected, center the discovery column and cap its width. With a menu selected, use the two-column list/menu layout. On narrow screens, use a single-column list and a full-screen menu with a clear back action. Preserve the existing responsive breakpoints unless there is a concrete layout reason to change them.
-- Keep the canonical UI in `src/bomboni/adapters/web/static/`. Do not edit generated `public/` output. After changing JS, CSS, or service-worker behavior, update the asset query version or cache name in `index.html` and `service-worker.js` so installed PWAs do not keep a stale shell.
-- Keep component CSS beside its base component rule and responsive overrides inside the corresponding media queries. Avoid accumulating end-of-file overrides that make cascade order hard to understand; preserve the existing palette, type scale, card rhythm, and whitespace when making targeted fixes.
-- On phones, keep the bottom tab bar fixed above the iOS safe-area inset, with enough content padding that it never covers restaurant cards or menu items. Its tabs should remain usable when a restaurant menu is open.
-- Mobile navigation has four stable top-level tabs: Explore, Favorites, Draw, and Profile. Keep the tab bar floating above content as a distinct translucent Liquid Glass layer; the selected tab gets the opaque highlight while inactive tabs remain transparent. Respect safe areas and reduced-transparency accessibility settings. Do not repurpose tabs for one-off actions such as opening search or requesting location.
-- The Draw tab filters are optional: city, official menu food category, restaurant-or-dish mode, and maximum student co-pay. Keep the random selection logic in `RestaurantService.draw_recommendation` and expose it through both local and Vercel web adapters; the browser must not scrape the source DOM. Dish/category draws inspect up to 60 randomly sampled current official menus with bounded concurrency to stay within serverless time limits, retain menu date/source provenance, and disclose when the scan was sampled.
-- Favorites and Profile are top-level destinations prepared for a future account system. Until persistence/authentication exists, show honest empty/preview states and do not fabricate saved items, reviews, history, or spending statistics.
-- Restaurant opening hours come from the official detail page, not from the directory badge `Opened at weekends`. Load hours only for visible restaurant cards through the bounded batch endpoint; calculate open/closed using the `Europe/Ljubljana` timezone, and display an unavailable state when the source has no schedule.
-- Brand mark and PWA icon: The official project logo is a minimalist wrapped bonbon candy (`.brand-mark`, `icon.svg`, and generated PNGs), reflecting the name Bomboni. Do not revert to cutlery icons or use decorative emojis or AI sparkle symbols.
-- Loading states: All asynchronous operations (restaurant directory load, dish search, draw recommendations, and menu fetching) must use the rotating bonbon spinner (`.bonbon-spinner` / `@keyframes bonbon-spin`), rather than plain text spinners or generic loaders.
-- Restaurant list scroll container: The restaurant listing must be contained in a dedicated scroll container (`.restaurant-scroll-area`) on both desktop and mobile. This keeps the title, search bar, and mode filters pinned at the top rather than scrolling the entire document body. When the search query or search mode changes, reset `.restaurant-scroll-area.scrollTop` to `0`.
-- iOS mobile inputs: Keep all mobile text inputs (`.search-box input`, `.price-input input`, selects) at `font-size: 16px` to avoid Safari's forced viewport auto-zoom.
-- Search input controls: The search bar container must keep an internal clear button `(X)` (`#search-clear`) aligned to the right, resetting both the input and restaurant scroll position upon click.
-- Floating notifications: Toast notifications and empty states must maintain `z-index: 999` and adequate bottom padding/safe-area offsets so they are never obscured behind the bottom Liquid Glass tab bar.
+### Backend e Build (Python 3.11+)
+- **Estrutura Modular em Camadas**:
+  - `core/`: modelos de domínio (`Restaurant`, `Menu`, `Dish`), protocolos e serviços de negócio (`RestaurantService`). Desacoplado de transportes (zero imports de MCP ou frameworks web).
+  - `data_sources/studentska_prehrana/`: cliente HTTP (`httpx`) e parser HTML (`BeautifulSoup4`) para listagens e cardápios diários do portal oficial.
+  - `data_sources/translation/`: adaptadores de tradução preservando o texto esloveno original junto às traduções.
+  - `adapters/web/`: servidor HTTP leve para a PWA local e endpoints JSON (`/api/restaurants`, `/api/restaurants/{id}/menu`, `/api/restaurant-hours`, `/api/draw`).
+  - `adapters/mcp/`: servidor do protocolo Model Context Protocol (MCP) para integração com assistentes de IA.
+  - `api/`: funções serverless Vercel (finas, apenas delegando para `RestaurantService`).
+- **Scripts de Build e Sincronização de Assets**:
+  - `scripts/prepare_vercel.py`: Valida a sintaxe de todos os arquivos JS com `node -c` e copia o conteúdo de `src/bomboni/adapters/web/static/` para a pasta de distribuição `public/` (usada pelo deploy na Vercel).
+  - `scripts/setup_git_hooks.py`: Instala hooks nativos de Git para validação pré-commit de JS (`node -c`) e Python (`pytest`).
 
-## Web API route contract
+---
 
-- The browser requests menus using `/api/restaurants/{restaurant_id}/menu?date=YYYY-MM-DD`. The local web server handles this route directly; Vercel rewrites it to the thin function at `/api/menu?restaurant_id=...`, retaining the requested date query.
-- Keep the frontend URL, local adapter route, and Vercel rewrite in sync when changing menu endpoints. A working restaurant list does not prove menu fetching works: verify a restaurant selection reaches the menu endpoint and renders dishes, and report HTTP failures in the page rather than leaving a spinner.
-- The frontend must only call endpoints implemented by both the local adapter and the deployed adapter (directly or through an explicit Vercel rewrite). Keep scraping, parsing, and menu selection in the shared service/source layers.
-- `/api/restaurant-hours?ids=...` accepts at most 20 restaurant IDs and retrieves official detail-page schedules with bounded concurrency. Keep local and Vercel implementations in sync; do not fetch details for the entire directory when rendering the list.
-- Every dish card must keep its image-search action inside the card, aligned to the right of the displayed dish name. Search Google Images with the original Slovenian dish name, open in a new tab, and keep the translated label as the main text.
+## 2. Regras Críticas de Não Regressão
 
-## Source behavior confirmed
+### 1. Validação Obrigatória de Sintaxe JavaScript
+- **Regra**: Qualquer alteração em arquivos `.js` (`app.js`, `service-worker.js`) **deve** ser validada com `node -c <caminho>` antes de qualquer commit ou abertura de Pull Request.
+- Na ausência de um bundler com transpile, qualquer erro de sintaxe passa direto para o navegador e quebra a inicialização do app silenciosamente.
+- Validação rápida:
+  ```bash
+  node -c src/bomboni/adapters/web/static/app.js && node -c src/bomboni/adapters/web/static/service-worker.js
+  ```
 
-- English restaurant index: `/en/restaurant`.
-- Restaurant detail: `/en/restaurant/Details/{id}`; ABI FALAFEL uses ID `1478`.
-- The index HTML contains restaurant rows with `data-posid`, `data-lokal`, `data-city`, `data-naslov`, `data-detailslink`, `data-cena`, and `data-doplacilo` attributes.
-- Detail HTML contains menu date choices and the selected day's dishes.
-- The site's date switch posts `restaurantId` and `date` to `/en/restaurant/MenuForDate`; the response is HTML, not JSON. Dish category is present as the title of the menu card's category image (for example `Meat`, `Fish`, `Meatless`).
-- Menu item names can remain Slovenian on the English site. Preserve source text and source URLs; do not silently translate or infer ingredients.
+### 2. Cuidados Estritos com Service Worker e Invalidação de Cache
+- **Regra**: Toda alteração em arquivos de frontend (`app.js`, `styles.css`, `index.html` ou `service-worker.js`) **exige obrigatoriamente** a atualização das versões de cache.
+- **Passos ao modificar o frontend**:
+  1. No `src/bomboni/adapters/web/static/service-worker.js`:
+     - Incrementar `CACHE` (ex: de `'bomboni-shell-v19'` para `'bomboni-shell-v20'`).
+     - Atualizar as query strings no array `SHELL` (ex: `'/styles.css?v=v20'`, `'/app.js?v=v20'`).
+  2. No `src/bomboni/adapters/web/static/index.html`:
+     - Atualizar as referências de link e script (`href="/styles.css?v=v20"`, `src="/app.js?v=v20"`).
+     - Atualizar o registro do Service Worker (`register('/service-worker.js?v=20')`).
+- **Por que isso é crítico?** PWAs instaladas no dispositivo mantêm o cache ativo; sem o bump de versão, os usuários continuarão no shell antigo (stale cache).
+- **APIs Network-Only**: As rotas `/api/*` **nunca** devem ser salvas em cache pelo Service Worker; cardápios e horários são dinâmicos e dependentes de data.
 
-## Data and freshness
+### 3. Fonte Canônica de Assets vs. Diretório `public/`
+- **Regra de Ouro**: O código-fonte canônico reside exclusivamente em `src/bomboni/adapters/web/static/`.
+- O diretório `public/` na raiz é um artefato gerado por `scripts/prepare_vercel.py` e ignorado pelo controle de versão (`.gitignore`).
+- **NUNCA** edite arquivos diretamente em `public/`.
+- Após qualquer modificação em `src/bomboni/adapters/web/static/`, execute:
+  ```bash
+  python3 scripts/prepare_vercel.py
+  ```
 
-- Treat restaurant IDs as stable keys and names as display labels, never as unique keys.
-- Menus are date-specific and volatile. Return the requested/observed date and fetch timestamp with menu results.
-- A menu item returned by the portal is a published listing, not a live confirmation that the venue still has it in stock. Report the listing's date and fetch timestamp; do not guarantee current availability.
-- Cache directory metadata briefly; do not cache menus long enough to present stale menus as current. Keep cache policy in the service layer.
-- Menu category filtering must use the site's menu category, not the restaurant-level `Meatless` badge.
-- Restaurant index rows expose `data-lat` and `data-lon`; use these for proximity sorting and do not geocode addresses through a third party.
-- Ask for browser geolocation only in the web UI and use it only to calculate distances. Keep menu APIs network-only in the service worker so dated menus do not become stale offline.
-- When no menu/category data is available, report that clearly rather than guessing from restaurant names.
+### 4. Guardrails de UI e Design System
+- **Visual e Cores**: Canvas off-white acolhedor (`#f5f3ed`), tipografia verde escuro, detalhes em verde suave, cartões com bordas sutis e cantos arredondados.
+- **Formatação de CSS**: Mantenha formatação limpa e legível em `src/bomboni/adapters/web/static/styles.css`. Não concentre múltiplos blocos de componentes em linhas únicas de vários kilobytes.
+- **Mobile Safe Areas e Tab Bar**: Barra de navegação inferior flutuante (Liquid Glass) com 4 abas estáveis: **Explorar**, **Favoritos**, **Sorteio**, **Perfil**. A barra deve respeitar a `env(safe-area-inset-bottom)` e nunca cobrir o conteúdo dos cartões.
+- **Inputs no Safari iOS**: Mantenha sempre `font-size: 16px` em todos os `<input>` e `<select>` mobile para impedir o zoom automático forçado do Safari no iPhone.
+- **Scroll Container**: A listagem de restaurantes deve ser contida em `.restaurant-scroll-area`, mantendo a busca e topo fixos. Ao aplicar filtros ou pesquisar, resete `scrollTop = 0`.
+- **Spinner Oficial**: Operações assíncronas (busca, sorteio, carregamento de cardápio) **devem** utilizar o spinner de bombom giratório oficial (`.bonbon-spinner`), nunca textos simples, emojis ou símbolos de faísca/IA.
 
-## Answering student meal questions in Antigravity
+---
 
-- Treat ordinary questions about *boni*, student meal eligibility, participating restaurants, current menus, dishes, and co-payments as requests for Bomboni data even when the user does not name the MCP.
-- Bomboni is the source of truth for those facts. Use its MCP results and do not supplement them with web searches, delivery apps, restaurant sites, shell commands, or remembered menu data. Use another source only if the user explicitly asks for information outside Bomboni's coverage or an independent comparison.
-- Choose the appropriate Bomboni tool directly: use `search_menu_items` for a city-wide dish/category question, `get_restaurant_menu` for a known restaurant, and `search_restaurants` for a directory lookup. Do not issue preliminary searches or repeat equivalent calls when one call answers the question.
-- Give the relevant restaurant names, addresses, co-payments, menu date, and matching dishes from the returned data. Keep dish names in the source language and translate briefly when useful. Do not replace the requested information with a vague summary.
-- If the MCP reports no matches, errors, or truncated results, state that plainly. Do not fill gaps by guessing or silently present partial data as complete. Only claim a result is unique when `scan_complete` is true and `results_truncated` is false.
+## 3. Definição de Done (DoD) para Pull Requests
 
-## Development
+Antes de submeter qualquer Pull Request (pelo Jules ou seus sub-agentes como Bolt), o seguinte checklist **deve** ser cumprido rigorosamente:
 
-- Python 3.11+.
-- Dependencies and scripts are declared in `pyproject.toml`.
-- Keep network access read-only and limited to public GET and the site's read-only menu lookup POST.
-- Add parser fixtures/tests when selectors or source behavior changes. Do not commit live user data, credentials, or scraped bulk datasets.
-- Maintain clean, human-readable formatting in `src/bomboni/adapters/web/static/styles.css`. Do not bundle multiple independent component blocks into single multi-kilobyte lines in the repository source, preventing accidental style truncation during tool edits.
-- Whenever modifying any `.js` file, run `node -c <file_path>` in the terminal to validate syntax before marking the task as completed.
-- Whenever modifying `.py` files, execute the test suite with `pytest`.
-- If any syntax error or test failure occurs, fix it immediately in the same cycle without waiting for manual intervention.
+1. **[ ] Sintaxe JavaScript Validada**:
+   ```bash
+   node -c src/bomboni/adapters/web/static/app.js && node -c src/bomboni/adapters/web/static/service-worker.js
+   ```
+2. **[ ] Sintaxe Python Validada**:
+   ```bash
+   python3 -m compileall -q src tests scripts
+   ```
+3. **[ ] Suíte Completa de Testes Aprovada**:
+   ```bash
+   pytest
+   ```
+   (Todos os testes em `tests/` devem passar com sucesso).
+4. **[ ] Invalidação de Cache Efetuada (se o frontend foi alterado)**:
+   - Bump da versão `CACHE` e `SHELL` em `service-worker.js`.
+   - Bump das query strings de versão em `index.html`.
+5. **[ ] Build de Assets Executado**:
+   ```bash
+   python3 scripts/prepare_vercel.py
+   ```
+6. **[ ] Integridade e Git Clean**:
+   - Nenhum arquivo editado diretamente em `public/`.
+   - Nenhum artefato temporário (`__pycache__`, `.DS_Store`, etc.) comitado.
+   - Nenhuma credencial ou log sensível adicionado.
+
+---
+
+## 4. Web API Route Contract & Source Behavior
+
+- O frontend solicita cardápios via `/api/restaurants/{restaurant_id}/menu?date=YYYY-MM-DD`. O servidor local atende a essa rota diretamente; a Vercel a reescreve para `/api/menu?restaurant_id=...&date=...`.
+- Mantenha a URL do frontend, a rota do adaptador local e a reescrita da Vercel estritamente em sincronia.
+- `/api/restaurant-hours?ids=...` aceita até 20 IDs e busca horários das páginas de detalhe oficiais de forma assíncrona/concorrente bounded, calculando aberto/fechado pelo fuso `Europe/Ljubljana`.
+- Cada cartão de prato mantém ação de busca de imagem abrindo o Google Imagens com o nome original em esloveno em nova aba.
+- Menus são datados e voláteis: retorne a data solicitada e timestamp de busca junto com os resultados.
+- Trate IDs de restaurante como chaves estáveis e nomes como rótulos de exibição, nunca como identificadores únicos.
+
+---
+
+## 5. Answering student meal questions in Antigravity
+
+- Trate perguntas sobre *boni*, restaurantes conveniados, cardápios e copagamentos como consultas para dados do Bomboni.
+- O Bomboni é a fonte da verdade para esses fatos. Utilize as ferramentas MCP disponíveis (`search_restaurants`, `get_restaurant_menu`, `search_menu_items`).
+- Apresente os dados com precisão: nomes dos estabelecimentos, endereços, copagamentos, data do menu e pratos correspondentes.
+- Se não houver dados disponíveis ou resultados forem truncados, informe com clareza sem tentar deduzir ou adivinhar.

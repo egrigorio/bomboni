@@ -14,3 +14,4 @@ dist/
 macos/BomboniMenuBar/dist/
 .vercel
 .env*
+.jules/

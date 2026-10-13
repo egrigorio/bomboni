@@ -4,12 +4,13 @@ const translations = {
   es:{eyebrow:'BONI SIN BARRERAS DE IDIOMA',heroA:'Una buena comida',heroB:'está',heroEm:'más cerca.',heroCopy:'Restaurantes con boni cerca de ti y platos en tu idioma.',search:'Restaurante…',near:'Cerca de ti',sorting:'Ordenados por tu ubicación',enable:'Activa la ubicación para ordenar por distancia.',loading:'Buscando restaurantes…',loadingDishes:'Buscando platos en los menús de hoy…',more:'Ver más restaurantes',emptyKicker:'TU PRÓXIMA PARADA',emptyTitle:'Elige un restaurante',emptyCopy:'Consulta el menú de boni del día traducido. El nombre original siempre está disponible.',emptyFoot:'Menús oficiales · traducción automática',back:'Todos los restaurantes',venueKicker:'RESTAURANTE CON BONI',menuOverline:'MENÚ BONI',today:'Platos de hoy',fee:'Copago',noMenu:'No hay platos publicados para esta fecha.',menuSource:'Menú publicado para',retrieved:'consultado a las',disclaimer:'Traducción automática. Confirma los ingredientes y alérgenos con el restaurante.',footer:'Comidas de estudiantes · Eslovenia',source:'Fuente oficial',locating:'Obteniendo ubicación…',locationReady:'Ordenados por distancia',locationFallback:'Ljubljana · ubicación no disponible',noResults:'No se encontraron restaurantes.',noDishResults:'No hay restaurantes con este plato hoy.',searchDishPrompt:'Busca un plato para ver qué restaurantes lo ofrecen hoy.',error:'No se pudieron cargar los datos. Inténtalo de nuevo.',translationMissing:'Traducción no disponible',restaurantCount:'restaurantes',categories:{Meat:'Carne',Fish:'Pescado',Meatless:'Sin carne',Mixed:'Mixto','Salad bar':'Ensaladas','Fast food':'Rápido'}},
   de:{eyebrow:'STUDENTENMENÜS OHNE SPRACHBARRIEREN',heroA:'Ein gutes Essen',heroB:'ist',heroEm:'ganz in der Nähe.',heroCopy:'Boni-Restaurants in deiner Nähe, mit Gerichten in deiner Sprache.',search:'Restaurant…',near:'In deiner Nähe',sorting:'Nach Standort sortiert',enable:'Standort aktivieren, um nach Entfernung zu sortieren.',loading:'Restaurants werden gesucht…',loadingDishes:'Gerichte in heutigen Menüs werden gesucht…',more:'Mehr Restaurants anzeigen',emptyKicker:'DEIN NÄCHSTER STOPP',emptyTitle:'Restaurant auswählen',emptyCopy:'Sieh dir das heutige Boni-Menü übersetzt an. Der Originalname bleibt immer sichtbar.',emptyFoot:'Offizielle Menüs · maschinell übersetzt',back:'Alle Restaurants',venueKicker:'BONI-RESTAURANT',menuOverline:'BONI-MENÜ',today:'Gerichte heute',fee:'Eigenanteil',noMenu:'Für dieses Datum sind keine Gerichte veröffentlicht.',menuSource:'Menü veröffentlicht für',retrieved:'abgerufen um',disclaimer:'Maschinelle Übersetzung. Zutaten und Allergene bitte direkt beim Restaurant prüfen.',footer:'Studentenmenüs · Slowenien',source:'Offizielle Quelle',locating:'Standort wird ermittelt…',locationReady:'Nach Entfernung sortiert',locationFallback:'Ljubljana · Standort nicht verfügbar',noResults:'Keine Restaurants gefunden.',noDishResults:'Heute kein Restaurant mit diesem Gericht gefunden.',searchDishPrompt:'Suche nach einem Gericht, um passende Restaurants zu finden.',error:'Daten konnten nicht geladen werden. Bitte erneut versuchen.',translationMissing:'Keine Übersetzung verfügbar',restaurantCount:'Restaurants',categories:{Meat:'Fleisch',Fish:'Fisch',Meatless:'Fleischlos',Mixed:'Gemischt','Salad bar':'Salate','Fast food':'Schnellgericht'}},
   it:{eyebrow:'BONI SENZA BARRIERE LINGUISTICHE',heroA:'Un buon pasto',heroB:'è',heroEm:'più vicino.',heroCopy:'Ristoranti con boni vicino a te, con i piatti nella tua lingua.',search:'Ristorante…',near:'Vicino a te',sorting:'Ordinati per posizione',enable:'Attiva la posizione per ordinare per distanza.',loading:'Cerco ristoranti…',loadingDishes:'Cerco piatti nei menu di oggi…',more:'Mostra altri ristoranti',emptyKicker:'LA TUA PROSSIMA TAPPA',emptyTitle:'Scegli un restaurante',emptyCopy:'Scopri il menu boni del giorno tradotto. Il nome originale resta sempre disponibile.',emptyFoot:'Menu ufficiali · traduzione automatica',back:'Tutti i ristoranti',venueKicker:'RISTORANTE BONI',menuOverline:'MENU BONI',today:'Piatti di oggi',fee:'Quota studente',noMenu:'Nessun piatto pubblicato per questa data.',menuSource:'Menu pubblicato per',retrieved:'consultato alle',disclaimer:'Traduzione automatica. Verifica ingredienti e allergeni con il ristorante.',footer:'Menu per studenti · Slovenia',source:'Fonte ufficiale',locating:'Rilevo la posizione…',locationReady:'Ordinati per distanza',locationFallback:'Ljubljana · posizione non disponibile',noResults:'Nessun ristorante trovato.',noDishResults:'Nessun ristorante con questo piatto oggi.',searchDishPrompt:'Cerca un piatto per vedere quali ristoranti lo servono oggi.',error:'Impossibile caricare i dati. Riprova.',translationMissing:'Traduzione non disponibile',restaurantCount:'ristoranti',categories:{Meat:'Carne',Fish:'Pesce',Meatless:'Senza carne',Mixed:'Misto','Salad bar':'Insalate','Fast food':'Veloce'}},
-  fr:{eyebrow:'LES BONI SANS BARRIÈRE DE LANGUE',heroA:'Un bon repas',heroB:'est',heroEm:'tout près.',heroCopy:'Des restaurants avec boni près de vous, avec les plats dans votre langue.',search:'Restaurant…',near:'Près de vous',sorting:'Triés selon votre position',enable:'Activez la localisation pour trier par distance.',loading:'Recherche de restaurants…',loadingDishes:'Recherche de plats dans les menus du jour…',more:'Voir plus de restaurants',emptyKicker:'VOTRE PROCHAINE ÉTAPE',emptyTitle:'Choisissez un restaurant',emptyCopy:'Consultez le menu boni du jour traduit. Le nom original reste toujours disponible.',emptyFoot:'Menus officiels · traduction automatique',back:'Tous les restaurants',venueKicker:'RESTAURANT BONI',menuOverline:'MENU BONI',today:'Plats du jour',fee:'Participation étudiant',noMenu:'Aucun plat publié pour cette date.',menuSource:'Menu publié pour',retrieved:'consulté à',disclaimer:'Traduction automatique. Vérifiez les ingrédients et allergènes auprès du restaurant.',footer:'Repas étudiants · Slovénie',source:'Source officielle',locating:'Localisation en cours…',locationReady:'Triés par distance',locationFallback:'Ljubljana · localisation indisponible',noResults:'Aucun restaurant trouvé.',noDishResults:'Aucun restaurant trouvé avec ce plat aujourd’hui.',searchDishPrompt:'Recherchez un plat pour voir quels restaurants le proposent aujourd’hui.',error:'Impossible de charger les données. Réessayez.',translationMissing:'Traduction indisponible',restaurantCount:'restaurants',categories:{Meat:'Viande',Fish:'Poisson',Meatless:'Sans viande',Mixed:'Mixte','Salad bar':'Salades','Fast food':'Rapide'}}
+  fr:{eyebrow:'LES BONI SANS BARRIÈRE DE LANGUE',heroA:'Un bon repas',heroB:'est',heroEm:'tout près.',heroCopy:'Des restaurants avec boni près de vous, avec les plats dans votre langue.',search:'Restaurant…',near:'Près de vous',sorting:'Triés selon votre position',enable:'Activez la localisation pour trier par distance.',loading:'Recherche de restaurants…',loadingDishes:'Recherche de plats dans les menus du jour…',more:'Voir plus de restaurants',emptyKicker:'VOTRE PROCHAINE ÉTAPE',emptyTitle:'Choisissez un restaurant',emptyCopy:'Consultez le menu boni du jour traduit. Le nom original reste toujours disponible.',emptyFoot:'Menus officiels · traduction automatique',back:'Tous les restaurants',venueKicker:'RESTAURANT BONI',menuOverline:'MENU BONI',today:'Plats du jour',fee:'Participation étudiant',noMenu:'Aucun plat publié pour cette date.',menuSource:'Menu publié pour',retrieved:'consulté à',disclaimer:'Traduction automatique. Vérifiez les ingrédients et allergènes auprès du restaurant.',footer:'Repas étudiants · Slovénie',source:'Source officielle',locating:'Localisation en cours…',locationReady:'Triés par distance',locationFallback:'Ljubljana · localisation indisponible',noResults:'Aucun restaurant trouvé.',noDishResults:'Aucun restaurant trouvé avec ce plat aujourd’hui.',searchDishPrompt:'Recherchez un plat pour voir quels restaurants le proposent aujourd’hui.',error:'Impossible de charger les données. Réessayez.',translationMissing:'Traduction indisponible',restaurantCount:'restaurants',categories:{Meat:'Viande',Fish:'Poisson',Meatless:'Sans viande',Mixed:'Mixte','Salad bar':'Salades','Fast food':'Rapide'}},
+  ca:{eyebrow:'MENÚS D’ESTUDIANT SENSE BARRERES DE LLENGUA',heroA:'Un bon àpat',heroB:'és',heroEm:'més a prop.',heroCopy:'Restaurants de boni a prop teu, amb els plats en el teu idioma.',search:'Restaurant…',near:'A prop teu',sorting:'Ordenats per la teva ubicació',enable:'Activa la ubicació per ordenar per distància.',loading:'Cercant restaurants…',loadingDishes:'Cercant plats als menús d’avui…',more:'Veure més restaurants',emptyKicker:'LA TEVA PROPERA PARADA',emptyTitle:'Tria un restaurant',emptyCopy:'Consulta el menú de boni d’avui traduït. El nom original sempre queda visible.',emptyFoot:'Menús oficials · traducció automàtica',back:'Tots els restaurants',venueKicker:'RESTAURANT DE BONI',menuOverline:'MENÚ DE BONI',today:'Plats d’avui',fee:'Copagament',noMenu:'No hi ha plats publicats per a aquesta data.',menuSource:'Menú publicat per a',retrieved:'consultat a les',disclaimer:'Traducció automàtica. Comprova ingredients i al·lèrgens amb el restaurant.',footer:'Dades de menjars d’estudiants · Eslovènia',source:'Font oficial',locating:'Obtenint ubicació…',locationReady:'Ordenats per distància',locationFallback:'Ljubljana · ubicació no disponible',noResults:'No s’ha trobat cap restaurant.',noDishResults:'Cap restaurant amb aquest plat avui.',searchDishPrompt:'Cerca un plat per veure quins restaurants el serveixen avui.',error:'No s’han pogut carregar les dades. Torna-ho a provar.',translationMissing:'Sense traducció automàtica disponible',restaurantCount:'restaurants',categories:{Meat:'Carn',Fish:'Peix',Meatless:'Sense carn',Mixed:'Mixte','Salad bar':'Amanides','Fast food':'Ràpid'}}
 };
 
 const searchModeLabels = {
-  restaurants: { pt:'Restaurantes', en:'Restaurants', es:'Restaurantes', de:'Restaurants', it:'Ristoranti', fr:'Restaurants' },
-  dishes: { pt:'No cardápio', en:'On the menu', es:'En el menú', de:'Auf der Karte', it:'Nel menu', fr:'Au menu' }
+  restaurants: { pt:'Restaurantes', en:'Restaurants', es:'Restaurantes', de:'Restaurants', it:'Ristoranti', fr:'Restaurants', ca:'Restaurants' },
+  dishes: { pt:'No cardápio', en:'On the menu', es:'En el menú', de:'Auf der Karte', it:'Nel menu', fr:'Au menu', ca:'A la carta' }
 };
 
 const dishSearchPlaceholders = {
@@ -18,7 +19,8 @@ const dishSearchPlaceholders = {
   es: 'Buscar plato (ej: pizza, sushi, ensalada)…',
   de: 'Gericht suchen (z.B. Pizza, Sushi, Salat)…',
   it: 'Cerca piatto (es: pizza, sushi, insalata)…',
-  fr: 'Rechercher un plat (ex: pizza, sushi, salade)…'
+  fr: 'Rechercher un plat (ex: pizza, sushi, salade)…',
+  ca: 'Cercar plat (ex: pizza, sushi, amanida)…'
 };
 
 const restaurantSearchPlaceholders = {
@@ -27,19 +29,21 @@ const restaurantSearchPlaceholders = {
   es: 'Restaurante, calle o ciudad…',
   de: 'Restaurant, Straße oder Stadt…',
   it: 'Ristorante, via o città…',
-  fr: 'Restaurant, rue ou ville…'
+  fr: 'Restaurant, rue ou ville…',
+  ca: 'Restaurant, carrer o ciutat…'
 };
 
-const imageSearchLabels = { pt:'Pesquisar imagens de', en:'Search images for', es:'Buscar imágenes de', de:'Bilder suchen für', it:'Cerca immagini di', fr:'Rechercher des images de' };
-const locationError = { pt:'Não foi possível obter a localização.', en:'Could not get your location.', es:'No se pudo obtener tu ubicación.', de:'Standort konnte nicht ermittelt werden.', it:'Impossibile ottenere la posizione.', fr:'Impossible d’obtenir la position.' };
-const nearbyLabels = { pt:'Perto de si', en:'Near you', es:'Cerca de ti', de:'In deiner Nähe', it:'Vicino a te', fr:'Près de vous' };
+const imageSearchLabels = { pt:'Pesquisar imagens de', en:'Search images for', es:'Buscar imágenes de', de:'Bilder suchen für', it:'Cerca immagini di', fr:'Rechercher des images de', ca:'Cercar imatges de' };
+const locationError = { pt:'Não foi possível obter a localização.', en:'Could not get your location.', es:'No se pudo obtener tu ubicación.', de:'Standort konnte nicht ermittelt werden.', it:'Impossibile ottenere la posizione.', fr:'Impossible d’obtenir la position.', ca:'No s’ha pogut obtenir la ubicació.' };
+const nearbyLabels = { pt:'Perto de si', en:'Near you', es:'Cerca de ti', de:'In deiner Nähe', it:'Vicino a te', fr:'Près de vous', ca:'A prop teu' };
 const mobileTabLabels = {
   pt:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteio',profile:'Perfil'},
   en:{explore:'Explore',favorites:'Saved',draw:'Decide',profile:'Profile'},
   es:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteo',profile:'Perfil'},
   de:{explore:'Entdecken',favorites:'Favoriten',draw:'Auslosen',profile:'Profil'},
   it:{explore:'Esplora',favorites:'Preferiti',draw:'Estrai',profile:'Profilo'},
-  fr:{explore:'Explorer',favorites:'Favoris',draw:'Tirage',profile:'Profil'}
+  fr:{explore:'Explorer',favorites:'Favoris',draw:'Tirage',profile:'Profil'},
+  ca:{explore:'Explorar',favorites:'Preferits',draw:'Sorteig',profile:'Perfil'}
 };
 
 const featureCopy = {
@@ -48,42 +52,63 @@ const featureCopy = {
     favoritesEyebrow:'A TUA LISTA',favoritesTitle:'Favoritos',favoritesSubtitle:'Os teus restaurantes e pratos guardados para acesso rápido.',favoritesEmptyVenuesTitle:'Sem restaurantes guardados',favoritesEmptyVenuesCopy:'Toca no coração de qualquer restaurante para guardá-lo aqui.',favoritesEmptyDishesTitle:'Sem pratos guardados',favoritesEmptyDishesCopy:'Toca no coração de qualquer prato no menu para guardá-lo aqui.',favVenuesTab:'Restaurantes',favDishesTab:'Pratos',
     profileEyebrow:'A TUA CONTA',profileTitle:'Perfil',profileSubtitle:'O teu resumo de refeições, avaliações e gastos com boni.',profileUserTitle:'O teu registo pessoal',profileUserCopy:'Dados das tuas refeições guardados no teu dispositivo.',reviews:'Avaliações feitas',history:'Refeições registadas',foodStats:'Comida mais escolhida',spending:'Gasto com boni',myReviews:'As Minhas Avaliações',mealHistory:'Últimas Refeições Registadas',calendarTitle:'Calendário de Refeições',emptyReviews:'Ainda não avaliaste nenhum restaurante. Abre um restaurante e clica em “Avaliar”.',emptyHistory:'Ainda não registaste refeições. Clica em “Comi aqui” quando visitares um restaurante.',
     favBtn:'Favorito',favBtnActive:'Guardado',logBtn:'Comi aqui',logBtnDone:'Comi hoje',rateBtn:'Avaliar',rateBtnEdit:'Editar nota',rateBoxTitle:'Avaliar este restaurante',reviewPlaceholder:'Escreve uma nota rápida sobre o restaurante…',cancel:'Cancelar',save:'Guardar',resetBtn:'Limpar dados locais',favAdded:'Adicionado aos favoritos!',favRemoved:'Removido dos favoritos.',favDishAdded:'Prato adicionado aos favoritos!',favDishRemoved:'Prato removido dos favoritos.',mealLogged:'Refeição registada no teu histórico!',mealUnlogged:'Refeição desmarcada do teu histórico.',mealDeleted:'Refeição removida.',reviewSaved:'Avaliação guardada!',reviewDeleted:'Avaliação removida.',clearDataConfirm:'Tens a certeza que queres limpar todo o teu histórico, avaliações e favoritos locais?',dataCleared:'Dados locais apagados com sucesso.',scanned:'menus consultados',
-    loginTab:'Entrar',registerTab:'Criar conta',loginSuccess:'Sessão iniciada com sucesso!',registerSuccess:'Conta criada com sucesso!',logoutSuccess:'Sessão terminada.',authRequiredReview:'Inicia sessão no teu perfil para avaliar restaurantes.',calEmptyDay:'Nenhuma refeição registada neste dia.',calSavedMeal:'Refeição guardada no histórico!',calAddMeal:'+ Registar refeição neste dia',calCloseForm:'− Fechar formulário'
+    loginTab:'Entrar',registerTab:'Criar conta',loginSuccess:'Sessão iniciada com sucesso!',registerSuccess:'Conta criada com sucesso!',logoutSuccess:'Sessão terminada.',authRequiredReview:'Inicia sessão no teu perfil para avaliar restaurantes.',calEmptyDay:'Nenhuma refeição registada neste dia.',calSavedMeal:'Refeição guardada no histórico!',calAddMeal:'+ Registar refeição neste dia',calCloseForm:'− Fechar formulário',
+    mealPickerTitle:'O que comeste aqui hoje?',mealPickerSub:'Escolhe o prato para registar com precisão no teu histórico.',mealPickerNext:'Continuar',mealPickerRateTitle:'Como avalias este restaurante?',mealPickerRateSub:'Dá a tua nota em estrelas ou podes saltar este passo.',mealPickerSkip:'Saltar',mealPickerConfirmRate:'Avaliar e registar',mealPickerDailyMenu:'Menu do dia / Refeição',mealPickerOtherDish:'Outro prato / Opção livre',mealPickerCustomPrompt:'Qual prato comeste?',mealLoggedAndRated:'Refeição registada e avaliação guardada!',
+    authUsernameLabel:'Nome de utilizador',authUsernamePlaceholder:'@o-teu-username',authEmailLabel:'Email',authEmailPlaceholder:'teu.email@exemplo.com',authPasswordLabel:'Palavra-passe',profileMemberBadge:'Membro Bomboni',profileLogout:'Sair',profileLogoutTitle:'Terminar sessão',calMonthBadge:'Histórico',calPrevMonth:'Mês anterior',calNextMonth:'Mês seguinte',calWeekdays:['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],calLogFormTitle:'Registar refeição',calLogRestLabel:'Restaurante',calLogChooseRest:'Escolhe um restaurante…',calLogDishLabel:'Prato / Comida',calLogChooseRestFirst:'Escolhe primeiro o restaurante…',calLogLoadingDishes:'A carregar pratos do menu…',calLogChooseDish:'Escolhe um prato…',calLogCustomDishPlaceholder:'Escreve o nome do prato',calLogFeeLabel:'Copagamento (€)',historyPrev:'Anterior',historyNext:'Seguinte',dishFavAddTitle:'Guardar prato nos favoritos',dishFavRemoveTitle:'Remover dos favoritos',dishLogMarkTitle:'Registar que comi este prato hoje',dishLogUnmarkTitle:'Desmarcar refeição de hoje',sourceLinkTitle:'Abrir fonte oficial',searchClearAria:'Limpar pesquisa',authUsernameMin:'Nome de utilizador deve ter pelo menos 3 caracteres.',authPasswordMin:'A palavra-passe deve ter pelo menos 6 caracteres.',authEmailExists:'Este email já está registado.',authUsernameExists:'Este nome de utilizador já existe.',authInvalidCreds:'Email ou palavra-passe incorretos.'
   },
   en:{
     drawEyebrow:'TODAY’S DECISION',drawTitle:'Let’s decide',drawDescription:'Choose a few filters or leave it to chance.',city:'City',anyCity:'Any city',food:'Food type',anyFood:'No preference',mode:'Pick a',restaurant:'Restaurant',dish:'Dish',price:'Maximum co-pay',noLimit:'No limit',draw:'Pick for me',searching:'Checking today’s menus…',noResult:'No options match those filters.',resultRestaurant:'Your restaurant',resultDish:'Your dish',openMenu:'View menu',drawError:'The draw failed. Please try again.',
     favoritesEyebrow:'YOUR LIST',favoritesTitle:'Favorites',favoritesSubtitle:'Your saved restaurants and dishes for quick access.',favoritesEmptyVenuesTitle:'No saved restaurants',favoritesEmptyVenuesCopy:'Tap the heart on any restaurant to save it here.',favoritesEmptyDishesTitle:'No saved dishes',favoritesEmptyDishesCopy:'Tap the heart on any menu dish to save it here.',favVenuesTab:'Restaurants',favDishesTab:'Dishes',
     profileEyebrow:'YOUR ACCOUNT',profileTitle:'Profile',profileSubtitle:'Your summary of meals, reviews, and boni spending.',profileUserTitle:'Your personal record',profileUserCopy:'Meal data stored locally on your device.',reviews:'Reviews given',history:'Logged meals',foodStats:'Most chosen food',spending:'Spent on boni',myReviews:'My Reviews',mealHistory:'Recent Logged Meals',calendarTitle:'Meal Calendar',emptyReviews:'You haven’t reviewed any restaurants yet. Open a venue and tap “Rate”.',emptyHistory:'No meals logged yet. Tap “Ate here” when you visit a restaurant.',
     favBtn:'Favorite',favBtnActive:'Saved',logBtn:'Ate here',logBtnDone:'Eaten today',rateBtn:'Rate',rateBtnEdit:'Edit rating',rateBoxTitle:'Rate this restaurant',reviewPlaceholder:'Write a quick note about this restaurant…',cancel:'Cancel',save:'Save',resetBtn:'Clear local data',favAdded:'Added to favorites!',favRemoved:'Removed from favorites.',favDishAdded:'Dish added to favorites!',favDishRemoved:'Dish removed from favorites.',mealLogged:'Meal logged to your history!',mealUnlogged:'Meal unlogged from history.',mealDeleted:'Meal removed.',reviewSaved:'Review saved!',reviewDeleted:'Review deleted.',clearDataConfirm:'Are you sure you want to clear your local meal history, reviews, and favorites?',dataCleared:'Local data cleared.',scanned:'menus checked',
-    loginTab:'Log in',registerTab:'Sign up',loginSuccess:'Logged in successfully!',registerSuccess:'Account created successfully!',logoutSuccess:'Logged out.',authRequiredReview:'Log in to your profile to rate restaurants.',calEmptyDay:'No meals logged on this day.',calSavedMeal:'Meal saved to history!',calAddMeal:'+ Log meal on this day',calCloseForm:'− Close form'
+    loginTab:'Log in',registerTab:'Sign up',loginSuccess:'Logged in successfully!',registerSuccess:'Account created successfully!',logoutSuccess:'Logged out.',authRequiredReview:'Log in to your profile to rate restaurants.',calEmptyDay:'No meals logged on this day.',calSavedMeal:'Meal saved to history!',calAddMeal:'+ Log meal on this day',calCloseForm:'− Close form',
+    mealPickerTitle:'What did you eat here today?',mealPickerSub:'Select the dish to log it accurately in your history.',mealPickerNext:'Continue',mealPickerRateTitle:'How would you rate this restaurant?',mealPickerRateSub:'Rate with stars or skip this step.',mealPickerSkip:'Skip',mealPickerConfirmRate:'Rate & log',mealPickerDailyMenu:'Daily menu / Meal',mealPickerOtherDish:'Other dish / Custom option',mealPickerCustomPrompt:'What dish did you eat?',mealLoggedAndRated:'Meal logged and review saved!',
+    authUsernameLabel:'Username',authUsernamePlaceholder:'@your-username',authEmailLabel:'Email',authEmailPlaceholder:'your.email@example.com',authPasswordLabel:'Password',profileMemberBadge:'Bomboni Member',profileLogout:'Log out',profileLogoutTitle:'Log out',calMonthBadge:'History',calPrevMonth:'Previous month',calNextMonth:'Next month',calWeekdays:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],calLogFormTitle:'Log meal',calLogRestLabel:'Restaurant',calLogChooseRest:'Choose a restaurant…',calLogDishLabel:'Dish / Food',calLogChooseRestFirst:'Choose a restaurant first…',calLogLoadingDishes:'Loading menu dishes…',calLogChooseDish:'Choose a dish…',calLogCustomDishPlaceholder:'Enter dish name',calLogFeeLabel:'Co-pay (€)',historyPrev:'Previous',historyNext:'Next',dishFavAddTitle:'Save dish to favorites',dishFavRemoveTitle:'Remove from favorites',dishLogMarkTitle:'Log that I ate this dish today',dishLogUnmarkTitle:'Unlog today’s meal',sourceLinkTitle:'Open official source',searchClearAria:'Clear search',authUsernameMin:'Username must be at least 3 characters.',authPasswordMin:'Password must be at least 6 characters.',authEmailExists:'This email is already registered.',authUsernameExists:'This username is already taken.',authInvalidCreds:'Incorrect email or password.'
   },
   es:{
     drawEyebrow:'LA DECISIÓN DE HOY',drawTitle:'Vamos a sortear',drawDescription:'Elige algunos filtros o deja que decida el azar.',city:'Ciudad',anyCity:'Cualquier ciudad',food:'Tipo de comida',anyFood:'Sin preferencia',mode:'Sortear',restaurant:'Restaurante',dish:'Plato',price:'Copago máximo',noLimit:'Sin límite',draw:'Sortear',searching:'Buscando en los menús de hoy…',noResult:'No hay opciones con esos filtros.',resultRestaurant:'Tu restaurante',resultDish:'Tu plato',openMenu:'Ver menú',drawError:'No se pudo completar el sorteo.',
     favoritesEyebrow:'TU LISTA',favoritesTitle:'Favoritos',favoritesSubtitle:'Tus restaurantes y platos guardados para acceso rápido.',favoritesEmptyVenuesTitle:'Sin restaurantes guardados',favoritesEmptyVenuesCopy:'Toca el corazón en cualquier restaurante para guardarlo.',favoritesEmptyDishesTitle:'Sin platos guardados',favoritesEmptyDishesCopy:'Toca el corazón en cualquier plato para guardarlo.',favVenuesTab:'Restaurantes',favDishesTab:'Platos',
     profileEyebrow:'TU CUENTA',profileTitle:'Perfil',profileSubtitle:'Tu resumen de comidas, reseñas y gastos con boni.',profileUserTitle:'Tu registro personal',profileUserCopy:'Datos guardados localmente en tu dispositivo.',reviews:'Reseñas hechas',history:'Comidas registradas',foodStats:'Comida más elegida',spending:'Gasto en boni',myReviews:'Mis Reseñas',mealHistory:'Últimas Comidas Registradas',calendarTitle:'Calendario de Comidas',emptyReviews:'Aún no has valorado ningún restaurante. Abre uno y pulsa “Valorar”.',emptyHistory:'Aún no has registrado comidas. Pulsa “Comí aquí” al visitar un restaurante.',
     favBtn:'Favorito',favBtnActive:'Guardado',logBtn:'Comí aquí',logBtnDone:'Comí hoy',rateBtn:'Valorar',rateBtnEdit:'Editar nota',rateBoxTitle:'Valorar este restaurante',reviewPlaceholder:'Escribe una nota rápida sobre el restaurante…',cancel:'Cancelar',save:'Guardar',resetBtn:'Borrar datos locales',favAdded:'¡Añadido a favoritos!',favRemoved:'Eliminado de favoritos.',favDishAdded:'¡Plato añadido a favoritos!',favDishRemoved:'Plato eliminado de favoritos.',mealLogged:'¡Comida registrada en tu historial!',mealUnlogged:'Comida desmarcada del historial.',mealDeleted:'Comida eliminada.',reviewSaved:'¡Reseña guardada!',reviewDeleted:'Reseña eliminada.',clearDataConfirm:'¿Seguro que quieres borrar todo tu historial, reseñas y favoritos locales?',dataCleared:'Datos locales borrados.',scanned:'menús consultados',
-    loginTab:'Iniciar sesión',registerTab:'Crear cuenta',loginSuccess:'¡Sesión iniciada con éxito!',registerSuccess:'¡Cuenta creada con éxito!',logoutSuccess:'Sesión cerrada.',authRequiredReview:'Inicia sesión en tu perfil para valorar restaurantes.',calEmptyDay:'Sin comidas registradas en este día.',calSavedMeal:'¡Comida guardada en el historial!',calAddMeal:'+ Registrar comida en este día',calCloseForm:'− Cerrar formulario'
+    loginTab:'Iniciar sesión',registerTab:'Crear cuenta',loginSuccess:'¡Sesión iniciada con éxito!',registerSuccess:'¡Cuenta creada con éxito!',logoutSuccess:'Sesión cerrada.',authRequiredReview:'Inicia sesión en tu perfil para valorar restaurantes.',calEmptyDay:'Sin comidas registradas en este día.',calSavedMeal:'¡Comida guardada en el historial!',calAddMeal:'+ Registrar comida en este día',calCloseForm:'− Cerrar formulario',
+    mealPickerTitle:'¿Qué comiste aquí hoy?',mealPickerSub:'Elige el plato para registrarlo con precisión en tu historial.',mealPickerNext:'Continuar',mealPickerRateTitle:'¿Cómo valoras este restaurante?',mealPickerRateSub:'Puntúa con estrellas o salta este paso.',mealPickerSkip:'Saltar',mealPickerConfirmRate:'Valorar y registrar',mealPickerDailyMenu:'Menú del día / Comida',mealPickerOtherDish:'Otro plato / Opción libre',mealPickerCustomPrompt:'¿Qué plato comiste?',mealLoggedAndRated:'¡Comida registrada y reseña guardada!',
+    authUsernameLabel:'Nombre de usuario',authUsernamePlaceholder:'@tu-usuario',authEmailLabel:'Correo electrónico',authEmailPlaceholder:'tu.email@ejemplo.com',authPasswordLabel:'Contraseña',profileMemberBadge:'Miembro Bomboni',profileLogout:'Cerrar sesión',profileLogoutTitle:'Cerrar sesión',calMonthBadge:'Historial',calPrevMonth:'Mes anterior',calNextMonth:'Mes siguiente',calWeekdays:['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'],calLogFormTitle:'Registrar comida',calLogRestLabel:'Restaurante',calLogChooseRest:'Elige un restaurante…',calLogDishLabel:'Plato / Comida',calLogChooseRestFirst:'Elige primero el restaurante…',calLogLoadingDishes:'Cargando platos del menú…',calLogChooseDish:'Elige un plato…',calLogCustomDishPlaceholder:'Escribe el nombre del plato',calLogFeeLabel:'Copago (€)',historyPrev:'Anterior',historyNext:'Siguiente',dishFavAddTitle:'Guardar plato en favoritos',dishFavRemoveTitle:'Eliminar de favoritos',dishLogMarkTitle:'Registrar que comí este plato hoy',dishLogUnmarkTitle:'Desmarcar comida de hoy',sourceLinkTitle:'Abrir fuente oficial',searchClearAria:'Limpiar búsqueda',authUsernameMin:'El nombre de usuario debe tener al menos 3 caracteres.',authPasswordMin:'La contraseña debe tener al menos 6 caracteres.',authEmailExists:'Este correo ya está registrado.',authUsernameExists:'Este nombre de usuario ya existe.',authInvalidCreds:'Correo o contraseña incorrectos.'
   },
   de:{
     drawEyebrow:'DIE ENTSCHEIDUNG DES TAGES',drawTitle:'Lass uns auslosen',drawDescription:'Wähle Filter oder lass den Zufall entscheiden.',city:'Stadt',anyCity:'Jede Stadt',food:'Essensart',anyFood:'Keine Präferenz',mode:'Auswählen',restaurant:'Restaurant',dish:'Gericht',price:'Maximaler Eigenanteil',noLimit:'Kein Limit',draw:'Auslosen',searching:'Heutige Menüs werden geprüft…',noResult:'Keine passenden Optionen gefunden.',resultRestaurant:'Dein Restaurant',resultDish:'Dein Gericht',openMenu:'Menü ansehen',drawError:'Die Auslosung ist fehlgeschlagen.',
     favoritesEyebrow:'DEINE LISTE',favoritesTitle:'Favoriten',favoritesSubtitle:'Deine gespeicherten Restaurants und Gerichte für schnellen Zugriff.',favoritesEmptyVenuesTitle:'Keine Restaurants gespeichert',favoritesEmptyVenuesCopy:'Tippe auf das Herz bei einem Restaurant, um es zu speichern.',favoritesEmptyDishesTitle:'Keine Gerichte gespeichert',favoritesEmptyDishesCopy:'Tippe auf das Herz bei einem Gericht, um es zu speichern.',favVenuesTab:'Restaurants',favDishesTab:'Gerichte',
     profileEyebrow:'DEIN KONTO',profileTitle:'Profil',profileSubtitle:'Deine Übersicht über Mahlzeiten, Bewertungen und Ausgaben.',profileUserTitle:'Dein persönliches Protokoll',profileUserCopy:'Daten lokal auf deinem Gerät gespeichert.',reviews:'Abgegebene Bewertungen',history:'Erfasste Mahlzeiten',foodStats:'Meistgewähltes Essen',spending:'Boni-Ausgaben',myReviews:'Meine Bewertungen',mealHistory:'Zuletzt erfasste Mahlzeiten',calendarTitle:'Mahlzeiten-Kalender',emptyReviews:'Du hast noch keine Restaurants bewertet. Öffne ein Restaurant und tippe auf „Bewerten“.',emptyHistory:'Noch keine Mahlzeiten erfasst. Tippe auf „Hier gegessen“, wenn du ein Restaurant besuchst.',
     favBtn:'Favorit',favBtnActive:'Gespeichert',logBtn:'Hier gegessen',logBtnDone:'Heute gegessen',rateBtn:'Bewerten',rateBtnEdit:'Bewertung bearbeiten',rateBoxTitle:'Dieses Restaurant bewerten',reviewPlaceholder:'Schreibe eine kurze Notiz über das Restaurant…',cancel:'Abbrechen',save:'Speichern',resetBtn:'Lokale Daten löschen',favAdded:'Zu Favoriten hinzugefügt!',favRemoved:'Aus Favoriten entfernt.',favDishAdded:'Gericht zu Favoriten hinzugefügt!',favDishRemoved:'Gericht aus Favoriten entfernt.',mealLogged:'Mahlzeit erfasst!',mealUnlogged:'Mahlzeit abgewählt.',mealDeleted:'Mahlzeit gelöscht.',reviewSaved:'Bewertung gespeichert!',reviewDeleted:'Bewertung gelöscht.',clearDataConfirm:'Möchtest du wirklich deinen lokalen Verlauf, Bewertungen und Favoriten löschen?',dataCleared:'Lokale Daten gelöscht.',scanned:'Menüs geprüft',
-    loginTab:'Anmelden',registerTab:'Registrieren',loginSuccess:'Erfolgreich angemeldet!',registerSuccess:'Konto erfolgreich erstellt!',logoutSuccess:'Abgemeldet.',authRequiredReview:'Melde dich in deinem Profil an, um Restaurants zu bewerten.',calEmptyDay:'Keine Mahlzeiten an diesem Tag erfasst.',calSavedMeal:'Mahlzeit im Verlauf gespeichert!',calAddMeal:'+ Mahlzeit erfassen',calCloseForm:'− Formular schließen'
+    loginTab:'Anmelden',registerTab:'Registrieren',loginSuccess:'Erfolgreich angemeldet!',registerSuccess:'Konto erfolgreich erstellt!',logoutSuccess:'Abgemeldet.',authRequiredReview:'Melde dich in deinem Profil an, um Restaurants zu bewerten.',calEmptyDay:'Keine Mahlzeiten an diesem Tag erfasst.',calSavedMeal:'Mahlzeit im Verlauf gespeichert!',calAddMeal:'+ Mahlzeit erfassen',calCloseForm:'− Formular schließen',
+    mealPickerTitle:'Was hast du heute hier gegessen?',mealPickerSub:'Wähle das Gericht, um es genau im Verlauf zu erfassen.',mealPickerNext:'Weiter',mealPickerRateTitle:'Wie bewertest du dieses Restaurant?',mealPickerRateSub:'Gib eine Sternebewertung ab oder überspringe diesen Schritt.',mealPickerSkip:'Überspringen',mealPickerConfirmRate:'Bewerten & erfassen',mealPickerDailyMenu:'Tagesmenü',mealPickerOtherDish:'Anderes Gericht / Freie Option',mealPickerCustomPrompt:'Welches Gericht hast du gegessen?',mealLoggedAndRated:'Mahlzeit erfasst und Bewertung gespeichert!',
+    authUsernameLabel:'Benutzername',authUsernamePlaceholder:'@dein-benutzername',authEmailLabel:'E-Mail',authEmailPlaceholder:'deine.email@beispiel.de',authPasswordLabel:'Passwort',profileMemberBadge:'Bomboni-Mitglied',profileLogout:'Abmelden',profileLogoutTitle:'Abmelden',calMonthBadge:'Verlauf',calPrevMonth:'Vorheriger Monat',calNextMonth:'Nächster Monat',calWeekdays:['Mo','Di','Mi','Do','Fr','Sa','So'],calLogFormTitle:'Mahlzeit erfassen',calLogRestLabel:'Restaurant',calLogChooseRest:'Wähle ein Restaurant…',calLogDishLabel:'Gericht / Speise',calLogChooseRestFirst:'Wähle zuerst das Restaurant…',calLogLoadingDishes:'Lade Menügerichte…',calLogChooseDish:'Wähle ein Gericht…',calLogCustomDishPlaceholder:'Gib den Namen des Gerichts ein',calLogFeeLabel:'Eigenanteil (€)',historyPrev:'Zurück',historyNext:'Weiter',dishFavAddTitle:'Gericht zu Favoriten hinzufügen',dishFavRemoveTitle:'Aus Favoriten entfernen',dishLogMarkTitle:'Erfassen, dass ich dieses Gericht heute gegessen habe',dishLogUnmarkTitle:'Heutige Mahlzeit abwählen',sourceLinkTitle:'Offizielle Quelle öffnen',searchClearAria:'Suche löschen',authUsernameMin:'Benutzername muss mindestens 3 Zeichen lang sein.',authPasswordMin:'Passwort muss mindestens 6 Zeichen lang sein.',authEmailExists:'Diese E-Mail ist bereits registriert.',authUsernameExists:'Dieser Benutzername ist bereits vergeben.',authInvalidCreds:'Falsche E-Mail oder falsches Passwort.'
   },
   it:{
     drawEyebrow:'LA SCELTA DI OGGI',drawTitle:'Facciamo decidere al caso',drawDescription:'Scegli qualche filtro oppure lascia fare al caso.',city:'Città',anyCity:'Qualsiasi città',food:'Tipo di cibo',anyFood:'Nessuna preferenza',mode:'Estrai',restaurant:'Ristorante',dish:'Piatto',price:'Quota massima',noLimit:'Nessun limite',draw:'Estrai',searching:'Controllo i menu di oggi…',noResult:'Nessuna opzione con questi filtri.',resultRestaurant:'Il tuo ristorante',resultDish:'Il tuo piatto',openMenu:'Vedi menu',drawError:'Estrazione non riuscita.',
     favoritesEyebrow:'LA TUA LISTA',favoritesTitle:'Preferiti',favoritesSubtitle:'I tuoi ristoranti e piatti salvati per accesso rapido.',favoritesEmptyVenuesTitle:'Nessun ristorante salvato',favoritesEmptyVenuesCopy:'Tocca il cuore su un ristorante per salvarlo qui.',favoritesEmptyDishesTitle:'Nessun piatto salvato',favoritesEmptyDishesCopy:'Tocca il cuore su un piatto per salvarlo qui.',favVenuesTab:'Ristoranti',favDishesTab:'Piatti',
     profileEyebrow:'IL TUO ACCOUNT',profileTitle:'Profilo',profileSubtitle:'Il tuo riepilogo di pasti, recensioni e spese con boni.',profileUserTitle:'Il tuo registro personale',profileUserCopy:'Dati dei tuoi pasti salvati sul dispositivo.',reviews:'Recensioni fatte',history:'Pasti registrati',foodStats:'Cibo più scelto',spending:'Spesa per boni',myReviews:'Le Mie Recensioni',mealHistory:'Ultimi Pasti Registrati',calendarTitle:'Calendario Pasti',emptyReviews:'Non hai ancora valutato nessun ristorante. Apri un locale e tocca “Valuta”.',emptyHistory:'Nessun pasto ancora registrato. Tocca “Ho mangiato qui” quando visiti un ristorante.',
     favBtn:'Preferito',favBtnActive:'Salvato',logBtn:'Ho mangiato qui',logBtnDone:'Mangiato oggi',rateBtn:'Valuta',rateBtnEdit:'Modifica voto',rateBoxTitle:'Valuta questo ristorante',reviewPlaceholder:'Scrivi una breve nota sul ristorante…',cancel:'Annulla',save:'Salva',resetBtn:'Cancella dati locali',favAdded:'Aggiunto ai preferiti!',favRemoved:'Rimosso dai preferiti.',favDishAdded:'Piatto aggiunto ai preferiti!',favDishRemoved:'Piatto rimosso dai preferiti.',mealLogged:'Pasto registrato nella cronologia!',mealUnlogged:'Pasto deselezionato.',mealDeleted:'Pasto rimosso.',reviewSaved:'Recensione salvata!',reviewDeleted:'Recensione eliminata.',clearDataConfirm:'Sei sicuro di voler cancellare cronologia, recensioni e preferiti locali?',dataCleared:'Dati locali cancellati.',scanned:'menu controllati',
-    loginTab:'Accedi',registerTab:'Registrati',loginSuccess:'Accesso effettuato con successo!',registerSuccess:'Account creato con successo!',logoutSuccess:'Disconnesso.',authRequiredReview:'Accedi al tuo profilo per valutare i ristoranti.',calEmptyDay:'Nessun pasto registrato in questo giorno.',calSavedMeal:'Pasto salvato nella cronologia!',calAddMeal:'+ Registra pasto in questo giorno',calCloseForm:'− Chiudi modulo'
+    loginTab:'Accedi',registerTab:'Registrati',loginSuccess:'Accesso effettuato con successo!',registerSuccess:'Account creato con successo!',logoutSuccess:'Disconnesso.',authRequiredReview:'Accedi al tuo profilo per valutare i ristoranti.',calEmptyDay:'Nessun pasto registrato in questo giorno.',calSavedMeal:'Pasto salvato nella cronologia!',calAddMeal:'+ Registra pasto in questo giorno',calCloseForm:'− Chiudi modulo',
+    mealPickerTitle:'Cosa hai mangiato qui oggi?',mealPickerSub:'Scegli il piatto per registrarlo con precisione nella cronologia.',mealPickerNext:'Continua',mealPickerRateTitle:'Come valuti questo ristorante?',mealPickerRateSub:'Assegna delle stelle o salta questo passaggio.',mealPickerSkip:'Salta',mealPickerConfirmRate:'Valuta e registra',mealPickerDailyMenu:'Menu del giorno / Pasto',mealPickerOtherDish:'Altro piatto / Opzione libera',mealPickerCustomPrompt:'Che piatto hai mangiato?',mealLoggedAndRated:'Pasto registrato e recensione salvata!',
+    authUsernameLabel:'Nome utente',authUsernamePlaceholder:'@tuo-username',authEmailLabel:'Email',authEmailPlaceholder:'tua.email@esempio.it',authPasswordLabel:'Password',profileMemberBadge:'Membro Bomboni',profileLogout:'Esci',profileLogoutTitle:'Disconnetti',calMonthBadge:'Cronologia',calPrevMonth:'Mese precedente',calNextMonth:'Mese successivo',calWeekdays:['Lun','Mar','Mer','Gio','Ven','Sab','Dom'],calLogFormTitle:'Registra pasto',calLogRestLabel:'Ristorante',calLogChooseRest:'Scegli un ristorante…',calLogDishLabel:'Piatto / Cibo',calLogChooseRestFirst:'Scegli prima il ristorante…',calLogLoadingDishes:'Caricamento piatti dal menu…',calLogChooseDish:'Scegli un piatto…',calLogCustomDishPlaceholder:'Scrivi il nome del piatto',calLogFeeLabel:'Quota (€)',historyPrev:'Precedente',historyNext:'Successivo',dishFavAddTitle:'Aggiungi piatto ai preferiti',dishFavRemoveTitle:'Rimuovi dai preferiti',dishLogMarkTitle:'Registra che ho mangiato questo piatto oggi',dishLogUnmarkTitle:'Deseleziona pasto di oggi',sourceLinkTitle:'Apri fonte ufficiale',searchClearAria:'Cancella ricerca',authUsernameMin:'Il nome utente deve contenere almeno 3 caratteri.',authPasswordMin:'La password deve contenere almeno 6 caratteri.',authEmailExists:'Questa email è già registrata.',authUsernameExists:'Questo nome utente è già occupato.',authInvalidCreds:'Email o password non corretti.'
   },
   fr:{
     drawEyebrow:'LA DÉCISION DU JOUR',drawTitle:'Laissons le hasard choisir',drawDescription:'Choisissez des filtres ou laissez faire le hasard.',city:'Ville',anyCity:'Toutes les villes',food:'Type de plat',anyFood:'Sans préférence',mode:'Tirer au sort',restaurant:'Restaurant',dish:'Plat',price:'Participation maximale',noLimit:'Sans limite',draw:'Tirer au sort',searching:'Recherche dans les menus du jour…',noResult:'Aucune option ne correspond à ces filtres.',resultRestaurant:'Votre restaurant',resultDish:'Votre plat',openMenu:'Voir le menu',drawError:'Le tirage au sort a échoué.',
     favoritesEyebrow:'VOTRE LISTE',favoritesTitle:'Favoris',favoritesSubtitle:'Vos restaurants et plats enregistrés pour un accès rapide.',favoritesEmptyVenuesTitle:'Aucun restaurant enregistré',favoritesEmptyVenuesCopy:'Touchez le cœur sur un restaurant pour l’enregistrer.',favoritesEmptyDishesTitle:'Aucun plat enregistré',favoritesEmptyDishesCopy:'Touchez le cœur sur un plat pour l’enregistrer.',favVenuesTab:'Restaurants',favDishesTab:'Plats',
     profileEyebrow:'VOTRE COMPTE',profileTitle:'Profil',profileSubtitle:'Votre résumé de repas, avis et dépenses avec boni.',profileUserTitle:'Votre registre personnel',profileUserCopy:'Données de repas stockées sur votre appareil.',reviews:'Avis donnés',history:'Repas enregistrés',foodStats:'Plat le plus choisi',spending:'Dépensé en boni',myReviews:'Mes Avis',mealHistory:'Derniers Repas Enregistrés',calendarTitle:'Calendrier des repas',emptyReviews:'Vous n’avez pas encore noté de restaurant. Ouvrez un restaurant et touchez « Noter ».',emptyHistory:'Aucun repas enregistré. Touchez « J’ai mangé ici » lorsque vous visitez un restaurant.',
     favBtn:'Favori',favBtnActive:'Enregistré',logBtn:'J’ai mangé ici',logBtnDone:'Mangé aujourd’hui',rateBtn:'Noter',rateBtnEdit:'Modifier note',rateBoxTitle:'Noter ce restaurant',reviewPlaceholder:'Écrivez une note rapide sur ce restaurant…',cancel:'Annuler',save:'Enregistrer',resetBtn:'Effacer les données locales',favAdded:'Ajouté aux favoris !',favRemoved:'Retiré des favoris.',favDishAdded:'Plat ajouté aux favoris !',favDishRemoved:'Plat retiré des favoris.',mealLogged:'Repas enregistré dans votre historique !',mealUnlogged:'Repas désélectionné.',mealDeleted:'Repas supprimé.',reviewSaved:'Avis enregistré !',reviewDeleted:'Avis supprimé.',clearDataConfirm:'Voulez-vous vraiment effacer votre historique, vos avis et vos favoris locaux ?',dataCleared:'Données locales effacées.',scanned:'menus vérifiés',
-    loginTab:'Connexion',registerTab:'Créer un compte',loginSuccess:'Connexion réussie !',registerSuccess:'Compte créé avec succès !',logoutSuccess:'Déconnecté.',authRequiredReview:'Connectez-vous à votre profil pour noter les restaurants.',calEmptyDay:'Aucun repas enregistré ce jour-là.',calSavedMeal:'Repas enregistré dans l’historique !',calAddMeal:'+ Enregistrer un repas ce jour-là',calCloseForm:'− Fermer le formulaire'
+    loginTab:'Connexion',registerTab:'Créer un compte',loginSuccess:'Connexion réussie !',registerSuccess:'Compte créé avec succès !',logoutSuccess:'Déconnecté.',authRequiredReview:'Connectez-vous à votre profil pour noter les restaurants.',calEmptyDay:'Aucun repas enregistré ce jour-là.',calSavedMeal:'Repas enregistré dans l’historique !',calAddMeal:'+ Enregistrer un repas ce jour-là',calCloseForm:'− Fermer le formulaire',
+    mealPickerTitle:'Qu’avez-vous mangé ici aujourd’hui ?',mealPickerSub:'Choisissez le plat pour l’enregistrer avec précision dans votre historique.',mealPickerNext:'Continuer',mealPickerRateTitle:'Comment évaluez-vous ce restaurant ?',mealPickerRateSub:'Donnez une note ou sautez cette étape.',mealPickerSkip:'Passer',mealPickerConfirmRate:'Évaluer et enregistrer',mealPickerDailyMenu:'Menu du jour / Plat',mealPickerOtherDish:'Autre plat / Option libre',mealPickerCustomPrompt:'Quel plat avez-vous mangé ?',mealLoggedAndRated:'Repas enregistré et avis sauvegardé !',
+    authUsernameLabel:'Nom d’utilisateur',authUsernamePlaceholder:'@votre-nom',authEmailLabel:'E-mail',authEmailPlaceholder:'votre.email@exemple.fr',authPasswordLabel:'Mot de passe',profileMemberBadge:'Membre Bomboni',profileLogout:'Déconnexion',profileLogoutTitle:'Se déconnecter',calMonthBadge:'Historique',calPrevMonth:'Mois précédent',calNextMonth:'Mois suivant',calWeekdays:['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'],calLogFormTitle:'Enregistrer un repas',calLogRestLabel:'Restaurant',calLogChooseRest:'Choisissez un restaurant…',calLogDishLabel:'Plat / Nourriture',calLogChooseRestFirst:'Choisissez d’abord le restaurant…',calLogLoadingDishes:'Chargement des plats du menu…',calLogChooseDish:'Choisissez un plat…',calLogCustomDishPlaceholder:'Entrez le nom du plat',calLogFeeLabel:'Participation (€)',historyPrev:'Précédent',historyNext:'Suivant',dishFavAddTitle:'Ajouter le plat aux favoris',dishFavRemoveTitle:'Retirer des favoris',dishLogMarkTitle:'Enregistrer que j’ai mangé ce plat aujourd’hui',dishLogUnmarkTitle:'Désélectionner le repas d’aujourd’hui',sourceLinkTitle:'Ouvrir la source officielle',searchClearAria:'Effacer la recherche',authUsernameMin:'Le nom d’utilisateur doit comporter au moins 3 caractères.',authPasswordMin:'Le mot de passe doit comporter au moins 6 caractères.',authEmailExists:'Cet e-mail est déjà enregistré.',authUsernameExists:'Ce nom d’utilisateur est déjà pris.',authInvalidCreds:'E-mail ou mot de passe incorrect.'
+  },
+  ca:{
+    drawEyebrow:'DECISIÓ DEL DIA',drawTitle:'Fem un sorteig',drawDescription:'Tria alguns filtres o deixa que decideixi l’atzar.',city:'Ciutat',anyCity:'Qualsevol ciutat',food:'Tipus de menjar',anyFood:'Sense preferència',mode:'Vull sortejar',restaurant:'Restaurant',dish:'Plat',price:'Copagament màxim',noLimit:'Sense límit',draw:'Sortejar',searching:'Cercant opcions als menús d’avui…',noResult:'No s’han trobat opcions amb aquests filtres.',resultRestaurant:'El teu restaurant',resultDish:'El teu plat',openMenu:'Veure menú',drawError:'No s’ha pogut completar el sorteig.',
+    favoritesEyebrow:'LA TEVA LLISTA',favoritesTitle:'Preferits',favoritesSubtitle:'Els teus restaurants i plats desats per accedir-hi ràpidament.',favoritesEmptyVenuesTitle:'Sense restaurants desats',favoritesEmptyVenuesCopy:'Toca el cor a qualsevol restaurant per desar-lo aquí.',favoritesEmptyDishesTitle:'Sense plats desats',favoritesEmptyDishesCopy:'Toca el cor a qualsevol plat del menú per desar-lo aquí.',favVenuesTab:'Restaurants',favDishesTab:'Plats',
+    profileEyebrow:'EL TEU COMPTE',profileTitle:'Perfil',profileSubtitle:'El teu resum d’àpats, ressenyes i despeses amb boni.',profileUserTitle:'El teu registre personal',profileUserCopy:'Dades dels teus àpats guardades al teu dispositiu.',reviews:'Ressenyes fetes',history:'Àpats registrats',foodStats:'Menjar més triat',spending:'Despesa en boni',myReviews:'Les Meves Ressenyes',mealHistory:'Darrers Àpats Registrats',calendarTitle:'Calendari d’Àpats',emptyReviews:'Encara no has valorat cap restaurant. Obre un restaurant i toca “Valorar”.',emptyHistory:'Encara no has registrat cap àpat. Toca “He menjat aquí” quan visitis un restaurant.',
+    favBtn:'Preferit',favBtnActive:'Desat',logBtn:'He menjat aquí',logBtnDone:'Menjat avui',rateBtn:'Valorar',rateBtnEdit:'Editar nota',rateBoxTitle:'Valorar aquest restaurant',reviewPlaceholder:'Escriu una nota ràpida sobre el restaurant…',cancel:'Cancel·lar',save:'Desar',resetBtn:'Esborrar dades locals',favAdded:'Afegit als preferits!',favRemoved:'Eliminat dels preferits.',favDishAdded:'Plat afegit als preferits!',favDishRemoved:'Plat eliminat dels preferits.',mealLogged:'Àpat registrat al teu historial!',mealUnlogged:'Àpat desmarcat de l’historial.',mealDeleted:'Àpat eliminat.',reviewSaved:'Ressenya desada!',reviewDeleted:'Ressenya eliminada.',clearDataConfirm:'Segur que vols esborrar tot el teu historial, ressenyes i preferits locals?',dataCleared:'Dades locals esborrades.',scanned:'menús consultats',
+    loginTab:'Entrar',registerTab:'Crear compte',loginSuccess:'Sessió iniciada amb èxit!',registerSuccess:'Compte creat amb èxit!',logoutSuccess:'Sessió tancada.',authRequiredReview:'Inicia sessió al teu perfil per valorar restaurants.',calEmptyDay:'Cap àpat registrat en aquest dia.',calSavedMeal:'Àpat desat a l’historial!',calAddMeal:'+ Registrar àpat en aquest dia',calCloseForm:'− Tancar formulari',
+    mealPickerTitle:'Què has menjat aquí avui?',mealPickerSub:'Tria el plat per registrar-lo amb precisió al teu historial.',mealPickerNext:'Continuar',mealPickerRateTitle:'Com valores aquest restaurant?',mealPickerRateSub:'Dona una nota amb estrelles o pots saltar aquest pas.',mealPickerSkip:'Saltar',mealPickerConfirmRate:'Valorar i registrar',mealPickerDailyMenu:'Menú del dia / Àpat',mealPickerOtherDish:'Altre plat / Opció lliure',mealPickerCustomPrompt:'Quin plat has menjat?',mealLoggedAndRated:'Àpat registrat i ressenya desada!',
+    authUsernameLabel:'Nom d’usuari',authUsernamePlaceholder:'@el-teu-nom',authEmailLabel:'Correu electrònic',authEmailPlaceholder:'el.teu.email@exemple.cat',authPasswordLabel:'Contrasenya',profileMemberBadge:'Membre Bomboni',profileLogout:'Sortir',profileLogoutTitle:'Tancar sessió',calMonthBadge:'Historial',calPrevMonth:'Mes anterior',calNextMonth:'Mes següent',calWeekdays:['Dl','Dt','Dc','Dj','Dv','Ds','Dg'],calLogFormTitle:'Registrar àpat',calLogRestLabel:'Restaurant',calLogChooseRest:'Tria un restaurant…',calLogDishLabel:'Plat / Menjar',calLogChooseRestFirst:'Tria primer el restaurant…',calLogLoadingDishes:'Carregant plats del menú…',calLogChooseDish:'Tria un plat…',calLogCustomDishPlaceholder:'Escriu el nom del plat',calLogFeeLabel:'Copagament (€)',historyPrev:'Anterior',historyNext:'Següent',dishFavAddTitle:'Desar plat als preferits',dishFavRemoveTitle:'Eliminar dels preferits',dishLogMarkTitle:'Registrar que he menjat aquest plat avui',dishLogUnmarkTitle:'Desmarcar àpat d’avui',sourceLinkTitle:'Obrir font oficial',searchClearAria:'Netejar cerca',authUsernameMin:'El nom d’usuari ha de tenir almenys 3 caràcters.',authPasswordMin:'La contrasenya ha de tenir almenys 6 caràcters.',authEmailExists:'Aquest correu ja està registrat.',authUsernameExists:'Aquest nom d’usuari ja existeix.',authInvalidCreds:'Correu o contrasenya incorrectes.'
   }
 };
 
@@ -93,7 +118,8 @@ const hoursLabels = {
   es:{open:'Abierto',closed:'Cerrado',unknown:'Sin horario',checking:'Consultando',today:'Hoy'},
   de:{open:'Geöffnet',closed:'Geschlossen',unknown:'Keine Zeiten',checking:'Prüfe…',today:'Heute'},
   it:{open:'Aperto',closed:'Chiuso',unknown:'Orari n/d',checking:'Verifica…',today:'Oggi'},
-  fr:{open:'Ouvert',closed:'Fermé',unknown:'Horaires n/d',checking:'Vérification',today:'Aujourd’hui'}
+  fr:{open:'Ouvert',closed:'Fermé',unknown:'Horaires n/d',checking:'Vérification',today:'Aujourd’hui'},
+  ca:{open:'Obert',closed:'Tancat',unknown:'Sense horari',checking:'Comprovant…',today:'Avui'}
 };
 
 const drawSampleLabel = {
@@ -102,7 +128,8 @@ const drawSampleLabel = {
   es:(scanned,total)=>`Sorteo entre ${scanned} de ${total} restaurantes`,
   de:(scanned,total)=>`Auswahl aus ${scanned} von ${total} Restaurants`,
   it:(scanned,total)=>`Estrazione tra ${scanned} di ${total} ristoranti`,
-  fr:(scanned,total)=>`Tirage parmi ${scanned} restaurants sur ${total}`
+  fr:(scanned,total)=>`Tirage parmi ${scanned} restaurants sur ${total}`,
+  ca:(scanned,total)=>`Sorteig entre ${scanned} de ${total} restaurants`
 };
 
 const drawNoSampleLabel = {
@@ -111,7 +138,8 @@ const drawNoSampleLabel = {
   es:n=>`No encontré opciones en los ${n} restaurantes consultados.`,
   de:n=>`Keine passende Option unter den ${n} geprüften Restaurants.`,
   it:n=>`Nessuna opzione tra i ${n} ristoranti controllati.`,
-  fr:n=>`Aucune option parmi les ${n} restaurants vérifiés.`
+  fr:n=>`Aucune option parmi les ${n} restaurants vérifiés.`,
+  ca:n=>`No s’ha trobat cap opció entre els ${n} restaurants consultats.`
 };
 
 const installCopy = {
@@ -120,7 +148,8 @@ const installCopy = {
   es:{label:'Instalar app',ios:'En Safari, toca Compartir y elige “Añadir a pantalla de inicio”.',browser:'Usa el menú del navegador para instalar Bomboni.'},
   de:{label:'App installieren',ios:'Tippe in Safari auf Teilen und wähle „Zum Home-Bildschirm“.',browser:'Installiere Bomboni über das Browsermenü.'},
   it:{label:'Installa app',ios:'In Safari, tocca Condividi e scegli “Aggiungi alla schermata Home”.',browser:'Usa il menu del browser per installare Bomboni.'},
-  fr:{label:'Installer',ios:'Dans Safari, touchez Partager puis « Sur l’écran d’accueil ».',browser:'Installez Bomboni depuis le menu du navigateur.'}
+  fr:{label:'Installer',ios:'Dans Safari, touchez Partager puis « Sur l’écran d’accueil ».',browser:'Installez Bomboni depuis le menu du navigateur.'},
+  ca:{label:'Instal·lar app',ios:'A Safari, toca Compartir i tria “Afegir a la pantalla d’inici”.',browser:'Usa el menú del navegador per instal·lar Bomboni.'}
 };
 
 const BONBON_SPINNER_HTML = '<span class="bonbon-spinner" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="9.5" y="10.5" width="13" height="11" rx="5.5"/><path d="M9.5 16 L3.5 10 L5 16 L3.5 22 Z"/><path d="M22.5 16 L28.5 10 L27 16 L28.5 22 Z"/><path d="M9.5 13 C8.8 14.5 8.8 17.5 9.5 19"/><path d="M22.5 13 C23.2 14.5 23.2 17.5 22.5 19"/><path d="M15.5 10.5 C17 13.5 17 18.5 15.5 21.5"/></svg></span>';
@@ -296,8 +325,11 @@ function toggleFavoriteDish(dish, restaurant) {
 function updateDishFavoriteButtons(restaurantId, dishName) {
   const isFav = isFavoriteDish(restaurantId, dishName);
   const key = dishKey(restaurantId, dishName);
+  const feature = featureCopy[state.language] || featureCopy.en;
   document.querySelectorAll(`.dish-fav-btn[data-dish-key="${key}"]`).forEach(btn => {
     btn.classList.toggle('active', isFav);
+    btn.title = isFav ? (feature.dishFavRemoveTitle || 'Remover dos favoritos') : (feature.dishFavAddTitle || 'Guardar prato nos favoritos');
+    btn.setAttribute('aria-label', btn.title);
   });
 }
 
@@ -474,7 +506,7 @@ const languageSelect = $('language-select');
 const safeText = (value) => value == null ? '' : String(value);
 
 function locale() {
-  return ({ pt:'pt-PT', en:'en-GB', es:'es-ES', de:'de-DE', it:'it-IT', fr:'fr-FR' })[state.language] || 'pt-PT';
+  return ({ pt:'pt-PT', en:'en-GB', es:'es-ES', de:'de-DE', it:'it-IT', fr:'fr-FR', ca:'ca-ES' })[state.language] || 'pt-PT';
 }
 function tr() {
   return translations[state.language] || translations.pt;
@@ -539,18 +571,27 @@ function applyLanguage() {
   const feature = featureCopy[state.language] || featureCopy.en;
   document.documentElement.lang = state.language;
   languageSelect.value = state.language;
-  $('location-label').textContent = state.locationLabel || ({ pt:'Perto de si', en:'Near you', es:'Cerca de ti', de:'In deiner Nähe', it:'Vicino a te', fr:'Près de vous' }[state.language]);
+  $('location-label').textContent = state.locationLabel || (nearbyLabels[state.language] || nearbyLabels.en);
   $('search-mode-restaurants').textContent = searchModeLabels.restaurants[state.language] || searchModeLabels.restaurants.en;
   $('search-mode-dishes').textContent = searchModeLabels.dishes[state.language] || searchModeLabels.dishes.en;
   $('search-input').placeholder = state.searchMode === 'dishes' ? (dishSearchPlaceholders[state.language] || dishSearchPlaceholders.en) : (restaurantSearchPlaceholders[state.language] || restaurantSearchPlaceholders.en);
   $('search-input').setAttribute('aria-label', $('search-input').placeholder);
-  $('hero-title').textContent = ({ pt:'Restaurantes com boni', en:'Student meal restaurants', es:'Restaurantes con boni', de:'Boni-Restaurants', it:'Ristoranti con boni', fr:'Restaurants avec boni' }[state.language]);
-  $('list-title').textContent = ({ pt:'Restaurantes', en:'Restaurants', es:'Restaurantes', de:'Restaurants', it:'Ristoranti', fr:'Restaurants' }[state.language]);
+  const searchClear = $('search-clear');
+  if (searchClear) searchClear.setAttribute('aria-label', feature.searchClearAria || 'Limpar pesquisa');
+  $('hero-title').textContent = ({ pt:'Restaurantes com boni', en:'Student meal restaurants', es:'Restaurantes con boni', de:'Boni-Restaurants', it:'Ristoranti con boni', fr:'Restaurants avec boni', ca:'Restaurants amb boni' }[state.language]);
+  $('list-title').textContent = searchModeLabels.restaurants[state.language] || searchModeLabels.restaurants.en;
+  const loadingLabel = $('loading-label');
+  if (loadingLabel) loadingLabel.textContent = t.loading;
   $('load-more').textContent = t.more;
   $('back-label').textContent = t.back;
-  $('menu-title').textContent = t.today;
-  $('date-prev').setAttribute('aria-label', ({ pt:'Dia anterior', en:'Previous day', es:'Día anterior', de:'Vorheriger Tag', it:'Giorno precedente', fr:'Jour précédent' }[state.language]));
-  $('date-next').setAttribute('aria-label', ({ pt:'Dia seguinte', en:'Next day', es:'Día seguinte', de:'Nächster Tag', it:'Giorno successivo', fr:'Jour suivant' }[state.language]));
+  const srcLink = $('source-link');
+  if (srcLink) {
+    srcLink.setAttribute('aria-label', feature.sourceLinkTitle || 'Abrir fonte oficial');
+    srcLink.setAttribute('title', feature.sourceLinkTitle || 'Abrir fonte oficial');
+  }
+  $('menu-title').textContent = (state.selected && state.date) ? formatDate(state.date) : t.today;
+  $('date-prev').setAttribute('aria-label', ({ pt:'Dia anterior', en:'Previous day', es:'Día anterior', de:'Vorheriger Tag', it:'Giorno precedente', fr:'Jour précédent', ca:'Dia anterior' }[state.language]));
+  $('date-next').setAttribute('aria-label', ({ pt:'Dia seguinte', en:'Next day', es:'Día seguinte', de:'Nächster Tag', it:'Giorno successivo', fr:'Jour suivant', ca:'Dia següent' }[state.language]));
   $('footer-source').textContent = t.source;
   $('footer-install').textContent = installCopy[state.language]?.label || installCopy.en.label;
 
@@ -567,21 +608,99 @@ function applyLanguage() {
     'profile-eyebrow':'profileEyebrow','profile-title':'profileTitle','profile-subtitle':'profileSubtitle',
     'profile-spend-label':'spending','profile-food-label':'foodStats','profile-history-label':'history','profile-reviews-label':'reviews',
     'profile-sec-reviews':'myReviews','profile-sec-history':'mealHistory',
-    'profile-sec-calendar':'calendarTitle',
+    'profile-sec-calendar':'calendarTitle','profile-calendar-badge':'calMonthBadge',
     'profile-reset-btn':'resetBtn','review-box-title':'rateBoxTitle','review-cancel-btn':'cancel','review-save-btn':'save',
-    'meal-picker-title':'mealPickerTitle','meal-picker-sub':'mealPickerSub'
+    'meal-picker-title':'mealPickerTitle','meal-picker-sub':'mealPickerSub',
+    'meal-picker-cancel':'cancel','meal-picker-next':'mealPickerNext',
+    'meal-picker-rate-title':'mealPickerRateTitle','meal-picker-rate-sub':'mealPickerRateSub',
+    'meal-picker-skip':'mealPickerSkip','meal-picker-confirm-rate':'mealPickerConfirmRate',
+    'auth-tab-login':'loginTab','auth-tab-register':'registerTab',
+    'auth-username-label':'authUsernameLabel','auth-email-label':'authEmailLabel','auth-password-label':'authPasswordLabel',
+    'profile-user-badge':'profileMemberBadge','profile-logout-text':'profileLogout',
+    'cal-log-form-title':'calLogFormTitle','cal-log-rest-label':'calLogRestLabel','cal-log-dish-label':'calLogDishLabel',
+    'cal-log-fee-label':'calLogFeeLabel','cal-log-cancel':'cancel','cal-log-save':'save',
+    'history-prev-btn':'historyPrev','history-next-btn':'historyNext'
   })) {
     const el = $(id);
     if (el && feature[key]) el.textContent = feature[key];
   }
 
+  // Update button states
+  const calLogForm = $('cal-log-form');
+  const calAddMealBtn = $('cal-add-meal-btn');
+  if (calAddMealBtn) {
+    calAddMealBtn.textContent = (calLogForm && !calLogForm.hidden) ? (feature.calCloseForm || '− Fechar formulário') : (feature.calAddMeal || '+ Registar refeição neste dia');
+  }
+
+  const authSubmitBtn = $('auth-submit-btn');
+  if (authSubmitBtn) {
+    authSubmitBtn.textContent = authMode === 'register' ? (feature.registerTab || 'Criar conta') : (feature.loginTab || 'Entrar');
+  }
+
+  const logoutBtn = $('profile-logout-btn');
+  if (logoutBtn && feature.profileLogoutTitle) {
+    logoutBtn.setAttribute('title', feature.profileLogoutTitle);
+    logoutBtn.setAttribute('aria-label', feature.profileLogoutTitle);
+  }
+
+  const venueFavText = $('venue-fav-text');
+  if (venueFavText) {
+    const isFav = state.selected ? isFavorite(state.selected.id) : false;
+    venueFavText.textContent = isFav ? (feature.favBtnActive || 'Guardado') : (feature.favBtn || 'Favorito');
+  }
+  const venueLogText = $('venue-log-text');
+  if (venueLogText) {
+    const isLogged = state.selected ? hasLoggedMealToday(state.selected.id) : false;
+    venueLogText.textContent = isLogged ? (feature.logBtnDone || 'Comi hoje') : (feature.logBtn || 'Comi aqui');
+  }
+  const venueRateText = $('venue-rate-text');
+  if (venueRateText) {
+    const existing = state.selected ? getReview(state.selected.id) : null;
+    venueRateText.textContent = existing ? (feature.rateBtnEdit || 'Editar nota') : (feature.rateBtn || 'Avaliar');
+  }
+
+  // Dynamic placeholders
   const reviewComment = $('review-comment');
   if (reviewComment && feature.reviewPlaceholder) reviewComment.placeholder = feature.reviewPlaceholder;
-  $('draw-price').placeholder = feature.noLimit;
+  const drawPrice = $('draw-price');
+  if (drawPrice && feature.noLimit) drawPrice.placeholder = feature.noLimit;
+  const authUsername = $('auth-username');
+  if (authUsername && feature.authUsernamePlaceholder) authUsername.placeholder = feature.authUsernamePlaceholder;
+  const authEmail = $('auth-email');
+  if (authEmail && feature.authEmailPlaceholder) authEmail.placeholder = feature.authEmailPlaceholder;
+  const calCustomDish = $('cal-log-dish-custom');
+  if (calCustomDish && feature.calLogCustomDishPlaceholder) calCustomDish.placeholder = feature.calLogCustomDishPlaceholder;
+  const calLogDish = $('cal-log-dish');
+  if (calLogDish && !$('cal-log-restaurant')?.value) {
+    calLogDish.replaceChildren(new Option(feature.calLogChooseRestFirst || 'Escolhe primeiro o restaurante…', ''));
+  }
+
+  // Star rating aria-labels
+  const starWord = ({ pt:'estrelas', en:'stars', es:'estrellas', de:'Sterne', it:'stelle', fr:'étoiles', ca:'estrelles' })[state.language] || 'estrelas';
+  const starSingle = ({ pt:'estrela', en:'star', es:'estrella', de:'Stern', it:'stella', fr:'étoile', ca:'estrella' })[state.language] || 'estrela';
+  document.querySelectorAll('.star-rating .star-btn').forEach(btn => {
+    btn.setAttribute('aria-label', `${btn.dataset.value} ${btn.dataset.value === '1' ? starSingle : starWord}`);
+  });
+
+  // Weekdays in mini calendar
+  const weekdaysHost = $('calendar-weekdays');
+  if (weekdaysHost && feature.calWeekdays) {
+    weekdaysHost.replaceChildren();
+    feature.calWeekdays.forEach(day => {
+      const sp = document.createElement('span');
+      sp.textContent = day;
+      weekdaysHost.append(sp);
+    });
+  }
+  const calPrevBtn = $('cal-prev');
+  if (calPrevBtn && feature.calPrevMonth) calPrevBtn.setAttribute('aria-label', feature.calPrevMonth);
+  const calNextBtn = $('cal-next');
+  if (calNextBtn && feature.calNextMonth) calNextBtn.setAttribute('aria-label', feature.calNextMonth);
+
   document.querySelectorAll('[data-category]').forEach(option => {
     option.textContent = t.categories[option.dataset.category] || option.dataset.category;
   });
-  $('mobile-tab-bar').setAttribute('aria-label', ({ pt:'Navegação principal', en:'Main navigation', es:'Navegación principal', de:'Hauptnavigation', it:'Navigazione principale', fr:'Navigation principale' }[state.language]));
+  $('mobile-tab-bar').setAttribute('aria-label', ({ pt:'Navegação principal', en:'Main navigation', es:'Navegación principal', de:'Hauptnavigation', it:'Navigazione principale', fr:'Navigation principale', ca:'Navegació principal' }[state.language]));
 
   renderDrawCities();
   if (state.searchMode === 'dishes') renderDishesSearch(); else renderRestaurants();
@@ -609,7 +728,13 @@ function switchTab(name) {
     $('layout').classList.remove('menu-open');
     renderRestaurants();
   }
-  if (name === 'favorites') renderFavoritesPage();
+  if (name === 'favorites') {
+    $('fav-tab-venues-btn')?.classList.toggle('active', state.favTab === 'venues');
+    $('fav-tab-venues-btn')?.setAttribute('aria-selected', String(state.favTab === 'venues'));
+    $('fav-tab-dishes-btn')?.classList.toggle('active', state.favTab === 'dishes');
+    $('fav-tab-dishes-btn')?.setAttribute('aria-selected', String(state.favTab === 'dishes'));
+    renderFavoritesPage();
+  }
   if (name === 'profile') renderProfilePage();
 
   document.querySelectorAll('.mobile-tab').forEach(tab => {
@@ -1154,6 +1279,7 @@ function renderMenuDishes(menu, requestId, id) {
     return;
   }
 
+  const feature = featureCopy[state.language] || featureCopy.en;
   const dishNodes = [];
   menu.dishes.forEach((dish, index) => {
     const card = document.createElement('article');
@@ -1183,8 +1309,8 @@ function renderMenuDishes(menu, requestId, id) {
     dishFavBtn.type = 'button';
     dishFavBtn.className = `dish-action-btn dish-fav-btn${isDishFav ? ' active' : ''}`;
     dishFavBtn.dataset.dishKey = dishKey(id, dish.name);
-    dishFavBtn.title = 'Guardar prato nos favoritos';
-    dishFavBtn.setAttribute('aria-label', 'Favoritar prato');
+    dishFavBtn.title = isDishFav ? (feature.dishFavRemoveTitle || 'Remover dos favoritos') : (feature.dishFavAddTitle || 'Guardar prato nos favoritos');
+    dishFavBtn.setAttribute('aria-label', dishFavBtn.title);
     dishFavBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>';
     dishFavBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -1196,25 +1322,26 @@ function renderMenuDishes(menu, requestId, id) {
     const dishLogBtn = document.createElement('button');
     dishLogBtn.type = 'button';
     dishLogBtn.className = `dish-action-btn dish-log-btn${isLogged ? ' active' : ''}`;
-    dishLogBtn.title = isLogged ? 'Desmarcar refeição de hoje' : 'Registar que comi este prato hoje';
-    dishLogBtn.setAttribute('aria-label', isLogged ? 'Desmarcar prato' : 'Registar prato');
+    dishLogBtn.title = isLogged ? (feature.dishLogUnmarkTitle || 'Desmarcar refeição de hoje') : (feature.dishLogMarkTitle || 'Registar que comi este prato hoje');
+    dishLogBtn.setAttribute('aria-label', dishLogBtn.title);
     dishLogBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
     dishLogBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const currentlyLogged = isDishLoggedToday(id, dish.name);
-      const feature = featureCopy[state.language] || featureCopy.en;
       if (currentlyLogged) {
         let meals = getMeals();
         const targetDate = state.date || state.today;
         meals = meals.filter(m => !(m.restaurantId === id && m.dishName === dish.name && m.date === targetDate));
         saveMeals(meals);
         dishLogBtn.classList.remove('active');
-        dishLogBtn.title = 'Registar que comi este prato hoje';
+        dishLogBtn.title = feature.dishLogMarkTitle || 'Registar que comi este prato hoje';
+        dishLogBtn.setAttribute('aria-label', dishLogBtn.title);
         showToast(feature.mealUnlogged || 'Refeição desmarcada do teu histórico.');
       } else {
         logMeal(state.selected || { id, name: $('venue-name').textContent }, dish.name, dish.categories?.[0] || 'Mixed', state.date);
         dishLogBtn.classList.add('active');
-        dishLogBtn.title = 'Desmarcar refeição de hoje';
+        dishLogBtn.title = feature.dishLogUnmarkTitle || 'Desmarcar refeição de hoje';
+        dishLogBtn.setAttribute('aria-label', dishLogBtn.title);
         showToast(feature.mealLogged || 'Refeição registada no teu histórico!');
       }
       updateVenueMealLogUI();
@@ -1336,6 +1463,8 @@ function openVenueMealPicker() {
   picker.hidden = !picker.hidden;
   if (picker.hidden) return;
 
+  const feature = featureCopy[state.language] || featureCopy.en;
+
   // Reset to Step 1
   $('meal-picker-step-dish').hidden = false;
   $('meal-picker-step-rating').hidden = true;
@@ -1348,7 +1477,7 @@ function openVenueMealPicker() {
   if (!dishes.length) {
     const opt = document.createElement('label');
     opt.className = 'meal-picker-option selected';
-    opt.innerHTML = '<input type="radio" name="picked-meal" value="Menu do dia" checked><span>Menu do dia / Refeição</span>';
+    opt.innerHTML = `<input type="radio" name="picked-meal" value="Menu do dia" checked><span>${feature.mealPickerDailyMenu || 'Menu do dia / Refeição'}</span>`;
     optionsHost.append(opt);
     return;
   }
@@ -1367,7 +1496,7 @@ function openVenueMealPicker() {
 
   const otherOpt = document.createElement('label');
   otherOpt.className = 'meal-picker-option';
-  otherOpt.innerHTML = '<input type="radio" name="picked-meal" value="__other__"><span>Outro prato / Opção livre</span>';
+  otherOpt.innerHTML = `<input type="radio" name="picked-meal" value="__other__"><span>${feature.mealPickerOtherDish || 'Outro prato / Opção livre'}</span>`;
   otherOpt.addEventListener('click', () => {
     document.querySelectorAll('.meal-picker-option').forEach(o => o.classList.remove('selected'));
     otherOpt.classList.add('selected');
@@ -1386,11 +1515,12 @@ $('meal-picker-cancel')?.addEventListener('click', () => {
 // Proceed to rating prompt after picking dish
 $('meal-picker-next')?.addEventListener('click', () => {
   if (!state.selected) return;
+  const feature = featureCopy[state.language] || featureCopy.en;
   const selectedRadio = document.querySelector('input[name="picked-meal"]:checked');
   let dishName = selectedRadio?.value || '';
   let category = selectedRadio?.dataset?.category || 'Mixed';
   if (dishName === '__other__') {
-    dishName = window.prompt('Qual prato comeste?') || 'Prato do dia';
+    dishName = window.prompt(feature.mealPickerCustomPrompt || 'Qual prato comeste?') || (feature.mealPickerDailyMenu || 'Prato do dia');
   }
   state.pendingPickedDish = { dishName, category };
 
@@ -1416,11 +1546,12 @@ $('meal-picker-skip')?.addEventListener('click', () => {
 // Confirm rating: logs meal AND saves review
 $('meal-picker-confirm-rate')?.addEventListener('click', () => {
   if (!state.selected || !state.pendingPickedDish) return;
+  const feature = featureCopy[state.language] || featureCopy.en;
   logMeal(state.selected, state.pendingPickedDish.dishName, state.pendingPickedDish.category);
   saveReview(state.selected.id, state.pickerRating || 5, '', state.selected);
   $('venue-meal-picker').hidden = true;
   state.pendingPickedDish = null;
-  showToast('Refeição registada e avaliação guardada!');
+  showToast(feature.mealLoggedAndRated || 'Refeição registada e avaliação guardada!');
 });
 
 /* -------------------------------------------------------------
@@ -1460,6 +1591,7 @@ function renderFavoritesPage() {
 
   if (state.favTab === 'venues') {
     dishesHost.hidden = true;
+    dishesHost.replaceChildren();
     if (!favList.length) {
       empty.hidden = false;
       $('favorites-empty-title').textContent = feature.favoritesEmptyVenuesTitle || 'Sem restaurantes guardados';
@@ -1531,6 +1663,7 @@ function renderFavoritesPage() {
   } else {
     // Strictly dishes only
     venuesHost.hidden = true;
+    venuesHost.replaceChildren();
     if (!favDishesList.length) {
       empty.hidden = false;
       $('favorites-empty-title').textContent = feature.favoritesEmptyDishesTitle || 'Sem pratos guardados';
@@ -1566,7 +1699,8 @@ function renderFavoritesPage() {
       const favBtn = document.createElement('button');
       favBtn.type = 'button';
       favBtn.className = 'dish-action-btn dish-fav-btn active';
-      favBtn.title = 'Remover dos favoritos';
+      favBtn.title = feature.dishFavRemoveTitle || 'Remover dos favoritos';
+      favBtn.setAttribute('aria-label', feature.dishFavRemoveTitle || 'Remover dos favoritos');
       favBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>';
       favBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1636,23 +1770,23 @@ $('auth-form')?.addEventListener('submit', (e) => {
   if (authMode === 'register') {
     const username = $('auth-username').value.trim().replace(/^@/, '');
     if (username.length < 3) {
-      errorEl.textContent = 'Nome de utilizador deve ter pelo menos 3 caracteres.';
+      errorEl.textContent = feature.authUsernameMin || 'Nome de utilizador deve ter pelo menos 3 caracteres.';
       errorEl.hidden = false;
       return;
     }
     if (password.length < 6) {
-      errorEl.textContent = 'A palavra-passe deve ter pelo menos 6 caracteres.';
+      errorEl.textContent = feature.authPasswordMin || 'A palavra-passe deve ter pelo menos 6 caracteres.';
       errorEl.hidden = false;
       return;
     }
     if (users[email]) {
-      errorEl.textContent = 'Este email já está registado.';
+      errorEl.textContent = feature.authEmailExists || 'Este email já está registado.';
       errorEl.hidden = false;
       return;
     }
     const userWithSameName = Object.values(users).find(u => u.username.toLowerCase() === username.toLowerCase());
     if (userWithSameName) {
-      errorEl.textContent = 'Este nome de utilizador já existe.';
+      errorEl.textContent = feature.authUsernameExists || 'Este nome de utilizador já existe.';
       errorEl.hidden = false;
       return;
     }
@@ -1664,7 +1798,7 @@ $('auth-form')?.addEventListener('submit', (e) => {
   } else {
     const user = users[email] || Object.values(users).find(u => u.username.toLowerCase() === email);
     if (!user || user.password !== password) {
-      errorEl.textContent = 'Email ou palavra-passe incorretos.';
+      errorEl.textContent = feature.authInvalidCreds || 'Email ou palavra-passe incorretos.';
       errorEl.hidden = false;
       return;
     }
@@ -1823,7 +1957,8 @@ function renderCalendarDayDetails() {
 function populateCalLogRestaurants() {
   const sel = $('cal-log-restaurant');
   if (!sel) return;
-  sel.replaceChildren(new Option('Escolhe um restaurante…', ''));
+  const feature = featureCopy[state.language] || featureCopy.en;
+  sel.replaceChildren(new Option(feature.calLogChooseRest || 'Escolhe um restaurante…', ''));
   state.restaurants.forEach(r => {
     const opt = new Option(r.name, r.id);
     opt.dataset.fee = r.additional_fee_eur || '0';
@@ -1859,11 +1994,12 @@ $('cal-log-restaurant')?.addEventListener('change', () => {
   const restId = Number(selRest.value);
   const dishSelect = $('cal-log-dish');
   const customDishInput = $('cal-log-dish-custom');
+  const feature = featureCopy[state.language] || featureCopy.en;
   customDishInput.hidden = true;
   customDishInput.value = '';
 
   if (!restId) {
-    dishSelect.replaceChildren(new Option('Escolhe primeiro o restaurante…', ''));
+    dishSelect.replaceChildren(new Option(feature.calLogChooseRestFirst || 'Escolhe primeiro o restaurante…', ''));
     dishSelect.disabled = true;
     $('cal-log-fee').value = '';
     return;
@@ -1874,7 +2010,7 @@ $('cal-log-restaurant')?.addEventListener('change', () => {
     $('cal-log-fee').value = rest.additional_fee_eur;
   }
 
-  dishSelect.replaceChildren(new Option('A carregar pratos do menu…', ''));
+  dishSelect.replaceChildren(new Option(feature.calLogLoadingDishes || 'A carregar pratos do menu…', ''));
   dishSelect.disabled = true;
 
   const targetDate = state.calendarSelectedDate || state.today;
@@ -1884,7 +2020,7 @@ $('cal-log-restaurant')?.addEventListener('change', () => {
   function populateDishes(dishes) {
     dishSelect.replaceChildren();
     dishSelect.disabled = false;
-    dishSelect.add(new Option('Escolhe um prato…', ''));
+    dishSelect.add(new Option(feature.calLogChooseDish || 'Escolhe um prato…', ''));
     if (dishes && dishes.length) {
       dishes.forEach(d => {
         const translated = state.translationCache[`${state.language}::${d.name}`] || d.name;
@@ -1893,9 +2029,9 @@ $('cal-log-restaurant')?.addEventListener('change', () => {
         dishSelect.add(opt);
       });
     } else {
-      dishSelect.add(new Option('Menu do dia / Refeição', 'Menu do dia'));
+      dishSelect.add(new Option(feature.mealPickerDailyMenu || 'Menu do dia / Refeição', 'Menu do dia'));
     }
-    dishSelect.add(new Option('Outro prato / Opção livre…', '__other__'));
+    dishSelect.add(new Option(feature.mealPickerOtherDish || 'Outro prato / Opção livre…', '__other__'));
   }
 
   if (cachedMenu) {
@@ -1941,8 +2077,9 @@ $('cal-log-form')?.addEventListener('submit', (e) => {
 
   const dishSelect = $('cal-log-dish');
   let dishName = dishSelect.value;
+  const feature = featureCopy[state.language] || featureCopy.en;
   if (dishName === '__other__') {
-    dishName = $('cal-log-dish-custom').value.trim() || 'Prato personalizado';
+    dishName = $('cal-log-dish-custom').value.trim() || (feature.mealPickerDailyMenu || 'Prato personalizado');
   }
   const category = dishSelect.selectedOptions[0]?.dataset?.category || 'Mixed';
   const fee = Number($('cal-log-fee').value) || 0;
@@ -1951,7 +2088,6 @@ $('cal-log-form')?.addEventListener('submit', (e) => {
   logMeal(rest, dishName, category, customDate);
   $('cal-log-form').reset();
   $('cal-log-form').hidden = true;
-  const feature = featureCopy[state.language] || featureCopy.en;
   $('cal-add-meal-btn').textContent = feature.calAddMeal || '+ Registar refeição neste dia';
   showToast(feature.calSavedMeal || 'Refeição guardada no histórico!');
   renderProfilePage();
