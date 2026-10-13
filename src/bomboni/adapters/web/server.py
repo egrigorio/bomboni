@@ -102,8 +102,22 @@ def make_handler(service: RestaurantService, translator: MyMemoryTranslator) -> 
                 if parsed.path == "/api/menu":
                     restaurant_id = int(query["restaurant_id"][0])
                     raw_date = query.get("date", [None])[0]
+                    name = query.get("name", [None])[0]
                     menu_date = date.fromisoformat(raw_date) if raw_date else service.today()
-                    self._send_json(200, service.get_menu(restaurant_id, menu_date).to_dict())
+                    self._send_json(200, service.get_menu(restaurant_id, menu_date, restaurant_name=name).to_dict())
+                    return
+                if parsed.path == "/api/dishes":
+                    query_str = query.get("query", [None])[0]
+                    category = query.get("category", [None])[0]
+                    city = query.get("city", [None])[0] or "Ljubljana"
+                    raw_limit = query.get("limit", ["30"])[0]
+                    limit = min(50, max(1, int(raw_limit)))
+                    self._send_json(200, service.search_menu_items(
+                        city=city,
+                        query=query_str,
+                        category=category,
+                        limit=limit,
+                    ))
                     return
                 if parsed.path == "/api/draw":
                     mode = query.get("mode", ["restaurant"])[0]
@@ -124,8 +138,9 @@ def make_handler(service: RestaurantService, translator: MyMemoryTranslator) -> 
                         raise ValueError("Invalid restaurant menu path.")
                     restaurant_id = int(parts[2])
                     raw_date = query.get("date", [None])[0]
+                    name = query.get("name", [None])[0]
                     menu_date = date.fromisoformat(raw_date) if raw_date else service.today()
-                    self._send_json(200, service.get_menu(restaurant_id, menu_date).to_dict())
+                    self._send_json(200, service.get_menu(restaurant_id, menu_date, restaurant_name=name).to_dict())
                     return
                 if parsed.path.startswith("/api/"):
                     self._send_json(404, {"error": "API endpoint not found."})

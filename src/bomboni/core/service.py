@@ -101,7 +101,12 @@ class RestaurantService:
             self._details[restaurant_id] = (now + self._details_ttl, details)
         return details
 
-    def get_menu(self, restaurant_id: int, menu_date: date | None = None) -> DailyMenu:
+    def get_menu(
+        self,
+        restaurant_id: int,
+        menu_date: date | None = None,
+        restaurant_name: str | None = None,
+    ) -> DailyMenu:
         requested_date = menu_date or self.today()
         key = (restaurant_id, requested_date)
         now = datetime.now(ZoneInfo("UTC"))
@@ -109,9 +114,10 @@ class RestaurantService:
             cached = self._menus.get(key)
             if cached and now < cached[0]:
                 return cached[1]
-        # Ensure a source adapter can map the stable restaurant ID to its display name.
-        self.list_restaurants()
-        menu = self._source.fetch_menu(restaurant_id, requested_date)
+        if not restaurant_name:
+            # Ensure a source adapter can map the stable restaurant ID to its display name.
+            self.list_restaurants()
+        menu = self._source.fetch_menu(restaurant_id, requested_date, restaurant_name=restaurant_name)
         with self._lock:
             self._menus[key] = (now + self._menu_ttl, menu)
         return menu
@@ -119,7 +125,7 @@ class RestaurantService:
     def search_menu_items(
         self,
         *,
-        city: str,
+        city: str | None = None,
         menu_date: date | None = None,
         query: str | None = None,
         category: str | None = None,
@@ -132,8 +138,9 @@ class RestaurantService:
         not the number of menus scanned; keep it at the default or at most 50.
         """
         requested_date = menu_date or self.today()
+        target_city = city or "Ljubljana"
         search_started = perf_counter()
-        restaurants = self.search_restaurants(city=city, limit=10_000)
+        restaurants = self.search_restaurants(city=target_city, limit=10_000)
         normalized_query = _normalize(query) if query else None
         query_terms = MENU_QUERY_ALIASES.get(normalized_query or "", (query,) if query else ())
         normalized_category = _normalize(category) if category else None
@@ -181,7 +188,7 @@ class RestaurantService:
         result_limit = min(MAX_MENU_SEARCH_RESULTS, max(1, limit))
         visible_matches = matches[:result_limit]
         return {
-            "city": city,
+            "city": target_city,
             "menu_date": requested_date.isoformat(),
             "elapsed_ms": round((perf_counter() - search_started) * 1000),
             "query_terms_used": list(query_terms),

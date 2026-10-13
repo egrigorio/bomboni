@@ -16,9 +16,10 @@ class handler(JsonHandler):
         try:
             restaurant_id = int(query["restaurant_id"][0])
             raw_date = query.get("date", [None])[0]
+            name = query.get("name", [None])[0]
             service, _ = services()
             menu_date = date.fromisoformat(raw_date) if raw_date else service.today()
-            send_json(self, 200, service.get_menu(restaurant_id, menu_date).to_dict())
+            send_json(self, 200, service.get_menu(restaurant_id, menu_date, restaurant_name=name).to_dict())
         except (ValueError, KeyError) as exc:
             send_json(self, 400, {"error": str(exc)})
         except Exception as exc:

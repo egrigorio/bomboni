@@ -19,10 +19,11 @@ class FakeSource:
         restaurant = next(item for item in self.restaurants if item.id == restaurant_id)
         return RestaurantDetails(restaurant, None, {}, (), "2026-10-12T12:00:00+00:00")
 
-    def fetch_menu(self, restaurant_id: int, menu_date: date):
+    def fetch_menu(self, restaurant_id: int, menu_date: date, restaurant_name: str | None = None):
         restaurant = next(item for item in self.restaurants if item.id == restaurant_id)
         dishes = (Dish("Šiš kebab", 1, ("Meat",), ()),) if restaurant_id == 1 else (Dish("Falafel", 1, ("Meatless",), ()),)
-        return DailyMenu(restaurant_id, restaurant.name, menu_date.isoformat(), dishes, restaurant.source_url, "2026-10-12T12:00:00+00:00")
+        name = restaurant_name or restaurant.name
+        return DailyMenu(restaurant_id, name, menu_date.isoformat(), dishes, restaurant.source_url, "2026-10-12T12:00:00+00:00")
 
 
 def test_search_restaurants_matches_city_without_case_or_accent_sensitivity() -> None:
@@ -71,4 +72,14 @@ def test_draw_recommendation_validates_inputs() -> None:
         assert False, "Should have raised ValueError"
     except ValueError as exc:
         assert "max_price_eur must be zero or greater" in str(exc)
+
+
+def test_search_menu_items_matches_dish_query_and_defaults_city() -> None:
+    service = RestaurantService(FakeSource(), menu_workers=2)
+    result = service.search_menu_items(query="falafel", city=None)
+    assert result["city"] == "Ljubljana"
+    assert result["match_count"] == 1
+    assert result["results"][0]["restaurant"]["id"] == 2
+    assert result["results"][0]["dish"]["name"] == "Falafel"
+
 

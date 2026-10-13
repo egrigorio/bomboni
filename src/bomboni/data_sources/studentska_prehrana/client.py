@@ -60,13 +60,19 @@ class StudentskaPrehranaSource:
         self._restaurant_names[restaurant_id] = details.restaurant.name
         return details
 
-    def fetch_menu(self, restaurant_id: int, menu_date: date) -> DailyMenu:
+    def set_restaurant_name(self, restaurant_id: int, name: str) -> None:
+        if name:
+            self._restaurant_names[restaurant_id] = name
+
+    def fetch_menu(self, restaurant_id: int, menu_date: date, restaurant_name: str | None = None) -> DailyMenu:
         # The menu endpoint is directly queryable once the directory has supplied
         # the name, avoiding one detail-page request per restaurant during city scans.
-        restaurant_name = self._restaurant_names.get(restaurant_id)
-        if not restaurant_name:
+        name = restaurant_name or self._restaurant_names.get(restaurant_id)
+        if name:
+            self._restaurant_names[restaurant_id] = name
+        else:
             self.fetch_restaurant_details(restaurant_id)
-            restaurant_name = self._restaurant_names.get(restaurant_id, str(restaurant_id))
+            name = self._restaurant_names.get(restaurant_id, str(restaurant_id))
         response = self._client.post(
             urljoin(BASE_URL, "/en/restaurant/MenuForDate"),
             data={"restaurantId": restaurant_id, "date": menu_date.strftime("%m/%d/%Y")},
@@ -79,7 +85,7 @@ class StudentskaPrehranaSource:
         return parse_menu_fragment(
             response.text,
             restaurant_id=restaurant_id,
-            restaurant_name=restaurant_name,
+            restaurant_name=name,
             menu_date=menu_date,
             retrieved_at=self._retrieved_at(),
         )

@@ -1,10 +1,33 @@
 const translations = {
-  pt:{eyebrow:'ALMOÇO COM BONI, SEM BARREIRAS',heroA:'Uma boa refeição',heroB:'fica',heroEm:'mais perto.',heroCopy:'Restaurantes de boni à sua volta, com os pratos no seu idioma.',search:'Restaurante…',near:'Perto de si',sorting:'A ordenar pela sua localização',enable:'Ativar localização para ordenar por distância.',loading:'A encontrar restaurantes…',more:'Ver mais',emptyKicker:'A SUA PRÓXIMA PARAGEM',emptyTitle:'Escolha um restaurante',emptyCopy:'Veja o menu de boni do dia, traduzido para si. O nome original fica sempre disponível.',emptyFoot:'Menus oficiais · tradução automática',back:'Todos os restaurantes',venueKicker:'RESTAURANTE DE BONI',menuOverline:'MENU DE BONI',today:'Pratos do dia',fee:'Copagamento',noMenu:'Não há pratos publicados para esta data.',menuSource:'Menu publicado para',retrieved:'consultado às',disclaimer:'Tradução automática. Confirme ingredientes e alergénios diretamente com o restaurante.',footer:'Dados de refeições estudantis · Eslovénia',source:'Fonte oficial',locating:'A obter localização…',locationReady:'A ordenar pela distância',locationFallback:'Ljubljana · localização não permitida',noResults:'Nenhum restaurante encontrado.',error:'Não foi possível carregar os dados. Tente novamente.',translationMissing:'Sem tradução automática disponível',restaurantCount:'restaurantes',categories:{Meat:'Carne',Fish:'Peixe',Meatless:'Sem carne',Mixed:'Misto','Salad bar':'Saladas','Fast food':'Rápido'}},
-  en:{eyebrow:'STUDENT MEALS, WITHOUT THE LANGUAGE BARRIER',heroA:'A good meal',heroB:'is',heroEm:'closer than you think.',heroCopy:'Student meal restaurants around you, with dishes in your language.',search:'Restaurant…',near:'Near you',sorting:'Sorted by your location',enable:'Enable location to sort by distance.',loading:'Finding nearby restaurants…',more:'Show more',emptyKicker:'YOUR NEXT STOP',emptyTitle:'Choose a restaurant',emptyCopy:'See today’s student meal menu translated for you. The original name is always available.',emptyFoot:'Official menus · machine translated',back:'All restaurants',venueKicker:'STUDENT MEAL RESTAURANT',menuOverline:'STUDENT MENU',today:'Today’s dishes',fee:'Student co-pay',noMenu:'No dishes are published for this date.',menuSource:'Menu published for',retrieved:'checked at',disclaimer:'Machine translation. Check ingredients and allergens with the restaurant.',footer:'Student meal listings · Slovenia',source:'Official source',locating:'Getting location…',locationReady:'Sorted by distance',locationFallback:'Ljubljana · location unavailable',noResults:'No restaurants found.',error:'Could not load the data. Please try again.',translationMissing:'Translation unavailable',restaurantCount:'restaurants',categories:{Meat:'Meat',Fish:'Fish',Meatless:'Meatless',Mixed:'Mixed','Salad bar':'Salad bar','Fast food':'Fast food'}},
-  es:{eyebrow:'BONI SIN BARRERAS DE IDIOMA',heroA:'Una buena comida',heroB:'está',heroEm:'más cerca.',heroCopy:'Restaurantes con boni cerca de ti y platos en tu idioma.',search:'Restaurante…',near:'Cerca de ti',sorting:'Ordenados por tu ubicación',enable:'Activa la ubicación para ordenar por distancia.',loading:'Buscando restaurantes…',more:'Ver más',emptyKicker:'TU PRÓXIMA PARADA',emptyTitle:'Elige un restaurante',emptyCopy:'Consulta el menú de boni del día traducido. El nombre original siempre está disponible.',emptyFoot:'Menús oficiales · traducción automática',back:'Todos los restaurantes',venueKicker:'RESTAURANTE CON BONI',menuOverline:'MENÚ BONI',today:'Platos de hoy',fee:'Copago',noMenu:'No hay platos publicados para esta fecha.',menuSource:'Menú publicado para',retrieved:'consultado a las',disclaimer:'Traducción automática. Confirma los ingredientes y alérgenos con el restaurante.',footer:'Comidas de estudiantes · Eslovenia',source:'Fuente oficial',locating:'Obteniendo ubicación…',locationReady:'Ordenados por distancia',locationFallback:'Ljubljana · ubicación no disponible',noResults:'No se encontraron restaurantes.',error:'No se pudieron cargar los datos. Inténtalo de nuevo.',translationMissing:'Traducción no disponible',restaurantCount:'restaurantes',categories:{Meat:'Carne',Fish:'Pescado',Meatless:'Sin carne',Mixed:'Mixto','Salad bar':'Ensaladas','Fast food':'Rápido'}},
-  de:{eyebrow:'STUDENTENMENÜS OHNE SPRACHBARRIEREN',heroA:'Ein gutes Essen',heroB:'ist',heroEm:'ganz in der Nähe.',heroCopy:'Boni-Restaurants in deiner Nähe, mit Gerichten in deiner Sprache.',search:'Restaurant…',near:'In deiner Nähe',sorting:'Nach Standort sortiert',enable:'Standort aktivieren, um nach Entfernung zu sortieren.',loading:'Restaurants werden gesucht…',more:'Mehr anzeigen',emptyKicker:'DEIN NÄCHSTER STOPP',emptyTitle:'Restaurant auswählen',emptyCopy:'Sieh dir das heutige Boni-Menü übersetzt an. Der Originalname bleibt immer sichtbar.',emptyFoot:'Offizielle Menüs · maschinell übersetzt',back:'Alle Restaurants',venueKicker:'BONI-RESTAURANT',menuOverline:'BONI-MENÜ',today:'Gerichte heute',fee:'Eigenanteil',noMenu:'Für dieses Datum sind keine Gerichte veröffentlicht.',menuSource:'Menü veröffentlicht für',retrieved:'abgerufen um',disclaimer:'Maschinelle Übersetzung. Zutaten und Allergene bitte direkt beim Restaurant prüfen.',footer:'Studentenmenüs · Slowenien',source:'Offizielle Quelle',locating:'Standort wird ermittelt…',locationReady:'Nach Entfernung sortiert',locationFallback:'Ljubljana · Standort nicht verfügbar',noResults:'Keine Restaurants gefunden.',error:'Daten konnten nicht geladen werden. Bitte erneut versuchen.',translationMissing:'Keine Übersetzung verfügbar',restaurantCount:'Restaurants',categories:{Meat:'Fleisch',Fish:'Fisch',Meatless:'Fleischlos',Mixed:'Gemischt','Salad bar':'Salate','Fast food':'Schnellgericht'}},
-  it:{eyebrow:'BONI SENZA BARRIERE LINGUISTICHE',heroA:'Un buon pasto',heroB:'è',heroEm:'più vicino.',heroCopy:'Ristoranti con boni vicino a te, con i piatti nella tua lingua.',search:'Ristorante…',near:'Vicino a te',sorting:'Ordinati per posizione',enable:'Attiva la posizione per ordinare per distanza.',loading:'Cerco ristoranti…',more:'Mostra altri',emptyKicker:'LA TUA PROSSIMA TAPPA',emptyTitle:'Scegli un ristorante',emptyCopy:'Scopri il menu boni del giorno tradotto. Il nome originale resta sempre disponibile.',emptyFoot:'Menu ufficiali · traduzione automatica',back:'Tutti i ristoranti',venueKicker:'RISTORANTE BONI',menuOverline:'MENU BONI',today:'Piatti di oggi',fee:'Quota studente',noMenu:'Nessun piatto pubblicato per questa data.',menuSource:'Menu pubblicato per',retrieved:'consultato alle',disclaimer:'Traduzione automatica. Verifica ingredienti e allergeni con il ristorante.',footer:'Menu per studenti · Slovenia',source:'Fonte ufficiale',locating:'Rilevo la posizione…',locationReady:'Ordinati per distanza',locationFallback:'Ljubljana · posizione non disponibile',noResults:'Nessun ristorante trovato.',error:'Impossibile caricare i dati. Riprova.',translationMissing:'Traduzione non disponibile',restaurantCount:'ristoranti',categories:{Meat:'Carne',Fish:'Pesce',Meatless:'Senza carne',Mixed:'Misto','Salad bar':'Insalate','Fast food':'Veloce'}},
-  fr:{eyebrow:'LES BONI SANS BARRIÈRE DE LANGUE',heroA:'Un bon repas',heroB:'est',heroEm:'tout près.',heroCopy:'Des restaurants avec boni près de vous, avec les plats dans votre langue.',search:'Restaurant…',near:'Près de vous',sorting:'Triés selon votre position',enable:'Activez la localisation pour trier par distance.',loading:'Recherche de restaurants…',more:'Voir plus',emptyKicker:'VOTRE PROCHAINE ÉTAPE',emptyTitle:'Choisissez un restaurant',emptyCopy:'Consultez le menu boni du jour traduit. Le nom original reste toujours disponible.',emptyFoot:'Menus officiels · traduction automatique',back:'Tous les restaurants',venueKicker:'RESTAURANT BONI',menuOverline:'MENU BONI',today:'Plats du jour',fee:'Participation étudiant',noMenu:'Aucun plat publié pour cette date.',menuSource:'Menu publié pour',retrieved:'consulté à',disclaimer:'Traduction automatique. Vérifiez les ingrédients et allergènes auprès du restaurant.',footer:'Repas étudiants · Slovénie',source:'Source officielle',locating:'Localisation en cours…',locationReady:'Triés par distance',locationFallback:'Ljubljana · localisation indisponible',noResults:'Aucun restaurant trouvé.',error:'Impossible de charger les données. Réessayez.',translationMissing:'Traduction indisponible',restaurantCount:'restaurants',categories:{Meat:'Viande',Fish:'Poisson',Meatless:'Sans viande',Mixed:'Mixte','Salad bar':'Salades','Fast food':'Rapide'}}
+  pt:{eyebrow:'ALMOÇO COM BONI, SEM BARREIRAS',heroA:'Uma boa refeição',heroB:'fica',heroEm:'mais perto.',heroCopy:'Restaurantes de boni à sua volta, com os pratos no seu idioma.',search:'Restaurante…',near:'Perto de si',sorting:'A ordenar pela sua localização',enable:'Ativar localização para ordenar por distância.',loading:'A encontrar restaurantes…',loadingDishes:'A procurar pratos nos cardápios de hoje…',more:'Ver mais',emptyKicker:'A SUA PRÓXIMA PARAGEM',emptyTitle:'Escolha um restaurante',emptyCopy:'Veja o menu de boni do dia, traduzido para si. O nome original fica sempre disponível.',emptyFoot:'Menus oficiais · tradução automática',back:'Todos os restaurantes',venueKicker:'RESTAURANTE DE BONI',menuOverline:'MENU DE BONI',today:'Pratos do dia',fee:'Copagamento',noMenu:'Não há pratos publicados para esta data.',menuSource:'Menu publicado para',retrieved:'consultado às',disclaimer:'Tradução automática. Confirme ingredientes e alergénios diretamente com o restaurante.',footer:'Dados de refeições estudantis · Eslovénia',source:'Fonte oficial',locating:'A obter localização…',locationReady:'A ordenar pela distância',locationFallback:'Ljubljana · localização não permitida',noResults:'Nenhum restaurante encontrado.',noDishResults:'Nenhum restaurante com este prato hoje.',searchDishPrompt:'Pesquise por um prato para ver quais restaurantes o servem hoje.',error:'Não foi possível carregar os dados. Tente novamente.',translationMissing:'Sem tradução automática disponível',restaurantCount:'restaurantes',categories:{Meat:'Carne',Fish:'Peixe',Meatless:'Sem carne',Mixed:'Misto','Salad bar':'Saladas','Fast food':'Rápido'}},
+  en:{eyebrow:'STUDENT MEALS, WITHOUT THE LANGUAGE BARRIER',heroA:'A good meal',heroB:'is',heroEm:'closer than you think.',heroCopy:'Student meal restaurants around you, with dishes in your language.',search:'Restaurant…',near:'Near you',sorting:'Sorted by your location',enable:'Enable location to sort by distance.',loading:'Finding nearby restaurants…',loadingDishes:'Searching today’s menus for dishes…',more:'Show more',emptyKicker:'YOUR NEXT STOP',emptyTitle:'Choose a restaurant',emptyCopy:'See today’s student meal menu translated for you. The original name is always available.',emptyFoot:'Official menus · machine translated',back:'All restaurants',venueKicker:'STUDENT MEAL RESTAURANT',menuOverline:'STUDENT MENU',today:'Today’s dishes',fee:'Student co-pay',noMenu:'No dishes are published for this date.',menuSource:'Menu published for',retrieved:'checked at',disclaimer:'Machine translation. Check ingredients and allergens with the restaurant.',footer:'Student meal listings · Slovenia',source:'Official source',locating:'Getting location…',locationReady:'Sorted by distance',locationFallback:'Ljubljana · location unavailable',noResults:'No restaurants found.',noDishResults:'No restaurants found with this dish today.',searchDishPrompt:'Search for a dish to see which restaurants have it today.',error:'Could not load the data. Please try again.',translationMissing:'Translation unavailable',restaurantCount:'restaurants',categories:{Meat:'Meat',Fish:'Fish',Meatless:'Meatless',Mixed:'Mixed','Salad bar':'Salad bar','Fast food':'Fast food'}},
+  es:{eyebrow:'BONI SIN BARRERAS DE IDIOMA',heroA:'Una buena comida',heroB:'está',heroEm:'más cerca.',heroCopy:'Restaurantes con boni cerca de ti y platos en tu idioma.',search:'Restaurante…',near:'Cerca de ti',sorting:'Ordenados por tu ubicación',enable:'Activa la ubicación para ordenar por distancia.',loading:'Buscando restaurantes…',loadingDishes:'Buscando platos en los menús de hoy…',more:'Ver más',emptyKicker:'TU PRÓXIMA PARADA',emptyTitle:'Elige un restaurante',emptyCopy:'Consulta el menú de boni del día traducido. El nombre original siempre está disponible.',emptyFoot:'Menús oficiales · traducción automática',back:'Todos los restaurantes',venueKicker:'RESTAURANTE CON BONI',menuOverline:'MENÚ BONI',today:'Platos de hoy',fee:'Copago',noMenu:'No hay platos publicados para esta fecha.',menuSource:'Menú publicado para',retrieved:'consultado a las',disclaimer:'Traducción automática. Confirma los ingredientes y alérgenos con el restaurante.',footer:'Comidas de estudiantes · Eslovenia',source:'Fuente oficial',locating:'Obteniendo ubicación…',locationReady:'Ordenados por distancia',locationFallback:'Ljubljana · ubicación no disponible',noResults:'No se encontraron restaurantes.',noDishResults:'No hay restaurantes con este plato hoy.',searchDishPrompt:'Busca un plato para ver qué restaurantes lo ofrecen hoy.',error:'No se pudieron cargar los datos. Inténtalo de nuevo.',translationMissing:'Traducción no disponible',restaurantCount:'restaurantes',categories:{Meat:'Carne',Fish:'Pescado',Meatless:'Sin carne',Mixed:'Mixto','Salad bar':'Ensaladas','Fast food':'Rápido'}},
+  de:{eyebrow:'STUDENTENMENÜS OHNE SPRACHBARRIEREN',heroA:'Ein gutes Essen',heroB:'ist',heroEm:'ganz in der Nähe.',heroCopy:'Boni-Restaurants in deiner Nähe, mit Gerichten in deiner Sprache.',search:'Restaurant…',near:'In deiner Nähe',sorting:'Nach Standort sortiert',enable:'Standort aktivieren, um nach Entfernung zu sortieren.',loading:'Restaurants werden gesucht…',loadingDishes:'Gerichte in heutigen Menüs werden gesucht…',more:'Mehr anzeigen',emptyKicker:'DEIN NÄCHSTER STOPP',emptyTitle:'Restaurant auswählen',emptyCopy:'Sieh dir das heutige Boni-Menü übersetzt an. Der Originalname bleibt immer sichtbar.',emptyFoot:'Offizielle Menüs · maschinell übersetzt',back:'Alle Restaurants',venueKicker:'BONI-RESTAURANT',menuOverline:'BONI-MENÜ',today:'Gerichte heute',fee:'Eigenanteil',noMenu:'Für dieses Datum sind keine Gerichte veröffentlicht.',menuSource:'Menü veröffentlicht für',retrieved:'abgerufen um',disclaimer:'Maschinelle Übersetzung. Zutaten und Allergene bitte direkt beim Restaurant prüfen.',footer:'Studentenmenüs · Slowenien',source:'Offizielle Quelle',locating:'Standort wird ermittelt…',locationReady:'Nach Entfernung sortiert',locationFallback:'Ljubljana · Standort nicht verfügbar',noResults:'Keine Restaurants gefunden.',noDishResults:'Heute kein Restaurant mit diesem Gericht gefunden.',searchDishPrompt:'Suche nach einem Gericht, um passende Restaurants zu finden.',error:'Daten konnten nicht geladen werden. Bitte erneut versuchen.',translationMissing:'Keine Übersetzung verfügbar',restaurantCount:'Restaurants',categories:{Meat:'Fleisch',Fish:'Fisch',Meatless:'Fleischlos',Mixed:'Gemischt','Salad bar':'Salate','Fast food':'Schnellgericht'}},
+  it:{eyebrow:'BONI SENZA BARRIERE LINGUISTICHE',heroA:'Un buon pasto',heroB:'è',heroEm:'più vicino.',heroCopy:'Ristoranti con boni vicino a te, con i piatti nella tua lingua.',search:'Ristorante…',near:'Vicino a te',sorting:'Ordinati per posizione',enable:'Attiva la posizione per ordinare per distanza.',loading:'Cerco ristoranti…',loadingDishes:'Cerco piatti nei menu di oggi…',more:'Mostra altri',emptyKicker:'LA TUA PROSSIMA TAPPA',emptyTitle:'Scegli un restaurante',emptyCopy:'Scopri il menu boni del giorno tradotto. Il nome originale resta sempre disponibile.',emptyFoot:'Menu ufficiali · traduzione automatica',back:'Tutti i ristoranti',venueKicker:'RISTORANTE BONI',menuOverline:'MENU BONI',today:'Piatti di oggi',fee:'Quota studente',noMenu:'Nessun piatto pubblicato per questa data.',menuSource:'Menu pubblicato per',retrieved:'consultato alle',disclaimer:'Traduzione automatica. Verifica ingredienti e allergeni con il ristorante.',footer:'Menu per studenti · Slovenia',source:'Fonte ufficiale',locating:'Rilevo la posizione…',locationReady:'Ordinati per distanza',locationFallback:'Ljubljana · posizione non disponibile',noResults:'Nessun ristorante trovato.',noDishResults:'Nessun ristorante con questo piatto oggi.',searchDishPrompt:'Cerca un piatto per vedere quali ristoranti lo servono oggi.',error:'Impossibile caricare i dati. Riprova.',translationMissing:'Traduzione non disponibile',restaurantCount:'ristoranti',categories:{Meat:'Carne',Fish:'Pesce',Meatless:'Senza carne',Mixed:'Misto','Salad bar':'Insalate','Fast food':'Veloce'}},
+  fr:{eyebrow:'LES BONI SANS BARRIÈRE DE LANGUE',heroA:'Un bon repas',heroB:'est',heroEm:'tout près.',heroCopy:'Des restaurants avec boni près de vous, avec les plats dans votre langue.',search:'Restaurant…',near:'Près de vous',sorting:'Triés selon votre position',enable:'Activez la localisation pour trier par distance.',loading:'Recherche de restaurants…',loadingDishes:'Recherche de plats dans les menus du jour…',more:'Voir plus',emptyKicker:'VOTRE PROCHAINE ÉTAPE',emptyTitle:'Choisissez un restaurant',emptyCopy:'Consultez le menu boni du jour traduit. Le nom original reste toujours disponible.',emptyFoot:'Menus officiels · traduction automatique',back:'Tous les restaurants',venueKicker:'RESTAURANT BONI',menuOverline:'MENU BONI',today:'Plats du jour',fee:'Participation étudiant',noMenu:'Aucun plat publié pour cette date.',menuSource:'Menu publié pour',retrieved:'consulté à',disclaimer:'Traduction automatique. Vérifiez les ingrédients et allergènes auprès du restaurant.',footer:'Repas étudiants · Slovénie',source:'Source officielle',locating:'Localisation en cours…',locationReady:'Triés par distance',locationFallback:'Ljubljana · localisation indisponible',noResults:'Aucun restaurant trouvé.',noDishResults:'Aucun restaurant trouvé avec ce plat aujourd’hui.',searchDishPrompt:'Recherchez un plat pour voir quels restaurants le proposent aujourd’hui.',error:'Impossible de charger les données. Réessayez.',translationMissing:'Traduction indisponible',restaurantCount:'restaurants',categories:{Meat:'Viande',Fish:'Poisson',Meatless:'Sans viande',Mixed:'Mixte','Salad bar':'Salades','Fast food':'Rapide'}}
+};
+
+const searchModeLabels = {
+  restaurants: { pt:'Restaurantes', en:'Restaurants', es:'Restaurantes', de:'Restaurants', it:'Ristoranti', fr:'Restaurants' },
+  dishes: { pt:'No cardápio', en:'On the menu', es:'En el menú', de:'Auf der Karte', it:'Nel menu', fr:'Au menu' }
+};
+
+const dishSearchPlaceholders = {
+  pt: 'Pesquisar prato (ex: pizza, sushi, salada)…',
+  en: 'Search dish (e.g. pizza, sushi, salad)…',
+  es: 'Buscar plato (ej: pizza, sushi, ensalada)…',
+  de: 'Gericht suchen (z.B. Pizza, Sushi, Salat)…',
+  it: 'Cerca piatto (es: pizza, sushi, insalata)…',
+  fr: 'Rechercher un plat (ex: pizza, sushi, salade)…'
+};
+
+const restaurantSearchPlaceholders = {
+  pt: 'Restaurante, rua ou cidade…',
+  en: 'Restaurant, street or city…',
+  es: 'Restaurante, calle o ciudad…',
+  de: 'Restaurant, Straße oder Stadt…',
+  it: 'Ristorante, via o città…',
+  fr: 'Restaurant, rue ou ville…'
 };
 
 const imageSearchLabels={pt:'Pesquisar imagens de',en:'Search images for',es:'Buscar imágenes de',de:'Bilder suchen für',it:'Cerca immagini di',fr:'Rechercher des images de'};
@@ -23,32 +46,56 @@ const hoursLabels={pt:{open:'Aberto',closed:'Fechado',unknown:'Sem horário',che
 const drawSampleLabel={pt:(scanned,total)=>`Sorteio entre ${scanned} de ${total} restaurantes`,en:(scanned,total)=>`Draw from ${scanned} of ${total} restaurants`,es:(scanned,total)=>`Sorteo entre ${scanned} de ${total} restaurantes`,de:(scanned,total)=>`Auswahl aus ${scanned} von ${total} Restaurants`,it:(scanned,total)=>`Estrazione tra ${scanned} di ${total} ristoranti`,fr:(scanned,total)=>`Tirage parmi ${scanned} restaurants sur ${total}`};
 const drawNoSampleLabel={pt:n=>`Não encontrei uma opção nos ${n} restaurantes sorteados.`,en:n=>`No match in the ${n} restaurants checked.`,es:n=>`No encontré opciones en los ${n} restaurantes consultados.`,de:n=>`Keine passende Option unter den ${n} geprüften Restaurants.`,it:n=>`Nessuna opzione tra i ${n} ristoranti controllati.`,fr:n=>`Aucune option parmi les ${n} restaurants vérifiés.`};
 const installCopy={pt:{label:'Instalar app',ios:'No Safari, toque em Partilhar e escolha “Adicionar ao ecrã principal”.',browser:'Use o menu do navegador para instalar o Bomboni.'},en:{label:'Install app',ios:'In Safari, tap Share and choose “Add to Home Screen”.',browser:'Use your browser menu to install Bomboni.'},es:{label:'Instalar app',ios:'En Safari, toca Compartir y elige “Añadir a pantalla de inicio”.',browser:'Usa el menú del navegador para instalar Bomboni.'},de:{label:'App installieren',ios:'Tippe in Safari auf Teilen und wähle „Zum Home-Bildschirm“.',browser:'Installiere Bomboni über das Browsermenü.'},it:{label:'Installa app',ios:'In Safari, tocca Condividi e scegli “Aggiungi alla schermata Home”.',browser:'Usa il menu del browser per installare Bomboni.'},fr:{label:'Installer',ios:'Dans Safari, touchez Partager puis « Sur l’écran d’accueil ».',browser:'Installez Bomboni depuis le menu du navigateur.'}};
+
 let deferredInstallPrompt=null;
 let activeMenuRequest=0;
+let dishSearchTimer=null;
 const restaurantHours={};
 const loadingHours=new Set();
+const menuCache=new Map();
 let savedTranslations={};try{savedTranslations=JSON.parse(localStorage.getItem('bomboni-translations')||'{}');}catch{}
 const savedLanguage=localStorage.getItem('bomboni-language');
-const state = { language: translations[savedLanguage]?savedLanguage:'pt', location: null, locationLabel: '', restaurants: [], visible: 15, selected: null, date: '', translationCache:savedTranslations, tab:'explore' };
+const state = {
+  language: translations[savedLanguage]?savedLanguage:'pt',
+  location: null,
+  locationLabel: '',
+  restaurants: [],
+  visible: 15,
+  selected: null,
+  date: '',
+  today: new Intl.DateTimeFormat('en-CA', {timeZone: 'Europe/Ljubljana'}).format(new Date()),
+  translationCache: savedTranslations,
+  tab: 'explore',
+  searchMode: 'restaurants',
+  dishResults: [],
+  isSearchingDishes: false
+};
+
+// Sync today date with backend in background without blocking interactions
+fetch('/api/today').then(r=>r.json()).then(d=>{if(d?.date){state.today=d.date;if(!state.date)state.date=d.date;}}).catch(()=>{});
+
 const $ = (id) => document.getElementById(id);
 const languageSelect = $('language-select');
 const safeText = (value) => value == null ? '' : String(value);
 
 function locale(){ return ({pt:'pt-PT',en:'en-GB',es:'es-ES',de:'de-DE',it:'it-IT',fr:'fr-FR'})[state.language] || 'pt-PT'; }
 function tr(){ return translations[state.language] || translations.pt; }
+
 function applyLanguage(){
   const t=tr();const feature=featureCopy[state.language]||featureCopy.en; document.documentElement.lang=state.language; languageSelect.value=state.language;
   $('location-label').textContent=state.locationLabel||({pt:'Usar localização',en:'Set location',es:'Usar ubicación',de:'Standort setzen',it:'Imposta posizione',fr:'Définir la position'}[state.language]);
-  $('search-input').placeholder=({pt:'Restaurante, rua ou cidade…',en:'Restaurant, street or city…',es:'Restaurante, calle o ciudad…',de:'Restaurant, Straße oder Stadt…',it:'Ristorante, via o città…',fr:'Restaurant, rue ou ville…'}[state.language]);
+  $('search-mode-restaurants').textContent=searchModeLabels.restaurants[state.language]||searchModeLabels.restaurants.en;
+  $('search-mode-dishes').textContent=searchModeLabels.dishes[state.language]||searchModeLabels.dishes.en;
+  $('search-input').placeholder=state.searchMode==='dishes'?(dishSearchPlaceholders[state.language]||dishSearchPlaceholders.en):(restaurantSearchPlaceholders[state.language]||restaurantSearchPlaceholders.en);
   $('search-input').setAttribute('aria-label',$('search-input').placeholder);
   $('hero-title').textContent=({pt:'Restaurantes com boni',en:'Student meal restaurants',es:'Restaurantes con boni',de:'Boni-Restaurants',it:'Ristoranti con boni',fr:'Restaurants avec boni'}[state.language]);
   $('list-title').textContent=({pt:'Restaurantes',en:'Restaurants',es:'Restaurantes',de:'Restaurants',it:'Ristoranti',fr:'Restaurants'}[state.language]);
   $('load-more').textContent=t.more;
   $('back-label').textContent=t.back; $('menu-title').textContent=t.today;
   $('date-prev').setAttribute('aria-label',({pt:'Dia anterior',en:'Previous day',es:'Día anterior',de:'Vorheriger Tag',it:'Giorno precedente',fr:'Jour précédent'}[state.language]));
-  $('date-next').setAttribute('aria-label',({pt:'Dia seguinte',en:'Next day',es:'Día siguiente',de:'Nächster Tag',it:'Giorno successivo',fr:'Jour suivant'}[state.language]));
-  $('footer-source').textContent=`${t.source} ↗`;
-  $('footer-install').textContent=`${installCopy[state.language]?.label||installCopy.en.label} ↓`;
+  $('date-next').setAttribute('aria-label',({pt:'Dia seguinte',en:'Next day',es:'Día seguinte',de:'Nächster Tag',it:'Giorno successivo',fr:'Jour suivant'}[state.language]));
+  $('footer-source').textContent=t.source;
+  $('footer-install').textContent=installCopy[state.language]?.label||installCopy.en.label;
   document.querySelectorAll('[data-tab-label]').forEach(label=>{label.textContent=mobileTabLabels[state.language]?.[label.dataset.tabLabel]||mobileTabLabels.en[label.dataset.tabLabel];});
   for(const [id,key] of Object.entries({
     'draw-eyebrow':'drawEyebrow','draw-title':'drawTitle','draw-description':'drawDescription','draw-city-label':'city','draw-any-city':'anyCity',
@@ -62,7 +109,7 @@ function applyLanguage(){
   document.querySelectorAll('[data-category]').forEach(option=>{option.textContent=t.categories[option.dataset.category]||option.dataset.category;});
   $('mobile-tab-bar').setAttribute('aria-label',({pt:'Navegação principal',en:'Main navigation',es:'Navegación principal',de:'Hauptnavigation',it:'Navigazione principale',fr:'Navigation principale'}[state.language]));
   renderDrawCities();
-  renderRestaurants();
+  if(state.searchMode==='dishes')renderDishesSearch();else renderRestaurants();
 }
 
 function switchTab(name){
@@ -159,12 +206,44 @@ async function loadRestaurantHours(restaurants){
   }catch{}
   finally{
     pending.forEach(restaurant=>{loadingHours.delete(restaurant.id);if(!Object.hasOwn(restaurantHours,restaurant.id))restaurantHours[restaurant.id]={};});
-    renderRestaurants();
+    if(state.searchMode==='dishes')renderDishesSearch();else renderRestaurants();
   }
 }
 
+function updateSearchClear(){
+  const val=$('search-input').value;
+  $('search-clear').hidden=!val;
+}
+
+$('search-clear').addEventListener('click',()=>{
+  $('search-input').value='';
+  updateSearchClear();
+  $('search-input').focus();
+  if(state.searchMode==='dishes'){
+    state.dishResults=[];
+    renderDishesSearch();
+  }else{
+    renderRestaurants();
+  }
+});
+
+function setSearchMode(mode){
+  state.searchMode=mode;
+  $('search-mode-restaurants').classList.toggle('active',mode==='restaurants');
+  $('search-mode-dishes').classList.toggle('active',mode==='dishes');
+  $('search-input').placeholder=mode==='dishes'?(dishSearchPlaceholders[state.language]||dishSearchPlaceholders.en):(restaurantSearchPlaceholders[state.language]||restaurantSearchPlaceholders.en);
+  $('search-input').setAttribute('aria-label',$('search-input').placeholder);
+  if(mode==='dishes')handleDishSearch();else renderRestaurants();
+}
+
+$('search-mode-restaurants').addEventListener('click',()=>setSearchMode('restaurants'));
+$('search-mode-dishes').addEventListener('click',()=>setSearchMode('dishes'));
+
 function renderRestaurants(){
-  const t=tr();const host=$('restaurant-list');const query=$('search-input').value.trim();const records=state.restaurants.map((restaurant,index)=>({restaurant,index,score:searchScore(restaurant,query)})).filter(item=>item.score>0).sort((a,b)=>b.score-a.score||a.index-b.index).map(item=>item.restaurant);const shown=records.slice(0,state.visible);
+  if(state.searchMode==='dishes'){renderDishesSearch();return;}
+  const t=tr();const host=$('restaurant-list');const query=$('search-input').value.trim();
+  updateSearchClear();
+  const records=state.restaurants.map((restaurant,index)=>({restaurant,index,score:searchScore(restaurant,query)})).filter(item=>item.score>0).sort((a,b)=>b.score-a.score||a.index-b.index).map(item=>item.restaurant);const shown=records.slice(0,state.visible);
   $('result-count').textContent=records.length;
   host.replaceChildren();
   if(!records.length){const empty=document.createElement('div');empty.className='loading-card';empty.textContent=t.noResults;host.append(empty);$('load-more').hidden=true;return;}
@@ -178,10 +257,77 @@ function renderRestaurants(){
   void loadRestaurantHours(shown);
 }
 
+function handleDishSearch(){
+  updateSearchClear();
+  const query=$('search-input').value.trim();
+  if(!query){
+    state.dishResults=[];
+    state.isSearchingDishes=false;
+    renderDishesSearch();
+    return;
+  }
+  clearTimeout(dishSearchTimer);
+  dishSearchTimer=setTimeout(async()=>{
+    state.isSearchingDishes=true;
+    renderDishesSearch();
+    try{
+      const currentCity=state.restaurants.find(r=>r.city)?.city||'Ljubljana';
+      const response=await fetch(`/api/dishes?query=${encodeURIComponent(query)}&city=${encodeURIComponent(currentCity)}`);
+      if(!response.ok)throw new Error('dishes');
+      const data=await response.json();
+      state.dishResults=data.results||[];
+    }catch{
+      state.dishResults=[];
+    }finally{
+      state.isSearchingDishes=false;
+      renderDishesSearch();
+    }
+  },300);
+}
+
+function renderDishesSearch(){
+  const t=tr();const host=$('restaurant-list');const query=$('search-input').value.trim();
+  $('load-more').hidden=true;
+  host.replaceChildren();
+  if(!query){
+    $('result-count').textContent='0';
+    const hint=document.createElement('div');hint.className='loading-card';hint.textContent=t.searchDishPrompt;host.append(hint);
+    return;
+  }
+  if(state.isSearchingDishes){
+    $('result-count').textContent='…';
+    const loading=document.createElement('div');loading.className='loading-card';loading.innerHTML=`<span class="spinner"></span><span>${t.loadingDishes}</span>`;host.append(loading);
+    return;
+  }
+  $('result-count').textContent=state.dishResults.length;
+  if(!state.dishResults.length){
+    const empty=document.createElement('div');empty.className='loading-card';empty.textContent=t.noDishResults;host.append(empty);
+    return;
+  }
+  const restaurantsToLoadHours=[];
+  state.dishResults.forEach((item,index)=>{
+    const r=item.restaurant;const dish=item.dish;
+    restaurantsToLoadHours.push(r);
+    const card=document.createElement('button');card.type='button';card.className=`restaurant-card${state.selected?.id===r.id?' active':''}`;card.style.animationDelay=`${Math.min(index,10)*24}ms`;
+    const avatar=document.createElement('span');avatar.className='restaurant-avatar';avatar.textContent=(r.name||'?').trim().slice(0,1).toLocaleUpperCase();
+    const info=document.createElement('span');info.className='restaurant-info';
+    const name=document.createElement('span');name.className='restaurant-name';name.textContent=r.name;
+    const address=document.createElement('span');address.className='restaurant-address';address.textContent=displayAddress(r.address,r.city);
+    const dishTag=document.createElement('span');dishTag.className='dish-match-badge';dishTag.textContent=dish.name;
+    const hours=restaurantHoursStatus(r);const schedule=document.createElement('span');schedule.className='restaurant-hours';schedule.textContent=hours.schedule;
+    info.append(name,address,dishTag,schedule);
+    const right=document.createElement('span');right.className='restaurant-right';const fee=document.createElement('span');fee.className='fee';fee.textContent=formatMoney(r.additional_fee_eur);const openTag=document.createElement('span');openTag.className=`open-status ${hours.status}`;openTag.textContent=hoursLabels[state.language]?.[hours.status]||hoursLabels.en[hours.status];right.append(fee,openTag);
+    card.append(avatar,info,right);
+    card.addEventListener('click',()=>openRestaurant(r));
+    host.append(card);
+  });
+  void loadRestaurantHours(restaurantsToLoadHours);
+}
+
 async function loadRestaurants(){
   $('restaurant-list').innerHTML=`<div class="loading-card"><span class="spinner"></span><span>${tr().loading}</span></div>`;
   const params=new URLSearchParams({limit:'500'});if(state.location){params.set('lat',state.location.latitude);params.set('lon',state.location.longitude);}
-  try{const response=await fetch(`/api/restaurants?${params}`);if(!response.ok)throw new Error('restaurants');const data=await response.json();state.restaurants=data.results||[];state.visible=15;renderDrawCities();if(state.location){const nearest=state.restaurants.find(r=>r.city);state.locationLabel=nearest?.distance_km!=null&&nearest.distance_km<20?nearest.city:nearbyLabels[state.language];$('location-label').textContent=state.locationLabel;}renderRestaurants();}
+  try{const response=await fetch(`/api/restaurants?${params}`);if(!response.ok)throw new Error('restaurants');const data=await response.json();state.restaurants=data.results||[];state.visible=15;renderDrawCities();if(state.location){const nearest=state.restaurants.find(r=>r.city);state.locationLabel=nearest?.distance_km!=null&&nearest.distance_km<20?nearest.city:nearbyLabels[state.language];$('location-label').textContent=state.locationLabel;}if(state.searchMode==='dishes')renderDishesSearch();else renderRestaurants();}
   catch{showToast(tr().error);$('restaurant-list').innerHTML=`<div class="loading-card">${tr().error}</div>`;}
 }
 
@@ -223,6 +369,7 @@ function requestLocation(){
 }
 
 function categoryClass(category){const c=(category||'').toLocaleLowerCase();if(c.includes('fish'))return 'fish';if(c.includes('meatless'))return 'none';if(c.includes('meat'))return 'meat';return '';}
+
 async function translatedText(texts){
   const unique=[...new Set(texts)];const keyFor=text=>`${state.language}::${text}`;const cached=unique.filter(text=>state.translationCache[keyFor(text)]).map(original=>({original,translated:state.translationCache[keyFor(original)],is_translated:true}));const missing=unique.filter(text=>!state.translationCache[keyFor(text)]);
   if(!missing.length)return {results:cached};
@@ -231,48 +378,159 @@ async function translatedText(texts){
 }
 
 async function openRestaurant(restaurant){
-  state.selected=restaurant;state.date='';renderRestaurants();$('menu-panel').hidden=false;$('menu-panel').classList.add('mobile-open');$('menu-content').hidden=false;$('layout').classList.add('menu-open');$('dish-list').innerHTML='<div class="loading-card"><span class="spinner"></span></div>';
+  state.selected=restaurant;
+  state.date=state.today;
+  if(state.searchMode==='dishes')renderDishesSearch();else renderRestaurants();
+  $('menu-panel').hidden=false;
+  $('menu-panel').classList.add('mobile-open');
+  $('menu-content').hidden=false;
+  $('layout').classList.add('menu-open');
+  $('dish-list').innerHTML='<div class="loading-card"><span class="spinner"></span></div>';
   if(window.innerWidth<=1000&&window.innerWidth>760)requestAnimationFrame(()=>$('menu-panel').scrollIntoView({behavior:'smooth',block:'start'}));
-  $('venue-name').textContent=restaurant.name;$('venue-address').textContent=displayAddress(restaurant.address,restaurant.city);$('venue-avatar').textContent=(restaurant.name||'?').trim().slice(0,1).toLocaleUpperCase();$('venue-fee').textContent=`${tr().fee}: ${formatMoney(restaurant.additional_fee_eur)}`;$('source-link').href=restaurant.source_url;
-  if(!state.date){try{state.date=(await fetch('/api/today').then(r=>r.json())).date;}catch{state.date=new Date().toLocaleDateString('en-CA',{timeZone:'Europe/Ljubljana'});}}
-  await loadMenu(restaurant.id,state.date);
+  $('venue-name').textContent=restaurant.name;
+  $('venue-address').textContent=displayAddress(restaurant.address,restaurant.city);
+  $('venue-avatar').textContent=(restaurant.name||'?').trim().slice(0,1).toLocaleUpperCase();
+  $('venue-fee').textContent=`${tr().fee}: ${formatMoney(restaurant.additional_fee_eur)}`;
+  $('source-link').href=restaurant.source_url;
+  await loadMenu(restaurant.id,state.date,restaurant.name);
 }
 
-async function loadMenu(id,menuDate){
+function renderMenuDishes(menu,requestId,id){
+  $('menu-title').textContent=formatDate(menu.date);
+  state.date=menu.date;
+  const host=$('dish-list');host.replaceChildren();
+  if(!menu.dishes?.length){
+    const no=document.createElement('div');no.className='loading-card';no.textContent=tr().noMenu;host.append(no);
+    return;
+  }
+  const dishNodes=[];
+  menu.dishes.forEach((dish,index)=>{
+    const card=document.createElement('article');card.className='dish-card';
+    const number=document.createElement('span');number.className='dish-number';number.textContent=dish.number??String(index+1).padStart(2,'0');
+    const body=document.createElement('div');
+    const titleRow=document.createElement('div');titleRow.className='dish-title-row';
+    const title=document.createElement('div');title.className='dish-name';
+    const keyFor=text=>`${state.language}::${text}`;
+    const syncTranslated=state.translationCache[keyFor(dish.name)];
+    title.textContent=syncTranslated||dish.name;
+    const imageSearch=document.createElement('a');imageSearch.className='image-search-button';
+    imageSearch.href=`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(dish.name)}`;
+    imageSearch.target='_blank';imageSearch.rel='noopener noreferrer';
+    imageSearch.setAttribute('aria-label',`${imageSearchLabels[state.language]} ${dish.name}`);
+    imageSearch.title=`${imageSearchLabels[state.language]} ${dish.name}`;
+    imageSearch.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="9" cy="10" r="1.5"/><path d="m5 17 4.5-4.5 3 3L15 13l5 5"/><circle cx="18" cy="6" r="3.2" class="search-lens"/><path d="m20.4 8.4 2 2" class="search-lens"/></svg>';
+    titleRow.append(title,imageSearch);body.append(titleRow);
+
+    const originalNode=document.createElement('div');
+    if(syncTranslated&&syncTranslated.toLocaleLowerCase()!==dish.name.toLocaleLowerCase()){
+      originalNode.className='dish-original';originalNode.textContent=dish.name;body.append(originalNode);
+    }else if(state.language!=='sl'){
+      originalNode.className='dish-status';originalNode.textContent=tr().translationMissing;body.append(originalNode);
+    }
+
+    const sides=(dish.sides||[]).filter(Boolean);
+    const sideNode=document.createElement('div');
+    if(sides.length){
+      const sideNames=sides.map(s=>state.translationCache[keyFor(s)]||s);
+      sideNode.className='dish-sides';
+      sideNode.textContent=`${sideNames.join(' · ')}${sideNames.some((n,i)=>n!==sides[i])?`  /  ${sides.join(' · ')}`:''}`;
+      body.append(sideNode);
+    }
+
+    if(dish.categories?.length){
+      const tags=document.createElement('div');tags.className='dish-tags';
+      dish.categories.forEach(category=>{
+        const tag=document.createElement('span');tag.className=`dish-tag ${categoryClass(category)}`;tag.textContent=tr().categories[category]||category;tags.append(tag);
+      });
+      body.append(tags);
+    }
+    card.append(number,body);host.append(card);
+    dishNodes.push({dish,title,originalNode,sideNode,sides});
+  });
+
+  // Resolve machine translation progressively in background without blocking menu display
+  const dishTexts=menu.dishes.flatMap(d=>[d.name,...(d.sides||[])]);
+  translatedText(dishTexts).then(result=>{
+    if(requestId!==activeMenuRequest||state.selected?.id!==id)return;
+    const map=new Map((result.results||[]).map(item=>[item.original,item]));
+    dishNodes.forEach(({dish,title,originalNode,sideNode,sides})=>{
+      const translated=map.get(dish.name);
+      if(translated?.is_translated&&translated.translated){
+        title.textContent=translated.translated;
+        if(translated.translated.toLocaleLowerCase()!==dish.name.toLocaleLowerCase()){
+          originalNode.className='dish-original';originalNode.textContent=dish.name;
+        }
+      }
+      if(sides.length){
+        const sideNames=sides.map(s=>map.get(s)?.translated||s);
+        sideNode.textContent=`${sideNames.join(' · ')}${sideNames.some((n,i)=>n!==sides[i])?`  /  ${sides.join(' · ')}`:''}`;
+      }
+    });
+  }).catch(()=>{});
+}
+
+async function loadMenu(id,menuDate,restaurantName){
   const requestId=++activeMenuRequest;state.date=menuDate;
+  const cacheKey=`${id}::${menuDate}`;
+  const cached=menuCache.get(cacheKey);
+  if(cached){
+    renderMenuDishes(cached,requestId,id);
+    return;
+  }
   $('dish-list').innerHTML='<div class="loading-card"><span class="spinner"></span></div>';
   try{
-    const response=await fetch(`/api/restaurants/${encodeURIComponent(id)}/menu?date=${encodeURIComponent(menuDate)}`);if(!response.ok)throw new Error('menu');const menu=await response.json();
+    const nameParam=encodeURIComponent(restaurantName||state.selected?.name||'');
+    const response=await fetch(`/api/restaurants/${encodeURIComponent(id)}/menu?date=${encodeURIComponent(menuDate)}&name=${nameParam}`);
+    if(!response.ok)throw new Error('menu');
+    const menu=await response.json();
     if(requestId!==activeMenuRequest||state.selected?.id!==id)return;
-    const dishTexts=menu.dishes.flatMap(d=>[d.name,...(d.sides||[])]);const result=await translatedText(dishTexts);if(requestId!==activeMenuRequest||state.selected?.id!==id)return;const map=new Map((result.results||[]).map(item=>[item.original,item]));
-    $('menu-title').textContent=formatDate(menu.date);state.date=menu.date;
-    const host=$('dish-list');host.replaceChildren();
-    if(!menu.dishes?.length){const no=document.createElement('div');no.className='loading-card';no.textContent=tr().noMenu;host.append(no);return;}
-    menu.dishes.forEach((dish,index)=>{
-      const card=document.createElement('article');card.className='dish-card';const number=document.createElement('span');number.className='dish-number';number.textContent=dish.number??String(index+1).padStart(2,'0');
-      const body=document.createElement('div');const titleRow=document.createElement('div');titleRow.className='dish-title-row';const title=document.createElement('div');title.className='dish-name';const translated=map.get(dish.name);title.textContent=translated?.translated||dish.name;const imageSearch=document.createElement('a');imageSearch.className='image-search-button';imageSearch.href=`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(dish.name)}`;imageSearch.target='_blank';imageSearch.rel='noopener noreferrer';imageSearch.setAttribute('aria-label',`${imageSearchLabels[state.language]} ${dish.name}`);imageSearch.title=`${imageSearchLabels[state.language]} ${dish.name}`;imageSearch.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="9" cy="10" r="1.5"/><path d="m5 17 4.5-4.5 3 3L15 13l5 5"/><circle cx="18" cy="6" r="3.2" class="search-lens"/><path d="m20.4 8.4 2 2" class="search-lens"/></svg>';titleRow.append(title,imageSearch);body.append(titleRow);
-      if(translated?.is_translated&&translated.translated.toLocaleLowerCase()!==dish.name.toLocaleLowerCase()){const original=document.createElement('div');original.className='dish-original';original.textContent=dish.name;body.append(original);}else if(state.language!=='sl'){const status=document.createElement('div');status.className='dish-status';status.textContent=tr().translationMissing;body.append(status);}
-      const sides=(dish.sides||[]).filter(Boolean);if(sides.length){const sideNames=sides.map(s=>map.get(s)?.translated||s);const side=document.createElement('div');side.className='dish-sides';side.textContent=`${sideNames.join(' · ')}${sideNames.some((n,i)=>n!==sides[i])?`  /  ${sides.join(' · ')}`:''}`;body.append(side);}
-      if(dish.categories?.length){const tags=document.createElement('div');tags.className='dish-tags';dish.categories.forEach(category=>{const tag=document.createElement('span');tag.className=`dish-tag ${categoryClass(category)}`;tag.textContent=tr().categories[category]||category;tags.append(tag);});body.append(tags);}
-      card.append(number,body);host.append(card);
-    });
-  }catch{if(requestId===activeMenuRequest)$('dish-list').innerHTML=`<div class="loading-card">${tr().error}</div>`;}
+    menuCache.set(cacheKey,menu);
+    renderMenuDishes(menu,requestId,id);
+  }catch{
+    if(requestId===activeMenuRequest)$('dish-list').innerHTML=`<div class="loading-card">${tr().error}</div>`;
+  }
 }
 
-function changeMenuDate(offset){if(!state.selected||!state.date)return;const next=new Date(`${state.date}T12:00:00`);next.setDate(next.getDate()+offset);loadMenu(state.selected.id,next.toISOString().slice(0,10));}
+function changeMenuDate(offset){
+  if(!state.selected||!state.date)return;
+  const next=new Date(`${state.date}T12:00:00`);
+  next.setDate(next.getDate()+offset);
+  loadMenu(state.selected.id,next.toISOString().slice(0,10),state.selected.name);
+}
 
-languageSelect.addEventListener('change',()=>{state.language=languageSelect.value;localStorage.setItem('bomboni-language',state.language);applyLanguage();if(state.selected)loadMenu(state.selected.id,state.date);});
-$('search-input').addEventListener('input',renderRestaurants);
+languageSelect.addEventListener('change',()=>{
+  state.language=languageSelect.value;
+  localStorage.setItem('bomboni-language',state.language);
+  applyLanguage();
+  if(state.selected)loadMenu(state.selected.id,state.date,state.selected.name);
+});
+
+$('search-input').addEventListener('input',()=>{
+  if(state.searchMode==='dishes')handleDishSearch();else renderRestaurants();
+});
+
 $('load-more').addEventListener('click',()=>{state.visible+=15;renderRestaurants();});
 $('location-button').addEventListener('click',requestLocation);
-$('back-button').addEventListener('click',()=>{state.selected=null;$('menu-panel').hidden=true;$('menu-panel').classList.remove('mobile-open');$('layout').classList.remove('menu-open');renderRestaurants();});
+$('back-button').addEventListener('click',()=>{
+  state.selected=null;
+  $('menu-panel').hidden=true;
+  $('menu-panel').classList.remove('mobile-open');
+  $('layout').classList.remove('menu-open');
+  if(state.searchMode==='dishes')renderDishesSearch();else renderRestaurants();
+});
 $('date-prev').addEventListener('click',()=>changeMenuDate(-1));
 $('date-next').addEventListener('click',()=>changeMenuDate(1));
 $('mobile-tab-bar').addEventListener('click',event=>{const button=event.target.closest('[data-tab]');if(button)switchTab(button.dataset.tab);});
 $('draw-form').addEventListener('submit',submitDraw);
 $('dish-list').addEventListener('touchstart',event=>{const touch=event.touches[0];$('dish-list').dataset.touchX=touch.clientX;$('dish-list').dataset.touchY=touch.clientY;},{passive:true});
 $('dish-list').addEventListener('touchend',event=>{const touch=event.changedTouches[0];const dx=touch.clientX-Number($('dish-list').dataset.touchX||touch.clientX);const dy=touch.clientY-Number($('dish-list').dataset.touchY||touch.clientY);if(Math.abs(dx)>75&&Math.abs(dy)<55)changeMenuDate(dx<0?1:-1);},{passive:true});
-document.addEventListener('keydown',event=>{if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==='k'){event.preventDefault();$('search-input').focus();}if(event.key==='Escape'&&state.selected){state.selected=null;$('menu-panel').hidden=true;$('menu-panel').classList.remove('mobile-open');$('layout').classList.remove('menu-open');renderRestaurants();}});
+document.addEventListener('keydown',event=>{
+  if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==='k'){event.preventDefault();$('search-input').focus();}
+  if(event.key==='Escape'&&state.selected){
+    state.selected=null;$('menu-panel').hidden=true;$('menu-panel').classList.remove('mobile-open');$('layout').classList.remove('menu-open');
+    if(state.searchMode==='dishes')renderDishesSearch();else renderRestaurants();
+  }
+});
 
 applyLanguage();
 loadRestaurants();

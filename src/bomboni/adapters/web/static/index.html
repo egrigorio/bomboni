@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=liquid-tabs-draw-1">
+    <link rel="stylesheet" href="/styles.css?v=liquid-clean-2">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body>
@@ -25,14 +25,14 @@
         <div class="topbar-actions">
           <button class="location-chip" id="location-button" type="button"><span class="live-dot"></span><span id="location-label">Eslovénia</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
           <label class="language-picker" aria-label="Idioma">
-            <span class="globe" aria-hidden="true">◎</span>
+            <span class="globe" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M1.8 8h12.4M8 1.8a10 10 0 0 1 0 12.4M8 1.8a10 10 0 0 0 0 12.4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></span>
             <select id="language-select">
               <option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option>
               <option value="de">DE</option><option value="it">IT</option><option value="fr">FR</option>
             </select>
             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
           </label>
-          <button class="install-button" id="install-button" type="button" hidden aria-label="Instalar aplicação">↓</button>
+          <button class="install-button" id="install-button" type="button" hidden aria-label="Instalar aplicação"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3-3m3 3 3-3M3 13h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </header>
 
@@ -43,6 +43,13 @@
           <div class="search-box">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>
             <input id="search-input" type="search" autocomplete="off" placeholder="Restaurante, rua ou cidade…" aria-label="Pesquisar restaurante, rua ou cidade">
+            <button class="search-clear" id="search-clear" type="button" aria-label="Limpar pesquisa" hidden>
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8m0-8-8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <div class="search-filter-bar" role="tablist" aria-label="Modo de pesquisa">
+            <button class="search-filter-chip active" id="search-mode-restaurants" type="button" data-search-mode="restaurants">Restaurantes</button>
+            <button class="search-filter-chip" id="search-mode-dishes" type="button" data-search-mode="dishes">No cardápio</button>
           </div>
 
           <div class="list-heading">
@@ -57,14 +64,14 @@
 
         <section class="menu-panel" id="menu-panel" aria-live="polite" hidden>
           <div class="menu-content" id="menu-content" hidden>
-            <button class="back-button" id="back-button" type="button"><span>←</span><span id="back-label">Todos os restaurantes</span></button>
+            <button class="back-button" id="back-button" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="back-label">Todos os restaurantes</span></button>
             <div class="venue-heading">
               <div class="venue-avatar" id="venue-avatar">B</div>
               <div class="venue-title-wrap"><h2 id="venue-name"></h2><p id="venue-address"></p></div>
-              <a class="source-link" id="source-link" target="_blank" rel="noreferrer" aria-label="Abrir fonte oficial">↗</a>
+              <a class="source-link" id="source-link" target="_blank" rel="noreferrer" aria-label="Abrir fonte oficial"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7m0-7L5 11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="venue-meta"><span class="meta-item"><span class="meta-icon">€</span><span id="venue-fee"></span></span></div>
-            <div class="menu-divider"><div class="date-heading"><button class="date-arrow" id="date-prev" type="button" aria-label="Dia anterior">‹</button><h3 id="menu-title">Pratos de hoje</h3><button class="date-arrow" id="date-next" type="button" aria-label="Dia seguinte">›</button></div></div>
+            <div class="menu-divider"><div class="date-heading"><button class="date-arrow" id="date-prev" type="button" aria-label="Dia anterior"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h3 id="menu-title">Pratos de hoje</h3><button class="date-arrow" id="date-next" type="button" aria-label="Dia seguinte"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
             <div class="dish-list" id="dish-list"></div>
           </div>
         </section>
@@ -87,20 +94,20 @@
           </fieldset>
           <label class="field-label" for="draw-price" id="draw-price-label">Copagamento máximo</label>
           <div class="price-input"><span>€</span><input id="draw-price" type="number" min="0" max="20" step="0.10" inputmode="decimal" placeholder="Sem limite"></div>
-          <button class="draw-submit" type="submit" id="draw-submit"><span aria-hidden="true">✳</span><span id="draw-submit-label">Sortear</span></button>
+          <button class="draw-submit" type="submit" id="draw-submit"><span id="draw-submit-label">Sortear</span></button>
         </form>
         <section class="draw-result" id="draw-result" aria-live="polite" hidden></section>
       </main>
       <main class="app-page" id="favorites-page" hidden>
         <section class="page-heading"><span class="page-eyebrow" id="favorites-eyebrow">A TUA LISTA</span><h1 id="favorites-title">Favoritos</h1></section>
-        <div class="future-card"><span class="future-icon" aria-hidden="true">♡</span><h2 id="favorites-empty-title">Os teus restaurantes guardados</h2><p id="favorites-empty-copy">Quando criares a tua conta, os restaurantes favoritos ficam todos aqui.</p></div>
+        <div class="future-card"><span class="future-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h2 id="favorites-empty-title">Os teus restaurantes guardados</h2><p id="favorites-empty-copy">Quando criares a tua conta, os restaurantes favoritos ficam todos aqui.</p></div>
       </main>
       <main class="app-page" id="profile-page" hidden>
         <section class="page-heading"><span class="page-eyebrow" id="profile-eyebrow">A TUA CONTA</span><h1 id="profile-title">Perfil</h1></section>
-        <div class="profile-card"><div class="profile-avatar" aria-hidden="true">◎</div><div><h2 id="profile-signin-title">O teu perfil, num só lugar</h2><p id="profile-signin-copy">A conta ainda não está disponível. Quando chegar, poderás ver as tuas avaliações, visitas e gastos com boni.</p></div></div>
+        <div class="profile-card"><div class="profile-avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 21a7 7 0 0 1 14 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><div><h2 id="profile-signin-title">O teu perfil, num só lugar</h2><p id="profile-signin-copy">A conta ainda não está disponível. Quando chegar, poderás ver as tuas avaliações, visitas e gastos com boni.</p></div></div>
         <div class="profile-stats"><div><span id="profile-reviews-label">Avaliações</span><strong>—</strong></div><div><span id="profile-history-label">Últimos restaurantes</span><strong>—</strong></div><div><span id="profile-food-label">Comida mais escolhida</span><strong>—</strong></div><div><span id="profile-spend-label">Gasto recente</span><strong>—</strong></div></div>
       </main>
-      <footer class="footer" id="footer"><button class="footer-install" id="footer-install" type="button">Instalar app ↓</button><a href="https://www.studentska-prehrana.si/en/restaurant" target="_blank" rel="noreferrer" id="footer-source">Fonte ↗</a></footer>
+      <footer class="footer" id="footer"><button class="footer-install" id="footer-install" type="button">Instalar app</button><a href="https://www.studentska-prehrana.si/en/restaurant" target="_blank" rel="noreferrer" id="footer-source">Fonte oficial</a></footer>
     </div>
     <nav class="mobile-tab-bar" id="mobile-tab-bar" aria-label="Navegação principal">
       <button class="mobile-tab active" type="button" data-tab="explore" aria-current="page">
@@ -117,7 +124,7 @@
       </button>
     </nav>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=liquid-tabs-draw-1" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=13').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=liquid-clean-2" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=14').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>
