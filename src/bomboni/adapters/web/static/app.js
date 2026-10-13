@@ -1501,7 +1501,14 @@ function openVenueMealPicker() {
   if (!dishes.length) {
     const opt = document.createElement('label');
     opt.className = 'meal-picker-option selected';
-    opt.innerHTML = `<input type="radio" name="picked-meal" value="Menu do dia" checked><span>${feature.mealPickerDailyMenu || 'Menu do dia / Refeição'}</span>`;
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'picked-meal';
+    input.value = 'Menu do dia';
+    input.checked = true;
+    const span = document.createElement('span');
+    span.textContent = feature.mealPickerDailyMenu || 'Menu do dia / Refeição';
+    opt.append(input, span);
     optionsHost.append(opt);
     return;
   }
@@ -1510,7 +1517,15 @@ function openVenueMealPicker() {
     const opt = document.createElement('label');
     opt.className = `meal-picker-option${idx === 0 ? ' selected' : ''}`;
     const translated = state.translationCache[`${state.language}::${d.name}`] || d.name;
-    opt.innerHTML = `<input type="radio" name="picked-meal" value="${d.name}" data-category="${d.categories?.[0] || 'Mixed'}" ${idx === 0 ? 'checked' : ''}><span>${translated}</span>`;
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'picked-meal';
+    input.value = d.name;
+    input.dataset.category = d.categories?.[0] || 'Mixed';
+    input.checked = idx === 0;
+    const span = document.createElement('span');
+    span.textContent = translated;
+    opt.append(input, span);
     opt.addEventListener('click', () => {
       document.querySelectorAll('.meal-picker-option').forEach(o => o.classList.remove('selected'));
       opt.classList.add('selected');
@@ -1520,7 +1535,13 @@ function openVenueMealPicker() {
 
   const otherOpt = document.createElement('label');
   otherOpt.className = 'meal-picker-option';
-  otherOpt.innerHTML = `<input type="radio" name="picked-meal" value="__other__"><span>${feature.mealPickerOtherDish || 'Outro prato / Opção livre'}</span>`;
+  const otherInput = document.createElement('input');
+  otherInput.type = 'radio';
+  otherInput.name = 'picked-meal';
+  otherInput.value = '__other__';
+  const otherSpan = document.createElement('span');
+  otherSpan.textContent = feature.mealPickerOtherDish || 'Outro prato / Opção livre';
+  otherOpt.append(otherInput, otherSpan);
   otherOpt.addEventListener('click', () => {
     document.querySelectorAll('.meal-picker-option').forEach(o => o.classList.remove('selected'));
     otherOpt.classList.add('selected');

@@ -152,3 +152,44 @@ def test_pwa_account_creation_mail_verification(pwa_server: str) -> None:
         browser.close()
 
     assert not page_errors, f"Erros de JS durante a verificação de conta: {page_errors}"
+
+
+def test_pwa_meal_picker_xss_protection(pwa_server: str) -> None:
+    page_errors: list[str] = []
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context()
+        page = context.new_page()
+
+        page.on("pageerror", lambda err: page_errors.append(str(err)))
+        page.goto(pwa_server, wait_until="networkidle")
+
+        # Inject state and open meal picker with malicious dish payload
+        malicious_name = '<img src=x onerror="window.__xss_executed=true">'
+        page.evaluate(
+            """(maliciousName) => {
+            document.getElementById('menu-panel').hidden = false;
+            document.getElementById('menu-content').hidden = false;
+            state.selected = { id: 100, name: "Test Venue", address: "Rua Teste", city: "Ljubljana", additional_fee_eur: 3.5 };
+            state.currentMenuDishes = [{ name: maliciousName, categories: ["Meat"] }];
+            openVenueMealPicker();
+        }""",
+            malicious_name,
+        )
+
+        picker = page.locator('#venue-meal-picker')
+        picker.wait_for(state="visible")
+
+        # Verify XSS payload was NOT executed
+        xss_executed = page.evaluate("() => window.__xss_executed || false")
+        assert not xss_executed, "XSS payload executed in meal picker!"
+
+        # Verify malicious name is safely rendered as plain text in span element, not HTML
+        option_span = page.locator('#meal-picker-options label span').first
+        assert option_span.text_content() == malicious_name
+        assert page.locator('#meal-picker-options img').count() == 0
+
+        browser.close()
+
+    assert not page_errors, f"Erros de JS durante o teste de XSS: {page_errors}"
