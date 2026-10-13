@@ -26,6 +26,48 @@ def _distance_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     return EARTH_RADIUS_KM * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
 
+def send_verification_email(email: str, code: str) -> bool:
+    smtp_host = os.environ.get("SMTP_HOST")
+    if not smtp_host:
+        print(f"[auth] Verification code for {email}: {code}")
+        return False
+
+    smtp_port = int(os.environ.get("SMTP_PORT", "587"))
+    smtp_user = os.environ.get("SMTP_USER") or os.environ.get("SMTP_USERNAME")
+    smtp_password = os.environ.get("SMTP_PASSWORD") or os.environ.get("SMTP_PASS")
+    smtp_from = os.environ.get("SMTP_FROM") or smtp_user or "noreply@bomboni.app"
+    use_ssl = os.environ.get("SMTP_USE_SSL", "false").lower() in ("true", "1", "yes")
+
+    import smtplib
+    from email.message import EmailMessage
+
+    msg = EmailMessage()
+    msg["Subject"] = "Código de verificação - Bomboni"
+    msg["From"] = smtp_from
+    msg["To"] = email
+    msg.set_content(
+        f"Olá!\n\nSeu código de verificação para o Bomboni é: {code}\n\nSe você não solicitou este código, ignore este e-mail."
+    )
+
+    try:
+        if use_ssl or smtp_port == 465:
+            with smtplib.SMTP_SSL(smtp_host, smtp_port, timeout=10) as server:
+                if smtp_user and smtp_password:
+                    server.login(smtp_user, smtp_password)
+                server.send_message(msg)
+        else:
+            with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as server:
+                server.starttls()
+                if smtp_user and smtp_password:
+                    server.login(smtp_user, smtp_password)
+                server.send_message(msg)
+        print(f"[auth] Verification email sent to {email}")
+        return True
+    except Exception as exc:
+        print(f"[auth] Error sending verification email to {email}: {exc}")
+        return False
+
+
 def _json_bytes(value: object) -> bytes:
     return json.dumps(value, ensure_ascii=False).encode("utf-8")
 
@@ -163,12 +205,14 @@ def make_handler(service: RestaurantService, translator: MyMemoryTranslator) -> 
                     if not isinstance(email, str) or "@" not in email or len(email) < 3:
                         raise ValueError("A valid email address is required.")
                     import secrets
+                    clean_email = email.strip().lower()
                     code = f"{secrets.randbelow(10000):04d}"
+                    send_verification_email(clean_email, code)
                     self._send_json(200, {
                         "status": "sent",
-                        "email": email.strip().lower(),
+                        "email": clean_email,
                         "code": code,
-                        "message": f"Verification code sent to {email}",
+                        "message": f"Verification code sent to {clean_email}",
                     })
                 except (ValueError, TypeError, json.JSONDecodeError) as exc:
                     self._send_json(400, {"error": str(exc)})
