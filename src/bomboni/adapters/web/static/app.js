@@ -1,10 +1,10 @@
 const translations = {
-  pt:{eyebrow:'ALMOÇO COM BONI, SEM BARREIRAS',heroA:'Uma boa refeição',heroB:'fica',heroEm:'mais perto.',heroCopy:'Restaurantes de boni à sua volta, com os pratos no seu idioma.',search:'Restaurante…',near:'Perto de si',sorting:'A ordenar pela sua localização',enable:'Ativar localização para ordenar por distância.',loading:'A encontrar restaurantes…',loadingDishes:'A procurar pratos nos cardápios de hoje…',more:'Ver mais',emptyKicker:'A SUA PRÓXIMA PARAGEM',emptyTitle:'Escolha um restaurante',emptyCopy:'Veja o menu de boni do dia, traduzido para si. O nome original fica sempre disponível.',emptyFoot:'Menus oficiais · tradução automática',back:'Todos os restaurantes',venueKicker:'RESTAURANTE DE BONI',menuOverline:'MENU DE BONI',today:'Pratos do dia',fee:'Copagamento',noMenu:'Não há pratos publicados para esta data.',menuSource:'Menu publicado para',retrieved:'consultado às',disclaimer:'Tradução automática. Confirme ingredientes e alergénios diretamente com o restaurante.',footer:'Dados de refeições estudantis · Eslovénia',source:'Fonte oficial',locating:'A obter localização…',locationReady:'A ordenar pela distância',locationFallback:'Ljubljana · localização não permitida',noResults:'Nenhum restaurante encontrado.',noDishResults:'Nenhum restaurante com este prato hoje.',searchDishPrompt:'Pesquise por um prato para ver quais restaurantes o servem hoje.',error:'Não foi possível carregar os dados. Tente novamente.',translationMissing:'Sem tradução automática disponível',restaurantCount:'restaurantes',categories:{Meat:'Carne',Fish:'Peixe',Meatless:'Sem carne',Mixed:'Misto','Salad bar':'Saladas','Fast food':'Rápido'}},
-  en:{eyebrow:'STUDENT MEALS, WITHOUT THE LANGUAGE BARRIER',heroA:'A good meal',heroB:'is',heroEm:'closer than you think.',heroCopy:'Student meal restaurants around you, with dishes in your language.',search:'Restaurant…',near:'Near you',sorting:'Sorted by your location',enable:'Enable location to sort by distance.',loading:'Finding nearby restaurants…',loadingDishes:'Searching today’s menus for dishes…',more:'Show more',emptyKicker:'YOUR NEXT STOP',emptyTitle:'Choose a restaurant',emptyCopy:'See today’s student meal menu translated for you. The original name is always available.',emptyFoot:'Official menus · machine translated',back:'All restaurants',venueKicker:'STUDENT MEAL RESTAURANT',menuOverline:'STUDENT MENU',today:'Today’s dishes',fee:'Student co-pay',noMenu:'No dishes are published for this date.',menuSource:'Menu published for',retrieved:'checked at',disclaimer:'Machine translation. Check ingredients and allergens with the restaurant.',footer:'Student meal listings · Slovenia',source:'Official source',locating:'Getting location…',locationReady:'Sorted by distance',locationFallback:'Ljubljana · location unavailable',noResults:'No restaurants found.',noDishResults:'No restaurants found with this dish today.',searchDishPrompt:'Search for a dish to see which restaurants have it today.',error:'Could not load the data. Please try again.',translationMissing:'Translation unavailable',restaurantCount:'restaurants',categories:{Meat:'Meat',Fish:'Fish',Meatless:'Meatless',Mixed:'Mixed','Salad bar':'Salad bar','Fast food':'Fast food'}},
-  es:{eyebrow:'BONI SIN BARRERAS DE IDIOMA',heroA:'Una buena comida',heroB:'está',heroEm:'más cerca.',heroCopy:'Restaurantes con boni cerca de ti y platos en tu idioma.',search:'Restaurante…',near:'Cerca de ti',sorting:'Ordenados por tu ubicación',enable:'Activa la ubicación para ordenar por distancia.',loading:'Buscando restaurantes…',loadingDishes:'Buscando platos en los menús de hoy…',more:'Ver más',emptyKicker:'TU PRÓXIMA PARADA',emptyTitle:'Elige un restaurante',emptyCopy:'Consulta el menú de boni del día traducido. El nombre original siempre está disponible.',emptyFoot:'Menús oficiales · traducción automática',back:'Todos los restaurantes',venueKicker:'RESTAURANTE CON BONI',menuOverline:'MENÚ BONI',today:'Platos de hoy',fee:'Copago',noMenu:'No hay platos publicados para esta fecha.',menuSource:'Menú publicado para',retrieved:'consultado a las',disclaimer:'Traducción automática. Confirma los ingredientes y alérgenos con el restaurante.',footer:'Comidas de estudiantes · Eslovenia',source:'Fuente oficial',locating:'Obteniendo ubicación…',locationReady:'Ordenados por distancia',locationFallback:'Ljubljana · ubicación no disponible',noResults:'No se encontraron restaurantes.',noDishResults:'No hay restaurantes con este plato hoy.',searchDishPrompt:'Busca un plato para ver qué restaurantes lo ofrecen hoy.',error:'No se pudieron cargar los datos. Inténtalo de nuevo.',translationMissing:'Traducción no disponible',restaurantCount:'restaurantes',categories:{Meat:'Carne',Fish:'Pescado',Meatless:'Sin carne',Mixed:'Mixto','Salad bar':'Ensaladas','Fast food':'Rápido'}},
-  de:{eyebrow:'STUDENTENMENÜS OHNE SPRACHBARRIEREN',heroA:'Ein gutes Essen',heroB:'ist',heroEm:'ganz in der Nähe.',heroCopy:'Boni-Restaurants in deiner Nähe, mit Gerichten in deiner Sprache.',search:'Restaurant…',near:'In deiner Nähe',sorting:'Nach Standort sortiert',enable:'Standort aktivieren, um nach Entfernung zu sortieren.',loading:'Restaurants werden gesucht…',loadingDishes:'Gerichte in heutigen Menüs werden gesucht…',more:'Mehr anzeigen',emptyKicker:'DEIN NÄCHSTER STOPP',emptyTitle:'Restaurant auswählen',emptyCopy:'Sieh dir das heutige Boni-Menü übersetzt an. Der Originalname bleibt immer sichtbar.',emptyFoot:'Offizielle Menüs · maschinell übersetzt',back:'Alle Restaurants',venueKicker:'BONI-RESTAURANT',menuOverline:'BONI-MENÜ',today:'Gerichte heute',fee:'Eigenanteil',noMenu:'Für dieses Datum sind keine Gerichte veröffentlicht.',menuSource:'Menü veröffentlicht für',retrieved:'abgerufen um',disclaimer:'Maschinelle Übersetzung. Zutaten und Allergene bitte direkt beim Restaurant prüfen.',footer:'Studentenmenüs · Slowenien',source:'Offizielle Quelle',locating:'Standort wird ermittelt…',locationReady:'Nach Entfernung sortiert',locationFallback:'Ljubljana · Standort nicht verfügbar',noResults:'Keine Restaurants gefunden.',noDishResults:'Heute kein Restaurant mit diesem Gericht gefunden.',searchDishPrompt:'Suche nach einem Gericht, um passende Restaurants zu finden.',error:'Daten konnten nicht geladen werden. Bitte erneut versuchen.',translationMissing:'Keine Übersetzung verfügbar',restaurantCount:'Restaurants',categories:{Meat:'Fleisch',Fish:'Fisch',Meatless:'Fleischlos',Mixed:'Gemischt','Salad bar':'Salate','Fast food':'Schnellgericht'}},
-  it:{eyebrow:'BONI SENZA BARRIERE LINGUISTICHE',heroA:'Un buon pasto',heroB:'è',heroEm:'più vicino.',heroCopy:'Ristoranti con boni vicino a te, con i piatti nella tua lingua.',search:'Ristorante…',near:'Vicino a te',sorting:'Ordinati per posizione',enable:'Attiva la posizione per ordinare per distanza.',loading:'Cerco ristoranti…',loadingDishes:'Cerco piatti nei menu di oggi…',more:'Mostra altri',emptyKicker:'LA TUA PROSSIMA TAPPA',emptyTitle:'Scegli un restaurante',emptyCopy:'Scopri il menu boni del giorno tradotto. Il nome originale resta sempre disponibile.',emptyFoot:'Menu ufficiali · traduzione automatica',back:'Tutti i ristoranti',venueKicker:'RISTORANTE BONI',menuOverline:'MENU BONI',today:'Piatti di oggi',fee:'Quota studente',noMenu:'Nessun piatto pubblicato per questa data.',menuSource:'Menu pubblicato per',retrieved:'consultato alle',disclaimer:'Traduzione automatica. Verifica ingredienti e allergeni con il ristorante.',footer:'Menu per studenti · Slovenia',source:'Fonte ufficiale',locating:'Rilevo la posizione…',locationReady:'Ordinati per distanza',locationFallback:'Ljubljana · posizione non disponibile',noResults:'Nessun ristorante trovato.',noDishResults:'Nessun ristorante con questo piatto oggi.',searchDishPrompt:'Cerca un piatto per vedere quali ristoranti lo servono oggi.',error:'Impossibile caricare i dati. Riprova.',translationMissing:'Traduzione non disponibile',restaurantCount:'ristoranti',categories:{Meat:'Carne',Fish:'Pesce',Meatless:'Senza carne',Mixed:'Misto','Salad bar':'Insalate','Fast food':'Veloce'}},
-  fr:{eyebrow:'LES BONI SANS BARRIÈRE DE LANGUE',heroA:'Un bon repas',heroB:'est',heroEm:'tout près.',heroCopy:'Des restaurants avec boni près de vous, avec les plats dans votre langue.',search:'Restaurant…',near:'Près de vous',sorting:'Triés selon votre position',enable:'Activez la localisation pour trier par distance.',loading:'Recherche de restaurants…',loadingDishes:'Recherche de plats dans les menus du jour…',more:'Voir plus',emptyKicker:'VOTRE PROCHAINE ÉTAPE',emptyTitle:'Choisissez un restaurant',emptyCopy:'Consultez le menu boni du jour traduit. Le nom original reste toujours disponible.',emptyFoot:'Menus officiels · traduction automatique',back:'Tous les restaurants',venueKicker:'RESTAURANT BONI',menuOverline:'MENU BONI',today:'Plats du jour',fee:'Participation étudiant',noMenu:'Aucun plat publié pour cette date.',menuSource:'Menu publié pour',retrieved:'consulté à',disclaimer:'Traduction automatique. Vérifiez les ingrédients et allergènes auprès du restaurant.',footer:'Repas étudiants · Slovénie',source:'Source officielle',locating:'Localisation en cours…',locationReady:'Triés par distance',locationFallback:'Ljubljana · localisation indisponible',noResults:'Aucun restaurant trouvé.',noDishResults:'Aucun restaurant trouvé avec ce plat aujourd’hui.',searchDishPrompt:'Recherchez un plat pour voir quels restaurants le proposent aujourd’hui.',error:'Impossible de charger les données. Réessayez.',translationMissing:'Traduction indisponible',restaurantCount:'restaurants',categories:{Meat:'Viande',Fish:'Poisson',Meatless:'Sans viande',Mixed:'Mixte','Salad bar':'Salades','Fast food':'Rapide'}}
+  pt:{eyebrow:'ALMOÇO COM BONI, SEM BARREIRAS',heroA:'Uma boa refeição',heroB:'fica',heroEm:'mais perto.',heroCopy:'Restaurantes de boni à sua volta, com os pratos no seu idioma.',search:'Restaurante…',near:'Perto de si',sorting:'A ordenar pela sua localização',enable:'Ativar localização para ordenar por distância.',loading:'A encontrar restaurantes…',loadingDishes:'A procurar pratos nos cardápios de hoje…',more:'Ver mais restaurantes',emptyKicker:'A SUA PRÓXIMA PARAGEM',emptyTitle:'Escolha um restaurante',emptyCopy:'Veja o menu de boni do dia, traduzido para si. O nome original fica sempre disponível.',emptyFoot:'Menus oficiais · tradução automática',back:'Todos os restaurantes',venueKicker:'RESTAURANTE DE BONI',menuOverline:'MENU DE BONI',today:'Pratos do dia',fee:'Copagamento',noMenu:'Não há pratos publicados para esta data.',menuSource:'Menu publicado para',retrieved:'consultado às',disclaimer:'Tradução automática. Confirme ingredientes e alergénios diretamente com o restaurante.',footer:'Dados de refeições estudantis · Eslovénia',source:'Fonte oficial',locating:'A obter localização…',locationReady:'A ordenar pela distância',locationFallback:'Ljubljana · localização não permitida',noResults:'Nenhum restaurante encontrado.',noDishResults:'Nenhum restaurante com este prato hoje.',searchDishPrompt:'Pesquise por um prato para ver quais restaurantes o servem hoje.',error:'Não foi possível carregar os dados. Tente novamente.',translationMissing:'Sem tradução automática disponível',restaurantCount:'restaurantes',categories:{Meat:'Carne',Fish:'Peixe',Meatless:'Sem carne',Mixed:'Misto','Salad bar':'Saladas','Fast food':'Rápido'}},
+  en:{eyebrow:'STUDENT MEALS, WITHOUT THE LANGUAGE BARRIER',heroA:'A good meal',heroB:'is',heroEm:'closer than you think.',heroCopy:'Student meal restaurants around you, with dishes in your language.',search:'Restaurant…',near:'Near you',sorting:'Sorted by your location',enable:'Enable location to sort by distance.',loading:'Finding nearby restaurants…',loadingDishes:'Searching today’s menus for dishes…',more:'Show more restaurants',emptyKicker:'YOUR NEXT STOP',emptyTitle:'Choose a restaurant',emptyCopy:'See today’s student meal menu translated for you. The original name is always available.',emptyFoot:'Official menus · machine translated',back:'All restaurants',venueKicker:'STUDENT MEAL RESTAURANT',menuOverline:'STUDENT MENU',today:'Today’s dishes',fee:'Student co-pay',noMenu:'No dishes are published for this date.',menuSource:'Menu published for',retrieved:'checked at',disclaimer:'Machine translation. Check ingredients and allergens with the restaurant.',footer:'Student meal listings · Slovenia',source:'Official source',locating:'Getting location…',locationReady:'Sorted by distance',locationFallback:'Ljubljana · location unavailable',noResults:'No restaurants found.',noDishResults:'No restaurants found with this dish today.',searchDishPrompt:'Search for a dish to see which restaurants have it today.',error:'Could not load the data. Please try again.',translationMissing:'Translation unavailable',restaurantCount:'restaurants',categories:{Meat:'Meat',Fish:'Fish',Meatless:'Meatless',Mixed:'Mixed','Salad bar':'Salad bar','Fast food':'Fast food'}},
+  es:{eyebrow:'BONI SIN BARRERAS DE IDIOMA',heroA:'Una buena comida',heroB:'está',heroEm:'más cerca.',heroCopy:'Restaurantes con boni cerca de ti y platos en tu idioma.',search:'Restaurante…',near:'Cerca de ti',sorting:'Ordenados por tu ubicación',enable:'Activa la ubicación para ordenar por distancia.',loading:'Buscando restaurantes…',loadingDishes:'Buscando platos en los menús de hoy…',more:'Ver más restaurantes',emptyKicker:'TU PRÓXIMA PARADA',emptyTitle:'Elige un restaurante',emptyCopy:'Consulta el menú de boni del día traducido. El nombre original siempre está disponible.',emptyFoot:'Menús oficiales · traducción automática',back:'Todos los restaurantes',venueKicker:'RESTAURANTE CON BONI',menuOverline:'MENÚ BONI',today:'Platos de hoy',fee:'Copago',noMenu:'No hay platos publicados para esta fecha.',menuSource:'Menú publicado para',retrieved:'consultado a las',disclaimer:'Traducción automática. Confirma los ingredientes y alérgenos con el restaurante.',footer:'Comidas de estudiantes · Eslovenia',source:'Fuente oficial',locating:'Obteniendo ubicación…',locationReady:'Ordenados por distancia',locationFallback:'Ljubljana · ubicación no disponible',noResults:'No se encontraron restaurantes.',noDishResults:'No hay restaurantes con este plato hoy.',searchDishPrompt:'Busca un plato para ver qué restaurantes lo ofrecen hoy.',error:'No se pudieron cargar los datos. Inténtalo de nuevo.',translationMissing:'Traducción no disponible',restaurantCount:'restaurantes',categories:{Meat:'Carne',Fish:'Pescado',Meatless:'Sin carne',Mixed:'Mixto','Salad bar':'Ensaladas','Fast food':'Rápido'}},
+  de:{eyebrow:'STUDENTENMENÜS OHNE SPRACHBARRIEREN',heroA:'Ein gutes Essen',heroB:'ist',heroEm:'ganz in der Nähe.',heroCopy:'Boni-Restaurants in deiner Nähe, mit Gerichten in deiner Sprache.',search:'Restaurant…',near:'In deiner Nähe',sorting:'Nach Standort sortiert',enable:'Standort aktivieren, um nach Entfernung zu sortieren.',loading:'Restaurants werden gesucht…',loadingDishes:'Gerichte in heutigen Menüs werden gesucht…',more:'Mehr Restaurants anzeigen',emptyKicker:'DEIN NÄCHSTER STOPP',emptyTitle:'Restaurant auswählen',emptyCopy:'Sieh dir das heutige Boni-Menü übersetzt an. Der Originalname bleibt immer sichtbar.',emptyFoot:'Offizielle Menüs · maschinell übersetzt',back:'Alle Restaurants',venueKicker:'BONI-RESTAURANT',menuOverline:'BONI-MENÜ',today:'Gerichte heute',fee:'Eigenanteil',noMenu:'Für dieses Datum sind keine Gerichte veröffentlicht.',menuSource:'Menü veröffentlicht für',retrieved:'abgerufen um',disclaimer:'Maschinelle Übersetzung. Zutaten und Allergene bitte direkt beim Restaurant prüfen.',footer:'Studentenmenüs · Slowenien',source:'Offizielle Quelle',locating:'Standort wird ermittelt…',locationReady:'Nach Entfernung sortiert',locationFallback:'Ljubljana · Standort nicht verfügbar',noResults:'Keine Restaurants gefunden.',noDishResults:'Heute kein Restaurant mit diesem Gericht gefunden.',searchDishPrompt:'Suche nach einem Gericht, um passende Restaurants zu finden.',error:'Daten konnten nicht geladen werden. Bitte erneut versuchen.',translationMissing:'Keine Übersetzung verfügbar',restaurantCount:'Restaurants',categories:{Meat:'Fleisch',Fish:'Fisch',Meatless:'Fleischlos',Mixed:'Gemischt','Salad bar':'Salate','Fast food':'Schnellgericht'}},
+  it:{eyebrow:'BONI SENZA BARRIERE LINGUISTICHE',heroA:'Un buon pasto',heroB:'è',heroEm:'più vicino.',heroCopy:'Ristoranti con boni vicino a te, con i piatti nella tua lingua.',search:'Ristorante…',near:'Vicino a te',sorting:'Ordinati per posizione',enable:'Attiva la posizione per ordinare per distanza.',loading:'Cerco ristoranti…',loadingDishes:'Cerco piatti nei menu di oggi…',more:'Mostra altri ristoranti',emptyKicker:'LA TUA PROSSIMA TAPPA',emptyTitle:'Scegli un restaurante',emptyCopy:'Scopri il menu boni del giorno tradotto. Il nome originale resta sempre disponibile.',emptyFoot:'Menu ufficiali · traduzione automatica',back:'Tutti i ristoranti',venueKicker:'RISTORANTE BONI',menuOverline:'MENU BONI',today:'Piatti di oggi',fee:'Quota studente',noMenu:'Nessun piatto pubblicato per questa data.',menuSource:'Menu pubblicato per',retrieved:'consultato alle',disclaimer:'Traduzione automatica. Verifica ingredienti e allergeni con il ristorante.',footer:'Menu per studenti · Slovenia',source:'Fonte ufficiale',locating:'Rilevo la posizione…',locationReady:'Ordinati per distanza',locationFallback:'Ljubljana · posizione non disponibile',noResults:'Nessun ristorante trovato.',noDishResults:'Nessun ristorante con questo piatto oggi.',searchDishPrompt:'Cerca un piatto per vedere quali ristoranti lo servono oggi.',error:'Impossibile caricare i dati. Riprova.',translationMissing:'Traduzione non disponibile',restaurantCount:'ristoranti',categories:{Meat:'Carne',Fish:'Pesce',Meatless:'Senza carne',Mixed:'Misto','Salad bar':'Insalate','Fast food':'Veloce'}},
+  fr:{eyebrow:'LES BONI SANS BARRIÈRE DE LANGUE',heroA:'Un bon repas',heroB:'est',heroEm:'tout près.',heroCopy:'Des restaurants avec boni près de vous, avec les plats dans votre langue.',search:'Restaurant…',near:'Près de vous',sorting:'Triés selon votre position',enable:'Activez la localisation pour trier par distance.',loading:'Recherche de restaurants…',loadingDishes:'Recherche de plats dans les menus du jour…',more:'Voir plus de restaurants',emptyKicker:'VOTRE PROCHAINE ÉTAPE',emptyTitle:'Choisissez un restaurant',emptyCopy:'Consultez le menu boni du jour traduit. Le nom original reste toujours disponible.',emptyFoot:'Menus officiels · traduction automatique',back:'Tous les restaurants',venueKicker:'RESTAURANT BONI',menuOverline:'MENU BONI',today:'Plats du jour',fee:'Participation étudiant',noMenu:'Aucun plat publié pour cette date.',menuSource:'Menu publié pour',retrieved:'consulté à',disclaimer:'Traduction automatique. Vérifiez les ingrédients et allergènes auprès du restaurant.',footer:'Repas étudiants · Slovénie',source:'Source officielle',locating:'Localisation en cours…',locationReady:'Triés par distance',locationFallback:'Ljubljana · localisation indisponible',noResults:'Aucun restaurant trouvé.',noDishResults:'Aucun restaurant trouvé avec ce plat aujourd’hui.',searchDishPrompt:'Recherchez un plat pour voir quels restaurants le proposent aujourd’hui.',error:'Impossible de charger les données. Réessayez.',translationMissing:'Traduction indisponible',restaurantCount:'restaurants',categories:{Meat:'Viande',Fish:'Poisson',Meatless:'Sans viande',Mixed:'Mixte','Salad bar':'Salades','Fast food':'Rapide'}}
 };
 
 const searchModeLabels = {
@@ -45,45 +45,45 @@ const mobileTabLabels = {
 const featureCopy = {
   pt:{
     drawEyebrow:'DECISÃO DO DIA',drawTitle:'Vamos sortear',drawDescription:'Escolhe alguns filtros ou deixa o acaso decidir.',city:'Cidade',anyCity:'Qualquer cidade',food:'Tipo de comida',anyFood:'Sem preferência',mode:'Quero sortear',restaurant:'Restaurante',dish:'Prato',price:'Copagamento máximo',noLimit:'Sem limite',draw:'Sortear',searching:'A procurar opções nos menus de hoje…',noResult:'Não encontrei opções para esses filtros.',resultRestaurant:'O teu restaurante',resultDish:'O teu prato',openMenu:'Ver menu',drawError:'Não foi possível concluir o sorteio. Tenta novamente.',
-    favoritesEyebrow:'A TUA LISTA',favoritesTitle:'Favoritos',favoritesSubtitle:'Os teus restaurantes e pratos guardados para acesso rápido.',favoritesEmptyTitle:'Sem favoritos guardados',favoritesEmptyCopy:'Toca no coração de qualquer restaurante ou prato para guardá-lo aqui.',favVenuesTab:'Restaurantes',favDishesTab:'Pratos',
-    profileEyebrow:'A TUA CONTA',profileTitle:'Perfil',profileSubtitle:'O teu resumo de refeições, avaliações e gastos com boni.',profileUserTitle:'O teu registo pessoal',profileUserCopy:'Dados das tuas refeições guardados no teu dispositivo.',reviews:'Avaliações feitas',history:'Refeições registadas',foodStats:'Comida mais escolhida',spending:'Gasto com boni',myReviews:'As Minhas Avaliações',mealHistory:'Últimas Refeições Registadas',savedVenues:'Restaurantes Favoritos',savedDishes:'Pratos Favoritos',calendarTitle:'Calendário de Refeições',emptyReviews:'Ainda não avaliaste nenhum restaurante. Abre um restaurante e clica em “Avaliar”.',emptyHistory:'Ainda não registaste refeições. Clica em “Comi aqui” quando visitares um restaurante.',emptyFavs:'Nenhum restaurante favorito guardado.',emptyFavDishes:'Nenhum prato favorito guardado.',
-    favBtn:'Favorito',favBtnActive:'Guardado',logBtn:'Comi aqui',logBtnDone:'Comi hoje',rateBtn:'Avaliar',rateBtnEdit:'Editar nota',rateBoxTitle:'Avaliar este restaurante',reviewPlaceholder:'Escreve uma nota rápida sobre o restaurante…',cancel:'Cancelar',save:'Guardar',resetBtn:'Limpar dados locais',favAdded:'Adicionado aos favoritos!',favRemoved:'Removido dos favoritos.',favDishAdded:'Prato adicionado aos favoritos!',favDishRemoved:'Prato removido dos favoritos.',mealLogged:'Refeição registada no teu perfil!',mealDeleted:'Refeição removida.',reviewSaved:'Avaliação guardada!',reviewDeleted:'Avaliação removida.',clearDataConfirm:'Tens a certeza que queres limpar todo o teu histórico, avaliações e favoritos locais?',dataCleared:'Dados locais apagados com sucesso.',scanned:'menus consultados',
-    loginTab:'Entrar',registerTab:'Criar conta',loginSuccess:'Sessão iniciada com sucesso!',registerSuccess:'Conta criada com sucesso!',logoutSuccess:'Sessão terminada.',authRequiredReview:'Inicia sessão no teu perfil para avaliar restaurantes.',calEmptyDay:'Nenhuma refeição registada neste dia.',calSavedMeal:'Refeição guardada no histórico!'
+    favoritesEyebrow:'A TUA LISTA',favoritesTitle:'Favoritos',favoritesSubtitle:'Os teus restaurantes e pratos guardados para acesso rápido.',favoritesEmptyVenuesTitle:'Sem restaurantes guardados',favoritesEmptyVenuesCopy:'Toca no coração de qualquer restaurante para guardá-lo aqui.',favoritesEmptyDishesTitle:'Sem pratos guardados',favoritesEmptyDishesCopy:'Toca no coração de qualquer prato no menu para guardá-lo aqui.',favVenuesTab:'Restaurantes',favDishesTab:'Pratos',
+    profileEyebrow:'A TUA CONTA',profileTitle:'Perfil',profileSubtitle:'O teu resumo de refeições, avaliações e gastos com boni.',profileUserTitle:'O teu registo pessoal',profileUserCopy:'Dados das tuas refeições guardados no teu dispositivo.',reviews:'Avaliações feitas',history:'Refeições registadas',foodStats:'Comida mais escolhida',spending:'Gasto com boni',myReviews:'As Minhas Avaliações',mealHistory:'Últimas Refeições Registadas',calendarTitle:'Calendário de Refeições',emptyReviews:'Ainda não avaliaste nenhum restaurante. Abre um restaurante e clica em “Avaliar”.',emptyHistory:'Ainda não registaste refeições. Clica em “Comi aqui” quando visitares um restaurante.',
+    favBtn:'Favorito',favBtnActive:'Guardado',logBtn:'Comi aqui',logBtnDone:'Comi hoje',rateBtn:'Avaliar',rateBtnEdit:'Editar nota',rateBoxTitle:'Avaliar este restaurante',reviewPlaceholder:'Escreve uma nota rápida sobre o restaurante…',cancel:'Cancelar',save:'Guardar',resetBtn:'Limpar dados locais',favAdded:'Adicionado aos favoritos!',favRemoved:'Removido dos favoritos.',favDishAdded:'Prato adicionado aos favoritos!',favDishRemoved:'Prato removido dos favoritos.',mealLogged:'Refeição registada no teu histórico!',mealUnlogged:'Refeição desmarcada do teu histórico.',mealDeleted:'Refeição removida.',reviewSaved:'Avaliação guardada!',reviewDeleted:'Avaliação removida.',clearDataConfirm:'Tens a certeza que queres limpar todo o teu histórico, avaliações e favoritos locais?',dataCleared:'Dados locais apagados com sucesso.',scanned:'menus consultados',
+    loginTab:'Entrar',registerTab:'Criar conta',loginSuccess:'Sessão iniciada com sucesso!',registerSuccess:'Conta criada com sucesso!',logoutSuccess:'Sessão terminada.',authRequiredReview:'Inicia sessão no teu perfil para avaliar restaurantes.',calEmptyDay:'Nenhuma refeição registada neste dia.',calSavedMeal:'Refeição guardada no histórico!',calAddMeal:'+ Registar refeição neste dia',calCloseForm:'− Fechar formulário'
   },
   en:{
     drawEyebrow:'TODAY’S DECISION',drawTitle:'Let’s decide',drawDescription:'Choose a few filters or leave it to chance.',city:'City',anyCity:'Any city',food:'Food type',anyFood:'No preference',mode:'Pick a',restaurant:'Restaurant',dish:'Dish',price:'Maximum co-pay',noLimit:'No limit',draw:'Pick for me',searching:'Checking today’s menus…',noResult:'No options match those filters.',resultRestaurant:'Your restaurant',resultDish:'Your dish',openMenu:'View menu',drawError:'The draw failed. Please try again.',
-    favoritesEyebrow:'YOUR LIST',favoritesTitle:'Favorites',favoritesSubtitle:'Your saved restaurants and dishes for quick access.',favoritesEmptyTitle:'No saved favorites',favoritesEmptyCopy:'Tap the heart on any restaurant or dish to save it here.',favVenuesTab:'Restaurants',favDishesTab:'Dishes',
-    profileEyebrow:'YOUR ACCOUNT',profileTitle:'Profile',profileSubtitle:'Your summary of meals, reviews, and boni spending.',profileUserTitle:'Your personal record',profileUserCopy:'Meal data stored locally on your device.',reviews:'Reviews given',history:'Logged meals',foodStats:'Most chosen food',spending:'Spent on boni',myReviews:'My Reviews',mealHistory:'Recent Logged Meals',savedVenues:'Favorite Restaurants',savedDishes:'Favorite Dishes',calendarTitle:'Meal Calendar',emptyReviews:'You haven’t reviewed any restaurants yet. Open a venue and tap “Rate”.',emptyHistory:'No meals logged yet. Tap “Ate here” when you visit a restaurant.',emptyFavs:'No favorite restaurants saved yet.',emptyFavDishes:'No favorite dishes saved yet.',
-    favBtn:'Favorite',favBtnActive:'Saved',logBtn:'Ate here',logBtnDone:'Eaten today',rateBtn:'Rate',rateBtnEdit:'Edit rating',rateBoxTitle:'Rate this restaurant',reviewPlaceholder:'Write a quick note about this restaurant…',cancel:'Cancel',save:'Save',resetBtn:'Clear local data',favAdded:'Added to favorites!',favRemoved:'Removed from favorites.',favDishAdded:'Dish added to favorites!',favDishRemoved:'Dish removed from favorites.',mealLogged:'Meal logged to your profile!',mealDeleted:'Meal removed.',reviewSaved:'Review saved!',reviewDeleted:'Review deleted.',clearDataConfirm:'Are you sure you want to clear your local meal history, reviews, and favorites?',dataCleared:'Local data cleared.',scanned:'menus checked',
-    loginTab:'Log in',registerTab:'Sign up',loginSuccess:'Logged in successfully!',registerSuccess:'Account created successfully!',logoutSuccess:'Logged out.',authRequiredReview:'Log in to your profile to rate restaurants.',calEmptyDay:'No meals logged on this day.',calSavedMeal:'Meal saved to history!'
+    favoritesEyebrow:'YOUR LIST',favoritesTitle:'Favorites',favoritesSubtitle:'Your saved restaurants and dishes for quick access.',favoritesEmptyVenuesTitle:'No saved restaurants',favoritesEmptyVenuesCopy:'Tap the heart on any restaurant to save it here.',favoritesEmptyDishesTitle:'No saved dishes',favoritesEmptyDishesCopy:'Tap the heart on any menu dish to save it here.',favVenuesTab:'Restaurants',favDishesTab:'Dishes',
+    profileEyebrow:'YOUR ACCOUNT',profileTitle:'Profile',profileSubtitle:'Your summary of meals, reviews, and boni spending.',profileUserTitle:'Your personal record',profileUserCopy:'Meal data stored locally on your device.',reviews:'Reviews given',history:'Logged meals',foodStats:'Most chosen food',spending:'Spent on boni',myReviews:'My Reviews',mealHistory:'Recent Logged Meals',calendarTitle:'Meal Calendar',emptyReviews:'You haven’t reviewed any restaurants yet. Open a venue and tap “Rate”.',emptyHistory:'No meals logged yet. Tap “Ate here” when you visit a restaurant.',
+    favBtn:'Favorite',favBtnActive:'Saved',logBtn:'Ate here',logBtnDone:'Eaten today',rateBtn:'Rate',rateBtnEdit:'Edit rating',rateBoxTitle:'Rate this restaurant',reviewPlaceholder:'Write a quick note about this restaurant…',cancel:'Cancel',save:'Save',resetBtn:'Clear local data',favAdded:'Added to favorites!',favRemoved:'Removed from favorites.',favDishAdded:'Dish added to favorites!',favDishRemoved:'Dish removed from favorites.',mealLogged:'Meal logged to your history!',mealUnlogged:'Meal unlogged from history.',mealDeleted:'Meal removed.',reviewSaved:'Review saved!',reviewDeleted:'Review deleted.',clearDataConfirm:'Are you sure you want to clear your local meal history, reviews, and favorites?',dataCleared:'Local data cleared.',scanned:'menus checked',
+    loginTab:'Log in',registerTab:'Sign up',loginSuccess:'Logged in successfully!',registerSuccess:'Account created successfully!',logoutSuccess:'Logged out.',authRequiredReview:'Log in to your profile to rate restaurants.',calEmptyDay:'No meals logged on this day.',calSavedMeal:'Meal saved to history!',calAddMeal:'+ Log meal on this day',calCloseForm:'− Close form'
   },
   es:{
     drawEyebrow:'LA DECISIÓN DE HOY',drawTitle:'Vamos a sortear',drawDescription:'Elige algunos filtros o deja que decida el azar.',city:'Ciudad',anyCity:'Cualquier ciudad',food:'Tipo de comida',anyFood:'Sin preferencia',mode:'Sortear',restaurant:'Restaurante',dish:'Plato',price:'Copago máximo',noLimit:'Sin límite',draw:'Sortear',searching:'Buscando en los menús de hoy…',noResult:'No hay opciones con esos filtros.',resultRestaurant:'Tu restaurante',resultDish:'Tu plato',openMenu:'Ver menú',drawError:'No se pudo completar el sorteo.',
-    favoritesEyebrow:'TU LISTA',favoritesTitle:'Favoritos',favoritesSubtitle:'Tus restaurantes y platos guardados para acceso rápido.',favoritesEmptyTitle:'Sin favoritos guardados',favoritesEmptyCopy:'Toca el corazón en cualquier restaurante o plato para guardarlo.',favVenuesTab:'Restaurantes',favDishesTab:'Platos',
-    profileEyebrow:'TU CUENTA',profileTitle:'Perfil',profileSubtitle:'Tu resumen de comidas, reseñas y gastos con boni.',profileUserTitle:'Tu registro personal',profileUserCopy:'Datos guardados localmente en tu dispositivo.',reviews:'Reseñas hechas',history:'Comidas registradas',foodStats:'Comida más elegida',spending:'Gasto en boni',myReviews:'Mis Reseñas',mealHistory:'Últimas Comidas Registradas',savedVenues:'Restaurantes Favoritos',savedDishes:'Platos Favoritos',calendarTitle:'Calendario de Comidas',emptyReviews:'Aún no has valorado ningún restaurante. Abre uno y pulsa “Valorar”.',emptyHistory:'Aún no has registrado comidas. Pulsa “Comí aquí” al visitar un restaurante.',emptyFavs:'No tienes restaurantes favoritos guardados.',emptyFavDishes:'No tienes platos favoritos guardados.',
-    favBtn:'Favorito',favBtnActive:'Guardado',logBtn:'Comí aquí',logBtnDone:'Comí hoy',rateBtn:'Valorar',rateBtnEdit:'Editar nota',rateBoxTitle:'Valorar este restaurante',reviewPlaceholder:'Escribe una nota rápida sobre el restaurante…',cancel:'Cancelar',save:'Guardar',resetBtn:'Borrar datos locales',favAdded:'¡Añadido a favoritos!',favRemoved:'Eliminado de favoritos.',favDishAdded:'¡Plato añadido a favoritos!',favDishRemoved:'Plato eliminado de favoritos.',mealLogged:'¡Comida registrada en tu perfil!',mealDeleted:'Comida eliminada.',reviewSaved:'¡Reseña guardada!',reviewDeleted:'Reseña eliminada.',clearDataConfirm:'¿Seguro que quieres borrar todo tu historial, reseñas y favoritos locales?',dataCleared:'Datos locales borrados.',scanned:'menús consultados',
-    loginTab:'Iniciar sesión',registerTab:'Crear cuenta',loginSuccess:'¡Sesión iniciada con éxito!',registerSuccess:'¡Cuenta creada con éxito!',logoutSuccess:'Sesión cerrada.',authRequiredReview:'Inicia sesión en tu perfil para valorar restaurantes.',calEmptyDay:'Sin comidas registradas en este día.',calSavedMeal:'¡Comida guardada en el historial!'
+    favoritesEyebrow:'TU LISTA',favoritesTitle:'Favoritos',favoritesSubtitle:'Tus restaurantes y platos guardados para acceso rápido.',favoritesEmptyVenuesTitle:'Sin restaurantes guardados',favoritesEmptyVenuesCopy:'Toca el corazón en cualquier restaurante para guardarlo.',favoritesEmptyDishesTitle:'Sin platos guardados',favoritesEmptyDishesCopy:'Toca el corazón en cualquier plato para guardarlo.',favVenuesTab:'Restaurantes',favDishesTab:'Platos',
+    profileEyebrow:'TU CUENTA',profileTitle:'Perfil',profileSubtitle:'Tu resumen de comidas, reseñas y gastos con boni.',profileUserTitle:'Tu registro personal',profileUserCopy:'Datos guardados localmente en tu dispositivo.',reviews:'Reseñas hechas',history:'Comidas registradas',foodStats:'Comida más elegida',spending:'Gasto en boni',myReviews:'Mis Reseñas',mealHistory:'Últimas Comidas Registradas',calendarTitle:'Calendario de Comidas',emptyReviews:'Aún no has valorado ningún restaurante. Abre uno y pulsa “Valorar”.',emptyHistory:'Aún no has registrado comidas. Pulsa “Comí aquí” al visitar un restaurante.',
+    favBtn:'Favorito',favBtnActive:'Guardado',logBtn:'Comí aquí',logBtnDone:'Comí hoy',rateBtn:'Valorar',rateBtnEdit:'Editar nota',rateBoxTitle:'Valorar este restaurante',reviewPlaceholder:'Escribe una nota rápida sobre el restaurante…',cancel:'Cancelar',save:'Guardar',resetBtn:'Borrar datos locales',favAdded:'¡Añadido a favoritos!',favRemoved:'Eliminado de favoritos.',favDishAdded:'¡Plato añadido a favoritos!',favDishRemoved:'Plato eliminado de favoritos.',mealLogged:'¡Comida registrada en tu historial!',mealUnlogged:'Comida desmarcada del historial.',mealDeleted:'Comida eliminada.',reviewSaved:'¡Reseña guardada!',reviewDeleted:'Reseña eliminada.',clearDataConfirm:'¿Seguro que quieres borrar todo tu historial, reseñas y favoritos locales?',dataCleared:'Datos locales borrados.',scanned:'menús consultados',
+    loginTab:'Iniciar sesión',registerTab:'Crear cuenta',loginSuccess:'¡Sesión iniciada con éxito!',registerSuccess:'¡Cuenta creada con éxito!',logoutSuccess:'Sesión cerrada.',authRequiredReview:'Inicia sesión en tu perfil para valorar restaurantes.',calEmptyDay:'Sin comidas registradas en este día.',calSavedMeal:'¡Comida guardada en el historial!',calAddMeal:'+ Registrar comida en este día',calCloseForm:'− Cerrar formulario'
   },
   de:{
     drawEyebrow:'DIE ENTSCHEIDUNG DES TAGES',drawTitle:'Lass uns auslosen',drawDescription:'Wähle Filter oder lass den Zufall entscheiden.',city:'Stadt',anyCity:'Jede Stadt',food:'Essensart',anyFood:'Keine Präferenz',mode:'Auswählen',restaurant:'Restaurant',dish:'Gericht',price:'Maximaler Eigenanteil',noLimit:'Kein Limit',draw:'Auslosen',searching:'Heutige Menüs werden geprüft…',noResult:'Keine passenden Optionen gefunden.',resultRestaurant:'Dein Restaurant',resultDish:'Dein Gericht',openMenu:'Menü ansehen',drawError:'Die Auslosung ist fehlgeschlagen.',
-    favoritesEyebrow:'DEINE LISTE',favoritesTitle:'Favoriten',favoritesSubtitle:'Deine gespeicherten Restaurants und Gerichte für schnellen Zugriff.',favoritesEmptyTitle:'Keine Favoriten gespeichert',favoritesEmptyCopy:'Tippe auf das Herz bei einem Restaurant oder Gericht, um es zu speichern.',favVenuesTab:'Restaurants',favDishesTab:'Gerichte',
-    profileEyebrow:'DEIN KONTO',profileTitle:'Profil',profileSubtitle:'Deine Übersicht über Mahlzeiten, Bewertungen und Ausgaben.',profileUserTitle:'Dein persönliches Protokoll',profileUserCopy:'Daten lokal auf deinem Gerät gespeichert.',reviews:'Abgegebene Bewertungen',history:'Erfasste Mahlzeiten',foodStats:'Meistgewähltes Essen',spending:'Boni-Ausgaben',myReviews:'Meine Bewertungen',mealHistory:'Zuletzt erfasste Mahlzeiten',savedVenues:'Lieblingsrestaurants',savedDishes:'Lieblingsgerichte',calendarTitle:'Mahlzeiten-Kalender',emptyReviews:'Du hast noch keine Restaurants bewertet. Öffne ein Restaurant und tippe auf „Bewerten“.',emptyHistory:'Noch keine Mahlzeiten erfasst. Tippe auf „Hier gegessen“, wenn du ein Restaurant besuchst.',emptyFavs:'Keine Lieblingsrestaurants gespeichert.',emptyFavDishes:'Keine Lieblingsgerichte gespeichert.',
-    favBtn:'Favorit',favBtnActive:'Gespeichert',logBtn:'Hier gegessen',logBtnDone:'Heute gegessen',rateBtn:'Bewerten',rateBtnEdit:'Bewertung bearbeiten',rateBoxTitle:'Dieses Restaurant bewerten',reviewPlaceholder:'Schreibe eine kurze Notiz über das Restaurant…',cancel:'Abbrechen',save:'Speichern',resetBtn:'Lokale Daten löschen',favAdded:'Zu Favoriten hinzugefügt!',favRemoved:'Aus Favoriten entfernt.',favDishAdded:'Gericht zu Favoriten hinzugefügt!',favDishRemoved:'Gericht aus Favoriten entfernt.',mealLogged:'Mahlzeit im Profil erfasst!',mealDeleted:'Mahlzeit gelöscht.',reviewSaved:'Bewertung gespeichert!',reviewDeleted:'Bewertung gelöscht.',clearDataConfirm:'Möchtest du wirklich deinen lokalen Verlauf, Bewertungen und Favoriten löschen?',dataCleared:'Lokale Daten gelöscht.',scanned:'Menüs geprüft',
-    loginTab:'Anmelden',registerTab:'Registrieren',loginSuccess:'Erfolgreich angemeldet!',registerSuccess:'Konto erfolgreich erstellt!',logoutSuccess:'Abgemeldet.',authRequiredReview:'Melde dich in deinem Profil an, um Restaurants zu bewerten.',calEmptyDay:'Keine Mahlzeiten an diesem Tag erfasst.',calSavedMeal:'Mahlzeit im Verlauf gespeichert!'
+    favoritesEyebrow:'DEINE LISTE',favoritesTitle:'Favoriten',favoritesSubtitle:'Deine gespeicherten Restaurants und Gerichte für schnellen Zugriff.',favoritesEmptyVenuesTitle:'Keine Restaurants gespeichert',favoritesEmptyVenuesCopy:'Tippe auf das Herz bei einem Restaurant, um es zu speichern.',favoritesEmptyDishesTitle:'Keine Gerichte gespeichert',favoritesEmptyDishesCopy:'Tippe auf das Herz bei einem Gericht, um es zu speichern.',favVenuesTab:'Restaurants',favDishesTab:'Gerichte',
+    profileEyebrow:'DEIN KONTO',profileTitle:'Profil',profileSubtitle:'Deine Übersicht über Mahlzeiten, Bewertungen und Ausgaben.',profileUserTitle:'Dein persönliches Protokoll',profileUserCopy:'Daten lokal auf deinem Gerät gespeichert.',reviews:'Abgegebene Bewertungen',history:'Erfasste Mahlzeiten',foodStats:'Meistgewähltes Essen',spending:'Boni-Ausgaben',myReviews:'Meine Bewertungen',mealHistory:'Zuletzt erfasste Mahlzeiten',calendarTitle:'Mahlzeiten-Kalender',emptyReviews:'Du hast noch keine Restaurants bewertet. Öffne ein Restaurant und tippe auf „Bewerten“.',emptyHistory:'Noch keine Mahlzeiten erfasst. Tippe auf „Hier gegessen“, wenn du ein Restaurant besuchst.',
+    favBtn:'Favorit',favBtnActive:'Gespeichert',logBtn:'Hier gegessen',logBtnDone:'Heute gegessen',rateBtn:'Bewerten',rateBtnEdit:'Bewertung bearbeiten',rateBoxTitle:'Dieses Restaurant bewerten',reviewPlaceholder:'Schreibe eine kurze Notiz über das Restaurant…',cancel:'Abbrechen',save:'Speichern',resetBtn:'Lokale Daten löschen',favAdded:'Zu Favoriten hinzugefügt!',favRemoved:'Aus Favoriten entfernt.',favDishAdded:'Gericht zu Favoriten hinzugefügt!',favDishRemoved:'Gericht aus Favoriten entfernt.',mealLogged:'Mahlzeit erfasst!',mealUnlogged:'Mahlzeit abgewählt.',mealDeleted:'Mahlzeit gelöscht.',reviewSaved:'Bewertung gespeichert!',reviewDeleted:'Bewertung gelöscht.',clearDataConfirm:'Möchtest du wirklich deinen lokalen Verlauf, Bewertungen und Favoriten löschen?',dataCleared:'Lokale Daten gelöscht.',scanned:'Menüs geprüft',
+    loginTab:'Anmelden',registerTab:'Registrieren',loginSuccess:'Erfolgreich angemeldet!',registerSuccess:'Konto erfolgreich erstellt!',logoutSuccess:'Abgemeldet.',authRequiredReview:'Melde dich in deinem Profil an, um Restaurants zu bewerten.',calEmptyDay:'Keine Mahlzeiten an diesem Tag erfasst.',calSavedMeal:'Mahlzeit im Verlauf gespeichert!',calAddMeal:'+ Mahlzeit erfassen',calCloseForm:'− Formular schließen'
   },
   it:{
     drawEyebrow:'LA SCELTA DI OGGI',drawTitle:'Facciamo decidere al caso',drawDescription:'Scegli qualche filtro oppure lascia fare al caso.',city:'Città',anyCity:'Qualsiasi città',food:'Tipo di cibo',anyFood:'Nessuna preferenza',mode:'Estrai',restaurant:'Ristorante',dish:'Piatto',price:'Quota massima',noLimit:'Nessun limite',draw:'Estrai',searching:'Controllo i menu di oggi…',noResult:'Nessuna opzione con questi filtri.',resultRestaurant:'Il tuo ristorante',resultDish:'Il tuo piatto',openMenu:'Vedi menu',drawError:'Estrazione non riuscita.',
-    favoritesEyebrow:'LA TUA LISTA',favoritesTitle:'Preferiti',favoritesSubtitle:'I tuoi ristoranti e piatti salvati per accesso rapido.',favoritesEmptyTitle:'Nessun preferito salvato',favoritesEmptyCopy:'Tocca il cuore su un ristorante o piatto per salvarlo qui.',favVenuesTab:'Ristoranti',favDishesTab:'Piatti',
-    profileEyebrow:'IL TUO ACCOUNT',profileTitle:'Profilo',profileSubtitle:'Il tuo riepilogo di pasti, recensioni e spese con boni.',profileUserTitle:'Il tuo registro personale',profileUserCopy:'Dati dei tuoi pasti salvati sul dispositivo.',reviews:'Recensioni fatte',history:'Pasti registrati',foodStats:'Cibo più scelto',spending:'Spesa per boni',myReviews:'Le Mie Recensioni',mealHistory:'Ultimi Pasti Registrati',savedVenues:'Ristoranti Preferiti',savedDishes:'Piatti Preferiti',calendarTitle:'Calendario Pasti',emptyReviews:'Non hai ancora valutato nessun ristorante. Apri un locale e tocca “Valuta”.',emptyHistory:'Nessun pasto ancora registrato. Tocca “Ho mangiato qui” quando visiti un ristorante.',emptyFavs:'Nessun ristorante preferito salvato.',emptyFavDishes:'Nessun piatto preferito salvato.',
-    favBtn:'Preferito',favBtnActive:'Salvato',logBtn:'Ho mangiato qui',logBtnDone:'Mangiato oggi',rateBtn:'Valuta',rateBtnEdit:'Modifica voto',rateBoxTitle:'Valuta questo ristorante',reviewPlaceholder:'Scrivi una breve nota sul ristorante…',cancel:'Annulla',save:'Salva',resetBtn:'Cancella dati locali',favAdded:'Aggiunto ai preferiti!',favRemoved:'Rimosso dai preferiti.',favDishAdded:'Piatto aggiunto ai preferiti!',favDishRemoved:'Piatto rimosso dai preferiti.',mealLogged:'Pasto registrato nel profilo!',mealDeleted:'Pasto rimosso.',reviewSaved:'Recensione salvata!',reviewDeleted:'Recensione eliminata.',clearDataConfirm:'Sei sicuro di voler cancellare cronologia, recensioni e preferiti locali?',dataCleared:'Dati locali cancellati.',scanned:'menu controllati',
-    loginTab:'Accedi',registerTab:'Registrati',loginSuccess:'Accesso effettuato con successo!',registerSuccess:'Account creato con successo!',logoutSuccess:'Disconnesso.',authRequiredReview:'Accedi al tuo profilo per valutare i ristoranti.',calEmptyDay:'Nessun pasto registrato in questo giorno.',calSavedMeal:'Pasto salvato nella cronologia!'
+    favoritesEyebrow:'LA TUA LISTA',favoritesTitle:'Preferiti',favoritesSubtitle:'I tuoi ristoranti e piatti salvati per accesso rapido.',favoritesEmptyVenuesTitle:'Nessun ristorante salvato',favoritesEmptyVenuesCopy:'Tocca il cuore su un ristorante per salvarlo qui.',favoritesEmptyDishesTitle:'Nessun piatto salvato',favoritesEmptyDishesCopy:'Tocca il cuore su un piatto per salvarlo qui.',favVenuesTab:'Ristoranti',favDishesTab:'Piatti',
+    profileEyebrow:'IL TUO ACCOUNT',profileTitle:'Profilo',profileSubtitle:'Il tuo riepilogo di pasti, recensioni e spese con boni.',profileUserTitle:'Il tuo registro personale',profileUserCopy:'Dati dei tuoi pasti salvati sul dispositivo.',reviews:'Recensioni fatte',history:'Pasti registrati',foodStats:'Cibo più scelto',spending:'Spesa per boni',myReviews:'Le Mie Recensioni',mealHistory:'Ultimi Pasti Registrati',calendarTitle:'Calendario Pasti',emptyReviews:'Non hai ancora valutato nessun ristorante. Apri un locale e tocca “Valuta”.',emptyHistory:'Nessun pasto ancora registrato. Tocca “Ho mangiato qui” quando visiti un ristorante.',
+    favBtn:'Preferito',favBtnActive:'Salvato',logBtn:'Ho mangiato qui',logBtnDone:'Mangiato oggi',rateBtn:'Valuta',rateBtnEdit:'Modifica voto',rateBoxTitle:'Valuta questo ristorante',reviewPlaceholder:'Scrivi una breve nota sul ristorante…',cancel:'Annulla',save:'Salva',resetBtn:'Cancella dati locali',favAdded:'Aggiunto ai preferiti!',favRemoved:'Rimosso dai preferiti.',favDishAdded:'Piatto aggiunto ai preferiti!',favDishRemoved:'Piatto rimosso dai preferiti.',mealLogged:'Pasto registrato nella cronologia!',mealUnlogged:'Pasto deselezionato.',mealDeleted:'Pasto rimosso.',reviewSaved:'Recensione salvata!',reviewDeleted:'Recensione eliminata.',clearDataConfirm:'Sei sicuro di voler cancellare cronologia, recensioni e preferiti locali?',dataCleared:'Dati locali cancellati.',scanned:'menu controllati',
+    loginTab:'Accedi',registerTab:'Registrati',loginSuccess:'Accesso effettuato con successo!',registerSuccess:'Account creato con successo!',logoutSuccess:'Disconnesso.',authRequiredReview:'Accedi al tuo profilo per valutare i ristoranti.',calEmptyDay:'Nessun pasto registrato in questo giorno.',calSavedMeal:'Pasto salvato nella cronologia!',calAddMeal:'+ Registra pasto in questo giorno',calCloseForm:'− Chiudi modulo'
   },
   fr:{
     drawEyebrow:'LA DÉCISION DU JOUR',drawTitle:'Laissons le hasard choisir',drawDescription:'Choisissez des filtres ou laissez faire le hasard.',city:'Ville',anyCity:'Toutes les villes',food:'Type de plat',anyFood:'Sans préférence',mode:'Tirer au sort',restaurant:'Restaurant',dish:'Plat',price:'Participation maximale',noLimit:'Sans limite',draw:'Tirer au sort',searching:'Recherche dans les menus du jour…',noResult:'Aucune option ne correspond à ces filtres.',resultRestaurant:'Votre restaurant',resultDish:'Votre plat',openMenu:'Voir le menu',drawError:'Le tirage au sort a échoué.',
-    favoritesEyebrow:'VOTRE LISTE',favoritesTitle:'Favoris',favoritesSubtitle:'Vos restaurants et plats enregistrés pour un accès rapide.',favoritesEmptyTitle:'Aucun favori enregistré',favoritesEmptyCopy:'Touchez le cœur sur un restaurant ou un plat pour l’enregistrer.',favVenuesTab:'Restaurants',favDishesTab:'Plats',
-    profileEyebrow:'VOTRE COMPTE',profileTitle:'Profil',profileSubtitle:'Votre résumé de repas, avis et dépenses avec boni.',profileUserTitle:'Votre registre personnel',profileUserCopy:'Données de repas stockées sur votre appareil.',reviews:'Avis donnés',history:'Repas enregistrés',foodStats:'Plat le plus choisi',spending:'Dépensé en boni',myReviews:'Mes Avis',mealHistory:'Derniers Repas Enregistrés',savedVenues:'Restaurants Favoris',savedDishes:'Plats Favoris',calendarTitle:'Calendrier des repas',emptyReviews:'Vous n’avez pas encore noté de restaurant. Ouvrez un restaurant et touchez « Noter ».',emptyHistory:'Aucun repas enregistré. Touchez « J’ai mangé ici » lorsque vous visitez un restaurant.',emptyFavs:'Aucun restaurant favori enregistré.',emptyFavDishes:'Aucun plat favori enregistré.',
-    favBtn:'Favori',favBtnActive:'Enregistré',logBtn:'J’ai mangé ici',logBtnDone:'Mangé aujourd’hui',rateBtn:'Noter',rateBtnEdit:'Modifier note',rateBoxTitle:'Noter ce restaurant',reviewPlaceholder:'Écrivez une note rapide sur ce restaurant…',cancel:'Annuler',save:'Enregistrer',resetBtn:'Effacer les données locales',favAdded:'Ajouté aux favoris !',favRemoved:'Retiré des favoris.',favDishAdded:'Plat ajouté aux favoris !',favDishRemoved:'Plat retiré des favoris.',mealLogged:'Repas enregistré dans votre profil !',mealDeleted:'Repas supprimé.',reviewSaved:'Avis enregistré !',reviewDeleted:'Avis supprimé.',clearDataConfirm:'Voulez-vous vraiment effacer votre historique, vos avis et vos favoris locaux ?',dataCleared:'Données locales effacées.',scanned:'menus vérifiés',
-    loginTab:'Connexion',registerTab:'Créer un compte',loginSuccess:'Connexion réussie !',registerSuccess:'Compte créé avec succès !',logoutSuccess:'Déconnecté.',authRequiredReview:'Connectez-vous à votre profil pour noter les restaurants.',calEmptyDay:'Aucun repas enregistré ce jour-là.',calSavedMeal:'Repas enregistré dans l’historique !'
+    favoritesEyebrow:'VOTRE LISTE',favoritesTitle:'Favoris',favoritesSubtitle:'Vos restaurants et plats enregistrés pour un accès rapide.',favoritesEmptyVenuesTitle:'Aucun restaurant enregistré',favoritesEmptyVenuesCopy:'Touchez le cœur sur un restaurant pour l’enregistrer.',favoritesEmptyDishesTitle:'Aucun plat enregistré',favoritesEmptyDishesCopy:'Touchez le cœur sur un plat pour l’enregistrer.',favVenuesTab:'Restaurants',favDishesTab:'Plats',
+    profileEyebrow:'VOTRE COMPTE',profileTitle:'Profil',profileSubtitle:'Votre résumé de repas, avis et dépenses avec boni.',profileUserTitle:'Votre registre personnel',profileUserCopy:'Données de repas stockées sur votre appareil.',reviews:'Avis donnés',history:'Repas enregistrés',foodStats:'Plat le plus choisi',spending:'Dépensé en boni',myReviews:'Mes Avis',mealHistory:'Derniers Repas Enregistrés',calendarTitle:'Calendrier des repas',emptyReviews:'Vous n’avez pas encore noté de restaurant. Ouvrez un restaurant et touchez « Noter ».',emptyHistory:'Aucun repas enregistré. Touchez « J’ai mangé ici » lorsque vous visitez un restaurant.',
+    favBtn:'Favori',favBtnActive:'Enregistré',logBtn:'J’ai mangé ici',logBtnDone:'Mangé aujourd’hui',rateBtn:'Noter',rateBtnEdit:'Modifier note',rateBoxTitle:'Noter ce restaurant',reviewPlaceholder:'Écrivez une note rapide sur ce restaurant…',cancel:'Annuler',save:'Enregistrer',resetBtn:'Effacer les données locales',favAdded:'Ajouté aux favoris !',favRemoved:'Retiré des favoris.',favDishAdded:'Plat ajouté aux favoris !',favDishRemoved:'Plat retiré des favoris.',mealLogged:'Repas enregistré dans votre historique !',mealUnlogged:'Repas désélectionné.',mealDeleted:'Repas supprimé.',reviewSaved:'Avis enregistré !',reviewDeleted:'Avis supprimé.',clearDataConfirm:'Voulez-vous vraiment effacer votre historique, vos avis et vos favoris locaux ?',dataCleared:'Données locales effacées.',scanned:'menus vérifiés',
+    loginTab:'Connexion',registerTab:'Créer un compte',loginSuccess:'Connexion réussie !',registerSuccess:'Compte créé avec succès !',logoutSuccess:'Déconnecté.',authRequiredReview:'Connectez-vous à votre profil pour noter les restaurants.',calEmptyDay:'Aucun repas enregistré ce jour-là.',calSavedMeal:'Repas enregistré dans l’historique !',calAddMeal:'+ Enregistrer un repas ce jour-là',calCloseForm:'− Fermer le formulaire'
   }
 };
 
@@ -153,9 +153,12 @@ const state = {
   tab: 'explore',
   searchMode: 'restaurants',
   favTab: 'venues',
+  historyPage: 1,
   dishResults: [],
   isSearchingDishes: false,
   currentMenuDishes: [],
+  pendingPickedDish: null,
+  pickerRating: 5,
   calendarYear: new Date().getFullYear(),
   calendarMonth: new Date().getMonth(),
   calendarSelectedDate: new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Ljubljana' }).format(new Date())
@@ -228,7 +231,6 @@ function toggleFavorite(restaurant) {
   }
   updateFavoriteButtons(id);
   if (state.tab === 'favorites') renderFavoritesPage();
-  if (state.tab === 'profile') renderProfilePage();
 }
 
 function updateFavoriteButtons(restaurantId) {
@@ -289,7 +291,6 @@ function toggleFavoriteDish(dish, restaurant) {
   }
   updateDishFavoriteButtons(restaurant.id, dish.name);
   if (state.tab === 'favorites') renderFavoritesPage();
-  if (state.tab === 'profile') renderProfilePage();
 }
 
 function updateDishFavoriteButtons(restaurantId, dishName) {
@@ -327,7 +328,6 @@ function saveReview(restaurantId, rating, comment, restaurant) {
     timestamp: Date.now()
   };
   saveReviews(revs);
-  showToast(feature.reviewSaved || 'Avaliação guardada!');
   updateVenueReviewUI();
   if (state.tab === 'profile') renderProfilePage();
 }
@@ -353,10 +353,13 @@ function saveMeals(data) {
 function hasLoggedMealToday(restaurantId) {
   return getMeals().some(m => m.restaurantId === restaurantId && m.date === state.today);
 }
+function isDishLoggedToday(restaurantId, dishName) {
+  const targetDate = state.date || state.today;
+  return getMeals().some(m => m.restaurantId === restaurantId && m.dishName === dishName && m.date === targetDate);
+}
 
 function logMeal(restaurant, dishName = '', category = 'Mixed', customDate = null) {
   const meals = getMeals();
-  const feature = featureCopy[state.language] || featureCopy.en;
   const user = getCurrentUser();
   const entry = {
     id: `${restaurant.id}-${Date.now()}`,
@@ -373,7 +376,6 @@ function logMeal(restaurant, dishName = '', category = 'Mixed', customDate = nul
   };
   meals.unshift(entry);
   saveMeals(meals);
-  showToast(feature.mealLogged || 'Refeição registada no teu perfil!');
   updateVenueMealLogUI();
   if (state.tab === 'profile') {
     renderProfilePage();
@@ -416,6 +418,13 @@ let currentReviewRating = 5;
 function setReviewStars(val) {
   currentReviewRating = val;
   document.querySelectorAll('#review-stars .star-btn').forEach(btn => {
+    btn.classList.toggle('selected', Number(btn.dataset.value) <= val);
+  });
+}
+
+function setPickerStars(val) {
+  state.pickerRating = val;
+  document.querySelectorAll('#meal-picker-stars .star-btn').forEach(btn => {
     btn.classList.toggle('selected', Number(btn.dataset.value) <= val);
   });
 }
@@ -541,7 +550,7 @@ function applyLanguage() {
   $('back-label').textContent = t.back;
   $('menu-title').textContent = t.today;
   $('date-prev').setAttribute('aria-label', ({ pt:'Dia anterior', en:'Previous day', es:'Día anterior', de:'Vorheriger Tag', it:'Giorno precedente', fr:'Jour précédent' }[state.language]));
-  $('date-next').setAttribute('aria-label', ({ pt:'Dia seguinte', en:'Next day', es:'Día siguiente', de:'Nächster Tag', it:'Giorno successivo', fr:'Jour suivant' }[state.language]));
+  $('date-next').setAttribute('aria-label', ({ pt:'Dia seguinte', en:'Next day', es:'Día seguinte', de:'Nächster Tag', it:'Giorno successivo', fr:'Jour suivant' }[state.language]));
   $('footer-source').textContent = t.source;
   $('footer-install').textContent = installCopy[state.language]?.label || installCopy.en.label;
 
@@ -554,14 +563,13 @@ function applyLanguage() {
     'draw-category-label':'food','draw-any-category':'anyFood','draw-mode-label':'mode','draw-mode-restaurant':'restaurant','draw-mode-dish':'dish',
     'draw-price-label':'price','draw-submit-label':'draw',
     'favorites-eyebrow':'favoritesEyebrow','favorites-title':'favoritesTitle','favorites-subtitle':'favoritesSubtitle',
-    'favorites-empty-title':'favoritesEmptyTitle','favorites-empty-copy':'favoritesEmptyCopy',
     'fav-tab-venues-label':'favVenuesTab','fav-tab-dishes-label':'favDishesTab',
     'profile-eyebrow':'profileEyebrow','profile-title':'profileTitle','profile-subtitle':'profileSubtitle',
     'profile-spend-label':'spending','profile-food-label':'foodStats','profile-history-label':'history','profile-reviews-label':'reviews',
-    'profile-sec-reviews':'myReviews','profile-sec-history':'mealHistory','profile-sec-favs':'savedVenues','profile-sec-fav-dishes':'savedDishes',
+    'profile-sec-reviews':'myReviews','profile-sec-history':'mealHistory',
     'profile-sec-calendar':'calendarTitle',
     'profile-reset-btn':'resetBtn','review-box-title':'rateBoxTitle','review-cancel-btn':'cancel','review-save-btn':'save',
-    'meal-picker-title':'mealPickerTitle','meal-picker-sub':'mealPickerSub','meal-picker-confirm':'mealPickerConfirm'
+    'meal-picker-title':'mealPickerTitle','meal-picker-sub':'mealPickerSub'
   })) {
     const el = $(id);
     if (el && feature[key]) el.textContent = feature[key];
@@ -1183,17 +1191,37 @@ function renderMenuDishes(menu, requestId, id) {
       toggleFavoriteDish(dish, state.selected || { id, name: $('venue-name').textContent });
     });
 
-    // 2. Direct dish meal logging button
+    // 2. Direct dish meal logging button with toggle
+    const isLogged = isDishLoggedToday(id, dish.name);
     const dishLogBtn = document.createElement('button');
     dishLogBtn.type = 'button';
-    dishLogBtn.className = 'dish-action-btn dish-log-btn';
-    dishLogBtn.title = 'Comi este prato hoje';
-    dishLogBtn.setAttribute('aria-label', 'Registar que comi este prato');
+    dishLogBtn.className = `dish-action-btn dish-log-btn${isLogged ? ' active' : ''}`;
+    dishLogBtn.title = isLogged ? 'Desmarcar refeição de hoje' : 'Registar que comi este prato hoje';
+    dishLogBtn.setAttribute('aria-label', isLogged ? 'Desmarcar prato' : 'Registar prato');
     dishLogBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
     dishLogBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      logMeal(state.selected || { id, name: $('venue-name').textContent }, dish.name, dish.categories?.[0] || 'Mixed');
-      dishLogBtn.classList.add('active');
+      const currentlyLogged = isDishLoggedToday(id, dish.name);
+      const feature = featureCopy[state.language] || featureCopy.en;
+      if (currentlyLogged) {
+        let meals = getMeals();
+        const targetDate = state.date || state.today;
+        meals = meals.filter(m => !(m.restaurantId === id && m.dishName === dish.name && m.date === targetDate));
+        saveMeals(meals);
+        dishLogBtn.classList.remove('active');
+        dishLogBtn.title = 'Registar que comi este prato hoje';
+        showToast(feature.mealUnlogged || 'Refeição desmarcada do teu histórico.');
+      } else {
+        logMeal(state.selected || { id, name: $('venue-name').textContent }, dish.name, dish.categories?.[0] || 'Mixed', state.date);
+        dishLogBtn.classList.add('active');
+        dishLogBtn.title = 'Desmarcar refeição de hoje';
+        showToast(feature.mealLogged || 'Refeição registada no teu histórico!');
+      }
+      updateVenueMealLogUI();
+      if (state.tab === 'profile') {
+        renderProfilePage();
+        renderMiniCalendar();
+      }
     });
 
     // 3. Image search link
@@ -1300,13 +1328,18 @@ function changeMenuDate(offset) {
 }
 
 /* -------------------------------------------------------------
-   Meal Picker in Venue Menu
+   Meal Picker in Venue Menu (With Rating & Skip Step)
    ------------------------------------------------------------- */
 function openVenueMealPicker() {
   if (!state.selected) return;
   const picker = $('venue-meal-picker');
   picker.hidden = !picker.hidden;
   if (picker.hidden) return;
+
+  // Reset to Step 1
+  $('meal-picker-step-dish').hidden = false;
+  $('meal-picker-step-rating').hidden = true;
+  setPickerStars(5);
 
   const optionsHost = $('meal-picker-options');
   optionsHost.replaceChildren();
@@ -1349,7 +1382,9 @@ $('venue-log-meal-btn')?.addEventListener('click', () => {
 $('meal-picker-cancel')?.addEventListener('click', () => {
   $('venue-meal-picker').hidden = true;
 });
-$('meal-picker-confirm')?.addEventListener('click', () => {
+
+// Proceed to rating prompt after picking dish
+$('meal-picker-next')?.addEventListener('click', () => {
   if (!state.selected) return;
   const selectedRadio = document.querySelector('input[name="picked-meal"]:checked');
   let dishName = selectedRadio?.value || '';
@@ -1357,12 +1392,39 @@ $('meal-picker-confirm')?.addEventListener('click', () => {
   if (dishName === '__other__') {
     dishName = window.prompt('Qual prato comeste?') || 'Prato do dia';
   }
-  logMeal(state.selected, dishName, category);
+  state.pendingPickedDish = { dishName, category };
+
+  // Step 2: Show rating prompt with skip option
+  $('meal-picker-step-dish').hidden = true;
+  $('meal-picker-step-rating').hidden = false;
+});
+
+// Star clicks in meal picker
+document.querySelectorAll('#meal-picker-stars .star-btn').forEach(btn => {
+  btn.addEventListener('click', () => setPickerStars(Number(btn.dataset.value)));
+});
+
+// Skip rating: logs meal only
+$('meal-picker-skip')?.addEventListener('click', () => {
+  if (!state.selected || !state.pendingPickedDish) return;
+  logMeal(state.selected, state.pendingPickedDish.dishName, state.pendingPickedDish.category);
   $('venue-meal-picker').hidden = true;
+  state.pendingPickedDish = null;
+  showToast(featureCopy[state.language]?.mealLogged || 'Refeição registada no teu histórico!');
+});
+
+// Confirm rating: logs meal AND saves review
+$('meal-picker-confirm-rate')?.addEventListener('click', () => {
+  if (!state.selected || !state.pendingPickedDish) return;
+  logMeal(state.selected, state.pendingPickedDish.dishName, state.pendingPickedDish.category);
+  saveReview(state.selected.id, state.pickerRating || 5, '', state.selected);
+  $('venue-meal-picker').hidden = true;
+  state.pendingPickedDish = null;
+  showToast('Refeição registada e avaliação guardada!');
 });
 
 /* -------------------------------------------------------------
-   Favorites Page (Sub-tabs: Venues vs Dishes)
+   Favorites Page (Sub-tabs: Strictly Venues vs Dishes)
    ------------------------------------------------------------- */
 $('fav-tab-venues-btn')?.addEventListener('click', () => {
   state.favTab = 'venues';
@@ -1383,6 +1445,7 @@ $('fav-tab-dishes-btn')?.addEventListener('click', () => {
 });
 
 function renderFavoritesPage() {
+  const feature = featureCopy[state.language] || featureCopy.en;
   const favObj = getFavorites();
   const favList = Object.values(favObj);
   const favDishesObj = getFavoriteDishes();
@@ -1399,6 +1462,8 @@ function renderFavoritesPage() {
     dishesHost.hidden = true;
     if (!favList.length) {
       empty.hidden = false;
+      $('favorites-empty-title').textContent = feature.favoritesEmptyVenuesTitle || 'Sem restaurantes guardados';
+      $('favorites-empty-copy').textContent = feature.favoritesEmptyVenuesCopy || 'Toca no coração de qualquer restaurante para guardá-lo aqui.';
       venuesHost.hidden = true;
       venuesHost.replaceChildren();
       return;
@@ -1452,7 +1517,7 @@ function renderFavoritesPage() {
       favBtn.type = 'button';
       favBtn.className = 'card-fav-btn active';
       favBtn.dataset.id = r.id;
-      favBtn.setAttribute('aria-label', featureCopy[state.language]?.favBtnActive || 'Guardado');
+      favBtn.setAttribute('aria-label', feature.favBtnActive || 'Guardado');
       favBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>';
       favBtn.addEventListener('click', e => { e.stopPropagation(); toggleFavorite(fullRestaurant); });
 
@@ -1464,10 +1529,12 @@ function renderFavoritesPage() {
     });
     void loadRestaurantHours(favList);
   } else {
-    // Dishes tab
+    // Strictly dishes only
     venuesHost.hidden = true;
     if (!favDishesList.length) {
       empty.hidden = false;
+      $('favorites-empty-title').textContent = feature.favoritesEmptyDishesTitle || 'Sem pratos guardados';
+      $('favorites-empty-copy').textContent = feature.favoritesEmptyDishesCopy || 'Toca no coração de qualquer prato no menu para guardá-lo aqui.';
       dishesHost.hidden = true;
       dishesHost.replaceChildren();
       return;
@@ -1632,7 +1699,7 @@ function updateProfileAuthUI() {
 }
 
 /* -------------------------------------------------------------
-   Mini Calendar (Profile Tab)
+   Mini Calendar & Day Logging
    ------------------------------------------------------------- */
 function renderMiniCalendar() {
   const grid = $('calendar-grid');
@@ -1687,6 +1754,12 @@ function renderMiniCalendar() {
 
 function selectCalendarDate(dateStr) {
   state.calendarSelectedDate = dateStr;
+  // Keep form compressed when switching days
+  const form = $('cal-log-form');
+  if (form) form.hidden = true;
+  const btn = $('cal-add-meal-btn');
+  const feature = featureCopy[state.language] || featureCopy.en;
+  if (btn) btn.textContent = feature.calAddMeal || '+ Registar refeição neste dia';
   renderMiniCalendar();
 }
 
@@ -1760,23 +1833,97 @@ function populateCalLogRestaurants() {
   });
 }
 
+// Toggle collapsed/expanded state of calendar log form
 $('cal-add-meal-btn')?.addEventListener('click', () => {
   const form = $('cal-log-form');
+  const btn = $('cal-add-meal-btn');
+  const feature = featureCopy[state.language] || featureCopy.en;
   form.hidden = !form.hidden;
   if (!form.hidden) {
     populateCalLogRestaurants();
+    btn.textContent = feature.calCloseForm || '− Fechar formulário';
+  } else {
+    btn.textContent = feature.calAddMeal || '+ Registar refeição neste dia';
   }
 });
+
 $('cal-log-cancel')?.addEventListener('click', () => {
   $('cal-log-form').hidden = true;
+  const feature = featureCopy[state.language] || featureCopy.en;
+  $('cal-add-meal-btn').textContent = feature.calAddMeal || '+ Registar refeição neste dia';
 });
+
+// Load dishes dynamically into dropdown when restaurant is chosen
 $('cal-log-restaurant')?.addEventListener('change', () => {
-  const sel = $('cal-log-restaurant');
-  const opt = sel.selectedOptions[0];
-  if (opt && opt.dataset.fee) {
-    $('cal-log-fee').value = opt.dataset.fee;
+  const selRest = $('cal-log-restaurant');
+  const restId = Number(selRest.value);
+  const dishSelect = $('cal-log-dish');
+  const customDishInput = $('cal-log-dish-custom');
+  customDishInput.hidden = true;
+  customDishInput.value = '';
+
+  if (!restId) {
+    dishSelect.replaceChildren(new Option('Escolhe primeiro o restaurante…', ''));
+    dishSelect.disabled = true;
+    $('cal-log-fee').value = '';
+    return;
+  }
+
+  const rest = state.restaurants.find(r => r.id === restId);
+  if (rest && rest.additional_fee_eur != null) {
+    $('cal-log-fee').value = rest.additional_fee_eur;
+  }
+
+  dishSelect.replaceChildren(new Option('A carregar pratos do menu…', ''));
+  dishSelect.disabled = true;
+
+  const targetDate = state.calendarSelectedDate || state.today;
+  const cacheKey = `${restId}::${targetDate}`;
+  const cachedMenu = menuCache.get(cacheKey);
+
+  function populateDishes(dishes) {
+    dishSelect.replaceChildren();
+    dishSelect.disabled = false;
+    dishSelect.add(new Option('Escolhe um prato…', ''));
+    if (dishes && dishes.length) {
+      dishes.forEach(d => {
+        const translated = state.translationCache[`${state.language}::${d.name}`] || d.name;
+        const opt = new Option(translated, d.name);
+        opt.dataset.category = d.categories?.[0] || 'Mixed';
+        dishSelect.add(opt);
+      });
+    } else {
+      dishSelect.add(new Option('Menu do dia / Refeição', 'Menu do dia'));
+    }
+    dishSelect.add(new Option('Outro prato / Opção livre…', '__other__'));
+  }
+
+  if (cachedMenu) {
+    populateDishes(cachedMenu.dishes);
+  } else {
+    fetch(`/api/restaurants/${encodeURIComponent(restId)}/menu?date=${encodeURIComponent(targetDate)}&name=${encodeURIComponent(rest?.name || '')}`)
+      .then(r => r.json())
+      .then(menu => {
+        menuCache.set(cacheKey, menu);
+        populateDishes(menu.dishes);
+      })
+      .catch(() => {
+        populateDishes([]);
+      });
   }
 });
+
+$('cal-log-dish')?.addEventListener('change', () => {
+  const dishSelect = $('cal-log-dish');
+  const customDishInput = $('cal-log-dish-custom');
+  if (dishSelect.value === '__other__') {
+    customDishInput.hidden = false;
+    customDishInput.focus();
+  } else {
+    customDishInput.hidden = true;
+  }
+});
+
 $('cal-log-form')?.addEventListener('submit', (e) => {
   e.preventDefault();
   const sel = $('cal-log-restaurant');
@@ -1791,14 +1938,22 @@ $('cal-log-form')?.addEventListener('submit', (e) => {
     city: opt.dataset.city || '',
     additional_fee_eur: Number($('cal-log-fee').value) || 0
   };
-  const dishName = $('cal-log-dish').value.trim();
+
+  const dishSelect = $('cal-log-dish');
+  let dishName = dishSelect.value;
+  if (dishName === '__other__') {
+    dishName = $('cal-log-dish-custom').value.trim() || 'Prato personalizado';
+  }
+  const category = dishSelect.selectedOptions[0]?.dataset?.category || 'Mixed';
   const fee = Number($('cal-log-fee').value) || 0;
   const customDate = state.calendarSelectedDate || state.today;
 
-  logMeal(rest, dishName, 'Mixed', customDate);
+  logMeal(rest, dishName, category, customDate);
   $('cal-log-form').reset();
   $('cal-log-form').hidden = true;
-  showToast(featureCopy[state.language]?.calSavedMeal || 'Refeição guardada no histórico!');
+  const feature = featureCopy[state.language] || featureCopy.en;
+  $('cal-add-meal-btn').textContent = feature.calAddMeal || '+ Registar refeição neste dia';
+  showToast(feature.calSavedMeal || 'Refeição guardada no histórico!');
   renderProfilePage();
   renderMiniCalendar();
 });
@@ -1823,17 +1978,31 @@ $('cal-next')?.addEventListener('click', () => {
 });
 
 /* -------------------------------------------------------------
-   Profile Page Rendering
+   Profile Page Rendering & Meal History Pagination
    ------------------------------------------------------------- */
+const HISTORY_PAGE_SIZE = 7;
+
+$('history-prev-btn')?.addEventListener('click', () => {
+  if (state.historyPage > 1) {
+    state.historyPage--;
+    renderProfilePage();
+  }
+});
+
+$('history-next-btn')?.addEventListener('click', () => {
+  const meals = getMeals();
+  const totalPages = Math.ceil(meals.length / HISTORY_PAGE_SIZE) || 1;
+  if (state.historyPage < totalPages) {
+    state.historyPage++;
+    renderProfilePage();
+  }
+});
+
 function renderProfilePage() {
   updateProfileAuthUI();
   const feature = featureCopy[state.language] || featureCopy.en;
   const meals = getMeals();
   const reviews = getReviews();
-  const favObj = getFavorites();
-  const favList = Object.values(favObj);
-  const favDishesObj = getFavoriteDishes();
-  const favDishesList = Object.values(favDishesObj).sort((a, b) => b.timestamp - a.timestamp);
 
   // Spending stat
   const totalSpend = meals.reduce((sum, m) => sum + (Number(m.fee) || 0), 0);
@@ -1864,8 +2033,6 @@ function renderProfilePage() {
   $('profile-reviews-val').textContent = String(Object.keys(reviews).length);
   $('profile-reviews-badge').textContent = String(Object.keys(reviews).length);
   $('profile-history-badge').textContent = String(meals.length);
-  $('profile-favs-badge').textContent = String(favList.length);
-  $('profile-fav-dishes-badge').textContent = String(favDishesList.length);
 
   // Render Mini Calendar
   renderMiniCalendar();
@@ -1920,16 +2087,34 @@ function renderProfilePage() {
     });
   }
 
-  // 2. Meal History Section
+  // 2. Meal History Section with Pagination (Max 7 per page)
   const histHost = $('profile-history-list');
   histHost.replaceChildren();
+
+  const totalPages = Math.ceil(meals.length / HISTORY_PAGE_SIZE) || 1;
+  if (state.historyPage > totalPages) state.historyPage = totalPages;
+  if (state.historyPage < 1) state.historyPage = 1;
+
+  const paginationContainer = $('profile-history-pagination');
+  if (paginationContainer) {
+    if (meals.length > HISTORY_PAGE_SIZE) {
+      paginationContainer.hidden = false;
+      $('history-page-indicator').textContent = `${state.historyPage} / ${totalPages}`;
+      $('history-prev-btn').disabled = state.historyPage <= 1;
+      $('history-next-btn').disabled = state.historyPage >= totalPages;
+    } else {
+      paginationContainer.hidden = true;
+    }
+  }
+
   if (!meals.length) {
     const hint = document.createElement('div');
     hint.className = 'profile-empty-hint';
     hint.textContent = feature.emptyHistory || 'Ainda não registaste refeições.';
     histHost.append(hint);
   } else {
-    meals.slice(0, 15).forEach(m => {
+    const pageMeals = meals.slice((state.historyPage - 1) * HISTORY_PAGE_SIZE, state.historyPage * HISTORY_PAGE_SIZE);
+    pageMeals.forEach(m => {
       const card = document.createElement('div');
       card.className = 'profile-item-card';
       const info = document.createElement('div');
@@ -1960,97 +2145,6 @@ function renderProfilePage() {
         openRestaurant(fullRestaurant);
       });
       histHost.append(card);
-    });
-  }
-
-  // 3. Saved Dishes Section in Profile
-  const favDishesHost = $('profile-fav-dishes-list');
-  if (favDishesHost) {
-    favDishesHost.replaceChildren();
-    if (!favDishesList.length) {
-      const hint = document.createElement('div');
-      hint.className = 'profile-empty-hint';
-      hint.textContent = feature.emptyFavDishes || 'Nenhum prato favorito guardado.';
-      favDishesHost.append(hint);
-    } else {
-      favDishesList.forEach(dishItem => {
-        const card = document.createElement('div');
-        card.className = 'profile-item-card';
-        const info = document.createElement('div');
-        info.className = 'profile-item-info';
-        const name = document.createElement('span');
-        name.className = 'profile-item-name';
-        name.textContent = dishItem.dishName;
-        const sub = document.createElement('p');
-        sub.className = 'profile-item-sub';
-        sub.textContent = `${dishItem.restaurantName} · ${displayAddress(dishItem.restaurantAddress, dishItem.restaurantCity)}`;
-        info.append(name, sub);
-        const right = document.createElement('div');
-        right.className = 'profile-item-right';
-        const fee = document.createElement('span');
-        fee.className = 'fee';
-        fee.textContent = formatMoney(dishItem.fee);
-        const delBtn = document.createElement('button');
-        delBtn.type = 'button';
-        delBtn.className = 'profile-del-btn';
-        delBtn.setAttribute('aria-label', feature.favDishRemoved || 'Remover dos favoritos');
-        delBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z" fill="#cf5544" stroke="#cf5544" stroke-width="1.8"/></svg>';
-        delBtn.addEventListener('click', e => {
-          e.stopPropagation();
-          toggleFavoriteDish({ name: dishItem.dishName }, { id: dishItem.restaurantId });
-        });
-        right.append(fee, delBtn);
-        card.append(info, right);
-        card.addEventListener('click', () => {
-          const fullRestaurant = state.restaurants.find(item => item.id === dishItem.restaurantId) || { id: dishItem.restaurantId, name: dishItem.restaurantName, address: dishItem.restaurantAddress, city: dishItem.restaurantCity, additional_fee_eur: dishItem.fee };
-          switchTab('explore');
-          openRestaurant(fullRestaurant);
-        });
-        favDishesHost.append(card);
-      });
-    }
-  }
-
-  // 4. Saved Venues Section in Profile
-  const favsHost = $('profile-favs-list');
-  favsHost.replaceChildren();
-  if (!favList.length) {
-    const hint = document.createElement('div');
-    hint.className = 'profile-empty-hint';
-    hint.textContent = feature.emptyFavs || 'Nenhum restaurante favorito guardado.';
-    favsHost.append(hint);
-  } else {
-    favList.forEach(fav => {
-      const card = document.createElement('div');
-      card.className = 'profile-item-card';
-      const info = document.createElement('div');
-      info.className = 'profile-item-info';
-      const name = document.createElement('span');
-      name.className = 'profile-item-name';
-      name.textContent = fav.name;
-      const sub = document.createElement('p');
-      sub.className = 'profile-item-sub';
-      sub.textContent = displayAddress(fav.address, fav.city);
-      info.append(name, sub);
-      const right = document.createElement('div');
-      right.className = 'profile-item-right';
-      const fee = document.createElement('span');
-      fee.className = 'fee';
-      fee.textContent = formatMoney(fav.additional_fee_eur);
-      const delBtn = document.createElement('button');
-      delBtn.type = 'button';
-      delBtn.className = 'profile-del-btn';
-      delBtn.setAttribute('aria-label', feature.favRemoved || 'Remover dos favoritos');
-      delBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z" fill="#cf5544" stroke="#cf5544" stroke-width="1.8"/></svg>';
-      delBtn.addEventListener('click', e => { e.stopPropagation(); toggleFavorite(fav); });
-      right.append(fee, delBtn);
-      card.append(info, right);
-      card.addEventListener('click', () => {
-        const fullRestaurant = state.restaurants.find(item => item.id === fav.id) || fav;
-        switchTab('explore');
-        openRestaurant(fullRestaurant);
-      });
-      favsHost.append(card);
     });
   }
 }
@@ -2089,6 +2183,7 @@ $('venue-review-box')?.addEventListener('submit', e => {
   e.preventDefault();
   if (!state.selected) return;
   saveReview(state.selected.id, currentReviewRating, $('review-comment').value, state.selected);
+  showToast(featureCopy[state.language]?.reviewSaved || 'Avaliação guardada!');
   $('venue-review-box').hidden = true;
 });
 $('profile-reset-btn')?.addEventListener('click', clearAllLocalData);

@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=profile-v3">
+    <link rel="stylesheet" href="/styles.css?v=profile-v4">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body>
@@ -107,14 +107,33 @@
               </div>
             </form>
             <div class="venue-meal-picker" id="venue-meal-picker" hidden>
-              <div class="meal-picker-header">
-                <h4 id="meal-picker-title">O que comeste aqui hoje?</h4>
-                <p id="meal-picker-sub">Escolhe o prato para registar com precisão no teu histórico.</p>
+              <div id="meal-picker-step-dish">
+                <div class="meal-picker-header">
+                  <h4 id="meal-picker-title">O que comeste aqui hoje?</h4>
+                  <p id="meal-picker-sub">Escolhe o prato para registar com precisão no teu histórico.</p>
+                </div>
+                <div class="meal-picker-options" id="meal-picker-options"></div>
+                <div class="meal-picker-actions">
+                  <button type="button" class="review-cancel-btn" id="meal-picker-cancel">Cancelar</button>
+                  <button type="button" class="review-save-btn" id="meal-picker-next">Continuar</button>
+                </div>
               </div>
-              <div class="meal-picker-options" id="meal-picker-options"></div>
-              <div class="meal-picker-actions">
-                <button type="button" class="review-cancel-btn" id="meal-picker-cancel">Cancelar</button>
-                <button type="button" class="review-save-btn" id="meal-picker-confirm">Confirmar refeição</button>
+              <div id="meal-picker-step-rating" hidden>
+                <div class="meal-picker-header">
+                  <h4 id="meal-picker-rate-title">Como avalias este restaurante?</h4>
+                  <p id="meal-picker-rate-sub">Dá a tua nota em estrelas ou podes saltar este passo.</p>
+                </div>
+                <div class="star-rating" id="meal-picker-stars">
+                  <button type="button" class="star-btn" data-value="1" aria-label="1 estrela"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                  <button type="button" class="star-btn" data-value="2" aria-label="2 estrelas"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                  <button type="button" class="star-btn" data-value="3" aria-label="3 estrelas"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                  <button type="button" class="star-btn" data-value="4" aria-label="4 estrelas"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                  <button type="button" class="star-btn selected" data-value="5" aria-label="5 estrelas"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                </div>
+                <div class="meal-picker-actions">
+                  <button type="button" class="review-cancel-btn" id="meal-picker-skip">Saltar</button>
+                  <button type="button" class="review-save-btn" id="meal-picker-confirm-rate">Avaliar e registar</button>
+                </div>
               </div>
             </div>
             <div class="menu-divider"><div class="date-heading"><button class="date-arrow" id="date-prev" type="button" aria-label="Dia anterior"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h3 id="menu-title">Pratos de hoje</h3><button class="date-arrow" id="date-next" type="button" aria-label="Dia seguinte"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
@@ -248,11 +267,16 @@
             <h4 id="cal-log-form-title">Registar refeição</h4>
             <div class="auth-field-wrap">
               <label for="cal-log-restaurant" id="cal-log-rest-label">Restaurante</label>
-              <select id="cal-log-restaurant" required></select>
+              <select id="cal-log-restaurant" required>
+                <option value="">Escolhe um restaurante…</option>
+              </select>
             </div>
             <div class="auth-field-wrap">
               <label for="cal-log-dish" id="cal-log-dish-label">Prato / Comida</label>
-              <input type="text" id="cal-log-dish" placeholder="Nome do prato ou comida" required>
+              <select id="cal-log-dish" required disabled>
+                <option value="">Escolhe primeiro o restaurante…</option>
+              </select>
+              <input type="text" id="cal-log-dish-custom" placeholder="Escreve o nome do prato" hidden>
             </div>
             <div class="auth-field-wrap">
               <label for="cal-log-fee" id="cal-log-fee-label">Copagamento (€)</label>
@@ -279,22 +303,11 @@
             <span class="profile-section-badge" id="profile-history-badge">0</span>
           </div>
           <div id="profile-history-list" class="profile-items-list"></div>
-        </section>
-
-        <section class="profile-section">
-          <div class="profile-section-header">
-            <h3 id="profile-sec-fav-dishes">Pratos Favoritos</h3>
-            <span class="profile-section-badge" id="profile-fav-dishes-badge">0</span>
+          <div class="profile-pagination" id="profile-history-pagination" hidden>
+            <button type="button" class="page-nav-btn" id="history-prev-btn" aria-label="Página anterior">Anterior</button>
+            <span class="page-indicator" id="history-page-indicator">1 / 1</span>
+            <button type="button" class="page-nav-btn" id="history-next-btn" aria-label="Página seguinte">Seguinte</button>
           </div>
-          <div id="profile-fav-dishes-list" class="profile-items-list"></div>
-        </section>
-
-        <section class="profile-section">
-          <div class="profile-section-header">
-            <h3 id="profile-sec-favs">Restaurantes Favoritos</h3>
-            <span class="profile-section-badge" id="profile-favs-badge">0</span>
-          </div>
-          <div id="profile-favs-list" class="profile-items-list"></div>
         </section>
 
         <div class="profile-footer-actions">
@@ -318,7 +331,7 @@
       </button>
     </nav>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=profile-v3" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=18').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=profile-v4" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=19').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>
