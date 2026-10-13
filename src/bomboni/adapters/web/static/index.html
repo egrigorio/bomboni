@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=v22">
+    <link rel="stylesheet" href="/styles.css?v=v23">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body data-tab="explore">
@@ -197,7 +197,7 @@
 
         <!-- Auth Card when not logged in -->
         <div class="profile-auth-card" id="profile-auth-card">
-          <div class="auth-toggle">
+          <div class="auth-toggle" id="auth-toggle">
             <button type="button" class="auth-toggle-btn active" id="auth-tab-login">Entrar</button>
             <button type="button" class="auth-toggle-btn" id="auth-tab-register">Criar conta</button>
           </div>
@@ -216,6 +216,23 @@
             </div>
             <div id="auth-error" class="auth-error" hidden></div>
             <button type="submit" class="auth-submit-btn" id="auth-submit-btn">Entrar</button>
+          </form>
+
+          <form id="auth-verify-form" class="auth-form" hidden>
+            <div class="auth-verify-info">
+              <h4 id="auth-verify-title">Verificar email</h4>
+              <p id="auth-verify-sub">Insere o código de 4 dígitos enviado para <strong id="auth-verify-email-display"></strong>.</p>
+            </div>
+            <div class="auth-field-wrap">
+              <label for="auth-verify-code" id="auth-verify-code-label">Código de 4 dígitos</label>
+              <input type="text" id="auth-verify-code" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" placeholder="1234" required autocomplete="one-time-code" class="auth-code-input">
+            </div>
+            <div id="auth-verify-error" class="auth-error" hidden></div>
+            <button type="submit" class="auth-submit-btn" id="auth-verify-submit-btn">Verificar e criar conta</button>
+            <div class="auth-verify-actions">
+              <button type="button" class="auth-secondary-btn" id="auth-verify-resend-btn">Reenviar código</button>
+              <button type="button" class="auth-secondary-btn" id="auth-verify-back-btn">Voltar</button>
+            </div>
           </form>
         </div>
 
@@ -332,7 +349,7 @@
       </button>
     </nav>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=v22" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v22').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=v23" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v23').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>

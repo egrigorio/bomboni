@@ -152,7 +152,29 @@ def make_handler(service: RestaurantService, translator: MyMemoryTranslator) -> 
                 self._send_json(502, {"error": "The restaurant source could not be reached.", "detail": str(exc)})
 
         def do_POST(self) -> None:  # noqa: N802
-            if urlparse(self.path).path != "/api/translate":
+            path = urlparse(self.path).path
+            if path == "/api/send-code":
+                try:
+                    length = int(self.headers.get("Content-Length", "0"))
+                    if length < 1 or length > 20_000:
+                        raise ValueError("Request body is missing or too large.")
+                    payload = json.loads(self.rfile.read(length))
+                    email = payload.get("email")
+                    if not isinstance(email, str) or "@" not in email or len(email) < 3:
+                        raise ValueError("A valid email address is required.")
+                    import secrets
+                    code = f"{secrets.randbelow(10000):04d}"
+                    self._send_json(200, {
+                        "status": "sent",
+                        "email": email.strip().lower(),
+                        "code": code,
+                        "message": f"Verification code sent to {email}",
+                    })
+                except (ValueError, TypeError, json.JSONDecodeError) as exc:
+                    self._send_json(400, {"error": str(exc)})
+                return
+
+            if path != "/api/translate":
                 self._send_json(404, {"error": "Not found"})
                 return
             try:

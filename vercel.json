@@ -11,6 +11,10 @@
   },
   "rewrites": [
     {
+      "source": "/api/send-code",
+      "destination": "/api/send_code"
+    },
+    {
       "source": "/api/restaurant-hours",
       "destination": "/api/restaurant_hours"
     },
