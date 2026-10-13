@@ -1852,7 +1852,7 @@ $('auth-form')?.addEventListener('submit', async (e) => {
     const verifyErr = $('auth-verify-error');
     if (verifyErr) verifyErr.hidden = true;
 
-    showToast(`${feature.authCodeSentToast || 'Código de verificação enviado para'} ${email}: ${code}`);
+    showToast(`${feature.authCodeSentToast || 'Código de verificação enviado para'} ${email}`);
   } else {
     const user = users[email] || Object.values(users).find(u => u.username.toLowerCase() === email);
     if (!user || user.password !== password) {
@@ -1917,7 +1917,7 @@ $('auth-verify-resend-btn')?.addEventListener('click', async () => {
   if (codeInput) { codeInput.value = ''; codeInput.focus(); }
   const verifyErr = $('auth-verify-error');
   if (verifyErr) verifyErr.hidden = true;
-  showToast(`${feature.authCodeResentToast || 'Novo código de verificação enviado para'} ${pendingRegistration.email}: ${newCode}`);
+  showToast(`${feature.authCodeResentToast || 'Novo código de verificação enviado para'} ${pendingRegistration.email}`);
 });
 
 $('auth-verify-back-btn')?.addEventListener('click', () => {
