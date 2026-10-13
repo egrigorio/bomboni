@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=v22">
+    <link rel="stylesheet" href="/styles.css?v=v23">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body data-tab="explore">
@@ -23,6 +23,10 @@
           <span class="brand-word">bomboni<span class="brand-period">.</span></span>
         </a>
         <div class="topbar-actions">
+          <button class="mcp-config-btn" id="mcp-config-btn" type="button" aria-label="Configurar MCP Server">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-6h2zm0-8h-2V7h2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span id="mcp-btn-label">MCP Server</span>
+          </button>
           <button class="location-chip" id="location-button" type="button"><span class="live-dot"></span><span id="location-label">Eslovénia</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
           <label class="language-picker" aria-label="Idioma">
             <span class="globe" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M1.8 8h12.4M8 1.8a10 10 0 0 1 0 12.4M8 1.8a10 10 0 0 0 0 12.4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></span>
@@ -317,6 +321,59 @@
       </main>
       <footer class="footer" id="footer"><button class="footer-install" id="footer-install" type="button">Instalar app</button><a href="https://www.studentska-prehrana.si/en/restaurant" target="_blank" rel="noreferrer" id="footer-source">Fonte oficial</a></footer>
     </div>
+
+    <!-- Desktop MCP Configuration Modal -->
+    <div class="mcp-modal-backdrop" id="mcp-modal" role="dialog" aria-modal="true" aria-labelledby="mcp-modal-title" hidden>
+      <div class="mcp-modal-card">
+        <button class="mcp-modal-close" id="mcp-modal-close" type="button" aria-label="Fechar modal">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="mcp-modal-header">
+          <span class="page-eyebrow" id="mcp-modal-eyebrow">INTEGRAÇÃO DE IA</span>
+          <h2 id="mcp-modal-title">Configurar MCP Server</h2>
+          <p id="mcp-modal-desc">Ligue assistentes de IA (Cursor, Claude, VS Code, Windsurf) ao servidor MCP do Bomboni hospedado na Vercel.</p>
+        </div>
+
+        <div class="mcp-modal-body">
+          <div class="mcp-client-tabs" role="tablist">
+            <button type="button" class="mcp-client-tab active" data-client="cursor" role="tab" aria-selected="true">Cursor</button>
+            <button type="button" class="mcp-client-tab" data-client="claude" role="tab" aria-selected="false">Claude Desktop</button>
+            <button type="button" class="mcp-client-tab" data-client="vscode" role="tab" aria-selected="false">VS Code / Continue</button>
+            <button type="button" class="mcp-client-tab" data-client="windsurf" role="tab" aria-selected="false">Windsurf</button>
+            <button type="button" class="mcp-client-tab" data-client="inspector" role="tab" aria-selected="false">Inspector</button>
+          </div>
+
+          <div class="mcp-transport-toggle">
+            <span class="field-label" id="mcp-transport-label">Servidor</span>
+            <div class="mcp-transport-options">
+              <label><input type="radio" name="mcp-transport" value="remote" checked><span id="mcp-opt-remote">Vercel Remote (SSE / HTTP)</span></label>
+              <label><input type="radio" name="mcp-transport" value="local"><span id="mcp-opt-local">Local Stdio (CLI)</span></label>
+            </div>
+          </div>
+
+          <div class="mcp-config-box">
+            <div class="mcp-config-box-header">
+              <span class="mcp-config-filename" id="mcp-config-filename">.cursor/mcp.json</span>
+              <button type="button" class="mcp-copy-btn" id="mcp-copy-btn">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+                <span id="mcp-copy-btn-text">Copiar Configuração</span>
+              </button>
+            </div>
+            <pre class="mcp-config-code"><code id="mcp-config-code"></code></pre>
+          </div>
+
+          <div class="mcp-instructions" id="mcp-instructions">
+            <h4>Como instalar no Cursor:</h4>
+            <ol id="mcp-steps-list">
+              <li>Abra o Cursor e vá a <strong>Settings &gt; Cursor Settings &gt; MCP</strong>.</li>
+              <li>Crie ou edite o ficheiro <code>.cursor/mcp.json</code> no seu projeto.</li>
+              <li>Cole o JSON acima e guarde. O servidor <code>bomboni</code> estará ativo imediatamente.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <nav class="mobile-tab-bar" id="mobile-tab-bar" aria-label="Navegação principal">
       <button class="mobile-tab active" type="button" data-tab="explore" aria-current="page">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span data-tab-label="explore">Explorar</span>
@@ -332,7 +389,7 @@
       </button>
     </nav>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=v22" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v22').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=v23" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v23').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>

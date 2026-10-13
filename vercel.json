@@ -17,6 +17,10 @@
     {
       "source": "/api/restaurants/:restaurantId/menu",
       "destination": "/api/menu?restaurant_id=:restaurantId"
+    },
+    {
+      "source": "/api/mcp/:path*",
+      "destination": "/api/mcp"
     }
   ],
   "headers": [

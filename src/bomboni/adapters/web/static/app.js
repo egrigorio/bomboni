@@ -2377,6 +2377,438 @@ document.addEventListener('keydown', event => {
   }
 });
 
+/* -------------------------------------------------------------
+   Desktop MCP Configuration Modal
+   ------------------------------------------------------------- */
+const mcpCopy = {
+  pt: {
+    btnLabel: 'MCP Server',
+    eyebrow: 'INTEGRAÇÃO DE IA',
+    title: 'Configurar MCP Server',
+    desc: 'Ligue assistentes de IA (Cursor, Claude, VS Code, Windsurf) ao servidor MCP do Bomboni hospedado na Vercel.',
+    serverLabel: 'Servidor',
+    optRemote: 'Vercel Remote (SSE / HTTP)',
+    optLocal: 'Local Stdio (CLI)',
+    copyBtn: 'Copiar Configuração',
+    copiedMsg: 'Configuração copiada para a área de transferência!',
+    instructionsTitle: clientName => `Como instalar no ${clientName}:`,
+    steps: {
+      cursor: [
+        'Abra o Cursor e vá a <strong>Settings &gt; Cursor Settings &gt; MCP</strong>.',
+        'Crie ou edite o ficheiro <code>.cursor/mcp.json</code> no seu projeto (ou adicione globalmente nas Definições).',
+        'Cole o JSON acima e guarde. O servidor MCP <code>bomboni</code> ficará ativo imediatamente.'
+      ],
+      claude: [
+        'Abra a aplicação Claude Desktop.',
+        'Vá a <strong>Settings &gt; Developer &gt; Edit Config</strong> para abrir <code>claude_desktop_config.json</code>.',
+        'Cole a chave <code>mcpServers.bomboni</code> no seu ficheiro de configuração e reinicie o Claude Desktop.'
+      ],
+      vscode: [
+        'Instale a extensão Continue ou MCP no VS Code.',
+        'Abra o ficheiro <code>config.json</code> do Continue (acessível pelo ícone de engrenagem da extensão).',
+        'Adicione o bloco do Bomboni à lista de <code>mcpServers</code>.'
+      ],
+      windsurf: [
+        'Abra o Windsurf e vá às Definições do projeto.',
+        'Abra o ficheiro <code>mcp_config.json</code> em <code>~/.codeium/windsurf/mcp_config.json</code>.',
+        'Cole o objeto de configuração do Bomboni sob <code>mcpServers</code>.'
+      ],
+      inspector: [
+        'Instale a ferramenta oficial MCP Inspector: <code>npx @modelcontextprotocol/inspector</code>.',
+        'Selecione o transporte <strong>SSE</strong> e introduza o URL do endpoint.',
+        'Clique em <strong>Connect</strong> para testar e inspecionar todas as ferramentas em tempo real.'
+      ]
+    }
+  },
+  en: {
+    btnLabel: 'MCP Server',
+    eyebrow: 'AI INTEGRATION',
+    title: 'Configure MCP Server',
+    desc: 'Connect AI assistants (Cursor, Claude, VS Code, Windsurf) to Bomboni’s MCP server hosted on Vercel.',
+    serverLabel: 'Server',
+    optRemote: 'Vercel Remote (SSE / HTTP)',
+    optLocal: 'Local Stdio (CLI)',
+    copyBtn: 'Copy Configuration',
+    copiedMsg: 'Configuration copied to clipboard!',
+    instructionsTitle: clientName => `How to install in ${clientName}:`,
+    steps: {
+      cursor: [
+        'Open Cursor and go to <strong>Settings &gt; Cursor Settings &gt; MCP</strong>.',
+        'Create or edit <code>.cursor/mcp.json</code> in your project (or add globally in Settings).',
+        'Paste the JSON above and save. The <code>bomboni</code> MCP server will connect instantly.'
+      ],
+      claude: [
+        'Open the Claude Desktop app.',
+        'Go to <strong>Settings &gt; Developer &gt; Edit Config</strong> to open <code>claude_desktop_config.json</code>.',
+        'Add the <code>mcpServers.bomboni</code> object into your config and restart Claude Desktop.'
+      ],
+      vscode: [
+        'Install the Continue or MCP extension in VS Code.',
+        'Open Continue’s <code>config.json</code> (from the extension gear icon).',
+        'Add the Bomboni entry into your <code>mcpServers</code> array or object.'
+      ],
+      windsurf: [
+        'Open Windsurf and go to project settings.',
+        'Open <code>mcp_config.json</code> at <code>~/.codeium/windsurf/mcp_config.json</code>.',
+        'Paste the Bomboni server block under <code>mcpServers</code>.'
+      ],
+      inspector: [
+        'Run the official MCP Inspector: <code>npx @modelcontextprotocol/inspector</code>.',
+        'Select <strong>SSE</strong> transport and enter the endpoint URL.',
+        'Click <strong>Connect</strong> to test and inspect all tools in real-time.'
+      ]
+    }
+  },
+  es: {
+    btnLabel: 'MCP Server',
+    eyebrow: 'INTEGRACIÓN DE IA',
+    title: 'Configurar MCP Server',
+    desc: 'Conecta asistentes de IA (Cursor, Claude, VS Code, Windsurf) al servidor MCP de Bomboni alojado en Vercel.',
+    serverLabel: 'Servidor',
+    optRemote: 'Vercel Remote (SSE / HTTP)',
+    optLocal: 'Local Stdio (CLI)',
+    copyBtn: 'Copiar Configuración',
+    copiedMsg: '¡Configuración copiada al portapapeles!',
+    instructionsTitle: clientName => `Cómo instalar en ${clientName}:`,
+    steps: {
+      cursor: [
+        'Abre Cursor y ve a <strong>Settings &gt; Cursor Settings &gt; MCP</strong>.',
+        'Crea o edita el archivo <code>.cursor/mcp.json</code> en tu proyecto.',
+        'Pega el JSON anterior y guarda. El servidor MCP <code>bomboni</code> estará activo de inmediato.'
+      ],
+      claude: [
+        'Abre la aplicación Claude Desktop.',
+        'Ve a <strong>Settings &gt; Developer &gt; Edit Config</strong> para abrir <code>claude_desktop_config.json</code>.',
+        'Añade el objeto <code>mcpServers.bomboni</code> a tu configuración y reinicia Claude Desktop.'
+      ],
+      vscode: [
+        'Instala la extensión Continue o MCP en VS Code.',
+        'Abre el archivo <code>config.json</code> de Continue.',
+        'Añade el bloque de Bomboni bajo <code>mcpServers</code>.'
+      ],
+      windsurf: [
+        'Abre Windsurf y ve a los ajustes de proyecto.',
+        'Abre el archivo <code>mcp_config.json</code> en <code>~/.codeium/windsurf/mcp_config.json</code>.',
+        'Pega la configuración de Bomboni bajo <code>mcpServers</code>.'
+      ],
+      inspector: [
+        'Ejecuta la herramienta oficial MCP Inspector: <code>npx @modelcontextprotocol/inspector</code>.',
+        'Selecciona el transporte <strong>SSE</strong> e introduce la URL del endpoint.',
+        'Haz clic en <strong>Connect</strong> para probar e inspeccionar las herramientas en tiempo real.'
+      ]
+    }
+  },
+  de: {
+    btnLabel: 'MCP Server',
+    eyebrow: 'KI-INTEGRATION',
+    title: 'MCP-Server konfigurieren',
+    desc: 'Verbinde KI-Assistenten (Cursor, Claude, VS Code, Windsurf) mit dem auf Vercel gehosteten MCP-Server von Bomboni.',
+    serverLabel: 'Server',
+    optRemote: 'Vercel Remote (SSE / HTTP)',
+    optLocal: 'Local Stdio (CLI)',
+    copyBtn: 'Konfiguration kopieren',
+    copiedMsg: 'Konfiguration in die Zwischenablage kopiert!',
+    instructionsTitle: clientName => `So installierst du es in ${clientName}:`,
+    steps: {
+      cursor: [
+        'Öffne Cursor und gehe zu <strong>Settings &gt; Cursor Settings &gt; MCP</strong>.',
+        'Erstelle oder bearbeite die Datei <code>.cursor/mcp.json</code> in deinem Projekt.',
+        'Füge das JSON oben ein und speichere.'
+      ],
+      claude: [
+        'Öffne die Claude Desktop App.',
+        'Gehe zu <strong>Settings &gt; Developer &gt; Edit Config</strong> (<code>claude_desktop_config.json</code>).',
+        'Füge <code>mcpServers.bomboni</code> hinzu und starte Claude Desktop neu.'
+      ],
+      vscode: [
+        'Installiere die Continue- oder MCP-Erweiterung in VS Code.',
+        'Öffne die Datei <code>config.json</code> von Continue.',
+        'Füge den Bomboni-Eintrag unter <code>mcpServers</code> hinzu.'
+      ],
+      windsurf: [
+        'Öffne Windsurf und gehe zu den Einstellungen.',
+        'Öffne <code>~/.codeium/windsurf/mcp_config.json</code>.',
+        'Füge den Bomboni-Serverblock unter <code>mcpServers</code> ein.'
+      ],
+      inspector: [
+        'Führe den MCP Inspector aus: <code>npx @modelcontextprotocol/inspector</code>.',
+        'Wähle <strong>SSE</strong> als Transport aus und gib die Endpoint-URL ein.',
+        'Klicke auf <strong>Connect</strong> zum Testen.'
+      ]
+    }
+  },
+  it: {
+    btnLabel: 'MCP Server',
+    eyebrow: 'INTEGRAZIONE IA',
+    title: 'Configura MCP Server',
+    desc: 'Connetti assistenti IA (Cursor, Claude, VS Code, Windsurf) al server MCP di Bomboni ospitato su Vercel.',
+    serverLabel: 'Server',
+    optRemote: 'Vercel Remote (SSE / HTTP)',
+    optLocal: 'Local Stdio (CLI)',
+    copyBtn: 'Copia Configurazione',
+    copiedMsg: 'Configurazione copiata negli appunti!',
+    instructionsTitle: clientName => `Come installare in ${clientName}:`,
+    steps: {
+      cursor: [
+        'Apri Cursor e vai su <strong>Settings &gt; Cursor Settings &gt; MCP</strong>.',
+        'Crea o modifica il file <code>.cursor/mcp.json</code> nel tuo progetto.',
+        'Incolla il JSON e salva. Il server MCP <code>bomboni</code> sarà subito attivo.'
+      ],
+      claude: [
+        'Apri l’app Claude Desktop.',
+        'Vai su <strong>Settings &gt; Developer &gt; Edit Config</strong> per aprire <code>claude_desktop_config.json</code>.',
+        'Aggiungi l’oggetto <code>mcpServers.bomboni</code> e riavvia Claude Desktop.'
+      ],
+      vscode: [
+        'Installa l’estensione Continue o MCP in VS Code.',
+        'Apri il file <code>config.json</code> di Continue.',
+        'Aggiungi la voce Bomboni sotto <code>mcpServers</code>.'
+      ],
+      windsurf: [
+        'Apri Windsurf e vai alle impostazioni di progetto.',
+        'Apri <code>mcp_config.json</code> in <code>~/.codeium/windsurf/mcp_config.json</code>.',
+        'Incolla il blocco Bomboni sotto <code>mcpServers</code>.'
+      ],
+      inspector: [
+        'Esegui MCP Inspector: <code>npx @modelcontextprotocol/inspector</code>.',
+        'Seleziona il trasporto <strong>SSE</strong> e inserisci l’URL del server.',
+        'Clicca su <strong>Connect</strong> per testare in tempo reale.'
+      ]
+    }
+  },
+  fr: {
+    btnLabel: 'MCP Server',
+    eyebrow: 'INTÉGRATION IA',
+    title: 'Configurer MCP Server',
+    desc: 'Connectez les assistants IA (Cursor, Claude, VS Code, Windsurf) au serveur MCP de Bomboni hébergé sur Vercel.',
+    serverLabel: 'Serveur',
+    optRemote: 'Vercel Remote (SSE / HTTP)',
+    optLocal: 'Local Stdio (CLI)',
+    copyBtn: 'Copier la Configuration',
+    copiedMsg: 'Configuration copiée dans le presse-papiers !',
+    instructionsTitle: clientName => `Comment installer dans ${clientName} :`,
+    steps: {
+      cursor: [
+        'Ouvrez Cursor et allez dans <strong>Settings &gt; Cursor Settings &gt; MCP</strong>.',
+        'Créez ou modifiez <code>.cursor/mcp.json</code> dans votre projet.',
+        'Collez le JSON ci-dessus et enregistrez. Le serveur <code>bomboni</code> sera actif immédiatement.'
+      ],
+      claude: [
+        'Ouvrez l’application Claude Desktop.',
+        'Allez dans <strong>Settings &gt; Developer &gt; Edit Config</strong> (<code>claude_desktop_config.json</code>).',
+        'Ajoutez la clé <code>mcpServers.bomboni</code> et redémarrez Claude Desktop.'
+      ],
+      vscode: [
+        'Installez l’extension Continue ou MCP dans VS Code.',
+        'Ouvrez le fichier <code>config.json</code> de Continue.',
+        'Ajoutez l’entrée Bomboni dans <code>mcpServers</code>.'
+      ],
+      windsurf: [
+        'Ouvrez Windsurf et allez dans les paramètres de projet.',
+        'Ouvrez <code>mcp_config.json</code> sous <code>~/.codeium/windsurf/mcp_config.json</code>.',
+        'Collez la configuration Bomboni sous <code>mcpServers</code>.'
+      ],
+      inspector: [
+        'Lancez l’outil officiel MCP Inspector : <code>npx @modelcontextprotocol/inspector</code>.',
+        'Sélectionnez le transport <strong>SSE</strong> et saisissez l’URL de l’endpoint.',
+        'Cliquez sur <strong>Connect</strong> pour tester en temps réel.'
+      ]
+    }
+  },
+  ca: {
+    btnLabel: 'MCP Server',
+    eyebrow: 'INTEGRACIÓ D’IA',
+    title: 'Configurar MCP Server',
+    desc: 'Connecta assistents d’IA (Cursor, Claude, VS Code, Windsurf) al servidor MCP de Bomboni hostatjat a Vercel.',
+    serverLabel: 'Servidor',
+    optRemote: 'Vercel Remote (SSE / HTTP)',
+    optLocal: 'Local Stdio (CLI)',
+    copyBtn: 'Copiar Configuració',
+    copiedMsg: 'Configuració copiada al porta-retalls!',
+    instructionsTitle: clientName => `Com instal·lar a ${clientName}:`,
+    steps: {
+      cursor: [
+        'Obre Cursor i ves a <strong>Settings &gt; Cursor Settings &gt; MCP</strong>.',
+        'Crea o edita el fitxer <code>.cursor/mcp.json</code> al teu projecte.',
+        'Enganxa el JSON anterior i desa. El servidor MCP <code>bomboni</code> s’activarà de seguida.'
+      ],
+      claude: [
+        'Obre l’aplicació Claude Desktop.',
+        'Ves a <strong>Settings &gt; Developer &gt; Edit Config</strong> per obrir <code>claude_desktop_config.json</code>.',
+        'Afegeix l’objecte <code>mcpServers.bomboni</code> a la configuració i reinicia Claude Desktop.'
+      ],
+      vscode: [
+        'Instal·la l’extensió Continue o MCP a VS Code.',
+        'Obre el fitxer <code>config.json</code> de Continue.',
+        'Afegeix el bloc de Bomboni a <code>mcpServers</code>.'
+      ],
+      windsurf: [
+        'Obre Windsurf i ves a les opcions de projecte.',
+        'Obre <code>mcp_config.json</code> a <code>~/.codeium/windsurf/mcp_config.json</code>.',
+        'Enganxa la configuració de Bomboni sota <code>mcpServers</code>.'
+      ],
+      inspector: [
+        'Executa la eina oficial MCP Inspector: <code>npx @modelcontextprotocol/inspector</code>.',
+        'Selecciona el transport <strong>SSE</strong> e introdueix l’URL de l’endpoint.',
+        'Fes clic a <strong>Connect</strong> per provar en temps real.'
+      ]
+    }
+  }
+};
+
+let activeMcpClient = 'cursor';
+let activeMcpTransport = 'remote';
+
+function getMcpEndpointUrl() {
+  const origin = window.location.origin && window.location.origin !== 'null' ? window.location.origin : 'https://bomboni.vercel.app';
+  return `${origin}/api/mcp/sse`;
+}
+
+function generateMcpConfigJSON(client, transport) {
+  const endpointUrl = getMcpEndpointUrl();
+  const remoteServerObj = {
+    url: endpointUrl,
+    transport: "sse"
+  };
+  const localServerObj = {
+    command: "bomboni-mcp",
+    args: []
+  };
+  const serverObj = transport === 'remote' ? remoteServerObj : localServerObj;
+
+  if (client === 'cursor') {
+    return JSON.stringify({
+      mcpServers: {
+        bomboni: serverObj
+      }
+    }, null, 2);
+  }
+  if (client === 'claude') {
+    return JSON.stringify({
+      mcpServers: {
+        bomboni: serverObj
+      }
+    }, null, 2);
+  }
+  if (client === 'vscode') {
+    return JSON.stringify({
+      mcpServers: [
+        {
+          name: "bomboni",
+          ...(transport === 'remote' ? { url: endpointUrl, transport: "sse" } : { command: "bomboni-mcp" })
+        }
+      ]
+    }, null, 2);
+  }
+  if (client === 'windsurf') {
+    return JSON.stringify({
+      mcpServers: {
+        bomboni: serverObj
+      }
+    }, null, 2);
+  }
+  if (client === 'inspector') {
+    if (transport === 'remote') {
+      return `npx @modelcontextprotocol/inspector ${endpointUrl}`;
+    }
+    return `npx @modelcontextprotocol/inspector bomboni-mcp`;
+  }
+  return '';
+}
+
+function updateMcpModalContent() {
+  const copyObj = mcpCopy[state.language] || mcpCopy.en;
+  const mcpBtnLabel = $('mcp-btn-label');
+  if (mcpBtnLabel) mcpBtnLabel.textContent = copyObj.btnLabel;
+  $('mcp-modal-eyebrow').textContent = copyObj.eyebrow;
+  $('mcp-modal-title').textContent = copyObj.title;
+  $('mcp-modal-desc').textContent = copyObj.desc;
+  $('mcp-transport-label').textContent = copyObj.serverLabel;
+  $('mcp-opt-remote').textContent = copyObj.optRemote;
+  $('mcp-opt-local').textContent = copyObj.optLocal;
+  $('mcp-copy-btn-text').textContent = copyObj.copyBtn;
+
+  const filenames = {
+    cursor: '.cursor/mcp.json',
+    claude: 'claude_desktop_config.json',
+    vscode: '.continue/config.json',
+    windsurf: '~/.codeium/windsurf/mcp_config.json',
+    inspector: 'Terminal Command'
+  };
+  const clientNames = {
+    cursor: 'Cursor',
+    claude: 'Claude Desktop',
+    vscode: 'VS Code / Continue',
+    windsurf: 'Windsurf',
+    inspector: 'MCP Inspector'
+  };
+
+  $('mcp-config-filename').textContent = filenames[activeMcpClient] || '.cursor/mcp.json';
+  $('mcp-config-code').textContent = generateMcpConfigJSON(activeMcpClient, activeMcpTransport);
+
+  const instTitle = $('mcp-instructions')?.querySelector('h4');
+  if (instTitle) instTitle.textContent = copyObj.instructionsTitle(clientNames[activeMcpClient]);
+
+  const stepsList = $('mcp-steps-list');
+  if (stepsList && copyObj.steps[activeMcpClient]) {
+    stepsList.replaceChildren();
+    copyObj.steps[activeMcpClient].forEach(stepHtml => {
+      const li = document.createElement('li');
+      li.innerHTML = stepHtml;
+      stepsList.append(li);
+    });
+  }
+}
+
+function openMcpModal() {
+  const modal = $('mcp-modal');
+  if (!modal) return;
+  modal.hidden = false;
+  updateMcpModalContent();
+  $('mcp-modal-close')?.focus();
+}
+
+function closeMcpModal() {
+  const modal = $('mcp-modal');
+  if (modal) modal.hidden = true;
+}
+
+$('mcp-config-btn')?.addEventListener('click', openMcpModal);
+$('mcp-modal-close')?.addEventListener('click', closeMcpModal);
+$('mcp-modal')?.addEventListener('click', (e) => {
+  if (e.target === $('mcp-modal')) closeMcpModal();
+});
+
+document.querySelectorAll('.mcp-client-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.mcp-client-tab').forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    activeMcpClient = tab.dataset.client;
+    updateMcpModalContent();
+  });
+});
+
+document.querySelectorAll('input[name="mcp-transport"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    activeMcpTransport = radio.value;
+    updateMcpModalContent();
+  });
+});
+
+$('mcp-copy-btn')?.addEventListener('click', () => {
+  const code = $('mcp-config-code')?.textContent || '';
+  const copyObj = mcpCopy[state.language] || mcpCopy.en;
+  navigator.clipboard.writeText(code).then(() => {
+    showToast(copyObj.copiedMsg || 'Configuração copiada!');
+  }).catch(() => {
+    showToast('Incapaz de copiar para a área de transferência.');
+  });
+});
+
 /* PWA Installation */
 async function installApp() {
   if (deferredInstallPrompt) {
