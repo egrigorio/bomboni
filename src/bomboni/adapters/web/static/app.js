@@ -47,6 +47,8 @@ const drawSampleLabel={pt:(scanned,total)=>`Sorteio entre ${scanned} de ${total}
 const drawNoSampleLabel={pt:n=>`Não encontrei uma opção nos ${n} restaurantes sorteados.`,en:n=>`No match in the ${n} restaurants checked.`,es:n=>`No encontré opciones en los ${n} restaurantes consultados.`,de:n=>`Keine passende Option unter den ${n} geprüften Restaurants.`,it:n=>`Nessuna opzione tra i ${n} ristoranti controllati.`,fr:n=>`Aucune option parmi les ${n} restaurants vérifiés.`};
 const installCopy={pt:{label:'Instalar app',ios:'No Safari, toque em Partilhar e escolha “Adicionar ao ecrã principal”.',browser:'Use o menu do navegador para instalar o Bomboni.'},en:{label:'Install app',ios:'In Safari, tap Share and choose “Add to Home Screen”.',browser:'Use your browser menu to install Bomboni.'},es:{label:'Instalar app',ios:'En Safari, toca Compartir y elige “Añadir a pantalla de inicio”.',browser:'Usa el menú del navegador para instalar Bomboni.'},de:{label:'App installieren',ios:'Tippe in Safari auf Teilen und wähle „Zum Home-Bildschirm“.',browser:'Installiere Bomboni über das Browsermenü.'},it:{label:'Installa app',ios:'In Safari, tocca Condividi e scegli “Aggiungi alla schermata Home”.',browser:'Usa il menu del browser per installare Bomboni.'},fr:{label:'Installer',ios:'Dans Safari, touchez Partager puis « Sur l’écran d’accueil ».',browser:'Installez Bomboni depuis le menu du navigateur.'}};
 
+const BONBON_SPINNER_HTML='<span class="bonbon-spinner" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="9.5" y="10.5" width="13" height="11" rx="5.5"/><path d="M9.5 16 L3.5 10 L5 16 L3.5 22 Z"/><path d="M22.5 16 L28.5 10 L27 16 L28.5 22 Z"/><path d="M9.5 13 C8.8 14.5 8.8 17.5 9.5 19"/><path d="M22.5 13 C23.2 14.5 23.2 17.5 22.5 19"/><path d="M15.5 10.5 C17 13.5 17 18.5 15.5 21.5"/></svg></span>';
+
 let deferredInstallPrompt=null;
 let activeMenuRequest=0;
 let dishSearchTimer=null;
@@ -219,6 +221,7 @@ $('search-clear').addEventListener('click',()=>{
   $('search-input').value='';
   updateSearchClear();
   $('search-input').focus();
+  $('restaurant-scroll-area')?.scrollTo({top:0,behavior:'instant'});
   if(state.searchMode==='dishes'){
     state.dishResults=[];
     renderDishesSearch();
@@ -229,6 +232,7 @@ $('search-clear').addEventListener('click',()=>{
 
 function setSearchMode(mode){
   state.searchMode=mode;
+  $('restaurant-scroll-area')?.scrollTo({top:0,behavior:'instant'});
   $('search-mode-restaurants').classList.toggle('active',mode==='restaurants');
   $('search-mode-dishes').classList.toggle('active',mode==='dishes');
   $('search-input').placeholder=mode==='dishes'?(dishSearchPlaceholders[state.language]||dishSearchPlaceholders.en):(restaurantSearchPlaceholders[state.language]||restaurantSearchPlaceholders.en);
@@ -296,7 +300,7 @@ function renderDishesSearch(){
   }
   if(state.isSearchingDishes){
     $('result-count').textContent='…';
-    const loading=document.createElement('div');loading.className='loading-card';loading.innerHTML=`<span class="spinner"></span><span>${t.loadingDishes}</span>`;host.append(loading);
+    const loading=document.createElement('div');loading.className='loading-card';loading.innerHTML=`${BONBON_SPINNER_HTML}<span>${t.loadingDishes}</span>`;host.append(loading);
     return;
   }
   $('result-count').textContent=state.dishResults.length;
@@ -325,7 +329,7 @@ function renderDishesSearch(){
 }
 
 async function loadRestaurants(){
-  $('restaurant-list').innerHTML=`<div class="loading-card"><span class="spinner"></span><span>${tr().loading}</span></div>`;
+  $('restaurant-list').innerHTML=`<div class="loading-card">${BONBON_SPINNER_HTML}<span>${tr().loading}</span></div>`;
   const params=new URLSearchParams({limit:'500'});if(state.location){params.set('lat',state.location.latitude);params.set('lon',state.location.longitude);}
   try{const response=await fetch(`/api/restaurants?${params}`);if(!response.ok)throw new Error('restaurants');const data=await response.json();state.restaurants=data.results||[];state.visible=15;renderDrawCities();if(state.location){const nearest=state.restaurants.find(r=>r.city);state.locationLabel=nearest?.distance_km!=null&&nearest.distance_km<20?nearest.city:nearbyLabels[state.language];$('location-label').textContent=state.locationLabel;}if(state.searchMode==='dishes')renderDishesSearch();else renderRestaurants();}
   catch{showToast(tr().error);$('restaurant-list').innerHTML=`<div class="loading-card">${tr().error}</div>`;}
@@ -345,7 +349,8 @@ async function submitDraw(event){
   const params=new URLSearchParams({mode:new FormData($('draw-form')).get('draw-mode')||'restaurant'});
   const city=$('draw-city').value;const category=$('draw-category').value;const price=$('draw-price').value.trim();
   if(city)params.set('city',city);if(category)params.set('category',category);if(price)params.set('max_price_eur',price.replace(',','.'));
-  button.disabled=true;label.textContent=feature.searching;resultHost.hidden=false;resultHost.className='draw-result is-loading';resultHost.textContent=feature.searching;
+  button.disabled=true;label.textContent=feature.searching;resultHost.hidden=false;resultHost.className='draw-result is-loading';
+  resultHost.innerHTML=`<div class="loading-card" style="justify-content:center;background:transparent;border:0;padding:24px 0;">${BONBON_SPINNER_HTML}<span>${feature.searching}</span></div>`;
   try{
     const response=await fetch(`/api/draw?${params}`);const payload=await response.json();if(!response.ok)throw new Error(payload.error||'draw');
     if(!payload.result){resultHost.className='draw-result is-empty';resultHost.textContent=payload.sampled?drawNoSampleLabel[state.language](payload.candidates_scanned):feature.noResult;return;}
@@ -385,7 +390,7 @@ async function openRestaurant(restaurant){
   $('menu-panel').classList.add('mobile-open');
   $('menu-content').hidden=false;
   $('layout').classList.add('menu-open');
-  $('dish-list').innerHTML='<div class="loading-card"><span class="spinner"></span></div>';
+  $('dish-list').innerHTML=`<div class="loading-card" style="justify-content:center;">${BONBON_SPINNER_HTML}<span>${tr().loading}</span></div>`;
   if(window.innerWidth<=1000&&window.innerWidth>760)requestAnimationFrame(()=>$('menu-panel').scrollIntoView({behavior:'smooth',block:'start'}));
   $('venue-name').textContent=restaurant.name;
   $('venue-address').textContent=displayAddress(restaurant.address,restaurant.city);
@@ -477,7 +482,7 @@ async function loadMenu(id,menuDate,restaurantName){
     renderMenuDishes(cached,requestId,id);
     return;
   }
-  $('dish-list').innerHTML='<div class="loading-card"><span class="spinner"></span></div>';
+  $('dish-list').innerHTML=`<div class="loading-card" style="justify-content:center;">${BONBON_SPINNER_HTML}<span>${tr().loading}</span></div>`;
   try{
     const nameParam=encodeURIComponent(restaurantName||state.selected?.name||'');
     const response=await fetch(`/api/restaurants/${encodeURIComponent(id)}/menu?date=${encodeURIComponent(menuDate)}&name=${nameParam}`);
@@ -506,6 +511,7 @@ languageSelect.addEventListener('change',()=>{
 });
 
 $('search-input').addEventListener('input',()=>{
+  $('restaurant-scroll-area')?.scrollTo({top:0,behavior:'instant'});
   if(state.searchMode==='dishes')handleDishSearch();else renderRestaurants();
 });
 

@@ -12,14 +12,14 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=liquid-clean-2">
+    <link rel="stylesheet" href="/styles.css?v=bonbon-v1">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body>
     <div class="app-shell">
       <header class="topbar">
         <a class="brand" href="/" aria-label="Bomboni início">
-          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M9 4v9M13 4v9M17 4v9M13 13v15M24 4c-3 4-4 9-4 14h5v10"/></svg></span>
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="9.5" y="10.5" width="13" height="11" rx="5.5"/><path d="M9.5 16 L3.5 10 L5 16 L3.5 22 Z"/><path d="M22.5 16 L28.5 10 L27 16 L28.5 22 Z"/><path d="M9.5 13 C8.8 14.5 8.8 17.5 9.5 19"/><path d="M22.5 13 C23.2 14.5 23.2 17.5 22.5 19"/><path d="M15.5 10.5 C17 13.5 17 18.5 15.5 21.5"/></svg></span>
           <span class="brand-word">bomboni<span class="brand-period">.</span></span>
         </a>
         <div class="topbar-actions">
@@ -56,10 +56,12 @@
             <div><h2 id="list-title">Restaurantes</h2></div>
             <span class="result-count" id="result-count">—</span>
           </div>
-          <div class="restaurant-list" id="restaurant-list" aria-live="polite">
-            <div class="loading-card"><span class="spinner"></span><span id="loading-label">A encontrar restaurantes…</span></div>
+          <div class="restaurant-scroll-area" id="restaurant-scroll-area">
+            <div class="restaurant-list" id="restaurant-list" aria-live="polite">
+              <div class="loading-card"><span class="bonbon-spinner" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="9.5" y="10.5" width="13" height="11" rx="5.5"/><path d="M9.5 16 L3.5 10 L5 16 L3.5 22 Z"/><path d="M22.5 16 L28.5 10 L27 16 L28.5 22 Z"/><path d="M9.5 13 C8.8 14.5 8.8 17.5 9.5 19"/><path d="M22.5 13 C23.2 14.5 23.2 17.5 22.5 19"/><path d="M15.5 10.5 C17 13.5 17 18.5 15.5 21.5"/></svg></span><span id="loading-label">A encontrar restaurantes…</span></div>
+            </div>
+            <button class="load-more" id="load-more" type="button" hidden>Ver mais</button>
           </div>
-          <button class="load-more" id="load-more" type="button" hidden>Ver mais</button>
         </section>
 
         <section class="menu-panel" id="menu-panel" aria-live="polite" hidden>
@@ -124,7 +126,7 @@
       </button>
     </nav>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=liquid-clean-2" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=14').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=bonbon-v1" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=15').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>
