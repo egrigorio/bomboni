@@ -28,6 +28,12 @@ Build a reusable Python data layer for the public restaurant directory and menu 
 - The Draw tab filters are optional: city, official menu food category, restaurant-or-dish mode, and maximum student co-pay. Keep the random selection logic in `RestaurantService.draw_recommendation` and expose it through both local and Vercel web adapters; the browser must not scrape the source DOM. Dish/category draws inspect up to 60 randomly sampled current official menus with bounded concurrency to stay within serverless time limits, retain menu date/source provenance, and disclose when the scan was sampled.
 - Favorites and Profile are top-level destinations prepared for a future account system. Until persistence/authentication exists, show honest empty/preview states and do not fabricate saved items, reviews, history, or spending statistics.
 - Restaurant opening hours come from the official detail page, not from the directory badge `Opened at weekends`. Load hours only for visible restaurant cards through the bounded batch endpoint; calculate open/closed using the `Europe/Ljubljana` timezone, and display an unavailable state when the source has no schedule.
+- Brand mark and PWA icon: The official project logo is a minimalist wrapped bonbon candy (`.brand-mark`, `icon.svg`, and generated PNGs), reflecting the name Bomboni. Do not revert to cutlery icons or use decorative emojis or AI sparkle symbols.
+- Loading states: All asynchronous operations (restaurant directory load, dish search, draw recommendations, and menu fetching) must use the rotating bonbon spinner (`.bonbon-spinner` / `@keyframes bonbon-spin`), rather than plain text spinners or generic loaders.
+- Restaurant list scroll container: The restaurant listing must be contained in a dedicated scroll container (`.restaurant-scroll-area`) on both desktop and mobile. This keeps the title, search bar, and mode filters pinned at the top rather than scrolling the entire document body. When the search query or search mode changes, reset `.restaurant-scroll-area.scrollTop` to `0`.
+- iOS mobile inputs: Keep all mobile text inputs (`.search-box input`, `.price-input input`, selects) at `font-size: 16px` to avoid Safari's forced viewport auto-zoom.
+- Search input controls: The search bar container must keep an internal clear button `(X)` (`#search-clear`) aligned to the right, resetting both the input and restaurant scroll position upon click.
+- Floating notifications: Toast notifications and empty states must maintain `z-index: 999` and adequate bottom padding/safe-area offsets so they are never obscured behind the bottom Liquid Glass tab bar.
 
 ## Web API route contract
 
@@ -71,3 +77,4 @@ Build a reusable Python data layer for the public restaurant directory and menu 
 - Dependencies and scripts are declared in `pyproject.toml`.
 - Keep network access read-only and limited to public GET and the site's read-only menu lookup POST.
 - Add parser fixtures/tests when selectors or source behavior changes. Do not commit live user data, credentials, or scraped bulk datasets.
+- Maintain clean, human-readable formatting in `src/bomboni/adapters/web/static/styles.css`. Do not bundle multiple independent component blocks into single multi-kilobyte lines in the repository source, preventing accidental style truncation during tool edits.
