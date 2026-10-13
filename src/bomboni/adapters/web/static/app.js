@@ -2527,7 +2527,15 @@ if (navigator.geolocation) {
       try { localStorage.setItem('bomboni-location', JSON.stringify(loc)); } catch {}
       loadRestaurants();
     },
-    () => {},
+    () => {
+      state.locationLabel = nearbyLabels[state.language] || nearbyLabels.en;
+      $('location-label').textContent = state.locationLabel;
+      if (!state.restaurants || !state.restaurants.length) {
+        loadRestaurants();
+      } else {
+        if (state.searchMode === 'dishes') renderDishesSearch(); else renderRestaurants();
+      }
+    },
     { enableHighAccuracy: false, timeout: 5000, maximumAge: 300000 }
   );
 }
