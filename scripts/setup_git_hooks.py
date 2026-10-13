@@ -57,9 +57,9 @@ STAGED_PY=$(git diff --cached --name-only --diff-filter=ACM | grep '\\.py$' || t
 if [ -n "$STAGED_PY" ]; then
   echo "🧪 Running pytest for staged Python files..."
   PYTEST_BIN=""
-  if [ -x ".venv/bin/pytest" ]; then
+  if [ -x ".venv/bin/pytest" ] && .venv/bin/pytest --version >/dev/null 2>&1; then
     PYTEST_BIN=".venv/bin/pytest"
-  elif command -v pytest >/dev/null 2>&1; then
+  elif command -v pytest >/dev/null 2>&1 && pytest --version >/dev/null 2>&1; then
     PYTEST_BIN="pytest"
   elif command -v python3 >/dev/null 2>&1 && python3 -m pytest --version >/dev/null 2>&1; then
     PYTEST_BIN="python3 -m pytest"
