@@ -748,9 +748,11 @@ function switchTab(name) {
 /* -------------------------------------------------------------
    Restaurant Schedules & Batch Fetching
    ------------------------------------------------------------- */
+const LJUBLJANA_WEEKDAY_FORMATTER = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Ljubljana', weekday: 'long' });
+
 function scheduleForToday(hours) {
   if (!hours || !Object.keys(hours).length) return null;
-  const weekday = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Ljubljana', weekday: 'long' }).format(new Date()).toLocaleLowerCase();
+  const weekday = LJUBLJANA_WEEKDAY_FORMATTER.format(new Date()).toLocaleLowerCase();
   const entries = Object.entries(hours).map(([day, value]) => [day.toLocaleLowerCase().replace(/[^a-z]/g, ''), String(value || '').trim()]);
   const exact = entries.find(([day]) => day === weekday);
   const weekend = weekday === 'saturday' ? entries.find(([day]) => day === 'saturday') : weekday === 'sunday' ? entries.find(([day]) => day.includes('sunday')) : null;
