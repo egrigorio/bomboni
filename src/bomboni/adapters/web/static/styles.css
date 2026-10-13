@@ -612,6 +612,49 @@
 .auth-submit-btn:hover {
   opacity: 0.92;
 }
+.auth-verify-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.auth-verify-info h4 {
+  margin: 0;
+  font: 700 16px/1.2 Manrope, sans-serif;
+  color: var(--ink);
+}
+.auth-verify-info p {
+  margin: 0;
+  font-size: 13px;
+  color: #556257;
+  line-height: 1.4;
+}
+.auth-code-input {
+  letter-spacing: 0.35em;
+  font-size: 20px !important;
+  font-weight: 700;
+  text-align: center;
+}
+.auth-verify-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+.auth-secondary-btn {
+  flex: 1;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f7f6f0;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.16s, border-color 0.16s;
+}
+.auth-secondary-btn:hover {
+  background: #edebe2;
+  border-color: #c9ccc0;
+}
 .profile-user-info {
   flex: 1;
   min-width: 0;

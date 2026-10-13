@@ -54,7 +54,8 @@ const featureCopy = {
     favBtn:'Favorito',favBtnActive:'Guardado',logBtn:'Comi aqui',logBtnDone:'Comi hoje',rateBtn:'Avaliar',rateBtnEdit:'Editar nota',rateBoxTitle:'Avaliar este restaurante',reviewPlaceholder:'Escreve uma nota rápida sobre o restaurante…',cancel:'Cancelar',save:'Guardar',resetBtn:'Limpar dados locais',favAdded:'Adicionado aos favoritos!',favRemoved:'Removido dos favoritos.',favDishAdded:'Prato adicionado aos favoritos!',favDishRemoved:'Prato removido dos favoritos.',mealLogged:'Refeição registada no teu histórico!',mealUnlogged:'Refeição desmarcada do teu histórico.',mealDeleted:'Refeição removida.',reviewSaved:'Avaliação guardada!',reviewDeleted:'Avaliação removida.',clearDataConfirm:'Tens a certeza que queres limpar todo o teu histórico, avaliações e favoritos locais?',dataCleared:'Dados locais apagados com sucesso.',scanned:'menus consultados',
     loginTab:'Entrar',registerTab:'Criar conta',loginSuccess:'Sessão iniciada com sucesso!',registerSuccess:'Conta criada com sucesso!',logoutSuccess:'Sessão terminada.',authRequiredReview:'Inicia sessão no teu perfil para avaliar restaurantes.',calEmptyDay:'Nenhuma refeição registada neste dia.',calSavedMeal:'Refeição guardada no histórico!',calAddMeal:'+ Registar refeição neste dia',calCloseForm:'− Fechar formulário',
     mealPickerTitle:'O que comeste aqui hoje?',mealPickerSub:'Escolhe o prato para registar com precisão no teu histórico.',mealPickerNext:'Continuar',mealPickerRateTitle:'Como avalias este restaurante?',mealPickerRateSub:'Dá a tua nota em estrelas ou podes saltar este passo.',mealPickerSkip:'Saltar',mealPickerConfirmRate:'Avaliar e registar',mealPickerDailyMenu:'Menu do dia / Refeição',mealPickerOtherDish:'Outro prato / Opção livre',mealPickerCustomPrompt:'Qual prato comeste?',mealLoggedAndRated:'Refeição registada e avaliação guardada!',
-    authUsernameLabel:'Nome de utilizador',authUsernamePlaceholder:'@o-teu-username',authEmailLabel:'Email',authEmailPlaceholder:'teu.email@exemplo.com',authPasswordLabel:'Palavra-passe',profileMemberBadge:'Membro Bomboni',profileLogout:'Sair',profileLogoutTitle:'Terminar sessão',calMonthBadge:'Histórico',calPrevMonth:'Mês anterior',calNextMonth:'Mês seguinte',calWeekdays:['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],calLogFormTitle:'Registar refeição',calLogRestLabel:'Restaurante',calLogChooseRest:'Escolhe um restaurante…',calLogDishLabel:'Prato / Comida',calLogChooseRestFirst:'Escolhe primeiro o restaurante…',calLogLoadingDishes:'A carregar pratos do menu…',calLogChooseDish:'Escolhe um prato…',calLogCustomDishPlaceholder:'Escreve o nome do prato',calLogFeeLabel:'Copagamento (€)',historyPrev:'Anterior',historyNext:'Seguinte',dishFavAddTitle:'Guardar prato nos favoritos',dishFavRemoveTitle:'Remover dos favoritos',dishLogMarkTitle:'Registar que comi este prato hoje',dishLogUnmarkTitle:'Desmarcar refeição de hoje',sourceLinkTitle:'Abrir fonte oficial',searchClearAria:'Limpar pesquisa',authUsernameMin:'Nome de utilizador deve ter pelo menos 3 caracteres.',authPasswordMin:'A palavra-passe deve ter pelo menos 6 caracteres.',authEmailExists:'Este email já está registado.',authUsernameExists:'Este nome de utilizador já existe.',authInvalidCreds:'Email ou palavra-passe incorretos.'
+    authUsernameLabel:'Nome de utilizador',authUsernamePlaceholder:'@o-teu-username',authEmailLabel:'Email',authEmailPlaceholder:'teu.email@exemplo.com',authPasswordLabel:'Palavra-passe',profileMemberBadge:'Membro Bomboni',profileLogout:'Sair',profileLogoutTitle:'Terminar sessão',calMonthBadge:'Histórico',calPrevMonth:'Mês anterior',calNextMonth:'Mês seguinte',calWeekdays:['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],calLogFormTitle:'Registar refeição',calLogRestLabel:'Restaurante',calLogChooseRest:'Escolhe um restaurante…',calLogDishLabel:'Prato / Comida',calLogChooseRestFirst:'Escolhe primeiro o restaurante…',calLogLoadingDishes:'A carregar pratos do menu…',calLogChooseDish:'Escolhe um prato…',calLogCustomDishPlaceholder:'Escreve o nome do prato',calLogFeeLabel:'Copagamento (€)',historyPrev:'Anterior',historyNext:'Seguinte',dishFavAddTitle:'Guardar prato nos favoritos',dishFavRemoveTitle:'Remover dos favoritos',dishLogMarkTitle:'Registar que comi este prato hoje',dishLogUnmarkTitle:'Desmarcar refeição de hoje',sourceLinkTitle:'Abrir fonte oficial',searchClearAria:'Limpar pesquisa',authUsernameMin:'Nome de utilizador deve ter pelo menos 3 caracteres.',authPasswordMin:'A palavra-passe deve ter pelo menos 6 caracteres.',authEmailExists:'Este email já está registado.',authUsernameExists:'Este nome de utilizador já existe.',authInvalidCreds:'Email ou palavra-passe incorretos.',
+    authVerifyTitle:'Verificar email',authVerifySub:'Insere o código de 4 dígitos enviado para',authVerifyCodeLabel:'Código de 4 dígitos',authVerifySubmitBtn:'Verificar e criar conta',authResendCodeBtn:'Reenviar código',authBackBtn:'Voltar',authCodeSentToast:'Código de verificação enviado para',authCodeResentToast:'Novo código de verificação enviado para',authInvalidCodeError:'Código de verificação incorreto.'
   },
   en:{
     drawEyebrow:'TODAY’S DECISION',drawTitle:'Let’s decide',drawDescription:'Choose a few filters or leave it to chance.',city:'City',anyCity:'Any city',food:'Food type',anyFood:'No preference',mode:'Pick a',restaurant:'Restaurant',dish:'Dish',price:'Maximum co-pay',noLimit:'No limit',draw:'Pick for me',searching:'Checking today’s menus…',noResult:'No options match those filters.',resultRestaurant:'Your restaurant',resultDish:'Your dish',openMenu:'View menu',drawError:'The draw failed. Please try again.',
@@ -63,7 +64,8 @@ const featureCopy = {
     favBtn:'Favorite',favBtnActive:'Saved',logBtn:'Ate here',logBtnDone:'Eaten today',rateBtn:'Rate',rateBtnEdit:'Edit rating',rateBoxTitle:'Rate this restaurant',reviewPlaceholder:'Write a quick note about this restaurant…',cancel:'Cancel',save:'Save',resetBtn:'Clear local data',favAdded:'Added to favorites!',favRemoved:'Removed from favorites.',favDishAdded:'Dish added to favorites!',favDishRemoved:'Dish removed from favorites.',mealLogged:'Meal logged to your history!',mealUnlogged:'Meal unlogged from history.',mealDeleted:'Meal removed.',reviewSaved:'Review saved!',reviewDeleted:'Review deleted.',clearDataConfirm:'Are you sure you want to clear your local meal history, reviews, and favorites?',dataCleared:'Local data cleared.',scanned:'menus checked',
     loginTab:'Log in',registerTab:'Sign up',loginSuccess:'Logged in successfully!',registerSuccess:'Account created successfully!',logoutSuccess:'Logged out.',authRequiredReview:'Log in to your profile to rate restaurants.',calEmptyDay:'No meals logged on this day.',calSavedMeal:'Meal saved to history!',calAddMeal:'+ Log meal on this day',calCloseForm:'− Close form',
     mealPickerTitle:'What did you eat here today?',mealPickerSub:'Select the dish to log it accurately in your history.',mealPickerNext:'Continue',mealPickerRateTitle:'How would you rate this restaurant?',mealPickerRateSub:'Rate with stars or skip this step.',mealPickerSkip:'Skip',mealPickerConfirmRate:'Rate & log',mealPickerDailyMenu:'Daily menu / Meal',mealPickerOtherDish:'Other dish / Custom option',mealPickerCustomPrompt:'What dish did you eat?',mealLoggedAndRated:'Meal logged and review saved!',
-    authUsernameLabel:'Username',authUsernamePlaceholder:'@your-username',authEmailLabel:'Email',authEmailPlaceholder:'your.email@example.com',authPasswordLabel:'Password',profileMemberBadge:'Bomboni Member',profileLogout:'Log out',profileLogoutTitle:'Log out',calMonthBadge:'History',calPrevMonth:'Previous month',calNextMonth:'Next month',calWeekdays:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],calLogFormTitle:'Log meal',calLogRestLabel:'Restaurant',calLogChooseRest:'Choose a restaurant…',calLogDishLabel:'Dish / Food',calLogChooseRestFirst:'Choose a restaurant first…',calLogLoadingDishes:'Loading menu dishes…',calLogChooseDish:'Choose a dish…',calLogCustomDishPlaceholder:'Enter dish name',calLogFeeLabel:'Co-pay (€)',historyPrev:'Previous',historyNext:'Next',dishFavAddTitle:'Save dish to favorites',dishFavRemoveTitle:'Remove from favorites',dishLogMarkTitle:'Log that I ate this dish today',dishLogUnmarkTitle:'Unlog today’s meal',sourceLinkTitle:'Open official source',searchClearAria:'Clear search',authUsernameMin:'Username must be at least 3 characters.',authPasswordMin:'Password must be at least 6 characters.',authEmailExists:'This email is already registered.',authUsernameExists:'This username is already taken.',authInvalidCreds:'Incorrect email or password.'
+    authUsernameLabel:'Username',authUsernamePlaceholder:'@your-username',authEmailLabel:'Email',authEmailPlaceholder:'your.email@example.com',authPasswordLabel:'Password',profileMemberBadge:'Bomboni Member',profileLogout:'Log out',profileLogoutTitle:'Log out',calMonthBadge:'History',calPrevMonth:'Previous month',calNextMonth:'Next month',calWeekdays:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],calLogFormTitle:'Log meal',calLogRestLabel:'Restaurant',calLogChooseRest:'Choose a restaurant…',calLogDishLabel:'Dish / Food',calLogChooseRestFirst:'Choose a restaurant first…',calLogLoadingDishes:'Loading menu dishes…',calLogChooseDish:'Choose a dish…',calLogCustomDishPlaceholder:'Enter dish name',calLogFeeLabel:'Co-pay (€)',historyPrev:'Previous',historyNext:'Next',dishFavAddTitle:'Save dish to favorites',dishFavRemoveTitle:'Remove from favorites',dishLogMarkTitle:'Log that I ate this dish today',dishLogUnmarkTitle:'Unlog today’s meal',sourceLinkTitle:'Open official source',searchClearAria:'Clear search',authUsernameMin:'Username must be at least 3 characters.',authPasswordMin:'Password must be at least 6 characters.',authEmailExists:'This email is already registered.',authUsernameExists:'This username is already taken.',authInvalidCreds:'Incorrect email or password.',
+    authVerifyTitle:'Verify email',authVerifySub:'Enter the 4-digit code sent to',authVerifyCodeLabel:'4-digit code',authVerifySubmitBtn:'Verify and create account',authResendCodeBtn:'Resend code',authBackBtn:'Back',authCodeSentToast:'Verification code sent to',authCodeResentToast:'New verification code sent to',authInvalidCodeError:'Incorrect verification code.'
   },
   es:{
     drawEyebrow:'LA DECISIÓN DE HOY',drawTitle:'Vamos a sortear',drawDescription:'Elige algunos filtros o deja que decida el azar.',city:'Ciudad',anyCity:'Cualquier ciudad',food:'Tipo de comida',anyFood:'Sin preferencia',mode:'Sortear',restaurant:'Restaurante',dish:'Plato',price:'Copago máximo',noLimit:'Sin límite',draw:'Sortear',searching:'Buscando en los menús de hoy…',noResult:'No hay opciones con esos filtros.',resultRestaurant:'Tu restaurante',resultDish:'Tu plato',openMenu:'Ver menú',drawError:'No se pudo completar el sorteo.',
@@ -72,7 +74,8 @@ const featureCopy = {
     favBtn:'Favorito',favBtnActive:'Guardado',logBtn:'Comí aquí',logBtnDone:'Comí hoy',rateBtn:'Valorar',rateBtnEdit:'Editar nota',rateBoxTitle:'Valorar este restaurante',reviewPlaceholder:'Escribe una nota rápida sobre el restaurante…',cancel:'Cancelar',save:'Guardar',resetBtn:'Borrar datos locales',favAdded:'¡Añadido a favoritos!',favRemoved:'Eliminado de favoritos.',favDishAdded:'¡Plato añadido a favoritos!',favDishRemoved:'Plato eliminado de favoritos.',mealLogged:'¡Comida registrada en tu historial!',mealUnlogged:'Comida desmarcada del historial.',mealDeleted:'Comida eliminada.',reviewSaved:'¡Reseña guardada!',reviewDeleted:'Reseña eliminada.',clearDataConfirm:'¿Seguro que quieres borrar todo tu historial, reseñas y favoritos locales?',dataCleared:'Datos locales borrados.',scanned:'menús consultados',
     loginTab:'Iniciar sesión',registerTab:'Crear cuenta',loginSuccess:'¡Sesión iniciada con éxito!',registerSuccess:'¡Cuenta creada con éxito!',logoutSuccess:'Sesión cerrada.',authRequiredReview:'Inicia sesión en tu perfil para valorar restaurantes.',calEmptyDay:'Sin comidas registradas en este día.',calSavedMeal:'¡Comida guardada en el historial!',calAddMeal:'+ Registrar comida en este día',calCloseForm:'− Cerrar formulario',
     mealPickerTitle:'¿Qué comiste aquí hoy?',mealPickerSub:'Elige el plato para registrarlo con precisión en tu historial.',mealPickerNext:'Continuar',mealPickerRateTitle:'¿Cómo valoras este restaurante?',mealPickerRateSub:'Puntúa con estrellas o salta este paso.',mealPickerSkip:'Saltar',mealPickerConfirmRate:'Valorar y registrar',mealPickerDailyMenu:'Menú del día / Comida',mealPickerOtherDish:'Otro plato / Opción libre',mealPickerCustomPrompt:'¿Qué plato comiste?',mealLoggedAndRated:'¡Comida registrada y reseña guardada!',
-    authUsernameLabel:'Nombre de usuario',authUsernamePlaceholder:'@tu-usuario',authEmailLabel:'Correo electrónico',authEmailPlaceholder:'tu.email@ejemplo.com',authPasswordLabel:'Contraseña',profileMemberBadge:'Miembro Bomboni',profileLogout:'Cerrar sesión',profileLogoutTitle:'Cerrar sesión',calMonthBadge:'Historial',calPrevMonth:'Mes anterior',calNextMonth:'Mes siguiente',calWeekdays:['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'],calLogFormTitle:'Registrar comida',calLogRestLabel:'Restaurante',calLogChooseRest:'Elige un restaurante…',calLogDishLabel:'Plato / Comida',calLogChooseRestFirst:'Elige primero el restaurante…',calLogLoadingDishes:'Cargando platos del menú…',calLogChooseDish:'Elige un plato…',calLogCustomDishPlaceholder:'Escribe el nombre del plato',calLogFeeLabel:'Copago (€)',historyPrev:'Anterior',historyNext:'Siguiente',dishFavAddTitle:'Guardar plato en favoritos',dishFavRemoveTitle:'Eliminar de favoritos',dishLogMarkTitle:'Registrar que comí este plato hoy',dishLogUnmarkTitle:'Desmarcar comida de hoy',sourceLinkTitle:'Abrir fuente oficial',searchClearAria:'Limpiar búsqueda',authUsernameMin:'El nombre de usuario debe tener al menos 3 caracteres.',authPasswordMin:'La contraseña debe tener al menos 6 caracteres.',authEmailExists:'Este correo ya está registrado.',authUsernameExists:'Este nombre de usuario ya existe.',authInvalidCreds:'Correo o contraseña incorrectos.'
+    authUsernameLabel:'Nombre de usuario',authUsernamePlaceholder:'@tu-usuario',authEmailLabel:'Correo electrónico',authEmailPlaceholder:'tu.email@ejemplo.com',authPasswordLabel:'Contraseña',profileMemberBadge:'Miembro Bomboni',profileLogout:'Cerrar sesión',profileLogoutTitle:'Cerrar sesión',calMonthBadge:'Historial',calPrevMonth:'Mes anterior',calNextMonth:'Mes siguiente',calWeekdays:['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'],calLogFormTitle:'Registrar comida',calLogRestLabel:'Restaurante',calLogChooseRest:'Elige un restaurante…',calLogDishLabel:'Plato / Comida',calLogChooseRestFirst:'Elige primero el restaurante…',calLogLoadingDishes:'Cargando platos del menú…',calLogChooseDish:'Elige un plato…',calLogCustomDishPlaceholder:'Escribe el nombre del plato',calLogFeeLabel:'Copago (€)',historyPrev:'Anterior',historyNext:'Siguiente',dishFavAddTitle:'Guardar plato en favoritos',dishFavRemoveTitle:'Eliminar de favoritos',dishLogMarkTitle:'Registrar que comí este plato hoy',dishLogUnmarkTitle:'Desmarcar comida de hoy',sourceLinkTitle:'Abrir fuente oficial',searchClearAria:'Limpiar búsqueda',authUsernameMin:'El nombre de usuario debe tener al menos 3 caracteres.',authPasswordMin:'La contraseña debe tener al menos 6 caracteres.',authEmailExists:'Este correo ya está registrado.',authUsernameExists:'Este nombre de usuario ya existe.',authInvalidCreds:'Correo o contraseña incorrectos.',
+    authVerifyTitle:'Verificar correo',authVerifySub:'Introduce el código de 4 dígitos enviado a',authVerifyCodeLabel:'Código de 4 dígitos',authVerifySubmitBtn:'Verificar y crear cuenta',authResendCodeBtn:'Reenviar código',authBackBtn:'Volver',authCodeSentToast:'Código de verificación enviado a',authCodeResentToast:'Nuevo código de verificación enviado a',authInvalidCodeError:'Código de verificación incorrecto.'
   },
   de:{
     drawEyebrow:'DIE ENTSCHEIDUNG DES TAGES',drawTitle:'Lass uns auslosen',drawDescription:'Wähle Filter oder lass den Zufall entscheiden.',city:'Stadt',anyCity:'Jede Stadt',food:'Essensart',anyFood:'Keine Präferenz',mode:'Auswählen',restaurant:'Restaurant',dish:'Gericht',price:'Maximaler Eigenanteil',noLimit:'Kein Limit',draw:'Auslosen',searching:'Heutige Menüs werden geprüft…',noResult:'Keine passenden Optionen gefunden.',resultRestaurant:'Dein Restaurant',resultDish:'Dein Gericht',openMenu:'Menü ansehen',drawError:'Die Auslosung ist fehlgeschlagen.',
@@ -81,7 +84,8 @@ const featureCopy = {
     favBtn:'Favorit',favBtnActive:'Gespeichert',logBtn:'Hier gegessen',logBtnDone:'Heute gegessen',rateBtn:'Bewerten',rateBtnEdit:'Bewertung bearbeiten',rateBoxTitle:'Dieses Restaurant bewerten',reviewPlaceholder:'Schreibe eine kurze Notiz über das Restaurant…',cancel:'Abbrechen',save:'Speichern',resetBtn:'Lokale Daten löschen',favAdded:'Zu Favoriten hinzugefügt!',favRemoved:'Aus Favoriten entfernt.',favDishAdded:'Gericht zu Favoriten hinzugefügt!',favDishRemoved:'Gericht aus Favoriten entfernt.',mealLogged:'Mahlzeit erfasst!',mealUnlogged:'Mahlzeit abgewählt.',mealDeleted:'Mahlzeit gelöscht.',reviewSaved:'Bewertung gespeichert!',reviewDeleted:'Bewertung gelöscht.',clearDataConfirm:'Möchtest du wirklich deinen lokalen Verlauf, Bewertungen und Favoriten löschen?',dataCleared:'Lokale Daten gelöscht.',scanned:'Menüs geprüft',
     loginTab:'Anmelden',registerTab:'Registrieren',loginSuccess:'Erfolgreich angemeldet!',registerSuccess:'Konto erfolgreich erstellt!',logoutSuccess:'Abgemeldet.',authRequiredReview:'Melde dich in deinem Profil an, um Restaurants zu bewerten.',calEmptyDay:'Keine Mahlzeiten an diesem Tag erfasst.',calSavedMeal:'Mahlzeit im Verlauf gespeichert!',calAddMeal:'+ Mahlzeit erfassen',calCloseForm:'− Formular schließen',
     mealPickerTitle:'Was hast du heute hier gegessen?',mealPickerSub:'Wähle das Gericht, um es genau im Verlauf zu erfassen.',mealPickerNext:'Weiter',mealPickerRateTitle:'Wie bewertest du dieses Restaurant?',mealPickerRateSub:'Gib eine Sternebewertung ab oder überspringe diesen Schritt.',mealPickerSkip:'Überspringen',mealPickerConfirmRate:'Bewerten & erfassen',mealPickerDailyMenu:'Tagesmenü',mealPickerOtherDish:'Anderes Gericht / Freie Option',mealPickerCustomPrompt:'Welches Gericht hast du gegessen?',mealLoggedAndRated:'Mahlzeit erfasst und Bewertung gespeichert!',
-    authUsernameLabel:'Benutzername',authUsernamePlaceholder:'@dein-benutzername',authEmailLabel:'E-Mail',authEmailPlaceholder:'deine.email@beispiel.de',authPasswordLabel:'Passwort',profileMemberBadge:'Bomboni-Mitglied',profileLogout:'Abmelden',profileLogoutTitle:'Abmelden',calMonthBadge:'Verlauf',calPrevMonth:'Vorheriger Monat',calNextMonth:'Nächster Monat',calWeekdays:['Mo','Di','Mi','Do','Fr','Sa','So'],calLogFormTitle:'Mahlzeit erfassen',calLogRestLabel:'Restaurant',calLogChooseRest:'Wähle ein Restaurant…',calLogDishLabel:'Gericht / Speise',calLogChooseRestFirst:'Wähle zuerst das Restaurant…',calLogLoadingDishes:'Lade Menügerichte…',calLogChooseDish:'Wähle ein Gericht…',calLogCustomDishPlaceholder:'Gib den Namen des Gerichts ein',calLogFeeLabel:'Eigenanteil (€)',historyPrev:'Zurück',historyNext:'Weiter',dishFavAddTitle:'Gericht zu Favoriten hinzufügen',dishFavRemoveTitle:'Aus Favoriten entfernen',dishLogMarkTitle:'Erfassen, dass ich dieses Gericht heute gegessen habe',dishLogUnmarkTitle:'Heutige Mahlzeit abwählen',sourceLinkTitle:'Offizielle Quelle öffnen',searchClearAria:'Suche löschen',authUsernameMin:'Benutzername muss mindestens 3 Zeichen lang sein.',authPasswordMin:'Passwort muss mindestens 6 Zeichen lang sein.',authEmailExists:'Diese E-Mail ist bereits registriert.',authUsernameExists:'Dieser Benutzername ist bereits vergeben.',authInvalidCreds:'Falsche E-Mail oder falsches Passwort.'
+    authUsernameLabel:'Benutzername',authUsernamePlaceholder:'@dein-benutzername',authEmailLabel:'E-Mail',authEmailPlaceholder:'deine.email@beispiel.de',authPasswordLabel:'Passwort',profileMemberBadge:'Bomboni-Mitglied',profileLogout:'Abmelden',profileLogoutTitle:'Abmelden',calMonthBadge:'Verlauf',calPrevMonth:'Vorheriger Monat',calNextMonth:'Nächster Monat',calWeekdays:['Mo','Di','Mi','Do','Fr','Sa','So'],calLogFormTitle:'Mahlzeit erfassen',calLogRestLabel:'Restaurant',calLogChooseRest:'Wähle ein Restaurant…',calLogDishLabel:'Gericht / Speise',calLogChooseRestFirst:'Wähle zuerst das Restaurant…',calLogLoadingDishes:'Lade Menügerichte…',calLogChooseDish:'Wähle ein Gericht…',calLogCustomDishPlaceholder:'Gib den Namen des Gerichts ein',calLogFeeLabel:'Eigenanteil (€)',historyPrev:'Zurück',historyNext:'Weiter',dishFavAddTitle:'Gericht zu Favoriten hinzufügen',dishFavRemoveTitle:'Aus Favoriten entfernen',dishLogMarkTitle:'Erfassen, dass ich dieses Gericht heute gegessen habe',dishLogUnmarkTitle:'Heutige Mahlzeit abwählen',sourceLinkTitle:'Offizielle Quelle öffnen',searchClearAria:'Suche löschen',authUsernameMin:'Benutzername muss mindestens 3 Zeichen lang sein.',authPasswordMin:'Passwort muss mindestens 6 Zeichen lang sein.',authEmailExists:'Diese E-Mail ist bereits registriert.',authUsernameExists:'Dieser Benutzername ist bereits vergeben.',authInvalidCreds:'Falsche E-Mail oder falsches Passwort.',
+    authVerifyTitle:'E-Mail bestätigen',authVerifySub:'Gib den 4-stelligen Code ein, der gesendet wurde an',authVerifyCodeLabel:'4-stelliger Code',authVerifySubmitBtn:'Bestätigen & Konto erstellen',authResendCodeBtn:'Code erneut senden',authBackBtn:'Zurück',authCodeSentToast:'Bestätigungscode gesendet an',authCodeResentToast:'Neuer Bestätigungscode gesendet an',authInvalidCodeError:'Falscher Bestätigungscode.'
   },
   it:{
     drawEyebrow:'LA SCELTA DI OGGI',drawTitle:'Facciamo decidere al caso',drawDescription:'Scegli qualche filtro oppure lascia fare al caso.',city:'Città',anyCity:'Qualsiasi città',food:'Tipo di cibo',anyFood:'Nessuna preferenza',mode:'Estrai',restaurant:'Ristorante',dish:'Piatto',price:'Quota massima',noLimit:'Nessun limite',draw:'Estrai',searching:'Controllo i menu di oggi…',noResult:'Nessuna opzione con questi filtri.',resultRestaurant:'Il tuo ristorante',resultDish:'Il tuo piatto',openMenu:'Vedi menu',drawError:'Estrazione non riuscita.',
@@ -90,7 +94,8 @@ const featureCopy = {
     favBtn:'Preferito',favBtnActive:'Salvato',logBtn:'Ho mangiato qui',logBtnDone:'Mangiato oggi',rateBtn:'Valuta',rateBtnEdit:'Modifica voto',rateBoxTitle:'Valuta questo ristorante',reviewPlaceholder:'Scrivi una breve nota sul ristorante…',cancel:'Annulla',save:'Salva',resetBtn:'Cancella dati locali',favAdded:'Aggiunto ai preferiti!',favRemoved:'Rimosso dai preferiti.',favDishAdded:'Piatto aggiunto ai preferiti!',favDishRemoved:'Piatto rimosso dai preferiti.',mealLogged:'Pasto registrato nella cronologia!',mealUnlogged:'Pasto deselezionato.',mealDeleted:'Pasto rimosso.',reviewSaved:'Recensione salvata!',reviewDeleted:'Recensione eliminata.',clearDataConfirm:'Sei sicuro di voler cancellare cronologia, recensioni e preferiti locali?',dataCleared:'Dati locali cancellati.',scanned:'menu controllati',
     loginTab:'Accedi',registerTab:'Registrati',loginSuccess:'Accesso effettuato con successo!',registerSuccess:'Account creato con successo!',logoutSuccess:'Disconnesso.',authRequiredReview:'Accedi al tuo profilo per valutare i ristoranti.',calEmptyDay:'Nessun pasto registrato in questo giorno.',calSavedMeal:'Pasto salvato nella cronologia!',calAddMeal:'+ Registra pasto in questo giorno',calCloseForm:'− Chiudi modulo',
     mealPickerTitle:'Cosa hai mangiato qui oggi?',mealPickerSub:'Scegli il piatto per registrarlo con precisione nella cronologia.',mealPickerNext:'Continua',mealPickerRateTitle:'Come valuti questo ristorante?',mealPickerRateSub:'Assegna delle stelle o salta questo passaggio.',mealPickerSkip:'Salta',mealPickerConfirmRate:'Valuta e registra',mealPickerDailyMenu:'Menu del giorno / Pasto',mealPickerOtherDish:'Altro piatto / Opzione libera',mealPickerCustomPrompt:'Che piatto hai mangiato?',mealLoggedAndRated:'Pasto registrato e recensione salvata!',
-    authUsernameLabel:'Nome utente',authUsernamePlaceholder:'@tuo-username',authEmailLabel:'Email',authEmailPlaceholder:'tua.email@esempio.it',authPasswordLabel:'Password',profileMemberBadge:'Membro Bomboni',profileLogout:'Esci',profileLogoutTitle:'Disconnetti',calMonthBadge:'Cronologia',calPrevMonth:'Mese precedente',calNextMonth:'Mese successivo',calWeekdays:['Lun','Mar','Mer','Gio','Ven','Sab','Dom'],calLogFormTitle:'Registra pasto',calLogRestLabel:'Ristorante',calLogChooseRest:'Scegli un ristorante…',calLogDishLabel:'Piatto / Cibo',calLogChooseRestFirst:'Scegli prima il ristorante…',calLogLoadingDishes:'Caricamento piatti dal menu…',calLogChooseDish:'Scegli un piatto…',calLogCustomDishPlaceholder:'Scrivi il nome del piatto',calLogFeeLabel:'Quota (€)',historyPrev:'Precedente',historyNext:'Successivo',dishFavAddTitle:'Aggiungi piatto ai preferiti',dishFavRemoveTitle:'Rimuovi dai preferiti',dishLogMarkTitle:'Registra che ho mangiato questo piatto oggi',dishLogUnmarkTitle:'Deseleziona pasto di oggi',sourceLinkTitle:'Apri fonte ufficiale',searchClearAria:'Cancella ricerca',authUsernameMin:'Il nome utente deve contenere almeno 3 caratteri.',authPasswordMin:'La password deve contenere almeno 6 caratteri.',authEmailExists:'Questa email è già registrata.',authUsernameExists:'Questo nome utente è già occupato.',authInvalidCreds:'Email o password non corretti.'
+    authUsernameLabel:'Nome utente',authUsernamePlaceholder:'@tuo-username',authEmailLabel:'Email',authEmailPlaceholder:'tua.email@esempio.it',authPasswordLabel:'Password',profileMemberBadge:'Membro Bomboni',profileLogout:'Esci',profileLogoutTitle:'Disconnetti',calMonthBadge:'Cronologia',calPrevMonth:'Mese precedente',calNextMonth:'Mese successivo',calWeekdays:['Lun','Mar','Mer','Gio','Ven','Sab','Dom'],calLogFormTitle:'Registra pasto',calLogRestLabel:'Ristorante',calLogChooseRest:'Scegli un ristorante…',calLogDishLabel:'Piatto / Cibo',calLogChooseRestFirst:'Scegli prima il ristorante…',calLogLoadingDishes:'Caricamento piatti dal menu…',calLogChooseDish:'Scegli un piatto…',calLogCustomDishPlaceholder:'Scrivi il nome del piatto',calLogFeeLabel:'Quota (€)',historyPrev:'Precedente',historyNext:'Successivo',dishFavAddTitle:'Aggiungi piatto ai preferiti',dishFavRemoveTitle:'Rimuovi dai preferiti',dishLogMarkTitle:'Registra che ho mangiato questo piatto oggi',dishLogUnmarkTitle:'Deseleziona pasto di oggi',sourceLinkTitle:'Apri fonte ufficiale',searchClearAria:'Cancella ricerca',authUsernameMin:'Il nome utente deve contenere almeno 3 caratteri.',authPasswordMin:'La password deve contenere almeno 6 caratteri.',authEmailExists:'Questa email è già registrata.',authUsernameExists:'Questo nome utente è già occupato.',authInvalidCreds:'Email o password non corretti.',
+    authVerifyTitle:'Verifica email',authVerifySub:'Inserisci il codice a 4 cifre inviato a',authVerifyCodeLabel:'Codice a 4 cifre',authVerifySubmitBtn:'Verifica e crea account',authResendCodeBtn:'Reinvia codice',authBackBtn:'Indietro',authCodeSentToast:'Codice di verifica inviato a',authCodeResentToast:'Nuovo codice di verifica inviato a',authInvalidCodeError:'Codice di verifica errato.'
   },
   fr:{
     drawEyebrow:'LA DÉCISION DU JOUR',drawTitle:'Laissons le hasard choisir',drawDescription:'Choisissez des filtres ou laissez faire le hasard.',city:'Ville',anyCity:'Toutes les villes',food:'Type de plat',anyFood:'Sans préférence',mode:'Tirer au sort',restaurant:'Restaurant',dish:'Plat',price:'Participation maximale',noLimit:'Sans limite',draw:'Tirer au sort',searching:'Recherche dans les menus du jour…',noResult:'Aucune option ne correspond à ces filtres.',resultRestaurant:'Votre restaurant',resultDish:'Votre plat',openMenu:'Voir le menu',drawError:'Le tirage au sort a échoué.',
@@ -99,7 +104,8 @@ const featureCopy = {
     favBtn:'Favori',favBtnActive:'Enregistré',logBtn:'J’ai mangé ici',logBtnDone:'Mangé aujourd’hui',rateBtn:'Noter',rateBtnEdit:'Modifier note',rateBoxTitle:'Noter ce restaurant',reviewPlaceholder:'Écrivez une note rapide sur ce restaurant…',cancel:'Annuler',save:'Enregistrer',resetBtn:'Effacer les données locales',favAdded:'Ajouté aux favoris !',favRemoved:'Retiré des favoris.',favDishAdded:'Plat ajouté aux favoris !',favDishRemoved:'Plat retiré des favoris.',mealLogged:'Repas enregistré dans votre historique !',mealUnlogged:'Repas désélectionné.',mealDeleted:'Repas supprimé.',reviewSaved:'Avis enregistré !',reviewDeleted:'Avis supprimé.',clearDataConfirm:'Voulez-vous vraiment effacer votre historique, vos avis et vos favoris locaux ?',dataCleared:'Données locales effacées.',scanned:'menus vérifiés',
     loginTab:'Connexion',registerTab:'Créer un compte',loginSuccess:'Connexion réussie !',registerSuccess:'Compte créé avec succès !',logoutSuccess:'Déconnecté.',authRequiredReview:'Connectez-vous à votre profil pour noter les restaurants.',calEmptyDay:'Aucun repas enregistré ce jour-là.',calSavedMeal:'Repas enregistré dans l’historique !',calAddMeal:'+ Enregistrer un repas ce jour-là',calCloseForm:'− Fermer le formulaire',
     mealPickerTitle:'Qu’avez-vous mangé ici aujourd’hui ?',mealPickerSub:'Choisissez le plat pour l’enregistrer avec précision dans votre historique.',mealPickerNext:'Continuer',mealPickerRateTitle:'Comment évaluez-vous ce restaurant ?',mealPickerRateSub:'Donnez une note ou sautez cette étape.',mealPickerSkip:'Passer',mealPickerConfirmRate:'Évaluer et enregistrer',mealPickerDailyMenu:'Menu du jour / Plat',mealPickerOtherDish:'Autre plat / Option libre',mealPickerCustomPrompt:'Quel plat avez-vous mangé ?',mealLoggedAndRated:'Repas enregistré et avis sauvegardé !',
-    authUsernameLabel:'Nom d’utilisateur',authUsernamePlaceholder:'@votre-nom',authEmailLabel:'E-mail',authEmailPlaceholder:'votre.email@exemple.fr',authPasswordLabel:'Mot de passe',profileMemberBadge:'Membre Bomboni',profileLogout:'Déconnexion',profileLogoutTitle:'Se déconnecter',calMonthBadge:'Historique',calPrevMonth:'Mois précédent',calNextMonth:'Mois suivant',calWeekdays:['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'],calLogFormTitle:'Enregistrer un repas',calLogRestLabel:'Restaurant',calLogChooseRest:'Choisissez un restaurant…',calLogDishLabel:'Plat / Nourriture',calLogChooseRestFirst:'Choisissez d’abord le restaurant…',calLogLoadingDishes:'Chargement des plats du menu…',calLogChooseDish:'Choisissez un plat…',calLogCustomDishPlaceholder:'Entrez le nom du plat',calLogFeeLabel:'Participation (€)',historyPrev:'Précédent',historyNext:'Suivant',dishFavAddTitle:'Ajouter le plat aux favoris',dishFavRemoveTitle:'Retirer des favoris',dishLogMarkTitle:'Enregistrer que j’ai mangé ce plat aujourd’hui',dishLogUnmarkTitle:'Désélectionner le repas d’aujourd’hui',sourceLinkTitle:'Ouvrir la source officielle',searchClearAria:'Effacer la recherche',authUsernameMin:'Le nom d’utilisateur doit comporter au moins 3 caractères.',authPasswordMin:'Le mot de passe doit comporter au moins 6 caractères.',authEmailExists:'Cet e-mail est déjà enregistré.',authUsernameExists:'Ce nom d’utilisateur est déjà pris.',authInvalidCreds:'E-mail ou mot de passe incorrect.'
+    authUsernameLabel:'Nom d’utilisateur',authUsernamePlaceholder:'@votre-nom',authEmailLabel:'E-mail',authEmailPlaceholder:'votre.email@exemple.fr',authPasswordLabel:'Mot de passe',profileMemberBadge:'Membre Bomboni',profileLogout:'Déconnexion',profileLogoutTitle:'Se déconnecter',calMonthBadge:'Historique',calPrevMonth:'Mois précédent',calNextMonth:'Mois suivant',calWeekdays:['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'],calLogFormTitle:'Enregistrer un repas',calLogRestLabel:'Restaurant',calLogChooseRest:'Choisissez un restaurant…',calLogDishLabel:'Plat / Nourriture',calLogChooseRestFirst:'Choisissez d’abord le restaurant…',calLogLoadingDishes:'Chargement des plats du menu…',calLogChooseDish:'Choisissez un plat…',calLogCustomDishPlaceholder:'Entrez le nom du plat',calLogFeeLabel:'Participation (€)',historyPrev:'Précédent',historyNext:'Suivant',dishFavAddTitle:'Ajouter le plat aux favoris',dishFavRemoveTitle:'Retirer des favoris',dishLogMarkTitle:'Enregistrer que j’ai mangé ce plat aujourd’hui',dishLogUnmarkTitle:'Désélectionner le repas d’aujourd’hui',sourceLinkTitle:'Ouvrir la source officielle',searchClearAria:'Effacer la recherche',authUsernameMin:'Le nom d’utilisateur doit comporter au moins 3 caractères.',authPasswordMin:'Le mot de passe doit comporter au moins 6 caractères.',authEmailExists:'Cet e-mail est déjà enregistré.',authUsernameExists:'Ce nom d’utilisateur est déjà pris.',authInvalidCreds:'E-mail ou mot de passe incorrect.',
+    authVerifyTitle:'Vérifier e-mail',authVerifySub:'Entrez le code à 4 chiffres envoyé à',authVerifyCodeLabel:'Code à 4 chiffres',authVerifySubmitBtn:'Vérifier et créer un compte',authResendCodeBtn:'Renvoyer le code',authBackBtn:'Retour',authCodeSentToast:'Code de vérification envoyé à',authCodeResentToast:'Nouveau code de vérification envoyé à',authInvalidCodeError:'Code de vérification incorrect.'
   },
   ca:{
     drawEyebrow:'DECISIÓ DEL DIA',drawTitle:'Fem un sorteig',drawDescription:'Tria alguns filtres o deixa que decideixi l’atzar.',city:'Ciutat',anyCity:'Qualsevol ciutat',food:'Tipus de menjar',anyFood:'Sense preferència',mode:'Vull sortejar',restaurant:'Restaurant',dish:'Plat',price:'Copagament màxim',noLimit:'Sense límit',draw:'Sortejar',searching:'Cercant opcions als menús d’avui…',noResult:'No s’han trobat opcions amb aquests filtres.',resultRestaurant:'El teu restaurant',resultDish:'El teu plat',openMenu:'Veure menú',drawError:'No s’ha pogut completar el sorteig.',
@@ -108,7 +114,8 @@ const featureCopy = {
     favBtn:'Preferit',favBtnActive:'Desat',logBtn:'He menjat aquí',logBtnDone:'Menjat avui',rateBtn:'Valorar',rateBtnEdit:'Editar nota',rateBoxTitle:'Valorar aquest restaurant',reviewPlaceholder:'Escriu una nota ràpida sobre el restaurant…',cancel:'Cancel·lar',save:'Desar',resetBtn:'Esborrar dades locals',favAdded:'Afegit als preferits!',favRemoved:'Eliminat dels preferits.',favDishAdded:'Plat afegit als preferits!',favDishRemoved:'Plat eliminat dels preferits.',mealLogged:'Àpat registrat al teu historial!',mealUnlogged:'Àpat desmarcat de l’historial.',mealDeleted:'Àpat eliminat.',reviewSaved:'Ressenya desada!',reviewDeleted:'Ressenya eliminada.',clearDataConfirm:'Segur que vols esborrar tot el teu historial, ressenyes i preferits locals?',dataCleared:'Dades locals esborrades.',scanned:'menús consultats',
     loginTab:'Entrar',registerTab:'Crear compte',loginSuccess:'Sessió iniciada amb èxit!',registerSuccess:'Compte creat amb èxit!',logoutSuccess:'Sessió tancada.',authRequiredReview:'Inicia sessió al teu perfil per valorar restaurants.',calEmptyDay:'Cap àpat registrat en aquest dia.',calSavedMeal:'Àpat desat a l’historial!',calAddMeal:'+ Registrar àpat en aquest dia',calCloseForm:'− Tancar formulari',
     mealPickerTitle:'Què has menjat aquí avui?',mealPickerSub:'Tria el plat per registrar-lo amb precisió al teu historial.',mealPickerNext:'Continuar',mealPickerRateTitle:'Com valores aquest restaurant?',mealPickerRateSub:'Dona una nota amb estrelles o pots saltar aquest pas.',mealPickerSkip:'Saltar',mealPickerConfirmRate:'Valorar i registrar',mealPickerDailyMenu:'Menú del dia / Àpat',mealPickerOtherDish:'Altre plat / Opció lliure',mealPickerCustomPrompt:'Quin plat has menjat?',mealLoggedAndRated:'Àpat registrat i ressenya desada!',
-    authUsernameLabel:'Nom d’usuari',authUsernamePlaceholder:'@el-teu-nom',authEmailLabel:'Correu electrònic',authEmailPlaceholder:'el.teu.email@exemple.cat',authPasswordLabel:'Contrasenya',profileMemberBadge:'Membre Bomboni',profileLogout:'Sortir',profileLogoutTitle:'Tancar sessió',calMonthBadge:'Historial',calPrevMonth:'Mes anterior',calNextMonth:'Mes següent',calWeekdays:['Dl','Dt','Dc','Dj','Dv','Ds','Dg'],calLogFormTitle:'Registrar àpat',calLogRestLabel:'Restaurant',calLogChooseRest:'Tria un restaurant…',calLogDishLabel:'Plat / Menjar',calLogChooseRestFirst:'Tria primer el restaurant…',calLogLoadingDishes:'Carregant plats del menú…',calLogChooseDish:'Tria un plat…',calLogCustomDishPlaceholder:'Escriu el nom del plat',calLogFeeLabel:'Copagament (€)',historyPrev:'Anterior',historyNext:'Següent',dishFavAddTitle:'Desar plat als preferits',dishFavRemoveTitle:'Eliminar dels preferits',dishLogMarkTitle:'Registrar que he menjat aquest plat avui',dishLogUnmarkTitle:'Desmarcar àpat d’avui',sourceLinkTitle:'Obrir font oficial',searchClearAria:'Netejar cerca',authUsernameMin:'El nom d’usuari ha de tenir almenys 3 caràcters.',authPasswordMin:'La contrasenya ha de tenir almenys 6 caràcters.',authEmailExists:'Aquest correu ja està registrat.',authUsernameExists:'Aquest nom d’usuari ja existeix.',authInvalidCreds:'Correu o contrasenya incorrectes.'
+    authUsernameLabel:'Nom d’usuari',authUsernamePlaceholder:'@el-teu-nom',authEmailLabel:'Correu electrònic',authEmailPlaceholder:'el.teu.email@exemple.cat',authPasswordLabel:'Contrasenya',profileMemberBadge:'Membre Bomboni',profileLogout:'Sortir',profileLogoutTitle:'Tancar sessió',calMonthBadge:'Historial',calPrevMonth:'Mes anterior',calNextMonth:'Mes següent',calWeekdays:['Dl','Dt','Dc','Dj','Dv','Ds','Dg'],calLogFormTitle:'Registrar àpat',calLogRestLabel:'Restaurant',calLogChooseRest:'Tria un restaurant…',calLogDishLabel:'Plat / Menjar',calLogChooseRestFirst:'Tria primer el restaurant…',calLogLoadingDishes:'Carregant plats del menú…',calLogChooseDish:'Escolhe um prato…',calLogCustomDishPlaceholder:'Escriu el nom del plat',calLogFeeLabel:'Copagament (€)',historyPrev:'Anterior',historyNext:'Següent',dishFavAddTitle:'Desar plat als preferits',dishFavRemoveTitle:'Eliminar dels preferits',dishLogMarkTitle:'Registrar que he menjat aquest plat avui',dishLogUnmarkTitle:'Desmarcar àpat d’avui',sourceLinkTitle:'Obrir font oficial',searchClearAria:'Netejar cerca',authUsernameMin:'El nom d’usuari ha de tenir almenys 3 caràcters.',authPasswordMin:'La contrasenya ha de tenir almenys 6 caràcters.',authEmailExists:'Aquest correu ja està registrat.',authUsernameExists:'Aquest nom d’usuari ja existeix.',authInvalidCreds:'Correu o contrasenya incorrectes.',
+    authVerifyTitle:'Verificar correu',authVerifySub:'Introdueix el codi de 4 dígits enviat a',authVerifyCodeLabel:'Codi de 4 dígits',authVerifySubmitBtn:'Verificar i crear compte',authResendCodeBtn:'Tornar a enviar codi',authBackBtn:'Tornar',authCodeSentToast:'Codi de verificació enviat a',authCodeResentToast:'Nou codi de verificació enviat a',authInvalidCodeError:'Codi de verificació incorrecte.'
   }
 };
 
@@ -617,6 +624,9 @@ function applyLanguage() {
     'meal-picker-skip':'mealPickerSkip','meal-picker-confirm-rate':'mealPickerConfirmRate',
     'auth-tab-login':'loginTab','auth-tab-register':'registerTab',
     'auth-username-label':'authUsernameLabel','auth-email-label':'authEmailLabel','auth-password-label':'authPasswordLabel',
+    'auth-verify-title':'authVerifyTitle','auth-verify-code-label':'authVerifyCodeLabel',
+    'auth-verify-submit-btn':'authVerifySubmitBtn','auth-verify-resend-btn':'authResendCodeBtn',
+    'auth-verify-back-btn':'authBackBtn',
     'profile-user-badge':'profileMemberBadge','profile-logout-text':'profileLogout',
     'cal-log-form-title':'calLogFormTitle','cal-log-rest-label':'calLogRestLabel','cal-log-dish-label':'calLogDishLabel',
     'cal-log-fee-label':'calLogFeeLabel','cal-log-cancel':'cancel','cal-log-save':'save',
@@ -669,6 +679,16 @@ function applyLanguage() {
   if (authUsername && feature.authUsernamePlaceholder) authUsername.placeholder = feature.authUsernamePlaceholder;
   const authEmail = $('auth-email');
   if (authEmail && feature.authEmailPlaceholder) authEmail.placeholder = feature.authEmailPlaceholder;
+  const authVerifySub = $('auth-verify-sub');
+  if (authVerifySub) {
+    const emailDisplay = $('auth-verify-email-display');
+    const emailText = emailDisplay ? emailDisplay.textContent : '';
+    authVerifySub.replaceChildren();
+    const strongEl = document.createElement('strong');
+    strongEl.id = 'auth-verify-email-display';
+    strongEl.textContent = emailText;
+    authVerifySub.append(document.createTextNode(`${feature.authVerifySub || 'Insere o código de 4 dígitos enviado para'} `), strongEl, document.createTextNode('.'));
+  }
   const calCustomDish = $('cal-log-dish-custom');
   if (calCustomDish && feature.calLogCustomDishPlaceholder) calCustomDish.placeholder = feature.calLogCustomDishPlaceholder;
   const calLogDish = $('cal-log-dish');
@@ -1748,24 +1768,37 @@ function renderFavoritesPage() {
    User Authentication & Profile Account
    ------------------------------------------------------------- */
 let authMode = 'login';
+let pendingRegistration = null;
+
 function setAuthMode(mode) {
   authMode = mode;
-  $('auth-tab-login').classList.toggle('active', mode === 'login');
-  $('auth-tab-register').classList.toggle('active', mode === 'register');
-  $('auth-username-wrap').hidden = mode !== 'register';
+  pendingRegistration = null;
+  const toggleEl = $('auth-toggle');
+  if (toggleEl) toggleEl.hidden = false;
+  const formEl = $('auth-form');
+  if (formEl) formEl.hidden = false;
+  const verifyFormEl = $('auth-verify-form');
+  if (verifyFormEl) verifyFormEl.hidden = true;
+  $('auth-tab-login')?.classList.toggle('active', mode === 'login');
+  $('auth-tab-register')?.classList.toggle('active', mode === 'register');
+  const usernameWrap = $('auth-username-wrap');
+  if (usernameWrap) usernameWrap.hidden = mode !== 'register';
   const feature = featureCopy[state.language] || featureCopy.en;
-  $('auth-submit-btn').textContent = mode === 'register' ? (feature.registerTab || 'Criar conta') : (feature.loginTab || 'Entrar');
-  $('auth-error').hidden = true;
-  $('auth-error').textContent = '';
+  const submitBtn = $('auth-submit-btn');
+  if (submitBtn) submitBtn.textContent = mode === 'register' ? (feature.registerTab || 'Criar conta') : (feature.loginTab || 'Entrar');
+  const errorEl = $('auth-error');
+  if (errorEl) { errorEl.hidden = true; errorEl.textContent = ''; }
+  const verifyErrorEl = $('auth-verify-error');
+  if (verifyErrorEl) { verifyErrorEl.hidden = true; verifyErrorEl.textContent = ''; }
 }
 
 $('auth-tab-login')?.addEventListener('click', () => setAuthMode('login'));
 $('auth-tab-register')?.addEventListener('click', () => setAuthMode('register'));
 
-$('auth-form')?.addEventListener('submit', (e) => {
+$('auth-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const errorEl = $('auth-error');
-  errorEl.hidden = true;
+  if (errorEl) errorEl.hidden = true;
   const email = $('auth-email').value.trim().toLowerCase();
   const password = $('auth-password').value;
   const users = getUsers();
@@ -1774,43 +1807,121 @@ $('auth-form')?.addEventListener('submit', (e) => {
   if (authMode === 'register') {
     const username = $('auth-username').value.trim().replace(/^@/, '');
     if (username.length < 3) {
-      errorEl.textContent = feature.authUsernameMin || 'Nome de utilizador deve ter pelo menos 3 caracteres.';
-      errorEl.hidden = false;
+      if (errorEl) { errorEl.textContent = feature.authUsernameMin || 'Nome de utilizador deve ter pelo menos 3 caracteres.'; errorEl.hidden = false; }
       return;
     }
     if (password.length < 6) {
-      errorEl.textContent = feature.authPasswordMin || 'A palavra-passe deve ter pelo menos 6 caracteres.';
-      errorEl.hidden = false;
+      if (errorEl) { errorEl.textContent = feature.authPasswordMin || 'A palavra-passe deve ter pelo menos 6 caracteres.'; errorEl.hidden = false; }
       return;
     }
     if (users[email]) {
-      errorEl.textContent = feature.authEmailExists || 'Este email já está registado.';
-      errorEl.hidden = false;
+      if (errorEl) { errorEl.textContent = feature.authEmailExists || 'Este email já está registado.'; errorEl.hidden = false; }
       return;
     }
     const userWithSameName = Object.values(users).find(u => u.username.toLowerCase() === username.toLowerCase());
     if (userWithSameName) {
-      errorEl.textContent = feature.authUsernameExists || 'Este nome de utilizador já existe.';
-      errorEl.hidden = false;
+      if (errorEl) { errorEl.textContent = feature.authUsernameExists || 'Este nome de utilizador já existe.'; errorEl.hidden = false; }
       return;
     }
-    const newUser = { username, email, password, createdAt: Date.now() };
-    users[email] = newUser;
-    saveUsers(users);
-    setCurrentUser({ username, email });
-    showToast(feature.registerSuccess || 'Conta criada com sucesso!');
+
+    let code = String(Math.floor(1000 + Math.random() * 9000));
+    try {
+      const res = await fetch('/api/send-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data?.code) code = data.code;
+      }
+    } catch {}
+
+    pendingRegistration = { username, email, password, code, timestamp: Date.now() };
+
+    const formEl = $('auth-form');
+    if (formEl) formEl.hidden = true;
+    const toggleEl = $('auth-toggle');
+    if (toggleEl) toggleEl.hidden = true;
+    const verifyFormEl = $('auth-verify-form');
+    if (verifyFormEl) verifyFormEl.hidden = false;
+    const displayEl = $('auth-verify-email-display');
+    if (displayEl) displayEl.textContent = email;
+    const codeInput = $('auth-verify-code');
+    if (codeInput) { codeInput.value = ''; codeInput.focus(); }
+    const verifyErr = $('auth-verify-error');
+    if (verifyErr) verifyErr.hidden = true;
+
+    showToast(`${feature.authCodeSentToast || 'Código de verificação enviado para'} ${email}: ${code}`);
   } else {
     const user = users[email] || Object.values(users).find(u => u.username.toLowerCase() === email);
     if (!user || user.password !== password) {
-      errorEl.textContent = feature.authInvalidCreds || 'Email ou palavra-passe incorretos.';
-      errorEl.hidden = false;
+      if (errorEl) { errorEl.textContent = feature.authInvalidCreds || 'Email ou palavra-passe incorretos.'; errorEl.hidden = false; }
       return;
     }
     setCurrentUser({ username: user.username, email: user.email });
     showToast(feature.loginSuccess || 'Sessão iniciada com sucesso!');
+    updateProfileAuthUI();
+    renderProfilePage();
   }
+});
+
+$('auth-verify-form')?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const errorEl = $('auth-verify-error');
+  if (errorEl) errorEl.hidden = true;
+  const typedCode = $('auth-verify-code')?.value.trim();
+  const feature = featureCopy[state.language] || featureCopy.en;
+
+  if (!pendingRegistration || typedCode !== pendingRegistration.code) {
+    if (errorEl) { errorEl.textContent = feature.authInvalidCodeError || 'Código de verificação incorreto.'; errorEl.hidden = false; }
+    return;
+  }
+
+  const users = getUsers();
+  const newUser = {
+    username: pendingRegistration.username,
+    email: pendingRegistration.email,
+    password: pendingRegistration.password,
+    emailVerified: true,
+    createdAt: Date.now()
+  };
+  users[pendingRegistration.email] = newUser;
+  saveUsers(users);
+  setCurrentUser({ username: pendingRegistration.username, email: pendingRegistration.email });
+  pendingRegistration = null;
+
+  showToast(feature.registerSuccess || 'Conta criada com sucesso!');
   updateProfileAuthUI();
   renderProfilePage();
+});
+
+$('auth-verify-resend-btn')?.addEventListener('click', async () => {
+  if (!pendingRegistration) return;
+  const feature = featureCopy[state.language] || featureCopy.en;
+  let newCode = String(Math.floor(1000 + Math.random() * 9000));
+  try {
+    const res = await fetch('/api/send-code', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: pendingRegistration.email })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data?.code) newCode = data.code;
+    }
+  } catch {}
+
+  pendingRegistration.code = newCode;
+  const codeInput = $('auth-verify-code');
+  if (codeInput) { codeInput.value = ''; codeInput.focus(); }
+  const verifyErr = $('auth-verify-error');
+  if (verifyErr) verifyErr.hidden = true;
+  showToast(`${feature.authCodeResentToast || 'Novo código de verificação enviado para'} ${pendingRegistration.email}: ${newCode}`);
+});
+
+$('auth-verify-back-btn')?.addEventListener('click', () => {
+  setAuthMode('register');
 });
 
 $('profile-logout-btn')?.addEventListener('click', () => {
