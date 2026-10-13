@@ -38,3 +38,37 @@ def test_search_menu_items_scans_city_and_matches_dish_category() -> None:
     assert result["match_count"] == 1
     assert result["results"][0]["restaurant"]["id"] == 1
     assert result["results"][0]["dish"]["categories"] == ["Meat"]
+
+
+def test_draw_recommendation_restaurant_mode_filters_by_price_and_city() -> None:
+    service = RestaurantService(FakeSource())
+    draw = service.draw_recommendation(mode="restaurant", city="Ljubljana", max_price_eur=2.5)
+    assert draw["mode"] == "restaurant"
+    assert draw["result"] is not None
+    assert draw["result"]["restaurant"]["id"] == 2
+    assert draw["result"]["restaurant"]["additional_fee_eur"] <= 2.5
+
+
+def test_draw_recommendation_dish_mode_matches_category() -> None:
+    service = RestaurantService(FakeSource())
+    draw = service.draw_recommendation(mode="dish", city="Ljubljana", category="Meat")
+    assert draw["mode"] == "dish"
+    assert draw["result"] is not None
+    assert draw["result"]["dish"]["categories"] == ["Meat"]
+    assert draw["result"]["restaurant"]["id"] == 1
+
+
+def test_draw_recommendation_validates_inputs() -> None:
+    service = RestaurantService(FakeSource())
+    try:
+        service.draw_recommendation(mode="invalid")
+        assert False, "Should have raised ValueError"
+    except ValueError as exc:
+        assert "mode must be 'restaurant' or 'dish'" in str(exc)
+
+    try:
+        service.draw_recommendation(mode="restaurant", max_price_eur=-1.0)
+        assert False, "Should have raised ValueError"
+    except ValueError as exc:
+        assert "max_price_eur must be zero or greater" in str(exc)
+

@@ -71,7 +71,7 @@ def make_handler(service: RestaurantService, translator: MyMemoryTranslator) -> 
                         item["distance_km"] if item["distance_km"] is not None else 0,
                         item["name"].casefold(),
                     ))
-                    limit = min(100, max(1, int(query.get("limit", ["60"])[0])))
+                    limit = min(500, max(1, int(query.get("limit", ["60"])[0])))
                     self._send_json(200, {"city": city, "count": len(results[:limit]), "results": results[:limit]})
                     return
                 if parsed.path == "/api/restaurant-hours":
@@ -104,6 +104,19 @@ def make_handler(service: RestaurantService, translator: MyMemoryTranslator) -> 
                     raw_date = query.get("date", [None])[0]
                     menu_date = date.fromisoformat(raw_date) if raw_date else service.today()
                     self._send_json(200, service.get_menu(restaurant_id, menu_date).to_dict())
+                    return
+                if parsed.path == "/api/draw":
+                    mode = query.get("mode", ["restaurant"])[0]
+                    city = query.get("city", [None])[0] or None
+                    category = query.get("category", [None])[0] or None
+                    raw_price = query.get("max_price_eur", [None])[0]
+                    max_price = float(raw_price) if raw_price else None
+                    self._send_json(200, service.draw_recommendation(
+                        mode=mode,
+                        city=city,
+                        category=category,
+                        max_price_eur=max_price,
+                    ))
                     return
                 if parsed.path.startswith("/api/restaurants/") and parsed.path.endswith("/menu"):
                     parts = parsed.path.strip("/").split("/")

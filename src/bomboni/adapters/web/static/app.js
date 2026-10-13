@@ -10,8 +10,18 @@ const translations = {
 const imageSearchLabels={pt:'Pesquisar imagens de',en:'Search images for',es:'Buscar imágenes de',de:'Bilder suchen für',it:'Cerca immagini di',fr:'Rechercher des images de'};
 const locationError={pt:'Não foi possível obter a localização.',en:'Could not get your location.',es:'No se pudo obtener tu ubicación.',de:'Standort konnte nicht ermittelt werden.',it:'Impossibile ottenere la posizione.',fr:'Impossible d’obtenir la position.'};
 const nearbyLabels={pt:'Perto de si',en:'Near you',es:'Cerca de ti',de:'In deiner Nähe',it:'Vicino a te',fr:'Près de vous'};
-const mobileTabLabels={pt:{explore:'Explorar',nearby:'Perto',search:'Pesquisar',language:'Idioma'},en:{explore:'Explore',nearby:'Nearby',search:'Search',language:'Language'},es:{explore:'Explorar',nearby:'Cerca',search:'Buscar',language:'Idioma'},de:{explore:'Entdecken',nearby:'In der Nähe',search:'Suchen',language:'Sprache'},it:{explore:'Esplora',nearby:'Vicino',search:'Cerca',language:'Lingua'},fr:{explore:'Explorer',nearby:'À proximité',search:'Rechercher',language:'Langue'}};
+const mobileTabLabels={pt:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteio',profile:'Perfil'},en:{explore:'Explore',favorites:'Saved',draw:'Decide',profile:'Profile'},es:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteo',profile:'Perfil'},de:{explore:'Entdecken',favorites:'Favoriten',draw:'Auslosen',profile:'Profil'},it:{explore:'Esplora',favorites:'Preferiti',draw:'Estrai',profile:'Profilo'},fr:{explore:'Explorer',favorites:'Favoris',draw:'Tirage',profile:'Profil'}};
+const featureCopy={
+  pt:{drawEyebrow:'DECISÃO DO DIA',drawTitle:'Vamos sortear',drawDescription:'Escolhe alguns filtros ou deixa o acaso decidir.',city:'Cidade',anyCity:'Qualquer cidade',food:'Tipo de comida',anyFood:'Sem preferência',mode:'Quero sortear',restaurant:'Restaurante',dish:'Prato',price:'Copagamento máximo',noLimit:'Sem limite',draw:'Sortear',searching:'A procurar opções nos menus de hoje…',noResult:'Não encontrei opções para esses filtros.',resultRestaurant:'O teu restaurante',resultDish:'O teu prato',openMenu:'Ver menu',drawError:'Não foi possível concluir o sorteio. Tenta novamente.',favoritesEyebrow:'A TUA LISTA',favoritesTitle:'Favoritos',favoritesSubtitle:'Os teus restaurantes guardados',favoritesText:'Quando criares a tua conta, os restaurantes favoritos ficam todos aqui.',profileEyebrow:'A TUA CONTA',profileTitle:'Perfil',profileCardTitle:'O teu perfil, num só lugar',profileText:'A conta ainda não está disponível. Quando chegar, poderás ver as tuas avaliações, visitas e gastos com boni.',reviews:'Avaliações',history:'Últimos restaurantes',foodStats:'Comida mais escolhida',spending:'Gasto recente',scanned:'menus consultados'},
+  en:{drawEyebrow:'TODAY’S DECISION',drawTitle:'Let’s decide',drawDescription:'Choose a few filters or leave it to chance.',city:'City',anyCity:'Any city',food:'Food type',anyFood:'No preference',mode:'Pick a',restaurant:'Restaurant',dish:'Dish',price:'Maximum co-pay',noLimit:'No limit',draw:'Pick for me',searching:'Checking today’s menus…',noResult:'No options match those filters.',resultRestaurant:'Your restaurant',resultDish:'Your dish',openMenu:'View menu',drawError:'The draw failed. Please try again.',favoritesEyebrow:'YOUR LIST',favoritesTitle:'Favorites',favoritesSubtitle:'Your saved restaurants',favoritesText:'Your favorite restaurants will be here once accounts are available.',profileEyebrow:'YOUR ACCOUNT',profileTitle:'Profile',profileCardTitle:'Your profile in one place',profileText:'Accounts are not available yet. Later you can see your reviews, restaurant history, and recent boni spending.',reviews:'Reviews',history:'Recent restaurants',foodStats:'Most chosen food',spending:'Recent spending',scanned:'menus checked'},
+  es:{drawEyebrow:'LA DECISIÓN DE HOY',drawTitle:'Vamos a sortear',drawDescription:'Elige algunos filtros o deja que decida el azar.',city:'Ciudad',anyCity:'Cualquier ciudad',food:'Tipo de comida',anyFood:'Sin preferencia',mode:'Sortear',restaurant:'Restaurante',dish:'Plato',price:'Copago máximo',noLimit:'Sin límite',draw:'Sortear',searching:'Buscando en los menús de hoy…',noResult:'No hay opciones con esos filtros.',resultRestaurant:'Tu restaurante',resultDish:'Tu plato',openMenu:'Ver menú',drawError:'No se pudo completar el sorteo.',favoritesEyebrow:'TU LISTA',favoritesTitle:'Favoritos',favoritesSubtitle:'Tus restaurantes guardados',favoritesText:'Tus restaurantes favoritos aparecerán aquí cuando haya cuentas.',profileEyebrow:'TU CUENTA',profileTitle:'Perfil',profileCardTitle:'Tu perfil en un solo lugar',profileText:'Las cuentas aún no están disponibles. Más adelante podrás ver tus reseñas, visitas y gastos.',reviews:'Reseñas',history:'Restaurantes recientes',foodStats:'Comida más elegida',spending:'Gasto reciente',scanned:'menús consultados'},
+  de:{drawEyebrow:'DIE ENTSCHEIDUNG DES TAGES',drawTitle:'Lass uns auslosen',drawDescription:'Wähle Filter oder lass den Zufall entscheiden.',city:'Stadt',anyCity:'Jede Stadt',food:'Essensart',anyFood:'Keine Präferenz',mode:'Auswählen',restaurant:'Restaurant',dish:'Gericht',price:'Maximaler Eigenanteil',noLimit:'Kein Limit',draw:'Auslosen',searching:'Heutige Menüs werden geprüft…',noResult:'Keine passenden Optionen gefunden.',resultRestaurant:'Dein Restaurant',resultDish:'Dein Gericht',openMenu:'Menü ansehen',drawError:'Die Auslosung ist fehlgeschlagen.',favoritesEyebrow:'DEINE LISTE',favoritesTitle:'Favoriten',favoritesSubtitle:'Deine gespeicherten Restaurants',favoritesText:'Deine Favoriten erscheinen hier, sobald Konten verfügbar sind.',profileEyebrow:'DEIN KONTO',profileTitle:'Profil',profileCardTitle:'Dein Profil an einem Ort',profileText:'Konten sind noch nicht verfügbar. Später kannst du Bewertungen, Restaurantbesuche und Ausgaben sehen.',reviews:'Bewertungen',history:'Letzte Restaurants',foodStats:'Meistgewähltes Essen',spending:'Letzte Ausgaben',scanned:'Menüs geprüft'},
+  it:{drawEyebrow:'LA SCELTA DI OGGI',drawTitle:'Facciamo decidere al caso',drawDescription:'Scegli qualche filtro oppure lascia fare al caso.',city:'Città',anyCity:'Qualsiasi città',food:'Tipo di cibo',anyFood:'Nessuna preferenza',mode:'Estrai',restaurant:'Ristorante',dish:'Piatto',price:'Quota massima',noLimit:'Nessun limite',draw:'Estrai',searching:'Controllo i menu di oggi…',noResult:'Nessuna opzione con questi filtri.',resultRestaurant:'Il tuo ristorante',resultDish:'Il tuo piatto',openMenu:'Vedi menu',drawError:'Estrazione non riuscita.',favoritesEyebrow:'LA TUA LISTA',favoritesTitle:'Preferiti',favoritesSubtitle:'I tuoi ristoranti salvati',favoritesText:'I preferiti saranno qui quando saranno disponibili gli account.',profileEyebrow:'IL TUO ACCOUNT',profileTitle:'Profilo',profileCardTitle:'Il tuo profilo in un solo posto',profileText:'Gli account non sono ancora disponibili. In futuro potrai vedere recensioni, visite e spese.',reviews:'Recensioni',history:'Ristoranti recenti',foodStats:'Cibo più scelto',spending:'Spesa recente',scanned:'menu controllati'},
+  fr:{drawEyebrow:'LA DÉCISION DU JOUR',drawTitle:'Laissons le hasard choisir',drawDescription:'Choisissez des filtres ou laissez faire le hasard.',city:'Ville',anyCity:'Toutes les villes',food:'Type de plat',anyFood:'Sans préférence',mode:'Tirer au sort',restaurant:'Restaurant',dish:'Plat',price:'Participation maximale',noLimit:'Sans limite',draw:'Tirer au sort',searching:'Recherche dans les menus du jour…',noResult:'Aucune option ne correspond à ces filtres.',resultRestaurant:'Votre restaurant',resultDish:'Votre plat',openMenu:'Voir le menu',drawError:'Le tirage au sort a échoué.',favoritesEyebrow:'VOTRE LISTE',favoritesTitle:'Favoris',favoritesSubtitle:'Vos restaurants enregistrés',favoritesText:'Vos favoris apparaîtront ici lorsque les comptes seront disponibles.',profileEyebrow:'VOTRE COMPTE',profileTitle:'Profil',profileCardTitle:'Votre profil au même endroit',profileText:'Les comptes ne sont pas encore disponibles. Vous pourrez ensuite consulter vos avis, visites et dépenses.',reviews:'Avis',history:'Restaurants récents',foodStats:'Plat le plus choisi',spending:'Dépenses récentes',scanned:'menus vérifiés'}
+};
 const hoursLabels={pt:{open:'Aberto',closed:'Fechado',unknown:'Sem horário',checking:'A verificar',today:'Hoje'},en:{open:'Open',closed:'Closed',unknown:'Hours n/a',checking:'Checking',today:'Today'},es:{open:'Abierto',closed:'Cerrado',unknown:'Sin horario',checking:'Consultando',today:'Hoy'},de:{open:'Geöffnet',closed:'Geschlossen',unknown:'Keine Zeiten',checking:'Prüfe…',today:'Heute'},it:{open:'Aperto',closed:'Chiuso',unknown:'Orari n/d',checking:'Verifica…',today:'Oggi'},fr:{open:'Ouvert',closed:'Fermé',unknown:'Horaires n/d',checking:'Vérification',today:'Aujourd’hui'}};
+const drawSampleLabel={pt:(scanned,total)=>`Sorteio entre ${scanned} de ${total} restaurantes`,en:(scanned,total)=>`Draw from ${scanned} of ${total} restaurants`,es:(scanned,total)=>`Sorteo entre ${scanned} de ${total} restaurantes`,de:(scanned,total)=>`Auswahl aus ${scanned} von ${total} Restaurants`,it:(scanned,total)=>`Estrazione tra ${scanned} di ${total} ristoranti`,fr:(scanned,total)=>`Tirage parmi ${scanned} restaurants sur ${total}`};
+const drawNoSampleLabel={pt:n=>`Não encontrei uma opção nos ${n} restaurantes sorteados.`,en:n=>`No match in the ${n} restaurants checked.`,es:n=>`No encontré opciones en los ${n} restaurantes consultados.`,de:n=>`Keine passende Option unter den ${n} geprüften Restaurants.`,it:n=>`Nessuna opzione tra i ${n} ristoranti controllati.`,fr:n=>`Aucune option parmi les ${n} restaurants vérifiés.`};
 const installCopy={pt:{label:'Instalar app',ios:'No Safari, toque em Partilhar e escolha “Adicionar ao ecrã principal”.',browser:'Use o menu do navegador para instalar o Bomboni.'},en:{label:'Install app',ios:'In Safari, tap Share and choose “Add to Home Screen”.',browser:'Use your browser menu to install Bomboni.'},es:{label:'Instalar app',ios:'En Safari, toca Compartir y elige “Añadir a pantalla de inicio”.',browser:'Usa el menú del navegador para instalar Bomboni.'},de:{label:'App installieren',ios:'Tippe in Safari auf Teilen und wähle „Zum Home-Bildschirm“.',browser:'Installiere Bomboni über das Browsermenü.'},it:{label:'Installa app',ios:'In Safari, tocca Condividi e scegli “Aggiungi alla schermata Home”.',browser:'Usa il menu del browser per installare Bomboni.'},fr:{label:'Installer',ios:'Dans Safari, touchez Partager puis « Sur l’écran d’accueil ».',browser:'Installez Bomboni depuis le menu du navigateur.'}};
 let deferredInstallPrompt=null;
 let activeMenuRequest=0;
@@ -19,7 +29,7 @@ const restaurantHours={};
 const loadingHours=new Set();
 let savedTranslations={};try{savedTranslations=JSON.parse(localStorage.getItem('bomboni-translations')||'{}');}catch{}
 const savedLanguage=localStorage.getItem('bomboni-language');
-const state = { language: translations[savedLanguage]?savedLanguage:'pt', location: null, locationLabel: '', restaurants: [], visible: 15, selected: null, date: '', translationCache:savedTranslations };
+const state = { language: translations[savedLanguage]?savedLanguage:'pt', location: null, locationLabel: '', restaurants: [], visible: 15, selected: null, date: '', translationCache:savedTranslations, tab:'explore' };
 const $ = (id) => document.getElementById(id);
 const languageSelect = $('language-select');
 const safeText = (value) => value == null ? '' : String(value);
@@ -27,7 +37,7 @@ const safeText = (value) => value == null ? '' : String(value);
 function locale(){ return ({pt:'pt-PT',en:'en-GB',es:'es-ES',de:'de-DE',it:'it-IT',fr:'fr-FR'})[state.language] || 'pt-PT'; }
 function tr(){ return translations[state.language] || translations.pt; }
 function applyLanguage(){
-  const t=tr(); document.documentElement.lang=state.language; languageSelect.value=state.language;
+  const t=tr();const feature=featureCopy[state.language]||featureCopy.en; document.documentElement.lang=state.language; languageSelect.value=state.language;
   $('location-label').textContent=state.locationLabel||({pt:'Usar localização',en:'Set location',es:'Usar ubicación',de:'Standort setzen',it:'Imposta posizione',fr:'Définir la position'}[state.language]);
   $('search-input').placeholder=({pt:'Restaurante, rua ou cidade…',en:'Restaurant, street or city…',es:'Restaurante, calle o ciudad…',de:'Restaurant, Straße oder Stadt…',it:'Ristorante, via o città…',fr:'Restaurant, rue ou ville…'}[state.language]);
   $('search-input').setAttribute('aria-label',$('search-input').placeholder);
@@ -40,8 +50,41 @@ function applyLanguage(){
   $('footer-source').textContent=`${t.source} ↗`;
   $('footer-install').textContent=`${installCopy[state.language]?.label||installCopy.en.label} ↓`;
   document.querySelectorAll('[data-tab-label]').forEach(label=>{label.textContent=mobileTabLabels[state.language]?.[label.dataset.tabLabel]||mobileTabLabels.en[label.dataset.tabLabel];});
+  for(const [id,key] of Object.entries({
+    'draw-eyebrow':'drawEyebrow','draw-title':'drawTitle','draw-description':'drawDescription','draw-city-label':'city','draw-any-city':'anyCity',
+    'draw-category-label':'food','draw-any-category':'anyFood','draw-mode-label':'mode','draw-mode-restaurant':'restaurant','draw-mode-dish':'dish',
+    'draw-price-label':'price','draw-submit-label':'draw','favorites-eyebrow':'favoritesEyebrow','favorites-title':'favoritesTitle',
+    'favorites-empty-title':'favoritesSubtitle','favorites-empty-copy':'favoritesText','profile-eyebrow':'profileEyebrow','profile-title':'profileTitle',
+    'profile-signin-title':'profileCardTitle','profile-signin-copy':'profileText','profile-reviews-label':'reviews','profile-history-label':'history',
+    'profile-food-label':'foodStats','profile-spend-label':'spending'
+  }))$(id).textContent=feature[key];
+  $('draw-price').placeholder=feature.noLimit;
+  document.querySelectorAll('[data-category]').forEach(option=>{option.textContent=t.categories[option.dataset.category]||option.dataset.category;});
   $('mobile-tab-bar').setAttribute('aria-label',({pt:'Navegação principal',en:'Main navigation',es:'Navegación principal',de:'Hauptnavigation',it:'Navigazione principale',fr:'Navigation principale'}[state.language]));
+  renderDrawCities();
   renderRestaurants();
+}
+
+function switchTab(name){
+  state.tab=name;
+  $('layout').hidden=name!=='explore';
+  $('draw-page').hidden=name!=='draw';
+  $('favorites-page').hidden=name!=='favorites';
+  $('profile-page').hidden=name!=='profile';
+  $('footer').hidden=name!=='explore';
+  if(name!=='explore'){
+    state.selected=null;
+    $('menu-panel').hidden=true;
+    $('menu-panel').classList.remove('mobile-open');
+    $('layout').classList.remove('menu-open');
+    renderRestaurants();
+  }
+  document.querySelectorAll('.mobile-tab').forEach(tab=>{
+    const active=tab.dataset.tab===name;
+    tab.classList.toggle('active',active);
+    if(active)tab.setAttribute('aria-current','page');else tab.removeAttribute('aria-current');
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 async function installApp(){
@@ -137,9 +180,40 @@ function renderRestaurants(){
 
 async function loadRestaurants(){
   $('restaurant-list').innerHTML=`<div class="loading-card"><span class="spinner"></span><span>${tr().loading}</span></div>`;
-  const params=new URLSearchParams({limit:'100'});if(state.location){params.set('lat',state.location.latitude);params.set('lon',state.location.longitude);}
-  try{const response=await fetch(`/api/restaurants?${params}`);if(!response.ok)throw new Error('restaurants');const data=await response.json();state.restaurants=data.results||[];state.visible=15;if(state.location){const nearest=state.restaurants.find(r=>r.city);state.locationLabel=nearest?.distance_km!=null&&nearest.distance_km<20?nearest.city:nearbyLabels[state.language];$('location-label').textContent=state.locationLabel;}renderRestaurants();}
+  const params=new URLSearchParams({limit:'500'});if(state.location){params.set('lat',state.location.latitude);params.set('lon',state.location.longitude);}
+  try{const response=await fetch(`/api/restaurants?${params}`);if(!response.ok)throw new Error('restaurants');const data=await response.json();state.restaurants=data.results||[];state.visible=15;renderDrawCities();if(state.location){const nearest=state.restaurants.find(r=>r.city);state.locationLabel=nearest?.distance_km!=null&&nearest.distance_km<20?nearest.city:nearbyLabels[state.language];$('location-label').textContent=state.locationLabel;}renderRestaurants();}
   catch{showToast(tr().error);$('restaurant-list').innerHTML=`<div class="loading-card">${tr().error}</div>`;}
+}
+
+function renderDrawCities(){
+  const select=$('draw-city');const selected=select.value;const feature=featureCopy[state.language]||featureCopy.en;
+  select.replaceChildren(new Option(feature.anyCity,''));
+  [...new Set(state.restaurants.map(restaurant=>restaurant.city).filter(Boolean))].sort((a,b)=>a.localeCompare(b)).forEach(city=>select.add(new Option(city,city)));
+  select.value=selected;
+}
+
+async function submitDraw(event){
+  event.preventDefault();
+  const feature=featureCopy[state.language]||featureCopy.en;
+  const button=$('draw-submit');const label=$('draw-submit-label');const resultHost=$('draw-result');
+  const params=new URLSearchParams({mode:new FormData($('draw-form')).get('draw-mode')||'restaurant'});
+  const city=$('draw-city').value;const category=$('draw-category').value;const price=$('draw-price').value.trim();
+  if(city)params.set('city',city);if(category)params.set('category',category);if(price)params.set('max_price_eur',price.replace(',','.'));
+  button.disabled=true;label.textContent=feature.searching;resultHost.hidden=false;resultHost.className='draw-result is-loading';resultHost.textContent=feature.searching;
+  try{
+    const response=await fetch(`/api/draw?${params}`);const payload=await response.json();if(!response.ok)throw new Error(payload.error||'draw');
+    if(!payload.result){resultHost.className='draw-result is-empty';resultHost.textContent=payload.sampled?drawNoSampleLabel[state.language](payload.candidates_scanned):feature.noResult;return;}
+    const restaurant=payload.result.restaurant;const dish=payload.result.dish;const card=document.createElement('article');card.className='draw-card';
+    const kicker=document.createElement('span');kicker.className='page-eyebrow';kicker.textContent=dish?feature.resultDish:feature.resultRestaurant;
+    const title=document.createElement('h2');title.textContent=dish?dish.name:restaurant.name;
+    if(dish){const translations=await translatedText([dish.name]);const translated=translations.results?.find(item=>item.original===dish.name)?.translated;if(translated&&translated!==dish.name)title.textContent=translated;}
+    const detail=document.createElement('p');detail.textContent=dish?`${restaurant.name} · ${displayAddress(restaurant.address,restaurant.city)}`:displayAddress(restaurant.address,restaurant.city);
+    if(payload.sampled){const note=document.createElement('p');note.className='draw-sample-note';note.textContent=drawSampleLabel[state.language](payload.candidates_scanned,payload.candidate_total);card.append(kicker,title,detail,note);}else card.append(kicker,title,detail);
+    const meta=document.createElement('span');meta.className='draw-card-fee';meta.textContent=formatMoney(restaurant.additional_fee_eur);
+    const open=document.createElement('button');open.type='button';open.className='draw-open';open.textContent=feature.openMenu;open.addEventListener('click',()=>{switchTab('explore');openRestaurant(restaurant);});
+    card.append(meta,open);resultHost.replaceChildren(card);resultHost.className='draw-result';
+  }catch{resultHost.className='draw-result is-empty';resultHost.textContent=feature.drawError;}
+  finally{button.disabled=false;label.textContent=feature.draw;}
 }
 
 function requestLocation(){
@@ -194,7 +268,8 @@ $('location-button').addEventListener('click',requestLocation);
 $('back-button').addEventListener('click',()=>{state.selected=null;$('menu-panel').hidden=true;$('menu-panel').classList.remove('mobile-open');$('layout').classList.remove('menu-open');renderRestaurants();});
 $('date-prev').addEventListener('click',()=>changeMenuDate(-1));
 $('date-next').addEventListener('click',()=>changeMenuDate(1));
-$('mobile-tab-bar').addEventListener('click',event=>{const button=event.target.closest('[data-tab]');if(!button)return;document.querySelectorAll('.mobile-tab').forEach(tab=>{tab.classList.toggle('active',tab===button);if(tab===button)tab.setAttribute('aria-current','page');else tab.removeAttribute('aria-current');});switch(button.dataset.tab){case'explore':if(state.selected){state.selected=null;$('menu-panel').hidden=true;$('menu-panel').classList.remove('mobile-open');$('layout').classList.remove('menu-open');renderRestaurants();}window.scrollTo({top:0,behavior:'smooth'});break;case'nearby':requestLocation();break;case'search':if(state.selected){state.selected=null;$('menu-panel').hidden=true;$('menu-panel').classList.remove('mobile-open');$('layout').classList.remove('menu-open');renderRestaurants();}window.scrollTo({top:0,behavior:'smooth'});$('search-input').focus();break;case'language':if(typeof languageSelect.showPicker==='function'){try{languageSelect.showPicker();}catch{languageSelect.focus();languageSelect.click();}}else{languageSelect.focus();languageSelect.click();}break;}});
+$('mobile-tab-bar').addEventListener('click',event=>{const button=event.target.closest('[data-tab]');if(button)switchTab(button.dataset.tab);});
+$('draw-form').addEventListener('submit',submitDraw);
 $('dish-list').addEventListener('touchstart',event=>{const touch=event.touches[0];$('dish-list').dataset.touchX=touch.clientX;$('dish-list').dataset.touchY=touch.clientY;},{passive:true});
 $('dish-list').addEventListener('touchend',event=>{const touch=event.changedTouches[0];const dx=touch.clientX-Number($('dish-list').dataset.touchX||touch.clientX);const dy=touch.clientY-Number($('dish-list').dataset.touchY||touch.clientY);if(Math.abs(dx)>75&&Math.abs(dy)<55)changeMenuDate(dx<0?1:-1);},{passive:true});
 document.addEventListener('keydown',event=>{if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==='k'){event.preventDefault();$('search-input').focus();}if(event.key==='Escape'&&state.selected){state.selected=null;$('menu-panel').hidden=true;$('menu-panel').classList.remove('mobile-open');$('layout').classList.remove('menu-open');renderRestaurants();}});

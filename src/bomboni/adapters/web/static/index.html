@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=ios-bottom-nav-hours-1">
+    <link rel="stylesheet" href="/styles.css?v=liquid-tabs-draw-1">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body>
@@ -69,24 +69,55 @@
           </div>
         </section>
       </main>
-      <footer class="footer"><button class="footer-install" id="footer-install" type="button">Instalar app ↓</button><a href="https://www.studentska-prehrana.si/en/restaurant" target="_blank" rel="noreferrer" id="footer-source">Fonte ↗</a></footer>
+      <main class="app-page" id="draw-page" hidden>
+        <section class="page-heading"><span class="page-eyebrow" id="draw-eyebrow">DECISÃO DO DIA</span><h1 id="draw-title">Vamos sortear</h1><p id="draw-description">Escolhe alguns filtros ou deixa o acaso decidir.</p></section>
+        <form class="draw-form" id="draw-form">
+          <label class="field-label" for="draw-city" id="draw-city-label">Cidade</label>
+          <select id="draw-city"><option value="" id="draw-any-city">Qualquer cidade</option></select>
+          <label class="field-label" for="draw-category" id="draw-category-label">Tipo de comida</label>
+          <select id="draw-category">
+            <option value="" id="draw-any-category">Sem preferência</option>
+            <option value="Meat" data-category="Meat">Carne</option><option value="Fish" data-category="Fish">Peixe</option>
+            <option value="Meatless" data-category="Meatless">Sem carne</option><option value="Mixed" data-category="Mixed">Misto</option>
+            <option value="Salad bar" data-category="Salad bar">Saladas</option><option value="Fast food" data-category="Fast food">Fast food</option>
+          </select>
+          <fieldset class="draw-mode"><legend id="draw-mode-label">Quero sortear</legend>
+            <label><input type="radio" name="draw-mode" value="restaurant" checked><span id="draw-mode-restaurant">Restaurante</span></label>
+            <label><input type="radio" name="draw-mode" value="dish"><span id="draw-mode-dish">Prato</span></label>
+          </fieldset>
+          <label class="field-label" for="draw-price" id="draw-price-label">Copagamento máximo</label>
+          <div class="price-input"><span>€</span><input id="draw-price" type="number" min="0" max="20" step="0.10" inputmode="decimal" placeholder="Sem limite"></div>
+          <button class="draw-submit" type="submit" id="draw-submit"><span aria-hidden="true">✳</span><span id="draw-submit-label">Sortear</span></button>
+        </form>
+        <section class="draw-result" id="draw-result" aria-live="polite" hidden></section>
+      </main>
+      <main class="app-page" id="favorites-page" hidden>
+        <section class="page-heading"><span class="page-eyebrow" id="favorites-eyebrow">A TUA LISTA</span><h1 id="favorites-title">Favoritos</h1></section>
+        <div class="future-card"><span class="future-icon" aria-hidden="true">♡</span><h2 id="favorites-empty-title">Os teus restaurantes guardados</h2><p id="favorites-empty-copy">Quando criares a tua conta, os restaurantes favoritos ficam todos aqui.</p></div>
+      </main>
+      <main class="app-page" id="profile-page" hidden>
+        <section class="page-heading"><span class="page-eyebrow" id="profile-eyebrow">A TUA CONTA</span><h1 id="profile-title">Perfil</h1></section>
+        <div class="profile-card"><div class="profile-avatar" aria-hidden="true">◎</div><div><h2 id="profile-signin-title">O teu perfil, num só lugar</h2><p id="profile-signin-copy">A conta ainda não está disponível. Quando chegar, poderás ver as tuas avaliações, visitas e gastos com boni.</p></div></div>
+        <div class="profile-stats"><div><span id="profile-reviews-label">Avaliações</span><strong>—</strong></div><div><span id="profile-history-label">Últimos restaurantes</span><strong>—</strong></div><div><span id="profile-food-label">Comida mais escolhida</span><strong>—</strong></div><div><span id="profile-spend-label">Gasto recente</span><strong>—</strong></div></div>
+      </main>
+      <footer class="footer" id="footer"><button class="footer-install" id="footer-install" type="button">Instalar app ↓</button><a href="https://www.studentska-prehrana.si/en/restaurant" target="_blank" rel="noreferrer" id="footer-source">Fonte ↗</a></footer>
     </div>
     <nav class="mobile-tab-bar" id="mobile-tab-bar" aria-label="Navegação principal">
       <button class="mobile-tab active" type="button" data-tab="explore" aria-current="page">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span data-tab-label="explore">Explorar</span>
       </button>
-      <button class="mobile-tab" type="button" data-tab="nearby">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-tab-label="nearby">Perto</span>
+      <button class="mobile-tab" type="button" data-tab="favorites">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg><span data-tab-label="favorites">Favoritos</span>
       </button>
-      <button class="mobile-tab" type="button" data-tab="search">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><span data-tab-label="search">Pesquisar</span>
+      <button class="mobile-tab" type="button" data-tab="draw">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 1.5 6.5L20 7l-3.5 5 5.5 2.5-6.5 1L17 22l-5-4-4.5 4 1.5-6.5L3 14l6-2-3-5 6 1.5z"/><circle cx="12" cy="12" r="2.1"/></svg><span data-tab-label="draw">Sorteio</span>
       </button>
-      <button class="mobile-tab" type="button" data-tab="language">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span data-tab-label="language">Idioma</span>
+      <button class="mobile-tab" type="button" data-tab="profile">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21a7 7 0 0 1 14 0"/></svg><span data-tab-label="profile">Perfil</span>
       </button>
     </nav>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=ios-bottom-nav-hours-1" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=12').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=liquid-tabs-draw-1" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=13').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>

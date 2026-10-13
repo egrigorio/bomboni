@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import threading
 import unicodedata
+import random
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timedelta, timezone
 from time import perf_counter
@@ -198,4 +199,95 @@ class RestaurantService:
                 "when the portal response was fetched. Dish names are preserved in the source language, "
                 "and categories reflect the site's menu labels."
             ),
+        }
+
+    def draw_recommendation(
+        self,
+        *,
+        mode: str,
+        city: str | None = None,
+        category: str | None = None,
+        max_price_eur: float | None = None,
+    ) -> dict[str, object]:
+        """Pick a random eligible restaurant or currently listed menu dish."""
+        if mode not in {"restaurant", "dish"}:
+            raise ValueError("mode must be 'restaurant' or 'dish'.")
+        if max_price_eur is not None and max_price_eur < 0:
+            raise ValueError("max_price_eur must be zero or greater.")
+
+        restaurants = self.search_restaurants(city=city, limit=10_000)
+        if max_price_eur is not None:
+            restaurants = [
+                restaurant for restaurant in restaurants
+                if restaurant.additional_fee_eur is not None
+                and restaurant.additional_fee_eur <= max_price_eur
+            ]
+        if not restaurants:
+            return {"mode": mode, "result": None, "candidates_scanned": 0, "errors": 0}
+
+        # Without a food filter, restaurant mode can return immediately. A food
+        # filter, or dish mode, needs today's official menus to verify the match.
+        if mode == "restaurant" and not category:
+            selected = random.choice(restaurants)
+            return {
+                "mode": mode,
+                "result": {"restaurant": selected.to_dict()},
+                "candidates_scanned": len(restaurants),
+                "errors": 0,
+                "menu_date": None,
+            }
+
+        candidate_total = len(restaurants)
+        # Random draws need a representative random sample, not a city-wide
+        # exhaustive scan. This keeps the serverless request within its time cap.
+        restaurants = random.sample(restaurants, min(60, candidate_total))
+        requested_date = self.today()
+        normalized_category = _normalize(category) if category else None
+        dishes: list[dict[str, object]] = []
+        eligible_restaurants: dict[int, Restaurant] = {}
+        errors = 0
+
+        def fetch_one(restaurant: Restaurant) -> tuple[Restaurant, DailyMenu | Exception]:
+            try:
+                return restaurant, self.get_menu(restaurant.id, requested_date)
+            except Exception as exc:
+                return restaurant, exc
+
+        with ThreadPoolExecutor(max_workers=self._menu_workers) as pool:
+            futures = [pool.submit(fetch_one, restaurant) for restaurant in restaurants]
+            for future in as_completed(futures):
+                restaurant, menu = future.result()
+                if isinstance(menu, Exception):
+                    errors += 1
+                    continue
+                for dish in menu.dishes:
+                    if normalized_category and normalized_category not in {
+                        _normalize(value) for value in dish.categories
+                    }:
+                        continue
+                    eligible_restaurants[restaurant.id] = restaurant
+                    dishes.append({
+                        "restaurant": restaurant.to_dict(),
+                        "menu_date": menu.date,
+                        "menu_retrieved_at": menu.retrieved_at,
+                        "dish": dish.to_dict(),
+                        "source_url": menu.source_url,
+                    })
+
+        result = (
+            {"restaurant": random.choice(list(eligible_restaurants.values())).to_dict()}
+            if mode == "restaurant" and eligible_restaurants
+            else random.choice(dishes) if dishes else None
+        )
+        return {
+            "mode": mode,
+            "result": result,
+            "city": city,
+            "category": category,
+            "menu_date": requested_date.isoformat(),
+            "candidates_scanned": len(restaurants),
+            "candidate_total": candidate_total,
+            "sampled": len(restaurants) < candidate_total,
+            "eligible_dishes": len(dishes),
+            "errors": errors,
         }

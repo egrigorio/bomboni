@@ -32,7 +32,7 @@ class handler(JsonHandler):
                 record["distance_km"] = round(distance, 2) if distance is not None else None
                 results.append(record)
             results.sort(key=lambda item: (item["distance_km"] is None, item["distance_km"] or 0, item["name"].casefold()))
-            limit = min(100, max(1, int(query.get("limit", ["60"])[0])))
+            limit = min(500, max(1, int(query.get("limit", ["60"])[0])))
             send_json(self, 200, {"city": city, "count": len(results[:limit]), "results": results[:limit]})
         except (ValueError, KeyError) as exc:
             send_json(self, 400, {"error": str(exc)})
