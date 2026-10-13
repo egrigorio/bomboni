@@ -174,6 +174,7 @@ const state = {
   location: savedLocation || DEFAULT_COORDS,
   locationLabel: '',
   restaurants: [],
+  restaurantsById: new Map(),
   visible: 15,
   selected: null,
   date: '',
@@ -1068,6 +1069,7 @@ async function loadRestaurants() {
     if (!response.ok) throw new Error('restaurants');
     const data = await response.json();
     state.restaurants = data.results || [];
+    state.restaurantsById = new Map(state.restaurants.map(r => [r.id, r]));
     state.visible = 15;
     renderDrawCities();
     if (state.location) {
@@ -1605,7 +1607,7 @@ function renderFavoritesPage() {
     venuesHost.replaceChildren();
 
     favList.forEach((r, index) => {
-      const fullRestaurant = state.restaurants.find(item => item.id === r.id) || r;
+      const fullRestaurant = state.restaurantsById.get(r.id) || r;
       const card = document.createElement('div');
       card.className = `restaurant-card${state.selected?.id === r.id ? ' active' : ''}`;
       card.setAttribute('role', 'button');
@@ -1725,7 +1727,7 @@ function renderFavoritesPage() {
 
       card.append(number, body);
       card.addEventListener('click', () => {
-        const fullRestaurant = state.restaurants.find(item => item.id === dishItem.restaurantId) || {
+        const fullRestaurant = state.restaurantsById.get(dishItem.restaurantId) || {
           id: dishItem.restaurantId,
           name: dishItem.restaurantName,
           address: dishItem.restaurantAddress,
@@ -2005,7 +2007,7 @@ $('cal-log-restaurant')?.addEventListener('change', () => {
     return;
   }
 
-  const rest = state.restaurants.find(r => r.id === restId);
+  const rest = state.restaurantsById.get(restId);
   if (rest && rest.additional_fee_eur != null) {
     $('cal-log-fee').value = rest.additional_fee_eur;
   }
@@ -2067,7 +2069,7 @@ $('cal-log-form')?.addEventListener('submit', (e) => {
   const restId = Number(sel.value);
   if (!restId) return;
 
-  const rest = state.restaurants.find(r => r.id === restId) || {
+  const rest = state.restaurantsById.get(restId) || {
     id: restId,
     name: opt.text,
     address: opt.dataset.address || '',
@@ -2215,7 +2217,7 @@ function renderProfilePage() {
       right.append(stars, delBtn);
       card.append(info, right);
       card.addEventListener('click', () => {
-        const fullRestaurant = state.restaurants.find(item => item.id === rev.restaurantId) || { id: rev.restaurantId, name: rev.name, address: rev.address, city: rev.city, additional_fee_eur: rev.additional_fee_eur };
+        const fullRestaurant = state.restaurantsById.get(rev.restaurantId) || { id: rev.restaurantId, name: rev.name, address: rev.address, city: rev.city, additional_fee_eur: rev.additional_fee_eur };
         switchTab('explore');
         openRestaurant(fullRestaurant);
       });
@@ -2276,7 +2278,7 @@ function renderProfilePage() {
       right.append(fee, delBtn);
       card.append(info, right);
       card.addEventListener('click', () => {
-        const fullRestaurant = state.restaurants.find(item => item.id === m.restaurantId) || { id: m.restaurantId, name: m.name, address: m.address, city: m.city, additional_fee_eur: m.fee };
+        const fullRestaurant = state.restaurantsById.get(m.restaurantId) || { id: m.restaurantId, name: m.name, address: m.address, city: m.city, additional_fee_eur: m.fee };
         switchTab('explore');
         openRestaurant(fullRestaurant);
       });
