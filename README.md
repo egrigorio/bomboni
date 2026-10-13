@@ -47,7 +47,7 @@ mcp dev src/bomboni/adapters/mcp/server.py
 
 ## Web app / PWA
 
-The mobile-first web app shares the same restaurant source and core models as the MCP. It uses the restaurant coordinates published in the directory to sort nearby venues, then loads a selected date's menu and translates dish names and sides into Portuguese, English, Spanish, German, Italian, or French. Slovenian names remain visible alongside machine translations.
+The mobile-first web app shares the same restaurant source and core models as the MCP. It uses the restaurant coordinates published in the directory to sort nearby venues, then loads a selected date's menu and translates dish names and sides into Portuguese, English, Spanish, German, Italian, French, or Catalan. Slovenian names remain visible alongside machine translations.
 
 On mobile, the PWA has a floating liquid-glass bottom navigation with Explore, Favorites, Draw, and Profile tabs. Restaurant hours are fetched from official detail pages for visible cards in bounded batches; the open/closed badge is based on the published schedule in the `Europe/Ljubljana` timezone and is unavailable when no schedule is published.
 

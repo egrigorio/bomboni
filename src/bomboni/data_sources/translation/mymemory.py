@@ -11,7 +11,7 @@ class MyMemoryTranslator:
     """Small cached adapter for translating public menu text from Slovenian."""
 
     ENDPOINT = "https://api.mymemory.translated.net/get"
-    LANGUAGES = {"en", "pt", "es", "de", "it", "fr"}
+    LANGUAGES = {"en", "pt", "es", "de", "it", "fr", "ca"}
 
     def __init__(self, *, timeout: float = 8.0, client: httpx.Client | None = None) -> None:
         self._client = client or httpx.Client(timeout=timeout)
