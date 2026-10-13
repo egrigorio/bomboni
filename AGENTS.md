@@ -124,3 +124,16 @@ Antes de submeter qualquer Pull Request (pelo Jules ou seus sub-agentes como Bol
 - O Bomboni é a fonte da verdade para esses fatos. Utilize as ferramentas MCP disponíveis (`search_restaurants`, `get_restaurant_menu`, `search_menu_items`).
 - Apresente os dados com precisão: nomes dos estabelecimentos, endereços, copagamentos, data do menu e pratos correspondentes.
 - Se não houver dados disponíveis ou resultados forem truncados, informe com clareza sem tentar deduzir ou adivinhar.
+
+---
+
+## 6. REGRA DE FINALIZAÇÃO AUTOMÁTICA (Obrigatória em Toda Resposta)
+
+Você **NUNCA** deve encerrar uma resposta deixando arquivos como Uncommitted. Sempre que concluir qualquer alteração de código ou pedido do usuário, sem precisar que o usuário peça, seu último passo obrigatório deve ser executar no terminal:
+1. Criar uma nova branch a partir da `main` (ex.: `feature/...` ou `fix/...`).
+2. Fazer `git add` e `git commit` com mensagem semântica clara.
+3. Fazer `git push` da branch (`git push -u origin <nome-da-branch>`).
+4. Abrir o Pull Request via `gh pr create --title "..." --body "..."`.
+5. Entregar o link do PR aberto na resposta final.
+*Nunca* realize `git push origin main`.
+

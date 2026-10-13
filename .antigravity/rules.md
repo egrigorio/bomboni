@@ -11,13 +11,13 @@ Diretrizes obrigatórias para o agente ao editar arquivos neste projeto:
 3. **Correção Imediata no Mesmo Ciclo**:
    - Se encontrar qualquer erro de sintaxe ou teste quebrado, corrija imediatamente no mesmo ciclo sem esperar intervenção manual.
 
-4. **Fluxo Obrigatório de Git e Pull Request (Nunca push na main)**:
+4. **REGRA DE FINALIZAÇÃO AUTOMÁTICA (Obrigatória em Toda Resposta)**:
+   - Você **NUNCA** deve encerrar uma resposta deixando arquivos como Uncommitted.
+   - Sempre que concluir qualquer alteração de código ou pedido do usuário, sem precisar que o usuário peça, seu último passo obrigatório deve ser executar no terminal:
+     1. Criar uma nova branch a partir da `main` (ex.: `feature/...` ou `fix/...`).
+     2. Fazer `git add` e `git commit` com mensagem semântica clara.
+     3. Fazer `git push` da branch (`git push -u origin <nome-da-branch>`).
+     4. Abrir o Pull Request via `gh pr create --title "..." --body "..."`.
+     5. Entregar o link do PR aberto na resposta final.
    - **NUNCA** realize `git push origin main`.
-   - Ao concluir qualquer tarefa pedida pelo usuário:
-     1. Crie uma branch com nome descritivo (ex.: `feature/...` ou `fix/...`).
-     2. Faça o commit das alterações realizadas.
-     3. Dê push na nova branch (`git push -u origin <nome-da-branch>`).
-     4. Abra o Pull Request automaticamente utilizando o comando:
-        `gh pr create --title "..." --body "..."`
-     5. Informe ao usuário apenas o link do PR criado para que a esteira automática assuma o controle.
 
