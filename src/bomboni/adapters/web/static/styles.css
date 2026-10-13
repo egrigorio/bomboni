@@ -64,6 +64,308 @@
 .profile-stats>div{min-height:85px;display:flex;flex-direction:column;justify-content:space-between;padding:14px;border:1px solid var(--line);border-radius:15px;background:rgba(255,254,250,.7)}
 .profile-stats span{font-size:11px;color:#858e84}
 .profile-stats strong{font:700 20px Manrope,sans-serif;color:#69776a}
+
+/* Favorite button on cards */
+.card-fav-btn {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  color: #a4aca1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.18s;
+  margin-top: 2px;
+}
+.card-fav-btn:hover {
+  background: #edf3e7;
+  color: #cf5544;
+}
+.card-fav-btn svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.card-fav-btn.active {
+  color: #cf5544;
+}
+.card-fav-btn.active svg path {
+  fill: #cf5544;
+  stroke: #cf5544;
+}
+
+/* Venue actions and in-menu rating */
+.venue-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 13px 0 2px;
+}
+.venue-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #faf9f5;
+  color: #4b584d;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 13px;
+  cursor: pointer;
+  transition: all 0.16s;
+}
+.venue-action-btn:hover {
+  background: #edf2e9;
+  border-color: #b9cbb5;
+  color: var(--green);
+}
+.venue-action-btn svg {
+  width: 14px;
+  height: 14px;
+}
+.venue-action-btn.active {
+  background: #edf2e9;
+  border-color: #b9cbb5;
+  color: var(--green);
+}
+.venue-action-btn.active.is-fav {
+  border-color: #ecc9c4;
+  background: #fdf5f4;
+  color: #c04939;
+}
+.venue-action-btn.active.is-fav svg path {
+  fill: #cf5544;
+  stroke: #cf5544;
+}
+.venue-review-box {
+  background: #faf9f4;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 15px;
+  margin-top: 13px;
+  animation: rise 0.22s both;
+}
+.venue-review-box h4 {
+  margin: 0 0 10px;
+  font: 700 13px Manrope, sans-serif;
+  color: var(--ink);
+}
+.star-rating {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.star-btn {
+  border: 0;
+  background: transparent;
+  color: #cdd4c8;
+  cursor: pointer;
+  padding: 4px 5px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  transition: transform 0.15s, color 0.15s;
+}
+.star-btn:hover, .star-btn.selected {
+  color: #e5993b;
+  transform: scale(1.15);
+}
+.star-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+.venue-review-box textarea {
+  width: 100%;
+  border: 1px solid #e1e3da;
+  border-radius: 10px;
+  background: var(--white);
+  padding: 9px 12px;
+  font-size: 13px;
+  color: var(--ink);
+  resize: vertical;
+  min-height: 52px;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.venue-review-box textarea:focus {
+  outline: 2px solid #8ba88f;
+  outline-offset: -1px;
+}
+.review-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+.review-cancel-btn {
+  border: 0;
+  background: transparent;
+  color: #7b8379;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+}
+.review-save-btn {
+  border: 0;
+  background: var(--green);
+  color: #fffefa;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 15px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.review-save-btn:hover {
+  opacity: 0.9;
+}
+
+/* Profile sections & items */
+.profile-section {
+  margin-top: 26px;
+}
+.profile-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 11px;
+}
+.profile-section-header h3 {
+  font: 700 15px Manrope, sans-serif;
+  color: var(--ink);
+  margin: 0;
+}
+.profile-section-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  background: #edf2e8;
+  color: var(--green);
+  border-radius: 12px;
+}
+.profile-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.profile-item-card {
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: 14px;
+  padding: 13px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(37,53,41,.025);
+  cursor: pointer;
+  transition: transform 0.18s, border-color 0.18s;
+  animation: rise 0.22s both;
+}
+.profile-item-card:hover {
+  transform: translateY(-1px);
+  border-color: #dce4d7;
+}
+.profile-item-info {
+  min-width: 0;
+  flex: 1;
+}
+.profile-item-name {
+  font: 700 13px Manrope, sans-serif;
+  color: var(--ink);
+  margin: 0 0 3px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.profile-item-sub {
+  font-size: 11px;
+  color: #838c82;
+  margin: 0;
+}
+.profile-item-right {
+  text-align: right;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.profile-stars {
+  color: #e5993b;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+.profile-item-review-text {
+  font-size: 12px;
+  color: #556054;
+  margin-top: 5px;
+  line-height: 1.4;
+  font-style: italic;
+}
+.profile-del-btn {
+  border: 0;
+  background: transparent;
+  color: #a2a89f;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  transition: color 0.15s;
+}
+.profile-del-btn:hover {
+  color: #cf5544;
+}
+.profile-del-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.profile-empty-hint {
+  padding: 18px 16px;
+  border: 1px dashed #dce2d7;
+  border-radius: 14px;
+  text-align: center;
+  color: #828a80;
+  font-size: 12px;
+  line-height: 1.5;
+  background: rgba(255,254,250,.6);
+}
+.profile-footer-actions {
+  margin-top: 32px;
+  text-align: center;
+}
+.profile-reset-btn {
+  border: 1px solid #e2e4dc;
+  background: transparent;
+  color: #8c938a;
+  border-radius: 14px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 7px 15px;
+  cursor: pointer;
+  transition: all 0.16s;
+}
+.profile-reset-btn:hover {
+  background: #fbf2f0;
+  border-color: #eed6d2;
+  color: #c04c3c;
+}
 @media(max-width:760px){
   .app-shell{padding-bottom:calc(120px + env(safe-area-inset-bottom))}
   .layout{padding-bottom:calc(120px + env(safe-area-inset-bottom))}

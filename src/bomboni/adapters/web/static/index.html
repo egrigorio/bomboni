@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=bonbon-v1">
+    <link rel="stylesheet" href="/styles.css?v=profile-v1">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body>
@@ -72,7 +72,40 @@
               <div class="venue-title-wrap"><h2 id="venue-name"></h2><p id="venue-address"></p></div>
               <a class="source-link" id="source-link" target="_blank" rel="noreferrer" aria-label="Abrir fonte oficial"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7m0-7L5 11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
-            <div class="venue-meta"><span class="meta-item"><span class="meta-icon">€</span><span id="venue-fee"></span></span></div>
+            <div class="venue-meta">
+              <span class="meta-item"><span class="meta-icon">€</span><span id="venue-fee"></span></span>
+              <span class="meta-separator" id="venue-rating-sep" hidden></span>
+              <span class="meta-item" id="venue-rating-display" hidden></span>
+            </div>
+            <div class="venue-actions">
+              <button class="venue-action-btn" id="venue-fav-btn" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span id="venue-fav-text">Favorito</span>
+              </button>
+              <button class="venue-action-btn" id="venue-log-meal-btn" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span id="venue-log-text">Comi aqui</span>
+              </button>
+              <button class="venue-action-btn" id="venue-rate-btn" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span id="venue-rate-text">Avaliar</span>
+              </button>
+            </div>
+            <form class="venue-review-box" id="venue-review-box" hidden>
+              <h4 id="review-box-title">Avaliar este restaurante</h4>
+              <div class="star-rating" id="review-stars">
+                <button type="button" class="star-btn" data-value="1" aria-label="1 estrela"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <button type="button" class="star-btn" data-value="2" aria-label="2 estrelas"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <button type="button" class="star-btn" data-value="3" aria-label="3 estrelas"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <button type="button" class="star-btn" data-value="4" aria-label="4 estrelas"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <button type="button" class="star-btn" data-value="5" aria-label="5 estrelas"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+              </div>
+              <textarea id="review-comment" placeholder="Escreve uma nota rápida sobre o restaurante…" rows="2" maxlength="300"></textarea>
+              <div class="review-actions">
+                <button type="button" class="review-cancel-btn" id="review-cancel-btn">Cancelar</button>
+                <button type="submit" class="review-save-btn" id="review-save-btn">Guardar</button>
+              </div>
+            </form>
             <div class="menu-divider"><div class="date-heading"><button class="date-arrow" id="date-prev" type="button" aria-label="Dia anterior"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h3 id="menu-title">Pratos de hoje</h3><button class="date-arrow" id="date-next" type="button" aria-label="Dia seguinte"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
             <div class="dish-list" id="dish-list"></div>
           </div>
@@ -101,13 +134,65 @@
         <section class="draw-result" id="draw-result" aria-live="polite" hidden></section>
       </main>
       <main class="app-page" id="favorites-page" hidden>
-        <section class="page-heading"><span class="page-eyebrow" id="favorites-eyebrow">A TUA LISTA</span><h1 id="favorites-title">Favoritos</h1></section>
-        <div class="future-card"><span class="future-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h2 id="favorites-empty-title">Os teus restaurantes guardados</h2><p id="favorites-empty-copy">Quando criares a tua conta, os restaurantes favoritos ficam todos aqui.</p></div>
+        <section class="page-heading">
+          <span class="page-eyebrow" id="favorites-eyebrow">A TUA LISTA</span>
+          <h1 id="favorites-title">Favoritos</h1>
+          <p id="favorites-subtitle">Os teus restaurantes guardados para acesso rápido.</p>
+        </section>
+        <div class="future-card" id="favorites-empty">
+          <span class="future-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h2 id="favorites-empty-title">Sem restaurantes guardados</h2>
+          <p id="favorites-empty-copy">Toca no coração de qualquer restaurante para guardá-lo aqui.</p>
+        </div>
+        <div class="restaurant-list" id="favorites-list" hidden></div>
       </main>
       <main class="app-page" id="profile-page" hidden>
-        <section class="page-heading"><span class="page-eyebrow" id="profile-eyebrow">A TUA CONTA</span><h1 id="profile-title">Perfil</h1></section>
-        <div class="profile-card"><div class="profile-avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 21a7 7 0 0 1 14 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><div><h2 id="profile-signin-title">O teu perfil, num só lugar</h2><p id="profile-signin-copy">A conta ainda não está disponível. Quando chegar, poderás ver as tuas avaliações, visitas e gastos com boni.</p></div></div>
-        <div class="profile-stats"><div><span id="profile-reviews-label">Avaliações</span><strong>—</strong></div><div><span id="profile-history-label">Últimos restaurantes</span><strong>—</strong></div><div><span id="profile-food-label">Comida mais escolhida</span><strong>—</strong></div><div><span id="profile-spend-label">Gasto recente</span><strong>—</strong></div></div>
+        <section class="page-heading">
+          <span class="page-eyebrow" id="profile-eyebrow">A TUA CONTA</span>
+          <h1 id="profile-title">Perfil</h1>
+          <p id="profile-subtitle">O teu resumo de refeições, avaliações e gastos com boni.</p>
+        </section>
+        <div class="profile-card">
+          <div class="profile-avatar" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="9.5" y="10.5" width="13" height="11" rx="5.5"/><path d="M9.5 16 L3.5 10 L5 16 L3.5 22 Z"/><path d="M22.5 16 L28.5 10 L27 16 L28.5 22 Z"/><path d="M9.5 13 C8.8 14.5 8.8 17.5 9.5 19"/><path d="M22.5 13 C23.2 14.5 23.2 17.5 22.5 19"/><path d="M15.5 10.5 C17 13.5 17 18.5 15.5 21.5"/></svg></div>
+          <div>
+            <h2 id="profile-user-title">O teu registo pessoal</h2>
+            <p id="profile-user-copy">Dados das tuas refeições guardados no teu dispositivo.</p>
+          </div>
+        </div>
+        <div class="profile-stats">
+          <div><span id="profile-spend-label">Gasto com boni</span><strong id="profile-spend-val">€0,00</strong></div>
+          <div><span id="profile-food-label">Comida mais escolhida</span><strong id="profile-food-val">—</strong></div>
+          <div><span id="profile-history-label">Refeições registadas</span><strong id="profile-history-val">0</strong></div>
+          <div><span id="profile-reviews-label">Avaliações feitas</span><strong id="profile-reviews-val">0</strong></div>
+        </div>
+
+        <section class="profile-section">
+          <div class="profile-section-header">
+            <h3 id="profile-sec-reviews">As Minhas Avaliações</h3>
+            <span class="profile-section-badge" id="profile-reviews-badge">0</span>
+          </div>
+          <div id="profile-reviews-list" class="profile-items-list"></div>
+        </section>
+
+        <section class="profile-section">
+          <div class="profile-section-header">
+            <h3 id="profile-sec-history">Últimos Restaurantes</h3>
+            <span class="profile-section-badge" id="profile-history-badge">0</span>
+          </div>
+          <div id="profile-history-list" class="profile-items-list"></div>
+        </section>
+
+        <section class="profile-section">
+          <div class="profile-section-header">
+            <h3 id="profile-sec-favs">Restaurantes Favoritos</h3>
+            <span class="profile-section-badge" id="profile-favs-badge">0</span>
+          </div>
+          <div id="profile-favs-list" class="profile-items-list"></div>
+        </section>
+
+        <div class="profile-footer-actions">
+          <button type="button" class="profile-reset-btn" id="profile-reset-btn">Limpar dados locais</button>
+        </div>
       </main>
       <footer class="footer" id="footer"><button class="footer-install" id="footer-install" type="button">Instalar app</button><a href="https://www.studentska-prehrana.si/en/restaurant" target="_blank" rel="noreferrer" id="footer-source">Fonte oficial</a></footer>
     </div>
@@ -126,7 +211,7 @@
       </button>
     </nav>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=bonbon-v1" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=15').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=profile-v1" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=16').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>
