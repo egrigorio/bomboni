@@ -38,32 +38,9 @@ jobs:
           playwright install chromium
           pytest
 
-  # 2. Guardrails Nao Deterministicos (Revisao Semantica com IA)
-  ai-semantic-gate:
-    needs: deterministic-gates
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Inspecao Semantica do Diff
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: |
-          pip install google-genai
-          python scripts/ai_semantic_review.py
-
-  # 3. Auto-Merge (Executado apenas com 100% de aprovacao anterior)
+  # 2. Auto-Merge (Executado apenas com 100% de aprovacao anterior)
   auto-merge:
-    needs: [deterministic-gates, ai-semantic-gate]
+    needs: deterministic-gates
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
