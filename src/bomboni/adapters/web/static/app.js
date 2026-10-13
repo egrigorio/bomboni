@@ -192,6 +192,7 @@ const state = {
   calendarMonth: new Date().getMonth(),
   calendarSelectedDate: new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Ljubljana' }).format(new Date())
 };
+document.body.dataset.tab = state.tab;
 
 // Sync today date with backend in background
 fetch('/api/today').then(r => r.json()).then(d => {
@@ -715,6 +716,7 @@ function applyLanguage() {
 
 function switchTab(name) {
   state.tab = name;
+  document.body.dataset.tab = name;
   $('layout').hidden = name !== 'explore';
   $('draw-page').hidden = name !== 'draw';
   $('favorites-page').hidden = name !== 'favorites';
