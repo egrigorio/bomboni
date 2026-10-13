@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=profile-v2">
+    <link rel="stylesheet" href="/styles.css?v=profile-v3">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body>
@@ -106,6 +106,17 @@
                 <button type="submit" class="review-save-btn" id="review-save-btn">Guardar</button>
               </div>
             </form>
+            <div class="venue-meal-picker" id="venue-meal-picker" hidden>
+              <div class="meal-picker-header">
+                <h4 id="meal-picker-title">O que comeste aqui hoje?</h4>
+                <p id="meal-picker-sub">Escolhe o prato para registar com precisão no teu histórico.</p>
+              </div>
+              <div class="meal-picker-options" id="meal-picker-options"></div>
+              <div class="meal-picker-actions">
+                <button type="button" class="review-cancel-btn" id="meal-picker-cancel">Cancelar</button>
+                <button type="button" class="review-save-btn" id="meal-picker-confirm">Confirmar refeição</button>
+              </div>
+            </div>
             <div class="menu-divider"><div class="date-heading"><button class="date-arrow" id="date-prev" type="button" aria-label="Dia anterior"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h3 id="menu-title">Pratos de hoje</h3><button class="date-arrow" id="date-next" type="button" aria-label="Dia seguinte"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
             <div class="dish-list" id="dish-list"></div>
           </div>
@@ -137,14 +148,25 @@
         <section class="page-heading">
           <span class="page-eyebrow" id="favorites-eyebrow">A TUA LISTA</span>
           <h1 id="favorites-title">Favoritos</h1>
-          <p id="favorites-subtitle">Os teus restaurantes guardados para acesso rápido.</p>
+          <p id="favorites-subtitle">Os teus restaurantes e pratos guardados para acesso rápido.</p>
         </section>
+        <div class="fav-tab-selector" role="tablist">
+          <button type="button" class="fav-tab-btn active" id="fav-tab-venues-btn" role="tab" aria-selected="true">
+            <span id="fav-tab-venues-label">Restaurantes</span>
+            <span class="fav-counter" id="fav-count-venues">0</span>
+          </button>
+          <button type="button" class="fav-tab-btn" id="fav-tab-dishes-btn" role="tab" aria-selected="false">
+            <span id="fav-tab-dishes-label">Pratos</span>
+            <span class="fav-counter" id="fav-count-dishes">0</span>
+          </button>
+        </div>
         <div class="future-card" id="favorites-empty">
           <span class="future-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h2 id="favorites-empty-title">Sem restaurantes guardados</h2>
-          <p id="favorites-empty-copy">Toca no coração de qualquer restaurante para guardá-lo aqui.</p>
+          <h2 id="favorites-empty-title">Sem favoritos guardados</h2>
+          <p id="favorites-empty-copy">Toca no coração de qualquer restaurante ou prato para guardá-lo aqui.</p>
         </div>
         <div class="restaurant-list" id="favorites-list" hidden></div>
+        <div class="dish-list" id="favorites-dishes-list" hidden></div>
       </main>
       <main class="app-page" id="profile-page" hidden>
         <section class="page-heading">
@@ -152,19 +174,96 @@
           <h1 id="profile-title">Perfil</h1>
           <p id="profile-subtitle">O teu resumo de refeições, avaliações e gastos com boni.</p>
         </section>
-        <div class="profile-card">
-          <div class="profile-avatar" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="9.5" y="10.5" width="13" height="11" rx="5.5"/><path d="M9.5 16 L3.5 10 L5 16 L3.5 22 Z"/><path d="M22.5 16 L28.5 10 L27 16 L28.5 22 Z"/><path d="M9.5 13 C8.8 14.5 8.8 17.5 9.5 19"/><path d="M22.5 13 C23.2 14.5 23.2 17.5 22.5 19"/><path d="M15.5 10.5 C17 13.5 17 18.5 15.5 21.5"/></svg></div>
-          <div>
-            <h2 id="profile-user-title">O teu registo pessoal</h2>
-            <p id="profile-user-copy">Dados das tuas refeições guardados no teu dispositivo.</p>
+
+        <!-- Auth Card when not logged in -->
+        <div class="profile-auth-card" id="profile-auth-card">
+          <div class="auth-toggle">
+            <button type="button" class="auth-toggle-btn active" id="auth-tab-login">Entrar</button>
+            <button type="button" class="auth-toggle-btn" id="auth-tab-register">Criar conta</button>
           </div>
+          <form id="auth-form" class="auth-form">
+            <div id="auth-username-wrap" class="auth-field-wrap" hidden>
+              <label for="auth-username" id="auth-username-label">Nome de utilizador</label>
+              <input type="text" id="auth-username" placeholder="@o-teu-username" autocomplete="username">
+            </div>
+            <div class="auth-field-wrap">
+              <label for="auth-email" id="auth-email-label">Email</label>
+              <input type="email" id="auth-email" placeholder="teu.email@exemplo.com" required autocomplete="email">
+            </div>
+            <div class="auth-field-wrap">
+              <label for="auth-password" id="auth-password-label">Palavra-passe</label>
+              <input type="password" id="auth-password" placeholder="••••••••" required autocomplete="current-password">
+            </div>
+            <div id="auth-error" class="auth-error" hidden></div>
+            <button type="submit" class="auth-submit-btn" id="auth-submit-btn">Entrar</button>
+          </form>
         </div>
+
+        <!-- User profile display card when logged in -->
+        <div class="profile-card" id="profile-user-card" hidden>
+          <div class="profile-avatar" id="profile-avatar-display" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="9.5" y="10.5" width="13" height="11" rx="5.5"/><path d="M9.5 16 L3.5 10 L5 16 L3.5 22 Z"/><path d="M22.5 16 L28.5 10 L27 16 L28.5 22 Z"/><path d="M9.5 13 C8.8 14.5 8.8 17.5 9.5 19"/><path d="M22.5 13 C23.2 14.5 23.2 17.5 22.5 19"/><path d="M15.5 10.5 C17 13.5 17 18.5 15.5 21.5"/></svg></div>
+          <div class="profile-user-info">
+            <h2 id="profile-user-title">@username</h2>
+            <p id="profile-user-email">email@exemplo.com</p>
+            <span class="profile-user-badge" id="profile-user-badge">Membro Bomboni</span>
+          </div>
+          <button type="button" class="profile-logout-btn" id="profile-logout-btn" title="Terminar sessão">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span id="profile-logout-text">Sair</span>
+          </button>
+        </div>
+
         <div class="profile-stats">
           <div><span id="profile-spend-label">Gasto com boni</span><strong id="profile-spend-val">€0,00</strong></div>
           <div><span id="profile-food-label">Comida mais escolhida</span><strong id="profile-food-val">—</strong></div>
           <div><span id="profile-history-label">Refeições registadas</span><strong id="profile-history-val">0</strong></div>
           <div><span id="profile-reviews-label">Avaliações feitas</span><strong id="profile-reviews-val">0</strong></div>
         </div>
+
+        <!-- Mini Calendar Section -->
+        <section class="profile-section" id="profile-calendar-section">
+          <div class="profile-section-header">
+            <h3 id="profile-sec-calendar">Calendário de Refeições</h3>
+            <span class="profile-section-badge" id="profile-calendar-badge">Histórico</span>
+          </div>
+          <div class="mini-calendar" id="mini-calendar">
+            <div class="calendar-nav">
+              <button type="button" class="cal-nav-btn" id="cal-prev" aria-label="Mês anterior"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <strong id="cal-month-title">Outubro 2026</strong>
+              <button type="button" class="cal-nav-btn" id="cal-next" aria-label="Mês seguinte"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+            <div class="calendar-weekdays" id="calendar-weekdays">
+              <span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+          </div>
+          <div class="calendar-day-details" id="calendar-day-details">
+            <div class="calendar-day-header">
+              <h4 id="calendar-day-title">Refeições do dia</h4>
+              <button type="button" class="cal-add-meal-btn" id="cal-add-meal-btn">+ Registar neste dia</button>
+            </div>
+            <div id="calendar-day-meals" class="profile-items-list"></div>
+          </div>
+          <form id="cal-log-form" class="cal-log-form" hidden>
+            <h4 id="cal-log-form-title">Registar refeição</h4>
+            <div class="auth-field-wrap">
+              <label for="cal-log-restaurant" id="cal-log-rest-label">Restaurante</label>
+              <select id="cal-log-restaurant" required></select>
+            </div>
+            <div class="auth-field-wrap">
+              <label for="cal-log-dish" id="cal-log-dish-label">Prato / Comida</label>
+              <input type="text" id="cal-log-dish" placeholder="Nome do prato ou comida" required>
+            </div>
+            <div class="auth-field-wrap">
+              <label for="cal-log-fee" id="cal-log-fee-label">Copagamento (€)</label>
+              <input type="number" id="cal-log-fee" step="0.01" min="0" max="20" placeholder="Ex: 3.80">
+            </div>
+            <div class="review-actions">
+              <button type="button" class="review-cancel-btn" id="cal-log-cancel">Cancelar</button>
+              <button type="submit" class="review-save-btn" id="cal-log-save">Guardar</button>
+            </div>
+          </form>
+        </section>
 
         <section class="profile-section">
           <div class="profile-section-header">
@@ -176,10 +275,18 @@
 
         <section class="profile-section">
           <div class="profile-section-header">
-            <h3 id="profile-sec-history">Últimos Restaurantes</h3>
+            <h3 id="profile-sec-history">Últimas Refeições Registadas</h3>
             <span class="profile-section-badge" id="profile-history-badge">0</span>
           </div>
           <div id="profile-history-list" class="profile-items-list"></div>
+        </section>
+
+        <section class="profile-section">
+          <div class="profile-section-header">
+            <h3 id="profile-sec-fav-dishes">Pratos Favoritos</h3>
+            <span class="profile-section-badge" id="profile-fav-dishes-badge">0</span>
+          </div>
+          <div id="profile-fav-dishes-list" class="profile-items-list"></div>
         </section>
 
         <section class="profile-section">
@@ -211,7 +318,7 @@
       </button>
     </nav>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=profile-v2" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=17').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=profile-v3" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=18').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>

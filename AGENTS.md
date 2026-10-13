@@ -78,3 +78,6 @@ Build a reusable Python data layer for the public restaurant directory and menu 
 - Keep network access read-only and limited to public GET and the site's read-only menu lookup POST.
 - Add parser fixtures/tests when selectors or source behavior changes. Do not commit live user data, credentials, or scraped bulk datasets.
 - Maintain clean, human-readable formatting in `src/bomboni/adapters/web/static/styles.css`. Do not bundle multiple independent component blocks into single multi-kilobyte lines in the repository source, preventing accidental style truncation during tool edits.
+- Whenever modifying any `.js` file, run `node -c <file_path>` in the terminal to validate syntax before marking the task as completed.
+- Whenever modifying `.py` files, execute the test suite with `pytest`.
+- If any syntax error or test failure occurs, fix it immediately in the same cycle without waiting for manual intervention.

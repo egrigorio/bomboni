@@ -1,5 +1,5 @@
-const CACHE = 'bomboni-shell-v17';
-const SHELL = ['/', '/styles.css?v=profile-v2', '/app.js?v=profile-v2', '/manifest.webmanifest', '/icon.svg', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
+const CACHE = 'bomboni-shell-v18';
+const SHELL = ['/', '/styles.css?v=profile-v3', '/app.js?v=profile-v3', '/manifest.webmanifest', '/icon.svg', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
 self.addEventListener('install', event => event.waitUntil(Promise.all([
   caches.open(CACHE).then(cache => cache.addAll(SHELL)),
   self.skipWaiting()
