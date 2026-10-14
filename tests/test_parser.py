@@ -1,9 +1,24 @@
 from datetime import date
 
 from bomboni.data_sources.studentska_prehrana.parser import (
+    _price,
     parse_menu_fragment,
     parse_restaurant_index,
 )
+
+
+def test_price_parsing() -> None:
+    assert _price(None) is None
+    assert _price("") is None
+    assert _price("   ") is None
+    assert _price("no digits here") is None
+    assert _price("9.00") == 9.00
+    assert _price("3,81") == 3.81
+    assert _price("3,81 €") == 3.81
+    assert _price("12\xa0€") == 12.0
+    assert _price("3,81\xa0€") == 3.81
+    assert _price("10") == 10.0
+    assert _price("Cena: 4,50 €") == 4.5
 
 
 def test_parse_restaurant_index_uses_stable_id_and_separate_venue_tags() -> None:
