@@ -217,13 +217,48 @@ const STORAGE_FAV_DISHES = 'bomboni-favorite-dishes';
 const STORAGE_REVIEWS = 'bomboni-reviews';
 const STORAGE_MEALS = 'bomboni-meals';
 const STORAGE_USERS = 'bomboni-users';
+const STORAGE_USERNAMES = 'bomboni-usernames';
 const STORAGE_AUTH_USER = 'bomboni-auth-user';
 
 function getUsers() {
   try { return JSON.parse(localStorage.getItem(STORAGE_USERS) || '{}'); } catch { return {}; }
 }
+function getUsernamesMap() {
+  try {
+    const raw = localStorage.getItem(STORAGE_USERNAMES);
+    if (raw) return JSON.parse(raw);
+  } catch {}
+  const users = getUsers();
+  const map = {};
+  for (const u of Object.values(users)) {
+    if (u && u.username && u.email) map[u.username.toLowerCase()] = u.email;
+  }
+  try { localStorage.setItem(STORAGE_USERNAMES, JSON.stringify(map)); } catch {}
+  return map;
+}
+function getUserByUsername(username) {
+  if (!username) return null;
+  const lower = username.toLowerCase();
+  const map = getUsernamesMap();
+  const email = map[lower];
+  const users = getUsers();
+  if (email && users[email]) return users[email];
+  const fallback = Object.values(users).find(u => u?.username?.toLowerCase() === lower);
+  if (fallback) {
+    map[lower] = fallback.email;
+    try { localStorage.setItem(STORAGE_USERNAMES, JSON.stringify(map)); } catch {}
+  }
+  return fallback || null;
+}
 function saveUsers(data) {
-  try { localStorage.setItem(STORAGE_USERS, JSON.stringify(data)); } catch {}
+  try {
+    localStorage.setItem(STORAGE_USERS, JSON.stringify(data));
+    const map = {};
+    for (const u of Object.values(data)) {
+      if (u && u.username && u.email) map[u.username.toLowerCase()] = u.email;
+    }
+    localStorage.setItem(STORAGE_USERNAMES, JSON.stringify(map));
+  } catch {}
 }
 function getCurrentUser() {
   try { return JSON.parse(localStorage.getItem(STORAGE_AUTH_USER) || 'null'); } catch { return null; }
@@ -1840,7 +1875,7 @@ $('auth-form')?.addEventListener('submit', async (e) => {
       if (errorEl) { errorEl.textContent = feature.authEmailExists || 'Este email já está registado.'; errorEl.hidden = false; }
       return;
     }
-    const userWithSameName = Object.values(users).find(u => u.username.toLowerCase() === username.toLowerCase());
+    const userWithSameName = getUserByUsername(username);
     if (userWithSameName) {
       if (errorEl) { errorEl.textContent = feature.authUsernameExists || 'Este nome de utilizador já existe.'; errorEl.hidden = false; }
       return;
@@ -1876,7 +1911,7 @@ $('auth-form')?.addEventListener('submit', async (e) => {
 
     showToast(`${feature.authCodeSentToast || 'Código de verificação enviado para'} ${email}`);
   } else {
-    const user = users[email] || Object.values(users).find(u => u.username.toLowerCase() === email);
+    const user = users[email] || getUserByUsername(email);
     if (!user || user.password !== password) {
       if (errorEl) { errorEl.textContent = feature.authInvalidCreds || 'Email ou palavra-passe incorretos.'; errorEl.hidden = false; }
       return;
