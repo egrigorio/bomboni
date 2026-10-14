@@ -1,5 +1,7 @@
 from datetime import date
 
+import pytest
+
 from bomboni.data_sources.studentska_prehrana.parser import (
     _price,
     parse_menu_fragment,
@@ -43,6 +45,12 @@ def test_parse_restaurant_index_uses_stable_id_and_separate_venue_tags() -> None
     assert restaurant.additional_fee_eur == 3.81
     assert restaurant.tags == ("Meatless", "Opened at weekends")
     assert restaurant.source_url.endswith("/en/restaurant/Details/1478")
+
+
+def test_parse_restaurant_index_raises_value_error_when_no_rows() -> None:
+    html = '<div id="restaurant-list"><p>No restaurants found</p></div>'
+    with pytest.raises(ValueError, match="Restaurant list markup was not found"):
+        parse_restaurant_index(html)
 
 
 def test_parse_menu_fragment_reads_dish_category_from_title() -> None:
