@@ -122,6 +122,60 @@ class RestaurantService:
             self._menus[key] = (now + self._menu_ttl, menu)
         return menu
 
+    def _fetch_menu_safe(
+        self, restaurant: Restaurant, requested_date: date
+    ) -> tuple[Restaurant, DailyMenu | Exception]:
+        try:
+            return restaurant, self.get_menu(restaurant.id, requested_date)
+        except Exception as exc:
+            return restaurant, exc
+
+    def _get_draw_candidates(
+        self, city: str | None, max_price_eur: float | None
+    ) -> list[Restaurant]:
+        restaurants = self.search_restaurants(city=city, limit=10_000)
+        if max_price_eur is not None:
+            restaurants = [
+                restaurant for restaurant in restaurants
+                if restaurant.additional_fee_eur is not None
+                and restaurant.additional_fee_eur <= max_price_eur
+            ]
+        return restaurants
+
+    def _scan_draw_candidates(
+        self, sampled_restaurants: list[Restaurant], requested_date: date, category: str | None
+    ) -> tuple[dict[int, Restaurant], list[dict[str, object]], int]:
+        normalized_category = _normalize(category) if category else None
+        dishes: list[dict[str, object]] = []
+        eligible_restaurants: dict[int, Restaurant] = {}
+        errors = 0
+
+        with ThreadPoolExecutor(max_workers=self._menu_workers) as pool:
+            futures = [
+                pool.submit(self._fetch_menu_safe, restaurant, requested_date)
+                for restaurant in sampled_restaurants
+            ]
+            for future in as_completed(futures):
+                restaurant, menu = future.result()
+                if isinstance(menu, Exception):
+                    errors += 1
+                    continue
+                for dish in menu.dishes:
+                    if normalized_category and normalized_category not in {
+                        _normalize(value) for value in dish.categories
+                    }:
+                        continue
+                    eligible_restaurants[restaurant.id] = restaurant
+                    dishes.append({
+                        "restaurant": restaurant.to_dict(),
+                        "menu_date": menu.date,
+                        "menu_retrieved_at": menu.retrieved_at,
+                        "dish": dish.to_dict(),
+                        "source_url": menu.source_url,
+                    })
+
+        return eligible_restaurants, dishes, errors
+
     def search_menu_items(
         self,
         *,
@@ -147,14 +201,11 @@ class RestaurantService:
         matches: list[dict[str, object]] = []
         errors: list[dict[str, object]] = []
 
-        def fetch_one(restaurant: Restaurant) -> tuple[Restaurant, DailyMenu | Exception]:
-            try:
-                return restaurant, self.get_menu(restaurant.id, requested_date)
-            except Exception as exc:  # Keep one failed source page from losing the rest of the city results.
-                return restaurant, exc
-
         with ThreadPoolExecutor(max_workers=self._menu_workers) as pool:
-            futures = [pool.submit(fetch_one, restaurant) for restaurant in restaurants]
+            futures = [
+                pool.submit(self._fetch_menu_safe, restaurant, requested_date)
+                for restaurant in restaurants
+            ]
             for future in as_completed(futures):
                 restaurant, result = future.result()
                 if isinstance(result, Exception):
@@ -222,13 +273,7 @@ class RestaurantService:
         if max_price_eur is not None and max_price_eur < 0:
             raise ValueError("max_price_eur must be zero or greater.")
 
-        restaurants = self.search_restaurants(city=city, limit=10_000)
-        if max_price_eur is not None:
-            restaurants = [
-                restaurant for restaurant in restaurants
-                if restaurant.additional_fee_eur is not None
-                and restaurant.additional_fee_eur <= max_price_eur
-            ]
+        restaurants = self._get_draw_candidates(city, max_price_eur)
         if not restaurants:
             return {"mode": mode, "result": None, "candidates_scanned": 0, "errors": 0}
 
@@ -247,39 +292,12 @@ class RestaurantService:
         candidate_total = len(restaurants)
         # Random draws need a representative random sample, not a city-wide
         # exhaustive scan. This keeps the serverless request within its time cap.
-        restaurants = random.sample(restaurants, min(60, candidate_total))
+        sampled_restaurants = random.sample(restaurants, min(60, candidate_total))
         requested_date = self.today()
-        normalized_category = _normalize(category) if category else None
-        dishes: list[dict[str, object]] = []
-        eligible_restaurants: dict[int, Restaurant] = {}
-        errors = 0
 
-        def fetch_one(restaurant: Restaurant) -> tuple[Restaurant, DailyMenu | Exception]:
-            try:
-                return restaurant, self.get_menu(restaurant.id, requested_date)
-            except Exception as exc:
-                return restaurant, exc
-
-        with ThreadPoolExecutor(max_workers=self._menu_workers) as pool:
-            futures = [pool.submit(fetch_one, restaurant) for restaurant in restaurants]
-            for future in as_completed(futures):
-                restaurant, menu = future.result()
-                if isinstance(menu, Exception):
-                    errors += 1
-                    continue
-                for dish in menu.dishes:
-                    if normalized_category and normalized_category not in {
-                        _normalize(value) for value in dish.categories
-                    }:
-                        continue
-                    eligible_restaurants[restaurant.id] = restaurant
-                    dishes.append({
-                        "restaurant": restaurant.to_dict(),
-                        "menu_date": menu.date,
-                        "menu_retrieved_at": menu.retrieved_at,
-                        "dish": dish.to_dict(),
-                        "source_url": menu.source_url,
-                    })
+        eligible_restaurants, dishes, errors = self._scan_draw_candidates(
+            sampled_restaurants, requested_date, category
+        )
 
         result = (
             {"restaurant": random.choice(list(eligible_restaurants.values())).to_dict()}
@@ -292,9 +310,9 @@ class RestaurantService:
             "city": city,
             "category": category,
             "menu_date": requested_date.isoformat(),
-            "candidates_scanned": len(restaurants),
+            "candidates_scanned": len(sampled_restaurants),
             "candidate_total": candidate_total,
-            "sampled": len(restaurants) < candidate_total,
+            "sampled": len(sampled_restaurants) < candidate_total,
             "eligible_dishes": len(dishes),
             "errors": errors,
         }
