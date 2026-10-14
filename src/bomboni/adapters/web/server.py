@@ -88,101 +88,122 @@ def make_handler(service: RestaurantService, translator: MyMemoryTranslator) -> 
         def _send_json(self, status: int, value: object) -> None:
             self._send(status, _json_bytes(value), "application/json; charset=utf-8")
 
+        def _handle_api_today(self) -> None:
+            self._send_json(200, {"date": service.today().isoformat()})
+
+        def _handle_api_restaurants(self, query: dict[str, list[str]]) -> None:
+            city = query.get("city", [None])[0]
+            restaurants = service.search_restaurants(city=city, limit=10_000)
+            latitude = float(query["lat"][0]) if query.get("lat") else None
+            longitude = float(query["lon"][0]) if query.get("lon") else None
+            results = []
+            for restaurant in restaurants:
+                record = restaurant.to_dict()
+                distance = None
+                if latitude is not None and longitude is not None and restaurant.latitude is not None and restaurant.longitude is not None:
+                    distance = _distance_km(latitude, longitude, restaurant.latitude, restaurant.longitude)
+                record["distance_km"] = round(distance, 2) if distance is not None else None
+                results.append(record)
+            results.sort(key=lambda item: (
+                item["distance_km"] is None,
+                item["distance_km"] if item["distance_km"] is not None else 0,
+                item["name"].casefold(),
+            ))
+            limit = min(500, max(1, int(query.get("limit", ["60"])[0])))
+            self._send_json(200, {"city": city, "count": len(results[:limit]), "results": results[:limit]})
+
+        def _handle_api_restaurant_hours(self, query: dict[str, list[str]]) -> None:
+            raw_ids = query.get("ids", [""])[0]
+            restaurant_ids = list(dict.fromkeys(int(value) for value in raw_ids.split(",") if value))
+            if not restaurant_ids or len(restaurant_ids) > 20:
+                raise ValueError("ids must contain between 1 and 20 restaurant IDs.")
+            details_by_id = {}
+            errors = []
+            with ThreadPoolExecutor(max_workers=min(5, len(restaurant_ids))) as pool:
+                futures = {pool.submit(service.get_restaurant, restaurant_id): restaurant_id for restaurant_id in restaurant_ids}
+                for future in as_completed(futures):
+                    restaurant_id = futures[future]
+                    try:
+                        details = future.result()
+                        details_by_id[restaurant_id] = {
+                            "restaurant_id": restaurant_id,
+                            "opening_hours": details.opening_hours,
+                            "retrieved_at": details.retrieved_at,
+                        }
+                    except Exception:
+                        errors.append(restaurant_id)
+            self._send_json(200, {
+                "results": [details_by_id[restaurant_id] for restaurant_id in restaurant_ids if restaurant_id in details_by_id],
+                "errors": errors,
+            })
+
+        def _handle_api_menu(self, query: dict[str, list[str]]) -> None:
+            restaurant_id = int(query["restaurant_id"][0])
+            raw_date = query.get("date", [None])[0]
+            name = query.get("name", [None])[0]
+            menu_date = date.fromisoformat(raw_date) if raw_date else service.today()
+            self._send_json(200, service.get_menu(restaurant_id, menu_date, restaurant_name=name).to_dict())
+
+        def _handle_api_dishes(self, query: dict[str, list[str]]) -> None:
+            query_str = query.get("query", [None])[0]
+            category = query.get("category", [None])[0]
+            city = query.get("city", [None])[0] or "Ljubljana"
+            raw_limit = query.get("limit", ["30"])[0]
+            limit = min(50, max(1, int(raw_limit)))
+            self._send_json(200, service.search_menu_items(
+                city=city,
+                query=query_str,
+                category=category,
+                limit=limit,
+            ))
+
+        def _handle_api_draw(self, query: dict[str, list[str]]) -> None:
+            mode = query.get("mode", ["restaurant"])[0]
+            city = query.get("city", [None])[0] or None
+            category = query.get("category", [None])[0] or None
+            raw_price = query.get("max_price_eur", [None])[0]
+            max_price = float(raw_price) if raw_price else None
+            self._send_json(200, service.draw_recommendation(
+                mode=mode,
+                city=city,
+                category=category,
+                max_price_eur=max_price,
+            ))
+
+        def _handle_api_restaurant_menu(self, path: str, query: dict[str, list[str]]) -> None:
+            parts = path.strip("/").split("/")
+            if len(parts) != 4:
+                raise ValueError("Invalid restaurant menu path.")
+            restaurant_id = int(parts[2])
+            raw_date = query.get("date", [None])[0]
+            name = query.get("name", [None])[0]
+            menu_date = date.fromisoformat(raw_date) if raw_date else service.today()
+            self._send_json(200, service.get_menu(restaurant_id, menu_date, restaurant_name=name).to_dict())
+
         def do_GET(self) -> None:  # noqa: N802
             parsed = urlparse(self.path)
             query = parse_qs(parsed.query)
             try:
                 if parsed.path == "/api/today":
-                    self._send_json(200, {"date": service.today().isoformat()})
+                    self._handle_api_today()
                     return
                 if parsed.path == "/api/restaurants":
-                    city = query.get("city", [None])[0]
-                    restaurants = service.search_restaurants(city=city, limit=10_000)
-                    latitude = float(query["lat"][0]) if query.get("lat") else None
-                    longitude = float(query["lon"][0]) if query.get("lon") else None
-                    results = []
-                    for restaurant in restaurants:
-                        record = restaurant.to_dict()
-                        distance = None
-                        if latitude is not None and longitude is not None and restaurant.latitude is not None and restaurant.longitude is not None:
-                            distance = _distance_km(latitude, longitude, restaurant.latitude, restaurant.longitude)
-                        record["distance_km"] = round(distance, 2) if distance is not None else None
-                        results.append(record)
-                    results.sort(key=lambda item: (
-                        item["distance_km"] is None,
-                        item["distance_km"] if item["distance_km"] is not None else 0,
-                        item["name"].casefold(),
-                    ))
-                    limit = min(500, max(1, int(query.get("limit", ["60"])[0])))
-                    self._send_json(200, {"city": city, "count": len(results[:limit]), "results": results[:limit]})
+                    self._handle_api_restaurants(query)
                     return
                 if parsed.path == "/api/restaurant-hours":
-                    raw_ids = query.get("ids", [""])[0]
-                    restaurant_ids = list(dict.fromkeys(int(value) for value in raw_ids.split(",") if value))
-                    if not restaurant_ids or len(restaurant_ids) > 20:
-                        raise ValueError("ids must contain between 1 and 20 restaurant IDs.")
-                    details_by_id = {}
-                    errors = []
-                    with ThreadPoolExecutor(max_workers=min(5, len(restaurant_ids))) as pool:
-                        futures = {pool.submit(service.get_restaurant, restaurant_id): restaurant_id for restaurant_id in restaurant_ids}
-                        for future in as_completed(futures):
-                            restaurant_id = futures[future]
-                            try:
-                                details = future.result()
-                                details_by_id[restaurant_id] = {
-                                    "restaurant_id": restaurant_id,
-                                    "opening_hours": details.opening_hours,
-                                    "retrieved_at": details.retrieved_at,
-                                }
-                            except Exception:
-                                errors.append(restaurant_id)
-                    self._send_json(200, {
-                        "results": [details_by_id[restaurant_id] for restaurant_id in restaurant_ids if restaurant_id in details_by_id],
-                        "errors": errors,
-                    })
+                    self._handle_api_restaurant_hours(query)
                     return
                 if parsed.path == "/api/menu":
-                    restaurant_id = int(query["restaurant_id"][0])
-                    raw_date = query.get("date", [None])[0]
-                    name = query.get("name", [None])[0]
-                    menu_date = date.fromisoformat(raw_date) if raw_date else service.today()
-                    self._send_json(200, service.get_menu(restaurant_id, menu_date, restaurant_name=name).to_dict())
+                    self._handle_api_menu(query)
                     return
                 if parsed.path == "/api/dishes":
-                    query_str = query.get("query", [None])[0]
-                    category = query.get("category", [None])[0]
-                    city = query.get("city", [None])[0] or "Ljubljana"
-                    raw_limit = query.get("limit", ["30"])[0]
-                    limit = min(50, max(1, int(raw_limit)))
-                    self._send_json(200, service.search_menu_items(
-                        city=city,
-                        query=query_str,
-                        category=category,
-                        limit=limit,
-                    ))
+                    self._handle_api_dishes(query)
                     return
                 if parsed.path == "/api/draw":
-                    mode = query.get("mode", ["restaurant"])[0]
-                    city = query.get("city", [None])[0] or None
-                    category = query.get("category", [None])[0] or None
-                    raw_price = query.get("max_price_eur", [None])[0]
-                    max_price = float(raw_price) if raw_price else None
-                    self._send_json(200, service.draw_recommendation(
-                        mode=mode,
-                        city=city,
-                        category=category,
-                        max_price_eur=max_price,
-                    ))
+                    self._handle_api_draw(query)
                     return
                 if parsed.path.startswith("/api/restaurants/") and parsed.path.endswith("/menu"):
-                    parts = parsed.path.strip("/").split("/")
-                    if len(parts) != 4:
-                        raise ValueError("Invalid restaurant menu path.")
-                    restaurant_id = int(parts[2])
-                    raw_date = query.get("date", [None])[0]
-                    name = query.get("name", [None])[0]
-                    menu_date = date.fromisoformat(raw_date) if raw_date else service.today()
-                    self._send_json(200, service.get_menu(restaurant_id, menu_date, restaurant_name=name).to_dict())
+                    self._handle_api_restaurant_menu(parsed.path, query)
                     return
                 if parsed.path.startswith("/api/"):
                     self._send_json(404, {"error": "API endpoint not found."})
