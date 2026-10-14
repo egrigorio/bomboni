@@ -13,8 +13,9 @@ def test_parse_date_valid_iso_format() -> None:
     assert result == date(2026, 10, 12)
 
 
-def test_parse_date_none_returns_today() -> None:
-    result = _parse_date(None)
+@pytest.mark.parametrize("value", [None, ""])
+def test_parse_date_none_or_empty_returns_today(value: str | None) -> None:
+    result = _parse_date(value)
     assert result == RestaurantService.today()
 
 
