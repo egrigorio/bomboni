@@ -1,7 +1,7 @@
 from datetime import date
 
 from bomboni.core.models import DailyMenu, Dish, Restaurant, RestaurantDetails
-from bomboni.core.service import RestaurantService
+from bomboni.core.service import RestaurantService, _normalize_city
 
 
 class FakeSource:
@@ -24,6 +24,17 @@ class FakeSource:
         dishes = (Dish("Šiš kebab", 1, ("Meat",), ()),) if restaurant_id == 1 else (Dish("Falafel", 1, ("Meatless",), ()),)
         name = restaurant_name or restaurant.name
         return DailyMenu(restaurant_id, name, menu_date.isoformat(), dishes, restaurant.source_url, "2026-10-12T12:00:00+00:00")
+
+
+def test_normalize_city() -> None:
+    assert _normalize_city("Ljubljana") == "ljubljana"
+    assert _normalize_city("Liubliana") == "ljubljana"
+    assert _normalize_city("  LIUBLIANA  ") == "ljubljana"
+    assert _normalize_city("Škofja Loka") == "skofja loka"
+    assert _normalize_city(" Maribor ") == "maribor"
+    assert _normalize_city("Koper") == "koper"
+    assert _normalize_city("") == ""
+    assert _normalize_city("   ") == ""
 
 
 def test_search_restaurants_matches_city_without_case_or_accent_sensitivity() -> None:
