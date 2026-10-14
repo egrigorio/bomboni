@@ -266,15 +266,16 @@ function toggleFavorite(restaurant) {
     saveFavorites(favs);
     showToast(feature.favAdded || 'Adicionado aos favoritos!');
   }
-  updateFavoriteButtons(id);
+  updateFavoriteButtons(id, !isFav);
   if (state.tab === 'favorites') renderFavoritesPage();
 }
 
-function updateFavoriteButtons(restaurantId) {
-  const isFav = isFavorite(restaurantId);
-  document.querySelectorAll(`.card-fav-btn[data-id="${restaurantId}"]`).forEach(btn => {
-    btn.classList.toggle('active', isFav);
-  });
+function updateFavoriteButtons(restaurantId, isFav = isFavorite(restaurantId)) {
+  const targetId = String(restaurantId);
+  const buttons = document.querySelectorAll(`.card-fav-btn[data-id="${targetId}"]`);
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].classList.toggle('active', isFav);
+  }
   if (state.selected && state.selected.id === restaurantId) {
     const venueFavBtn = $('venue-fav-btn');
     const venueFavText = $('venue-fav-text');
