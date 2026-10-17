@@ -1008,3 +1008,8 @@ input,textarea,select,.dish-name,.dish-original,.venue-title-wrap,.profile-item-
 }
 @keyframes sheet-in{from{transform:translateX(100%)}to{transform:none}}
 @media(prefers-reduced-motion:reduce){.app-page:not([hidden]),.menu-panel.mobile-open{animation:none}}
+
+/* Translation pending state */
+.dish-status.is-pending{color:#9aa198;animation:pending-pulse 1.4s ease-in-out infinite}
+@keyframes pending-pulse{50%{opacity:.45}}
+@media(prefers-reduced-motion:reduce){.dish-status.is-pending{animation:none}}

@@ -1235,6 +1235,8 @@ function categoryClass(category) {
   return '';
 }
 
+const translatingLabels = { pt:'A traduzir…', en:'Translating…', es:'Traduciendo…', de:'Wird übersetzt…', it:'Traduzione…', fr:'Traduction…', ca:'Traduint…' };
+
 async function translatedText(texts) {
   const unique = [...new Set(texts)];
   const keyFor = text => `${state.language}::${text}`;
@@ -1245,7 +1247,7 @@ async function translatedText(texts) {
     const r = await fetch('/api/translate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ language: state.language, texts: missing.slice(0, 30) })
+      body: JSON.stringify({ language: state.language, texts: missing.slice(0, 120) })
     });
     if (!r.ok) throw new Error('translation');
     const data = await r.json();
@@ -1255,7 +1257,7 @@ async function translatedText(texts) {
     const cacheKeys = Object.keys(state.translationCache);
     if (cacheKeys.length > 1000) cacheKeys.slice(0, cacheKeys.length - 1000).forEach(key => delete state.translationCache[key]);
     localStorage.setItem('bomboni-translations', JSON.stringify(state.translationCache));
-    return { results: [...cached, ...(data.results || []), ...missing.slice(30).map(original => ({ original, translated: original, is_translated: false }))] };
+    return { results: [...cached, ...(data.results || []), ...missing.slice(120).map(original => ({ original, translated: original, is_translated: false }))] };
   } catch {
     return { results: [...cached, ...missing.map(original => ({ original, translated: original, is_translated: false }))] };
   }
@@ -1404,8 +1406,8 @@ function renderMenuDishes(menu, requestId, id) {
       originalNode.textContent = dish.name;
       body.append(originalNode);
     } else if (state.language !== 'sl') {
-      originalNode.className = 'dish-status';
-      originalNode.textContent = tr().translationMissing;
+      originalNode.className = 'dish-status is-pending';
+      originalNode.textContent = translatingLabels[state.language] || translatingLabels.en;
       body.append(originalNode);
     }
 
@@ -1447,7 +1449,12 @@ function renderMenuDishes(menu, requestId, id) {
         if (translated.translated.toLocaleLowerCase() !== dish.name.toLocaleLowerCase()) {
           originalNode.className = 'dish-original';
           originalNode.textContent = dish.name;
+        } else if (originalNode.classList.contains('is-pending')) {
+          originalNode.remove();
         }
+      } else if (originalNode.classList.contains('is-pending')) {
+        originalNode.className = 'dish-status';
+        originalNode.textContent = tr().translationMissing;
       }
       if (sides.length) {
         const sideNames = sides.map(s => map.get(s)?.translated || s);
