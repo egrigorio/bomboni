@@ -197,3 +197,29 @@ def test_requires_auth_and_handles_bad_json(client: Client) -> None:
     response = client.api.handle("POST", "/auth/login", {}, b"{not json", {})
     assert response.status == 400
     assert client.call("GET", "/nope")[0] == 404
+
+
+@pytest.mark.parametrize(
+    ("env", "enabled"),
+    [
+        ({"VERCEL": "1", "DATABASE_URL": "postgres://db"}, False),
+        ({"VERCEL": "1", "DATABASE_URL": "postgres://db", "SMTP_HOST": "smtp.example.test"}, True),
+        ({}, True),
+    ],
+)
+def test_community_requires_email_outside_local_dev(monkeypatch, env, enabled) -> None:
+    import sys
+    import types
+
+    import bomboni.community.http as community_http
+
+    for key in ("VERCEL", "DATABASE_URL", "POSTGRES_URL", "BOMBONI_DATABASE_URL", "SMTP_HOST"):
+        monkeypatch.delenv(key, raising=False)
+    for key, value in env.items():
+        monkeypatch.setenv(key, value)
+    monkeypatch.setitem(sys.modules, "bomboni.adapters.web.server", types.SimpleNamespace(send_verification_email=lambda email, code: False))
+    monkeypatch.setattr(community_http, "store_from_environment", lambda: Store())
+    monkeypatch.setattr(community_http, "_api", None)
+
+    response = community_http.community_api().handle("GET", "/status", {}, b"", {})
+    assert json.loads(response.body) == {"enabled": enabled}

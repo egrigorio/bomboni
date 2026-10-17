@@ -3,6 +3,7 @@
   "framework": null,
   "buildCommand": "python scripts/prepare_vercel.py",
   "outputDirectory": "public",
+  "regions": ["fra1"],
   "functions": {
     "api/**/*.py": {
       "maxDuration": 30,

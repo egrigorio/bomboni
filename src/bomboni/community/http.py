@@ -146,8 +146,9 @@ def community_api() -> CommunityApi:
         if _api is None:
             from bomboni.adapters.web.server import send_verification_email
 
-            store = store_from_environment()
-            dev_mode = store is not None and store.kind == "sqlite" and not os.environ.get("VERCEL")
+            dev_mode = not os.environ.get("VERCEL") and not os.environ.get("BOMBONI_DATABASE_URL") and not os.environ.get("DATABASE_URL") and not os.environ.get("POSTGRES_URL")
+            # Outside local development, accounts need email verification: stay off until SMTP is configured.
+            store = store_from_environment() if dev_mode or os.environ.get("SMTP_HOST") else None
             service = CommunityService(store, send_email=send_verification_email, dev_mode=dev_mode) if store else None
             _api = CommunityApi(service)
         return _api
