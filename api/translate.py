@@ -24,7 +24,7 @@ class handler(JsonHandler):
             if not isinstance(language, str):
                 raise ValueError("language is required.")
             _, translator = services()
-            send_json(self, 200, translator.translate_many(texts, language))
+            send_json(self, 200, translator.translate_many(texts, language, str(payload.get("source") or "sl")))
         except (ValueError, TypeError, json.JSONDecodeError) as exc:
             send_json(self, 400, {"error": str(exc)})
         except Exception as exc:
