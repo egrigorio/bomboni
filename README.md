@@ -65,7 +65,7 @@ The community layer lives in `src/bomboni/community/` (store, service, HTTP rout
 
 - **Local development**: data goes to a SQLite file (`.bomboni-community.sqlite3`, or `BOMBONI_SQLITE_PATH`). Without SMTP, sign-up codes are shown in a toast so accounts can be tested.
 - **Production (Vercel)**: set `DATABASE_URL` (or `POSTGRES_URL` / `BOMBONI_DATABASE_URL`) to a Postgres database, e.g. Neon or Supabase. Tables are created automatically. Without a database URL the community stays disabled and the app keeps its device-only behaviour.
-- **Email verification** needs `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD` and `SMTP_FROM`. In production, sign-up is refused if the email cannot be sent; verification codes are never returned to the browser.
+- **Email verification** needs `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD` and `SMTP_FROM`. Outside local development the community stays disabled until `SMTP_HOST` is set, and sign-up is refused if the email cannot be sent; verification codes are never returned to the browser.
 - Passwords are stored as salted PBKDF2-SHA256 hashes; sessions are random bearer tokens stored hashed. Content reported by three people is hidden automatically, and posting is rate-limited per user.
 
 ## Vercel deployment
