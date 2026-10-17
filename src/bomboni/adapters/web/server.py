@@ -219,7 +219,7 @@ def make_handler(service: RestaurantService, translator: MyMemoryTranslator) -> 
             if path == "/api/send-code":
                 try:
                     length = int(self.headers.get("Content-Length", "0"))
-                    if length < 1 or length > 20_000:
+                    if length < 1 or length > 100_000:
                         raise ValueError("Request body is missing or too large.")
                     payload = json.loads(self.rfile.read(length))
                     email = payload.get("email")
@@ -244,13 +244,13 @@ def make_handler(service: RestaurantService, translator: MyMemoryTranslator) -> 
                 return
             try:
                 length = int(self.headers.get("Content-Length", "0"))
-                if length < 1 or length > 20_000:
+                if length < 1 or length > 100_000:
                     raise ValueError("Request body is missing or too large.")
                 payload = json.loads(self.rfile.read(length))
                 texts = payload.get("texts")
                 language = payload.get("language")
-                if not isinstance(texts, list) or len(texts) > 30 or not all(isinstance(text, str) and len(text) <= 350 for text in texts):
-                    raise ValueError("texts must contain up to 30 strings of at most 350 characters.")
+                if not isinstance(texts, list) or len(texts) > MyMemoryTranslator.MAX_TEXTS or not all(isinstance(text, str) and len(text) <= MyMemoryTranslator.MAX_TEXT_LENGTH for text in texts):
+                    raise ValueError(f"texts must contain up to {MyMemoryTranslator.MAX_TEXTS} strings of at most {MyMemoryTranslator.MAX_TEXT_LENGTH} characters.")
                 if not isinstance(language, str):
                     raise ValueError("language is required.")
                 self._send_json(200, translator.translate_many(texts, language))
