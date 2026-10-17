@@ -180,7 +180,26 @@ def make_handler(service: RestaurantService, translator: MyMemoryTranslator) -> 
             menu_date = date.fromisoformat(raw_date) if raw_date else service.today()
             self._send_json(200, service.get_menu(restaurant_id, menu_date, restaurant_name=name).to_dict())
 
+        def _handle_community(self, method: str) -> bool:
+            parsed = urlparse(self.path)
+            if not (parsed.path == "/api/community" or parsed.path.startswith("/api/community/")):
+                return False
+            from bomboni.community.http import community_api
+
+            length = int(self.headers.get("Content-Length", "0") or 0)
+            body = self.rfile.read(length) if length > 0 else b""
+            query = {key: values[-1] for key, values in parse_qs(parsed.query).items()}
+            response = community_api().handle(method, parsed.path[len("/api/community"):], query, body, self.headers)
+            self._send(response.status, response.body, response.content_type, cache=response.cache)
+            return True
+
+        def do_DELETE(self) -> None:  # noqa: N802
+            if not self._handle_community("DELETE"):
+                self._send_json(404, {"error": "Not found"})
+
         def do_GET(self) -> None:  # noqa: N802
+            if self._handle_community("GET"):
+                return
             parsed = urlparse(self.path)
             query = parse_qs(parsed.query)
             try:
@@ -215,6 +234,8 @@ def make_handler(service: RestaurantService, translator: MyMemoryTranslator) -> 
                 self._send_json(502, {"error": "The restaurant source could not be reached.", "detail": str(exc)})
 
         def do_POST(self) -> None:  # noqa: N802
+            if self._handle_community("POST"):
+                return
             path = urlparse(self.path).path
             if path == "/api/send-code":
                 try:
@@ -253,7 +274,7 @@ def make_handler(service: RestaurantService, translator: MyMemoryTranslator) -> 
                     raise ValueError(f"texts must contain up to {MyMemoryTranslator.MAX_TEXTS} strings of at most {MyMemoryTranslator.MAX_TEXT_LENGTH} characters.")
                 if not isinstance(language, str):
                     raise ValueError("language is required.")
-                self._send_json(200, translator.translate_many(texts, language))
+                self._send_json(200, translator.translate_many(texts, language, str(payload.get("source") or "sl")))
             except (ValueError, TypeError, json.JSONDecodeError) as exc:
                 self._send_json(400, {"error": str(exc)})
 

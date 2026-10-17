@@ -406,6 +406,7 @@ function saveReview(restaurantId, rating, comment, restaurant) {
   saveReviews(revs);
   updateVenueReviewUI();
   if (state.tab === 'profile') renderProfilePage();
+  emit('review-saved', { review: revs[restaurantId], restaurant });
 }
 
 function deleteReview(restaurantId) {
@@ -414,6 +415,7 @@ function deleteReview(restaurantId) {
   if (revs[restaurantId]) {
     delete revs[restaurantId];
     saveReviews(revs);
+    emit('review-deleted', { restaurantId });
     showToast(feature.reviewDeleted || 'Avaliação removida.');
     updateVenueReviewUI();
     if (state.tab === 'profile') renderProfilePage();
@@ -452,6 +454,7 @@ function logMeal(restaurant, dishName = '', category = 'Mixed', customDate = nul
   };
   meals.unshift(entry);
   saveMeals(meals);
+  emit('meal-logged', { meal: entry, restaurant });
   updateVenueMealLogUI();
   if (state.tab === 'profile') {
     renderProfilePage();
@@ -462,8 +465,10 @@ function logMeal(restaurant, dishName = '', category = 'Mixed', customDate = nul
 function deleteMeal(mealId) {
   let meals = getMeals();
   const feature = featureCopy[state.language] || featureCopy.en;
+  const removed = meals.find(m => m.id === mealId);
   meals = meals.filter(m => m.id !== mealId);
   saveMeals(meals);
+  if (removed) emit('meal-deleted', { meal: removed });
   showToast(feature.mealDeleted || 'Refeição removida.');
   updateVenueMealLogUI();
   if (state.tab === 'profile') {
@@ -767,6 +772,10 @@ function applyLanguage() {
   }
 }
 
+function emit(name, detail = {}) {
+  document.dispatchEvent(new CustomEvent(`bomboni:${name}`, { detail }));
+}
+
 function switchTab(name) {
   state.tab = name;
   document.body.dataset.tab = name;
@@ -774,6 +783,8 @@ function switchTab(name) {
   $('draw-page').hidden = name !== 'draw';
   $('favorites-page').hidden = name !== 'favorites';
   $('profile-page').hidden = name !== 'profile';
+  const communityPage = $('community-page');
+  if (communityPage) communityPage.hidden = name !== 'community';
   $('footer').hidden = name !== 'explore';
 
   if (name !== 'explore') {
@@ -798,6 +809,7 @@ function switchTab(name) {
     if (active) tab.setAttribute('aria-current', 'page'); else tab.removeAttribute('aria-current');
   });
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  emit('tab', { name });
 }
 
 /* -------------------------------------------------------------
@@ -924,6 +936,7 @@ function renderRestaurants() {
   shown.forEach((r, index) => {
     const card = document.createElement('div');
     card.className = `restaurant-card${state.selected?.id === r.id ? ' active' : ''}`;
+    card.dataset.id = r.id;
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.style.animationDelay = `${Math.min(index, 10) * 24}ms`;
@@ -980,6 +993,7 @@ function renderRestaurants() {
 
   $('load-more').hidden = records.length <= state.visible;
   void loadRestaurantHours(shown);
+  emit('restaurants-rendered', { restaurants: shown });
 }
 
 function handleDishSearch() {
@@ -1047,6 +1061,7 @@ function renderDishesSearch() {
 
     const card = document.createElement('div');
     card.className = `restaurant-card${state.selected?.id === r.id ? ' active' : ''}`;
+    card.dataset.id = r.id;
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.style.animationDelay = `${Math.min(index, 10) * 24}ms`;
@@ -1215,6 +1230,7 @@ async function submitDraw(event) {
     card.append(meta, open);
     resultHost.replaceChildren(card);
     resultHost.className = 'draw-result';
+    emit('draw-result', { restaurant, dish, card });
   } catch {
     resultHost.className = 'draw-result is-empty';
     resultHost.textContent = feature.drawError;
@@ -1295,6 +1311,7 @@ async function openRestaurant(restaurant) {
   $('venue-avatar').textContent = (restaurant.name || '?').trim().slice(0, 1).toLocaleUpperCase();
   $('venue-fee').textContent = `${tr().fee}: ${formatMoney(restaurant.additional_fee_eur)}`;
   $('source-link').href = restaurant.source_url;
+  emit('restaurant-opened', { restaurant });
 
   await loadMenu(restaurant.id, state.date, restaurant.name);
 }
@@ -1319,6 +1336,7 @@ function renderMenuDishes(menu, requestId, id) {
   menu.dishes.forEach((dish, index) => {
     const card = document.createElement('article');
     card.className = 'dish-card';
+    card.dataset.dish = dish.name;
 
     const number = document.createElement('span');
     number.className = 'dish-number';
@@ -1436,6 +1454,7 @@ function renderMenuDishes(menu, requestId, id) {
     host.append(card);
     dishNodes.push({ dish, title, originalNode, sideNode, sides });
   });
+  emit('menu-rendered', { restaurantId: id, dishes: menu.dishes });
 
   // Background progressive machine translation
   const dishTexts = menu.dishes.flatMap(d => [d.name, ...(d.sides || [])]);
@@ -1669,6 +1688,7 @@ function renderFavoritesPage() {
       const fullRestaurant = state.restaurants.find(item => item.id === r.id) || r;
       const card = document.createElement('div');
       card.className = `restaurant-card${state.selected?.id === r.id ? ' active' : ''}`;
+      card.dataset.id = r.id;
       card.setAttribute('role', 'button');
       card.setAttribute('tabindex', '0');
       card.style.animationDelay = `${Math.min(index, 10) * 24}ms`;
@@ -2288,6 +2308,7 @@ $('history-next-btn')?.addEventListener('click', () => {
 
 function renderProfilePage() {
   updateProfileAuthUI();
+  emit('profile-rendered');
   const feature = featureCopy[state.language] || featureCopy.en;
   const meals = getMeals();
   const reviews = getReviews();

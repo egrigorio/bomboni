@@ -16,6 +16,8 @@ class MyMemoryTranslator:
 
     ENDPOINT = "https://api.mymemory.translated.net/get"
     LANGUAGES = {"en", "pt", "es", "de", "it", "fr", "ca"}
+    # "sl" for menus; "auto" for community text written in any language.
+    SOURCES = {"sl": "sl", "auto": "Autodetect"}
     MAX_TEXTS = 120
     MAX_TEXT_LENGTH = 350
     # MyMemory rejects queries above 500 bytes; keep headroom for safety.
@@ -25,14 +27,14 @@ class MyMemoryTranslator:
 
     def __init__(self, *, timeout: float = 6.0, client: httpx.Client | None = None) -> None:
         self._client = client or httpx.Client(timeout=timeout)
-        self._cache: dict[tuple[str, str], str] = {}
+        self._cache: dict[tuple[str, str, str], str] = {}
         self._lock = threading.Lock()
 
     def close(self) -> None:
         self._client.close()
 
-    def _request(self, query: str, language: str) -> str:
-        response = self._client.get(self.ENDPOINT, params={"q": query, "langpair": f"sl|{language}"})
+    def _request(self, query: str, language: str, source: str = "sl") -> str:
+        response = self._client.get(self.ENDPOINT, params={"q": query, "langpair": f"{self.SOURCES[source]}|{language}"})
         response.raise_for_status()
         payload = response.json()
         response_data = payload.get("responseData") or {}
@@ -41,22 +43,22 @@ class MyMemoryTranslator:
             raise ValueError("Translation provider returned no translation.")
         return translated
 
-    def _store(self, language: str, pairs: dict[str, str]) -> None:
+    def _store(self, language: str, pairs: dict[str, str], source: str = "sl") -> None:
         with self._lock:
             if len(self._cache) + len(pairs) > self.MAX_CACHE_ENTRIES:
                 self._cache.clear()
             for text, translated in pairs.items():
-                self._cache[(text, language)] = translated
+                self._cache[(text, language, source)] = translated
 
-    def _translate_one(self, text: str, language: str) -> dict[str, str]:
+    def _translate_one(self, text: str, language: str, source: str = "sl") -> dict[str, str]:
         try:
-            return {text: self._request(text, language)}
+            return {text: self._request(text, language, source)}
         except (httpx.HTTPError, ValueError, TypeError, KeyError):
             return {}
 
-    def _translate_batch(self, batch: list[str], language: str) -> dict[str, str]:
+    def _translate_batch(self, batch: list[str], language: str, source: str = "sl") -> dict[str, str]:
         if len(batch) == 1:
-            return self._translate_one(batch[0], language)
+            return self._translate_one(batch[0], language, source)
         try:
             lines = [line.strip() for line in self._request("\n".join(batch), language).split("\n")]
             if len(lines) == len(batch) and all(lines):
@@ -69,7 +71,10 @@ class MyMemoryTranslator:
             result.update(self._translate_one(text, language))
         return result
 
-    def _batches(self, texts: list[str]) -> list[list[str]]:
+    def _batches(self, texts: list[str], source: str = "sl") -> list[list[str]]:
+        if source == "auto":
+            # Mixed-language texts must be detected one by one.
+            return [[text] for text in texts]
         batches: list[list[str]] = []
         current: list[str] = []
         size = 0
@@ -87,20 +92,22 @@ class MyMemoryTranslator:
             batches.append(current)
         return batches
 
-    def translate_many(self, texts: list[str], language: str) -> dict[str, object]:
+    def translate_many(self, texts: list[str], language: str, source: str = "sl") -> dict[str, object]:
         if language not in self.LANGUAGES:
             raise ValueError(f"Unsupported language: {language}")
+        if source not in self.SOURCES:
+            raise ValueError(f"Unsupported source language: {source}")
         unique_texts = list(dict.fromkeys(text.strip() for text in texts if text.strip()))[: self.MAX_TEXTS]
         with self._lock:
-            known = {text: self._cache[(text, language)] for text in unique_texts if (text, language) in self._cache}
+            known = {text: self._cache[(text, language, source)] for text in unique_texts if (text, language, source) in self._cache}
         missing = [text for text in unique_texts if text not in known]
         if missing:
-            batches = self._batches(missing)
+            batches = self._batches(missing, source)
             with ThreadPoolExecutor(max_workers=min(self.MAX_WORKERS, len(batches))) as pool:
                 fresh: dict[str, str] = {}
-                for result in pool.map(lambda batch: self._translate_batch(batch, language), batches):
+                for result in pool.map(lambda batch: self._translate_batch(batch, language, source), batches):
                     fresh.update(result)
-            self._store(language, fresh)
+            self._store(language, fresh, source)
             known.update(fresh)
         return {
             "language": language,

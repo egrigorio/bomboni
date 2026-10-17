@@ -11,6 +11,10 @@
   },
   "rewrites": [
     {
+      "source": "/api/community/:path*",
+      "destination": "/api/community?path=:path*"
+    },
+    {
       "source": "/api/send-code",
       "destination": "/api/send_code"
     },

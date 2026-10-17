@@ -69,7 +69,7 @@ Build and maintain a reusable Python data layer for the public restaurant direct
 ### 4. Guardrails de UI e Design System
 - **Visual e Cores**: Canvas off-white acolhedor (`#f5f3ed`), tipografia verde escuro, detalhes em verde suave, cartões com bordas sutis e cantos arredondados.
 - **Formatação de CSS**: Mantenha formatação limpa e legível em `src/bomboni/adapters/web/static/styles.css`. Não concentre múltiplos blocos de componentes em linhas únicas de vários kilobytes.
-- **Mobile Safe Areas e Tab Bar**: Barra de navegação inferior flutuante (Liquid Glass) com 4 abas estáveis: **Explorar**, **Favoritos**, **Sorteio**, **Perfil**. A barra deve respeitar a `env(safe-area-inset-bottom)` e nunca cobrir o conteúdo dos cartões.
+- **Mobile Safe Areas e Tab Bar**: Barra de navegação inferior flutuante (Liquid Glass) com 4 abas estáveis: **Explorar**, **Favoritos**, **Sorteio**, **Perfil**, mais **Comunidade** (inserida entre Explorar e Favoritos) apenas quando a comunidade está ativa (`/api/community/status`). A barra deve respeitar a `env(safe-area-inset-bottom)` e nunca cobrir o conteúdo dos cartões.
 - **Inputs no Safari iOS**: Mantenha sempre `font-size: 16px` em todos os `<input>` e `<select>` mobile para impedir o zoom automático forçado do Safari no iPhone.
 - **Scroll Container**: A listagem de restaurantes deve ser contida em `.restaurant-scroll-area`, mantendo a busca e topo fixos. Ao aplicar filtros ou pesquisar, resete `scrollTop = 0`.
 - **Spinner Oficial**: Operações assíncronas (busca, sorteio, carregamento de cardápio) **devem** utilizar o spinner de bombom giratório oficial (`.bonbon-spinner`), nunca textos simples, emojis ou símbolos de faísca/IA.

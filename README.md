@@ -59,6 +59,15 @@ Open `http://127.0.0.1:8765`. The browser asks for location permission to sort v
 
 To install the PWA on a phone, deploy the web adapter behind HTTPS. On Android and supported desktop browsers, use the in-app install button or the browser's install menu. On iPhone/iPad, open the HTTPS site in Safari, tap Share, then choose “Add to Home Screen”. The development server binds to localhost by default and should not be exposed directly to the public internet.
 
+## Community (reviews, photos, check-ins, meetups)
+
+The community layer lives in `src/bomboni/community/` (store, service, HTTP routes) and is served under `/api/community/*` by both the local server and the Vercel function `api/community.py`. The PWA loads `community.js`, which turns the features on only when `/api/community/status` reports `{"enabled": true}`.
+
+- **Local development**: data goes to a SQLite file (`.bomboni-community.sqlite3`, or `BOMBONI_SQLITE_PATH`). Without SMTP, sign-up codes are shown in a toast so accounts can be tested.
+- **Production (Vercel)**: set `DATABASE_URL` (or `POSTGRES_URL` / `BOMBONI_DATABASE_URL`) to a Postgres database, e.g. Neon or Supabase. Tables are created automatically. Without a database URL the community stays disabled and the app keeps its device-only behaviour.
+- **Email verification** needs `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD` and `SMTP_FROM`. In production, sign-up is refused if the email cannot be sent; verification codes are never returned to the browser.
+- Passwords are stored as salted PBKDF2-SHA256 hashes; sessions are random bearer tokens stored hashed. Content reported by three people is hidden automatically, and posting is rate-limited per user.
+
 ## Vercel deployment
 
 The web adapter has Vercel serverless entry points under `api/`, all calling the same transport-independent `RestaurantService` as the local web server and MCP. The PWA source files remain canonical under `src/bomboni/adapters/web/static`; `scripts/prepare_vercel.py` copies them into Vercel's static output folder during the configured build. The deploy only includes the web runtime dependencies; install the `mcp` extra locally when running the MCP server.
