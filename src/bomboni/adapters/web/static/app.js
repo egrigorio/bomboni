@@ -615,15 +615,12 @@ function applyLanguage() {
   const feature = featureCopy[state.language] || featureCopy.en;
   document.documentElement.lang = state.language;
   languageSelect.value = state.language;
-  $('location-label').textContent = state.locationLabel || (nearbyLabels[state.language] || nearbyLabels.en);
   $('search-mode-restaurants').textContent = searchModeLabels.restaurants[state.language] || searchModeLabels.restaurants.en;
   $('search-mode-dishes').textContent = searchModeLabels.dishes[state.language] || searchModeLabels.dishes.en;
   $('search-input').placeholder = state.searchMode === 'dishes' ? (dishSearchPlaceholders[state.language] || dishSearchPlaceholders.en) : (restaurantSearchPlaceholders[state.language] || restaurantSearchPlaceholders.en);
   $('search-input').setAttribute('aria-label', $('search-input').placeholder);
   const searchClear = $('search-clear');
   if (searchClear) searchClear.setAttribute('aria-label', feature.searchClearAria || 'Limpar pesquisa');
-  $('hero-title').textContent = ({ pt:'Restaurantes com boni', en:'Student meal restaurants', es:'Restaurantes con boni', de:'Boni-Restaurants', it:'Ristoranti con boni', fr:'Restaurants avec boni', ca:'Restaurants amb boni' }[state.language]);
-  $('list-title').textContent = searchModeLabels.restaurants[state.language] || searchModeLabels.restaurants.en;
   const loadingLabel = $('loading-label');
   if (loadingLabel) loadingLabel.textContent = t.loading;
   $('load-more').textContent = t.more;
@@ -913,7 +910,6 @@ function renderRestaurants() {
     .map(item => item.restaurant);
 
   const shown = records.slice(0, state.visible);
-  $('result-count').textContent = records.length;
   host.replaceChildren();
 
   if (!records.length) {
@@ -1022,7 +1018,6 @@ function renderDishesSearch() {
   host.replaceChildren();
 
   if (!query) {
-    $('result-count').textContent = '0';
     const hint = document.createElement('div');
     hint.className = 'loading-card';
     hint.textContent = t.searchDishPrompt;
@@ -1030,14 +1025,12 @@ function renderDishesSearch() {
     return;
   }
   if (state.isSearchingDishes) {
-    $('result-count').textContent = '…';
     const loading = document.createElement('div');
     loading.className = 'loading-card';
     loading.innerHTML = `${BONBON_SPINNER_HTML}<span>${t.loadingDishes}</span>`;
     host.append(loading);
     return;
   }
-  $('result-count').textContent = state.dishResults.length;
   if (!state.dishResults.length) {
     const empty = document.createElement('div');
     empty.className = 'loading-card';
@@ -1133,32 +1126,12 @@ async function loadRestaurants() {
     if (state.location) {
       const nearest = state.restaurants.find(r => r.city);
       state.locationLabel = nearest?.distance_km != null && nearest.distance_km < 20 ? nearest.city : nearbyLabels[state.language];
-      $('location-label').textContent = state.locationLabel;
     }
     if (state.searchMode === 'dishes') renderDishesSearch(); else renderRestaurants();
   } catch {
     showToast(tr().error);
     $('restaurant-list').innerHTML = `<div class="loading-card">${tr().error}</div>`;
   }
-}
-
-function requestLocation() {
-  if (!navigator.geolocation) { showToast(locationError[state.language]); return; }
-  $('location-label').textContent = ({ pt:'A localizar…', en:'Locating…', es:'Ubicando…', de:'Standort…', it:'Posizione…', fr:'Localisation…' }[state.language]);
-  navigator.geolocation.getCurrentPosition(
-    position => {
-      const loc = { latitude: position.coords.latitude, longitude: position.coords.longitude };
-      state.location = loc;
-      state.locationLabel = '';
-      try { localStorage.setItem('bomboni-location', JSON.stringify(loc)); } catch {}
-      loadRestaurants();
-    },
-    () => {
-      $('location-label').textContent = ({ pt:'Perto de si', en:'Near you', es:'Cerca de ti', de:'In deiner Nähe', it:'Vicino a te', fr:'Près de vous' }[state.language]);
-      showToast(locationError[state.language]);
-    },
-    { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 }
-  );
 }
 
 /* -------------------------------------------------------------
@@ -2339,8 +2312,6 @@ function renderProfilePage() {
   // Count stats and badges
   $('profile-history-val').textContent = String(meals.length);
   $('profile-reviews-val').textContent = String(Object.keys(reviews).length);
-  $('profile-reviews-badge').textContent = String(Object.keys(reviews).length);
-  $('profile-history-badge').textContent = String(meals.length);
 
   // Render Mini Calendar
   renderMiniCalendar();
@@ -2508,7 +2479,6 @@ $('search-input').addEventListener('input', () => {
   if (state.searchMode === 'dishes') handleDishSearch(); else renderRestaurants();
 });
 $('load-more').addEventListener('click', () => { state.visible += 15; renderRestaurants(); });
-$('location-button').addEventListener('click', requestLocation);
 $('back-button').addEventListener('click', () => {
   state.selected = null;
   $('menu-panel').hidden = true;
@@ -2551,7 +2521,6 @@ async function installApp() {
     deferredInstallPrompt.prompt();
     await deferredInstallPrompt.userChoice;
     deferredInstallPrompt = null;
-    $('install-button').hidden = true;
     return;
   }
   const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
@@ -2562,13 +2531,10 @@ async function installApp() {
 window.addEventListener('beforeinstallprompt', event => {
   event.preventDefault();
   deferredInstallPrompt = event;
-  $('install-button').hidden = false;
 });
 window.addEventListener('appinstalled', () => {
-  $('install-button').hidden = true;
   showToast(installCopy[state.language]?.label || installCopy.en.label);
 });
-$('install-button').addEventListener('click', installApp);
 $('footer-install').addEventListener('click', installApp);
 
 /* Boot application */
@@ -2586,7 +2552,6 @@ if (navigator.geolocation) {
     },
     () => {
       state.locationLabel = nearbyLabels[state.language] || nearbyLabels.en;
-      $('location-label').textContent = state.locationLabel;
       if (!state.restaurants || !state.restaurants.length) {
         loadRestaurants();
       } else {

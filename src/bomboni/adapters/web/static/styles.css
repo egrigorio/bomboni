@@ -935,3 +935,16 @@
   .mobile-tab:focus-visible{outline:2px solid #719076;outline-offset:-3px}
 }
 @media(prefers-reduced-transparency:reduce){@media(max-width:760px){.mobile-tab-bar{background:rgba(246,245,239,.97);backdrop-filter:none;-webkit-backdrop-filter:none}}}
+
+/* Clean header and search area */
+.topbar{border-bottom:0}
+.brand-word{font-size:24px}
+.search-box{margin-top:4px}
+.search-filter-bar{justify-content:center;margin-top:12px}
+.restaurant-scroll-area{margin-top:16px}
+.page-heading h1{margin-top:0}
+@media(max-width:760px){
+  .brand-word{font-size:22px}
+  .search-box{margin-top:4px}
+  .search-filter-bar{margin-top:12px}
+}
