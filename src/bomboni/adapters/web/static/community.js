@@ -292,6 +292,12 @@
         try {
           pendingSignup = { email, username, password };
           const data = await api('/auth/signup', { method: 'POST', body: pendingSignup });
+          if (data.token) {
+            // No email service configured yet: the account is created straight away.
+            pendingSignup = null;
+            afterLogin(data, feature.registerSuccess || 'Conta criada!');
+            return;
+          }
           pendingEmail = email;
           $('auth-form').hidden = true;
           $('auth-toggle').hidden = true;

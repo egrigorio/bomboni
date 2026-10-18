@@ -200,14 +200,14 @@ def test_requires_auth_and_handles_bad_json(client: Client) -> None:
 
 
 @pytest.mark.parametrize(
-    ("env", "enabled"),
+    ("env", "verify_email"),
     [
         ({"VERCEL": "1", "DATABASE_URL": "postgres://db"}, False),
         ({"VERCEL": "1", "DATABASE_URL": "postgres://db", "SMTP_HOST": "smtp.example.test"}, True),
         ({}, True),
     ],
 )
-def test_community_requires_email_outside_local_dev(monkeypatch, env, enabled) -> None:
+def test_email_verification_follows_smtp_configuration(monkeypatch, env, verify_email) -> None:
     import sys
     import types
 
@@ -221,5 +221,25 @@ def test_community_requires_email_outside_local_dev(monkeypatch, env, enabled) -
     monkeypatch.setattr(community_http, "store_from_environment", lambda: Store())
     monkeypatch.setattr(community_http, "_api", None)
 
-    response = community_http.community_api().handle("GET", "/status", {}, b"", {})
-    assert json.loads(response.body) == {"enabled": enabled}
+    api = community_http.community_api()
+    assert json.loads(api.handle("GET", "/status", {}, b"", {}).body) == {"enabled": True}
+    response = api.handle("POST", "/auth/signup", {}, json.dumps({"email": "a@uni.si", "username": "ana", "password": "secret1"}).encode(), {})
+    data = json.loads(response.body)
+    if verify_email:
+        assert "token" not in data
+    else:
+        assert response.status == 200 and data["status"] == "created" and data["token"]
+        assert "code" not in data and "dev_code" not in data
+
+
+def test_signup_without_email_service_creates_unverified_account() -> None:
+    sent: list[str] = []
+    service = CommunityService(Store(), send_email=lambda email, code: sent.append(code) or False, verify_email=False)
+    api = CommunityApi(service)
+    response = api.handle("POST", "/auth/signup", {}, json.dumps({"email": "a@uni.si", "username": "ana", "password": "secret1"}).encode(), {})
+    token = json.loads(response.body)["token"]
+    assert sent == []
+    assert service.store.value("SELECT email_verified FROM users WHERE username = ?", ("ana",)) == 0
+    assert json.loads(api.handle("GET", "/me", {}, b"", {"Authorization": f"Bearer {token}"}).body)["user"]["username"] == "ana"
+    duplicate = api.handle("POST", "/auth/signup", {}, json.dumps({"email": "a@uni.si", "username": "other", "password": "secret1"}).encode(), {})
+    assert duplicate.status == 409

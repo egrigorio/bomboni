@@ -129,10 +129,12 @@ def semester_range(today: date) -> tuple[date, date, str]:
 
 
 class CommunityService:
-    def __init__(self, store: Store, *, send_email: Callable[[str, str], bool], dev_mode: bool = False) -> None:
+    def __init__(self, store: Store, *, send_email: Callable[[str, str], bool], dev_mode: bool = False, verify_email: bool = True) -> None:
         self.store = store
         self._send_email = send_email
         self._dev_mode = dev_mode
+        # False while no email service is configured: accounts are created at once, marked unverified.
+        self._verify_email = verify_email
 
     # ------------------------------------------------------------------ auth
     def user_for_token(self, token: str | None) -> dict[str, Any] | None:
@@ -179,6 +181,8 @@ class CommunityService:
             raise CommunityError(409, "email_taken")
         if self.store.one("SELECT id FROM users WHERE username_lower = ?", (username.lower(),)):
             raise CommunityError(409, "username_taken")
+        if not self._verify_email:
+            return {"status": "created", **self._create_user(email, username, hash_password(password), verified=False)}
         code = f"{secrets.randbelow(10000):04d}"
         self.store.run("DELETE FROM pending_signups WHERE email = ?", (email,))
         self.store.run(
@@ -205,11 +209,15 @@ class CommunityService:
             raise CommunityError(400, "code_invalid")
         if self.store.one("SELECT id FROM users WHERE username_lower = ? OR email = ?", (pending["username"].lower(), email)):
             raise CommunityError(409, "username_taken")
+        self.store.run("DELETE FROM pending_signups WHERE email = ?", (email,))
+        return self._create_user(email, pending["username"], pending["password_hash"], verified=True)
+
+    def _create_user(self, email: str, username: str, password_hash: str, *, verified: bool) -> dict[str, Any]:
         user = {
             "id": _new_id(),
             "email": email,
-            "username": pending["username"],
-            "password_hash": pending["password_hash"],
+            "username": username,
+            "password_hash": password_hash,
             "bio": "",
             "faculty": "",
             "city": "",
@@ -217,10 +225,9 @@ class CommunityService:
             "created_at": _now(),
         }
         self.store.run(
-            "INSERT INTO users (id, email, username, username_lower, password_hash, created_at) VALUES (?, ?, ?, ?, ?, ?)",
-            (user["id"], email, user["username"], user["username"].lower(), user["password_hash"], user["created_at"]),
+            "INSERT INTO users (id, email, username, username_lower, password_hash, email_verified, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (user["id"], email, username, username.lower(), password_hash, 1 if verified else 0, user["created_at"]),
         )
-        self.store.run("DELETE FROM pending_signups WHERE email = ?", (email,))
         return self._session(user)
 
     def login(self, payload: dict[str, Any]) -> dict[str, Any]:
