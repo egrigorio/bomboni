@@ -373,7 +373,7 @@
     let summary = $('cm-venue-summary');
     if (!summary) {
       summary = h('div', { class: 'cm-venue-summary', id: 'cm-venue-summary' });
-      document.querySelector('.venue-meta')?.after(summary);
+      document.querySelector('.venue-meta')?.append(summary);
     }
     let block = $('cm-venue');
     if (!block) {
@@ -583,7 +583,7 @@
           (stat.photos || []).slice(0, 3).map(id => h('button', { type: 'button', class: 'cm-dish-thumb', onclick: () => openPhoto({ id, dish: name, username: '', created_at: Date.now() }) }, h('img', { src: photoUrl(id), alt: '', loading: 'lazy' }))),
           h('button', { type: 'button', class: 'cm-vote cm-camera', 'aria-label': t().addPhoto, title: t().addPhoto, text: '📷', onclick: () => pickPhoto(state.selected, name) }));
         card.querySelector('.cm-dish-social')?.remove();
-        body.append(row);
+        (card.querySelector('.dish-footer') || body).append(row);
       };
       render();
     }

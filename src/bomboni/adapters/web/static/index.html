@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=v31">
+    <link rel="stylesheet" href="/styles.css?v=v32">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body data-tab="explore">
@@ -58,11 +58,13 @@
 
         <section class="menu-panel" id="menu-panel" aria-live="polite" hidden>
           <div class="menu-content" id="menu-content" hidden>
-            <button class="back-button" id="back-button" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="back-label">Todos os restaurantes</span></button>
+            <div class="venue-topbar">
+              <button class="back-button" id="back-button" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="back-label">Restaurantes</span></button>
+              <a class="venue-app-link" id="source-link" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10.5 18.5h3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span id="source-link-label">Abrir na app</span></a>
+            </div>
             <div class="venue-heading">
-              <div class="venue-avatar" id="venue-avatar">B</div>
+              <div class="venue-avatar" id="venue-avatar" hidden>B</div>
               <div class="venue-title-wrap"><h2 id="venue-name"></h2><p id="venue-address"></p></div>
-              <a class="source-link" id="source-link" target="_blank" rel="noreferrer" aria-label="Abrir fonte oficial"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7m0-7L5 11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="venue-meta">
               <span class="meta-item"><span class="meta-icon">€</span><span id="venue-fee"></span></span>
@@ -128,8 +130,9 @@
                 </div>
               </div>
             </div>
-            <div class="menu-divider"><div class="date-heading"><button class="date-arrow" id="date-prev" type="button" aria-label="Dia anterior"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h3 id="menu-title">Pratos de hoje</h3><button class="date-arrow" id="date-next" type="button" aria-label="Dia seguinte"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+            <div class="menu-divider"><div class="date-heading"><button class="date-arrow" id="date-prev" type="button" aria-label="Dia anterior"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h3 id="menu-title">Pratos de hoje</h3><button class="date-arrow" id="date-next" type="button" aria-label="Dia seguinte"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><button class="menu-copy-btn" id="copy-menu-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span id="copy-menu-label">Copiar menu</span></button></div>
             <div class="dish-list" id="dish-list"></div>
+            <a class="official-site-link" id="official-site-link" target="_blank" rel="noreferrer">Ver no site oficial</a>
           </div>
         </section>
       </main>
@@ -357,8 +360,8 @@
     </div>
     <input type="file" id="cm-photo-input" accept="image/*" capture="environment" hidden>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=v31" defer></script>
-    <script src="/community.js?v=v31" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v31').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=v32" defer></script>
+    <script src="/community.js?v=v32" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v32').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>
