@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import base64
 import json
+import secrets
 import time
 
 import pytest
@@ -10,6 +11,8 @@ from bomboni.community.http import CommunityApi
 from bomboni.community.service import CommunityService, hash_password, today_local, verify_password
 from bomboni.community.store import Store
 
+# Generated per run so no credential-looking literal lives in the repository.
+TEST_PASSWORD = secrets.token_urlsafe(12)
 RESTAURANT = {"id": "r1", "name": "Menza Rožna", "city": "Ljubljana"}
 PIXEL = "data:image/png;base64," + base64.b64encode(b"\x89PNG\r\n\x1a\n" + b"0" * 32).decode()
 
@@ -32,7 +35,7 @@ class Client:
         return response.status, payload
 
     def signup(self, username: str) -> str:
-        status, data = self.call("POST", "/auth/signup", {"email": f"{username}@uni.si", "username": username, "password": "secret1"})
+        status, data = self.call("POST", "/auth/signup", {"email": f"{username}@uni.si", "username": username, "password": TEST_PASSWORD})
         assert status == 200, data
         status, data = self.call("POST", "/auth/verify", {"email": f"{username}@uni.si", "code": self.sent[-1][1]})
         assert status == 200, data
@@ -51,24 +54,24 @@ def test_disabled_without_store() -> None:
 
 
 def test_password_hashing_round_trip() -> None:
-    stored = hash_password("secret1")
-    assert "secret1" not in stored
-    assert verify_password("secret1", stored)
+    stored = hash_password(TEST_PASSWORD)
+    assert TEST_PASSWORD not in stored
+    assert verify_password(TEST_PASSWORD, stored)
     assert not verify_password("wrong", stored)
 
 
 def test_signup_hides_code_once_email_is_delivered() -> None:
     delivered = Client(delivered=True)
-    status, data = delivered.call("POST", "/auth/signup", {"email": "a@uni.si", "username": "ana", "password": "secret1"})
+    status, data = delivered.call("POST", "/auth/signup", {"email": "a@uni.si", "username": "ana", "password": TEST_PASSWORD})
     assert status == 200 and "dev_code" not in data and "code" not in data
 
     production = Client(delivered=False, dev_mode=False)
-    status, data = production.call("POST", "/auth/signup", {"email": "a@uni.si", "username": "ana", "password": "secret1"})
+    status, data = production.call("POST", "/auth/signup", {"email": "a@uni.si", "username": "ana", "password": TEST_PASSWORD})
     assert status == 503 and data["error"] == "email_unavailable"
 
 
 def test_signup_verification_limits_attempts(client: Client) -> None:
-    client.call("POST", "/auth/signup", {"email": "a@uni.si", "username": "ana", "password": "secret1"})
+    client.call("POST", "/auth/signup", {"email": "a@uni.si", "username": "ana", "password": TEST_PASSWORD})
     code = client.sent[-1][1]
     wrong = "0000" if code != "0000" else "1111"
     for _ in range(5):
@@ -80,9 +83,9 @@ def test_signup_verification_limits_attempts(client: Client) -> None:
 def test_login_logout_and_duplicate_usernames(client: Client) -> None:
     token = client.signup("ana")
     assert client.call("GET", "/me", token=token)[1]["user"]["username"] == "ana"
-    assert client.call("POST", "/auth/signup", {"email": "b@uni.si", "username": "ANA", "password": "secret1"})[0] == 409
-    assert client.call("POST", "/auth/login", {"identifier": "ana", "password": "bad"})[0] == 401
-    status, data = client.call("POST", "/auth/login", {"identifier": "@ana", "password": "secret1"})
+    assert client.call("POST", "/auth/signup", {"email": "b@uni.si", "username": "ANA", "password": TEST_PASSWORD})[0] == 409
+    assert client.call("POST", "/auth/login", {"identifier": "ana", "password": TEST_PASSWORD + "-wrong"})[0] == 401
+    status, data = client.call("POST", "/auth/login", {"identifier": "@ana", "password": TEST_PASSWORD})
     assert status == 200
     client.call("POST", "/auth/logout", token=data["token"])
     assert client.call("GET", "/me", token=data["token"])[0] == 401
@@ -223,7 +226,7 @@ def test_email_verification_follows_smtp_configuration(monkeypatch, env, verify_
 
     api = community_http.community_api()
     assert json.loads(api.handle("GET", "/status", {}, b"", {}).body) == {"enabled": True}
-    response = api.handle("POST", "/auth/signup", {}, json.dumps({"email": "a@uni.si", "username": "ana", "password": "secret1"}).encode(), {})
+    response = api.handle("POST", "/auth/signup", {}, json.dumps({"email": "a@uni.si", "username": "ana", "password": TEST_PASSWORD}).encode(), {})
     data = json.loads(response.body)
     if verify_email:
         assert "token" not in data
@@ -236,10 +239,10 @@ def test_signup_without_email_service_creates_unverified_account() -> None:
     sent: list[str] = []
     service = CommunityService(Store(), send_email=lambda email, code: sent.append(code) or False, verify_email=False)
     api = CommunityApi(service)
-    response = api.handle("POST", "/auth/signup", {}, json.dumps({"email": "a@uni.si", "username": "ana", "password": "secret1"}).encode(), {})
+    response = api.handle("POST", "/auth/signup", {}, json.dumps({"email": "a@uni.si", "username": "ana", "password": TEST_PASSWORD}).encode(), {})
     token = json.loads(response.body)["token"]
     assert sent == []
     assert service.store.value("SELECT email_verified FROM users WHERE username = ?", ("ana",)) == 0
     assert json.loads(api.handle("GET", "/me", {}, b"", {"Authorization": f"Bearer {token}"}).body)["user"]["username"] == "ana"
-    duplicate = api.handle("POST", "/auth/signup", {}, json.dumps({"email": "a@uni.si", "username": "other", "password": "secret1"}).encode(), {})
+    duplicate = api.handle("POST", "/auth/signup", {}, json.dumps({"email": "a@uni.si", "username": "other", "password": TEST_PASSWORD}).encode(), {})
     assert duplicate.status == 409
