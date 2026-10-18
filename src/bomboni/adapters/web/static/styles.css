@@ -1174,3 +1174,50 @@ body.cm-sheet-open{overflow:hidden}
   .cm-aspect{grid-template-columns:96px 1fr 26px}
   .mobile-tab span{font-size:9.5px}
 }
+
+/* Restaurant detail: clear hierarchy */
+.venue-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 16px}
+.venue-topbar .back-button{display:inline-flex;align-items:center;gap:2px;height:40px;margin:0;padding:0 14px 0 8px;border:1px solid var(--line);border-radius:20px;background:var(--white);color:var(--ink);font:700 14px Manrope,sans-serif}
+.venue-topbar .back-button svg{width:20px;height:20px;margin:0;color:var(--green)}
+.venue-app-link{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 14px;border-radius:20px;background:#eaf0e5;color:var(--green);font-size:12px;font-weight:700;white-space:nowrap}
+.venue-app-link svg{width:17px;height:17px}
+.venue-heading{display:block}
+.venue-title-wrap h2{font:800 26px/1.15 Manrope,sans-serif;letter-spacing:-.8px;margin:0;white-space:normal}
+.venue-title-wrap p{font-size:13px;color:#7d867d;margin:6px 0 0;white-space:normal}
+.venue-meta{flex-wrap:wrap;gap:6px;padding:14px 0 0;border-bottom:0}
+.venue-meta .meta-item{height:26px;padding:0 10px;border-radius:13px;background:#f3f4ee;color:#4f5a51;font-size:12px;font-weight:600}
+.venue-meta .meta-icon{font-size:12px}
+.venue-meta .meta-separator{display:none}
+.cm-venue-summary{padding:8px 0 0}
+.venue-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:16px 0 0}
+.venue-action-btn{flex-direction:column;justify-content:center;gap:4px;height:58px;padding:0 6px;border-radius:16px;background:var(--white);font-size:12px}
+.venue-action-btn svg{width:19px;height:19px}
+.menu-divider{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:22px;padding:18px 0 12px;border-top:1px solid #eeeee8}
+.date-heading{gap:6px;min-width:0}
+.date-heading h3,.menu-divider h3{min-width:0;margin:0;font:700 15px Manrope,sans-serif;letter-spacing:-.2px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.date-heading h3::first-letter{text-transform:uppercase}
+.date-arrow{width:32px!important;height:32px!important;flex:none;background:var(--white)}
+.date-arrow svg{width:14px;height:14px}
+.menu-copy-btn{display:inline-flex;align-items:center;gap:6px;flex:none;height:32px;padding:0 12px;border:1px solid var(--line);border-radius:16px;background:var(--white);color:var(--green);font-size:12px;font-weight:700;cursor:pointer}
+.menu-copy-btn svg{width:15px;height:15px}
+.dish-card{grid-template-columns:1fr;padding:14px}
+.dish-number{display:none}
+.dish-name{font-size:14px}
+.dish-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid #f0f0ea}
+.dish-footer .dish-actions{margin:0}
+.dish-footer .cm-dish-social{margin:0;flex:1;justify-content:flex-end}
+.dish-footer .cm-camera{margin-left:0}
+.official-site-link{display:block;margin:22px 0 4px;text-align:center;font-size:12px;font-weight:600;color:#7d867d;text-decoration:underline;text-underline-offset:3px}
+@media(min-width:761px){.venue-topbar .back-button{display:inline-flex}}
+@media(max-width:760px){
+  .menu-content{padding-top:calc(6px + env(safe-area-inset-top))}
+  .venue-topbar{position:sticky;top:0;z-index:3;margin:0 -18px 14px;padding:10px 18px;background:rgba(255,254,250,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+  .menu-copy-btn span{display:none}
+  .menu-copy-btn{width:32px;padding:0;justify-content:center}
+}
+@media(max-width:360px){.venue-app-link span{display:none}.venue-app-link{width:40px;padding:0;justify-content:center}}
+
+.venue-meta .cm-venue-summary,.venue-meta .cm-chip-row{display:contents}
+.venue-meta .cm-chip{height:26px;padding:0 10px;border-radius:13px;font-size:12px}
+.venue-meta .cm-queue-picker,.venue-meta .cm-friends{flex-basis:100%}
+.dish-footer .image-search-button{width:30px;height:30px;margin:0;border-radius:9px}

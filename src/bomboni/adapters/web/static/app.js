@@ -629,12 +629,14 @@ function applyLanguage() {
   const loadingLabel = $('loading-label');
   if (loadingLabel) loadingLabel.textContent = t.loading;
   $('load-more').textContent = t.more;
-  $('back-label').textContent = t.back;
+  $('back-label').textContent = dl().back;
+  $('source-link-label').textContent = appPlatform() ? dl().openApp : dl().site;
+  $('official-site-link').textContent = dl().officialSite;
+  $('copy-menu-label').textContent = dl().copyMenu;
+  $('copy-menu-btn').setAttribute('aria-label', dl().copyMenu);
+  $('copy-menu-btn').title = dl().copyMenu;
   const srcLink = $('source-link');
-  if (srcLink) {
-    srcLink.setAttribute('aria-label', feature.sourceLinkTitle || 'Abrir fonte oficial');
-    srcLink.setAttribute('title', feature.sourceLinkTitle || 'Abrir fonte oficial');
-  }
+  if (srcLink) srcLink.setAttribute('aria-label', appPlatform() ? dl().openApp : dl().site);
   $('menu-title').textContent = (state.selected && state.date) ? formatDate(state.date) : t.today;
   $('date-prev').setAttribute('aria-label', ({ pt:'Dia anterior', en:'Previous day', es:'Día anterior', de:'Vorheriger Tag', it:'Giorno precedente', fr:'Jour précédent', ca:'Dia anterior' }[state.language]));
   $('date-next').setAttribute('aria-label', ({ pt:'Dia seguinte', en:'Next day', es:'Día seguinte', de:'Nächster Tag', it:'Giorno successivo', fr:'Jour suivant', ca:'Dia següent' }[state.language]));
@@ -1251,6 +1253,80 @@ function categoryClass(category) {
   return '';
 }
 
+const detailLabels = {
+  pt: { site:'Site oficial', back:'Restaurantes', openApp:'Abrir na app', officialSite:'Ver no site oficial', copyMenu:'Copiar menu', menuCopied:'Menu copiado!', copyFailed:'Não foi possível copiar.' },
+  en: { site:'Official site', back:'Restaurants', openApp:'Open in app', officialSite:'View on the official website', copyMenu:'Copy menu', menuCopied:'Menu copied!', copyFailed:'Could not copy.' },
+  es: { site:'Web oficial', back:'Restaurantes', openApp:'Abrir en la app', officialSite:'Ver en la web oficial', copyMenu:'Copiar menú', menuCopied:'¡Menú copiado!', copyFailed:'No se pudo copiar.' },
+  de: { site:'Offizielle Website', back:'Restaurants', openApp:'In der App öffnen', officialSite:'Auf der offiziellen Website ansehen', copyMenu:'Menü kopieren', menuCopied:'Menü kopiert!', copyFailed:'Kopieren nicht möglich.' },
+  it: { site:'Sito ufficiale', back:'Ristoranti', openApp:'Apri nell’app', officialSite:'Vedi sul sito ufficiale', copyMenu:'Copia menu', menuCopied:'Menu copiato!', copyFailed:'Impossibile copiare.' },
+  fr: { site:'Site officiel', back:'Restaurants', openApp:'Ouvrir dans l’app', officialSite:'Voir sur le site officiel', copyMenu:'Copier le menu', menuCopied:'Menu copié !', copyFailed:'Copie impossible.' },
+  ca: { site:'Web oficial', back:'Restaurants', openApp:'Obre a l’app', officialSite:'Veure al web oficial', copyMenu:'Copia el menú', menuCopied:'Menú copiat!', copyFailed:'No s’ha pogut copiar.' },
+};
+const dl = () => detailLabels[state.language] || detailLabels.en;
+
+// Official Študentska prehrana apps. Neither publishes restaurant deep links, so the
+// button opens the app itself (or its store page) and the website stays as a fallback.
+const OFFICIAL_APP = {
+  android: 'com.margento.studentskaprehrana',
+  ios: 'https://apps.apple.com/app/id1398305066',
+};
+function appPlatform() {
+  const ua = navigator.userAgent;
+  if (/android/i.test(ua)) return 'android';
+  if (/iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) return 'ios';
+  return null;
+}
+function officialAppLink(restaurant) {
+  const platform = appPlatform();
+  if (platform === 'android') {
+    const fallback = encodeURIComponent(`https://play.google.com/store/apps/details?id=${OFFICIAL_APP.android}`);
+    return `intent://#Intent;package=${OFFICIAL_APP.android};S.browser_fallback_url=${fallback};end`;
+  }
+  if (platform === 'ios') return OFFICIAL_APP.ios;
+  return restaurant.source_url;
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+    document.body.append(area);
+    area.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch {}
+    area.remove();
+    return ok;
+  }
+}
+
+async function copyMenu() {
+  const restaurant = state.selected;
+  const dishes = state.currentMenuDishes || [];
+  if (!restaurant) return;
+  if (!dishes.length) { showToast(tr().noMenu); return; }
+  const result = await translatedText(dishes.flatMap(d => [d.name, ...(d.sides || [])]));
+  const names = new Map((result.results || []).map(item => [item.original, item.translated || item.original]));
+  const name = text => names.get(text) || text;
+  const lines = [
+    `${restaurant.name} · ${formatDate(state.date || state.today)}`,
+    [displayAddress(restaurant.address, restaurant.city), `${tr().fee}: ${formatMoney(restaurant.additional_fee_eur)}`].filter(Boolean).join(' · '),
+    '',
+  ];
+  dishes.forEach((dish, index) => {
+    const tags = (dish.categories || []).map(c => tr().categories[c] || c).join(', ');
+    lines.push(`${index + 1}. ${name(dish.name)}${tags ? ` (${tags})` : ''}`);
+    const sides = (dish.sides || []).filter(Boolean).map(name);
+    if (sides.length) lines.push(`   + ${sides.join(', ')}`);
+  });
+  lines.push('', 'bomboni.');
+  showToast(await copyText(lines.join('\n')) ? dl().menuCopied : dl().copyFailed);
+}
+
 const translatingLabels = { pt:'A traduzir…', en:'Translating…', es:'Traduciendo…', de:'Wird übersetzt…', it:'Traduzione…', fr:'Traduction…', ca:'Traduint…' };
 
 async function translatedText(texts) {
@@ -1310,7 +1386,14 @@ async function openRestaurant(restaurant) {
   $('venue-address').textContent = displayAddress(restaurant.address, restaurant.city);
   $('venue-avatar').textContent = (restaurant.name || '?').trim().slice(0, 1).toLocaleUpperCase();
   $('venue-fee').textContent = `${tr().fee}: ${formatMoney(restaurant.additional_fee_eur)}`;
-  $('source-link').href = restaurant.source_url;
+  $('source-link').href = officialAppLink(restaurant);
+  $('official-site-link').href = restaurant.source_url;
+  // On desktop the top button already opens the website.
+  $('official-site-link').hidden = !restaurant.source_url || !appPlatform();
+  $('source-link').hidden = !appPlatform() && !restaurant.source_url;
+  // A history entry lets the system back button / gesture close the restaurant.
+  if (history.state?.bomboniRestaurant) history.replaceState({ bomboniRestaurant: restaurant.id }, '');
+  else history.pushState({ bomboniRestaurant: restaurant.id }, '');
   emit('restaurant-opened', { restaurant });
 
   await loadMenu(restaurant.id, state.date, restaurant.name);
@@ -1415,7 +1498,7 @@ function renderMenuDishes(menu, requestId, id) {
     imageSearch.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="9" cy="10" r="1.5"/><path d="m5 17 4.5-4.5 3 3L15 13l5 5"/><circle cx="18" cy="6" r="3.2" class="search-lens"/><path d="m20.4 8.4 2 2" class="search-lens"/></svg>';
 
     dishActions.append(dishFavBtn, dishLogBtn, imageSearch);
-    titleRow.append(title, dishActions);
+    titleRow.append(title);
     body.append(titleRow);
 
     const originalNode = document.createElement('div');
@@ -1450,6 +1533,10 @@ function renderMenuDishes(menu, requestId, id) {
       body.append(tags);
     }
 
+    const footer = document.createElement('div');
+    footer.className = 'dish-footer';
+    footer.append(dishActions);
+    body.append(footer);
     card.append(number, body);
     host.append(card);
     dishNodes.push({ dish, title, originalNode, sideNode, sides });
@@ -2507,12 +2594,64 @@ $('search-input').addEventListener('input', () => {
   if (state.searchMode === 'dishes') handleDishSearch(); else renderRestaurants();
 });
 $('load-more').addEventListener('click', () => { state.visible += 15; renderRestaurants(); });
-$('back-button').addEventListener('click', () => {
+function closeRestaurant() {
+  if (!state.selected) return;
   state.selected = null;
-  $('menu-panel').hidden = true;
-  $('menu-panel').classList.remove('mobile-open');
+  const panel = $('menu-panel');
+  panel.style.transform = '';
+  panel.style.transition = '';
+  panel.hidden = true;
+  panel.classList.remove('mobile-open');
   $('layout').classList.remove('menu-open');
   if (state.searchMode === 'dishes') renderDishesSearch(); else renderRestaurants();
+}
+function leaveRestaurant() {
+  // Going back through history keeps the browser back button in sync.
+  if (history.state?.bomboniRestaurant) history.back();
+  else closeRestaurant();
+}
+window.addEventListener('popstate', () => { if (!history.state?.bomboniRestaurant) closeRestaurant(); });
+$('back-button').addEventListener('click', leaveRestaurant);
+$('copy-menu-btn').addEventListener('click', copyMenu);
+
+// Swipe from the left edge to go back, following the finger like a native screen.
+let edgeSwipe = null;
+$('menu-panel').addEventListener('touchstart', event => {
+  if (window.innerWidth > 760 || !state.selected) return;
+  const touch = event.touches[0];
+  if (touch.clientX > 32) return;
+  edgeSwipe = { x: touch.clientX, y: touch.clientY, t: Date.now(), dx: 0, active: false };
+}, { passive: true });
+$('menu-panel').addEventListener('touchmove', event => {
+  if (!edgeSwipe) return;
+  const touch = event.touches[0];
+  const dx = touch.clientX - edgeSwipe.x;
+  const dy = touch.clientY - edgeSwipe.y;
+  if (!edgeSwipe.active) {
+    if (Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx)) { edgeSwipe = null; return; }
+    if (dx < 8) return;
+    edgeSwipe.active = true;
+  }
+  edgeSwipe.dx = Math.max(0, dx);
+  const panel = $('menu-panel');
+  panel.style.transition = 'none';
+  panel.style.transform = `translateX(${edgeSwipe.dx}px)`;
+}, { passive: true });
+$('menu-panel').addEventListener('touchend', () => {
+  if (!edgeSwipe) return;
+  const { dx, t, active } = edgeSwipe;
+  edgeSwipe = null;
+  if (!active) return;
+  const panel = $('menu-panel');
+  const fast = dx > 40 && Date.now() - t < 250;
+  panel.style.transition = 'transform .22s cubic-bezier(.2,.8,.2,1)';
+  if (dx > window.innerWidth * 0.33 || fast) {
+    panel.style.transform = 'translateX(100%)';
+    setTimeout(leaveRestaurant, 200);
+  } else {
+    panel.style.transform = '';
+    setTimeout(() => { panel.style.transition = ''; }, 240);
+  }
 });
 $('date-prev').addEventListener('click', () => changeMenuDate(-1));
 $('date-next').addEventListener('click', () => changeMenuDate(1));
@@ -2527,6 +2666,7 @@ $('dish-list').addEventListener('touchstart', event => {
   $('dish-list').dataset.touchY = touch.clientY;
 }, { passive: true });
 $('dish-list').addEventListener('touchend', event => {
+  if (Number($('dish-list').dataset.touchX) <= 32 && window.innerWidth <= 760) return;
   const touch = event.changedTouches[0];
   const dx = touch.clientX - Number($('dish-list').dataset.touchX || touch.clientX);
   const dy = touch.clientY - Number($('dish-list').dataset.touchY || touch.clientY);
@@ -2534,13 +2674,7 @@ $('dish-list').addEventListener('touchend', event => {
 }, { passive: true });
 document.addEventListener('keydown', event => {
   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); $('search-input').focus(); }
-  if (event.key === 'Escape' && state.selected) {
-    state.selected = null;
-    $('menu-panel').hidden = true;
-    $('menu-panel').classList.remove('mobile-open');
-    $('layout').classList.remove('menu-open');
-    if (state.searchMode === 'dishes') renderDishesSearch(); else renderRestaurants();
-  }
+  if (event.key === 'Escape' && state.selected) leaveRestaurant();
 });
 
 /* PWA Installation */
