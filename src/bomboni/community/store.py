@@ -18,6 +18,7 @@ SCHEMA = [
         faculty TEXT NOT NULL DEFAULT '',
         city TEXT NOT NULL DEFAULT '',
         is_private INTEGER NOT NULL DEFAULT 0,
+        email_verified INTEGER NOT NULL DEFAULT 0,
         created_at BIGINT NOT NULL
     )""",
     """CREATE TABLE IF NOT EXISTS pending_signups (
