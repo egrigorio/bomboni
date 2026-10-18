@@ -630,13 +630,13 @@ function applyLanguage() {
   if (loadingLabel) loadingLabel.textContent = t.loading;
   $('load-more').textContent = t.more;
   $('back-label').textContent = dl().back;
-  $('source-link-label').textContent = appPlatform() ? dl().openApp : dl().site;
+  $('source-link-label').textContent = appPlatform() ? dl().useBoni : dl().site;
   $('official-site-link').textContent = dl().officialSite;
   $('copy-menu-label').textContent = dl().copyMenu;
   $('copy-menu-btn').setAttribute('aria-label', dl().copyMenu);
   $('copy-menu-btn').title = dl().copyMenu;
   const srcLink = $('source-link');
-  if (srcLink) srcLink.setAttribute('aria-label', appPlatform() ? dl().openApp : dl().site);
+  if (srcLink) srcLink.setAttribute('aria-label', appPlatform() ? dl().useBoni : dl().site);
   $('menu-title').textContent = (state.selected && state.date) ? formatDate(state.date) : t.today;
   $('date-prev').setAttribute('aria-label', ({ pt:'Dia anterior', en:'Previous day', es:'Día anterior', de:'Vorheriger Tag', it:'Giorno precedente', fr:'Jour précédent', ca:'Dia anterior' }[state.language]));
   $('date-next').setAttribute('aria-label', ({ pt:'Dia seguinte', en:'Next day', es:'Día seguinte', de:'Nächster Tag', it:'Giorno successivo', fr:'Jour suivant', ca:'Dia següent' }[state.language]));
@@ -1254,21 +1254,24 @@ function categoryClass(category) {
 }
 
 const detailLabels = {
-  pt: { site:'Site oficial', back:'Restaurantes', openApp:'Abrir na app', officialSite:'Ver no site oficial', copyMenu:'Copiar menu', menuCopied:'Menu copiado!', copyFailed:'Não foi possível copiar.' },
-  en: { site:'Official site', back:'Restaurants', openApp:'Open in app', officialSite:'View on the official website', copyMenu:'Copy menu', menuCopied:'Menu copied!', copyFailed:'Could not copy.' },
-  es: { site:'Web oficial', back:'Restaurantes', openApp:'Abrir en la app', officialSite:'Ver en la web oficial', copyMenu:'Copiar menú', menuCopied:'¡Menú copiado!', copyFailed:'No se pudo copiar.' },
-  de: { site:'Offizielle Website', back:'Restaurants', openApp:'In der App öffnen', officialSite:'Auf der offiziellen Website ansehen', copyMenu:'Menü kopieren', menuCopied:'Menü kopiert!', copyFailed:'Kopieren nicht möglich.' },
-  it: { site:'Sito ufficiale', back:'Ristoranti', openApp:'Apri nell’app', officialSite:'Vedi sul sito ufficiale', copyMenu:'Copia menu', menuCopied:'Menu copiato!', copyFailed:'Impossibile copiare.' },
-  fr: { site:'Site officiel', back:'Restaurants', openApp:'Ouvrir dans l’app', officialSite:'Voir sur le site officiel', copyMenu:'Copier le menu', menuCopied:'Menu copié !', copyFailed:'Copie impossible.' },
-  ca: { site:'Web oficial', back:'Restaurants', openApp:'Obre a l’app', officialSite:'Veure al web oficial', copyMenu:'Copia el menú', menuCopied:'Menú copiat!', copyFailed:'No s’ha pogut copiar.' },
+  pt: { useBoni:'Usar boni', site:'Site oficial', back:'Restaurantes', openApp:'Abrir na app', officialSite:'Ver no site oficial', copyMenu:'Copiar menu', menuCopied:'Menu copiado!', copyFailed:'Não foi possível copiar.' },
+  en: { useBoni:'Use boni', site:'Official site', back:'Restaurants', openApp:'Open in app', officialSite:'View on the official website', copyMenu:'Copy menu', menuCopied:'Menu copied!', copyFailed:'Could not copy.' },
+  es: { useBoni:'Usar boni', site:'Web oficial', back:'Restaurantes', openApp:'Abrir en la app', officialSite:'Ver en la web oficial', copyMenu:'Copiar menú', menuCopied:'¡Menú copiado!', copyFailed:'No se pudo copiar.' },
+  de: { useBoni:'Boni nutzen', site:'Offizielle Website', back:'Restaurants', openApp:'In der App öffnen', officialSite:'Auf der offiziellen Website ansehen', copyMenu:'Menü kopieren', menuCopied:'Menü kopiert!', copyFailed:'Kopieren nicht möglich.' },
+  it: { useBoni:'Usa boni', site:'Sito ufficiale', back:'Ristoranti', openApp:'Apri nell’app', officialSite:'Vedi sul sito ufficiale', copyMenu:'Copia menu', menuCopied:'Menu copiato!', copyFailed:'Impossibile copiare.' },
+  fr: { useBoni:'Utiliser les boni', site:'Site officiel', back:'Restaurants', openApp:'Ouvrir dans l’app', officialSite:'Voir sur le site officiel', copyMenu:'Copier le menu', menuCopied:'Menu copié !', copyFailed:'Copie impossible.' },
+  ca: { useBoni:'Usa boni', site:'Web oficial', back:'Restaurants', openApp:'Obre a l’app', officialSite:'Veure al web oficial', copyMenu:'Copia el menú', menuCopied:'Menú copiat!', copyFailed:'No s’ha pogut copiar.' },
 };
 const dl = () => detailLabels[state.language] || detailLabels.en;
 
-// Official Študentska prehrana apps. Neither publishes restaurant deep links, so the
-// button opens the app itself (or its store page) and the website stays as a fallback.
+// Official Študentska prehrana apps register the `studentska://` scheme but ignore the
+// path, so a restaurant page cannot be opened directly. `studentska://widget` (iOS) and
+// the WIDGET=1 extra (Android, SplashActivity) open the identification screen used to
+// pay with boni at the till, which is the useful action while at a restaurant.
 const OFFICIAL_APP = {
   android: 'com.margento.studentskaprehrana',
   ios: 'https://apps.apple.com/app/id1398305066',
+  iosUseBoni: 'studentska://widget',
 };
 function appPlatform() {
   const ua = navigator.userAgent;
@@ -1280,10 +1283,24 @@ function officialAppLink(restaurant) {
   const platform = appPlatform();
   if (platform === 'android') {
     const fallback = encodeURIComponent(`https://play.google.com/store/apps/details?id=${OFFICIAL_APP.android}`);
-    return `intent://#Intent;package=${OFFICIAL_APP.android};S.browser_fallback_url=${fallback};end`;
+    return `intent://widget#Intent;scheme=studentska;package=${OFFICIAL_APP.android};i.WIDGET=1;S.browser_fallback_url=${fallback};end`;
   }
-  if (platform === 'ios') return OFFICIAL_APP.ios;
+  if (platform === 'ios') return OFFICIAL_APP.iosUseBoni;
   return restaurant.source_url;
+}
+
+// iOS has no fallback for custom schemes: if the app did not take over, open the App Store.
+function openOfficialAppOnIos(event) {
+  if (appPlatform() !== 'ios') return;
+  event.preventDefault();
+  let left = false;
+  const onHide = () => { if (document.hidden) left = true; };
+  document.addEventListener('visibilitychange', onHide);
+  window.location.href = OFFICIAL_APP.iosUseBoni;
+  setTimeout(() => {
+    document.removeEventListener('visibilitychange', onHide);
+    if (!left && !document.hidden) window.location.href = OFFICIAL_APP.ios;
+  }, 1600);
 }
 
 async function copyText(text) {
@@ -1387,6 +1404,8 @@ async function openRestaurant(restaurant) {
   $('venue-avatar').textContent = (restaurant.name || '?').trim().slice(0, 1).toLocaleUpperCase();
   $('venue-fee').textContent = `${tr().fee}: ${formatMoney(restaurant.additional_fee_eur)}`;
   $('source-link').href = officialAppLink(restaurant);
+  // The app scheme replaces the page; only the website opens in a new tab.
+  if (appPlatform()) $('source-link').removeAttribute('target'); else $('source-link').target = '_blank';
   $('official-site-link').href = restaurant.source_url;
   // On desktop the top button already opens the website.
   $('official-site-link').hidden = !restaurant.source_url || !appPlatform();
@@ -2613,6 +2632,7 @@ function leaveRestaurant() {
 window.addEventListener('popstate', () => { if (!history.state?.bomboniRestaurant) closeRestaurant(); });
 $('back-button').addEventListener('click', leaveRestaurant);
 $('copy-menu-btn').addEventListener('click', copyMenu);
+$('source-link').addEventListener('click', openOfficialAppOnIos);
 
 // Swipe from the left edge to go back, following the finger like a native screen.
 let edgeSwipe = null;
