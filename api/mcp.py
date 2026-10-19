@@ -18,6 +18,16 @@ class handler(JsonHandler):
             self.send_header(k, v)
         self.end_headers()
 
+    def do_HEAD(self) -> None:  # noqa: N802
+        service, _ = services()
+        res = handle_mcp_http(service, "HEAD", dict(self.headers), b"")
+        self.send_response(res.status)
+        self.send_header("Content-Type", res.content_type)
+        self.send_header("Content-Length", str(len(res.body)))
+        for k, v in res.headers.items():
+            self.send_header(k, v)
+        self.end_headers()
+
     def do_GET(self) -> None:  # noqa: N802
         service, _ = services()
         res = handle_mcp_http(service, "GET", dict(self.headers), b"")
@@ -41,3 +51,12 @@ class handler(JsonHandler):
             self.send_header(k, v)
         self.end_headers()
         self.wfile.write(res.body)
+
+    def do_DELETE(self) -> None:  # noqa: N802
+        service, _ = services()
+        res = handle_mcp_http(service, "DELETE", dict(self.headers), b"")
+        self.send_response(res.status)
+        for k, v in res.headers.items():
+            self.send_header(k, v)
+        self.end_headers()
+

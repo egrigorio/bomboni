@@ -263,3 +263,36 @@ def test_do_get_mcp_desktop_page() -> None:
     finally:
         close()
 
+
+def test_do_head_mcp_metadata() -> None:
+    req, close = _make_test_client()
+    try:
+        status, body = req("/api/mcp", method="HEAD")
+        assert status == 200
+        assert body == ""
+    finally:
+        close()
+
+
+def test_do_delete_mcp_session() -> None:
+    req, close = _make_test_client()
+    try:
+        status, body = req("/api/mcp", method="DELETE")
+        assert status == 204
+    finally:
+        close()
+
+
+def test_do_post_mcp_short_route() -> None:
+    import json
+    req, close = _make_test_client()
+    try:
+        payload = json.dumps({"jsonrpc": "2.0", "id": 99, "method": "ping"})
+        status, body = req("/mcp", method="POST", body=payload, headers={"Content-Type": "application/json"})
+        assert status == 200
+        assert body["id"] == 99
+        assert body["result"] == {}
+    finally:
+        close()
+
+

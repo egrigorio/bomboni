@@ -1,5 +1,5 @@
-const CACHE = 'bomboni-shell-v34';
-const SHELL = ['/', '/styles.css?v=v34', '/app.js?v=v34', '/community.js?v=v34', '/manifest.webmanifest', '/icon.svg', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
+const CACHE = 'bomboni-shell-v35';
+const SHELL = ['/', '/styles.css?v=v35', '/app.js?v=v35', '/community.js?v=v35', '/manifest.webmanifest', '/icon.svg', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
 self.addEventListener('install', event => event.waitUntil(Promise.all([
   caches.open(CACHE).then(cache => cache.addAll(SHELL)),
   self.skipWaiting()
@@ -11,7 +11,7 @@ self.addEventListener('activate', event => event.waitUntil(Promise.all([
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
-  if (url.pathname.startsWith('/api/')) {
+  if (url.pathname.startsWith('/api/') || (url.pathname === '/mcp' && !event.request.headers.get('accept')?.includes('text/html'))) {
     event.respondWith(fetch(event.request).catch(() => new Response(JSON.stringify({error:'offline'}), {status:503,headers:{'Content-Type':'application/json'}})));
     return;
   }

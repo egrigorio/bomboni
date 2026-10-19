@@ -2735,6 +2735,7 @@ $('footer-install').addEventListener('click', installApp);
 
 /* MCP Page Integration & Helpers */
 let currentMcpSnippetTarget = 'cursor';
+const CANONICAL_CLOUD_MCP_URL = 'https://bomboni-enzogrigorios-projects.vercel.app/api/mcp';
 
 function getMcpSnippets(cloudUrl) {
   return {
@@ -2759,6 +2760,16 @@ function getMcpSnippets(cloudUrl) {
         }
       }, null, 2)
     },
+    gemini: {
+      file: 'Gemini (Nuvem ou CLI)',
+      code: `# Conectar no Gemini Web (Personalizar > Apps conectados > Criar app personalizado):\n# 1. Selecione "MCP na nuvem"\n# 2. Cole este link exato:\n${cloudUrl}\n# (Nota: o Gemini também aceita a rota curta: ${cloudUrl.replace('/api/mcp', '/mcp')})\n\n# Ou se estiver usando o Gemini CLI:\n` + JSON.stringify({
+        mcpServers: {
+          bomboni: {
+            url: cloudUrl
+          }
+        }
+      }, null, 2)
+    },
     cli: {
       file: 'Terminal / CLI',
       code: `# Instalar dependências com suporte a MCP:\npip install -e '.[mcp]'\n\n# Rodar servidor via stdio:\nbomboni-mcp\n\n# Ou testar localmente com o MCP Inspector:\nmcp dev src/bomboni/adapters/mcp/server.py`
@@ -2767,7 +2778,8 @@ function getMcpSnippets(cloudUrl) {
 }
 
 function renderMcpPage() {
-  const origin = window.location.origin || 'https://bomboni.vercel.app';
+  const isHttps = typeof window !== 'undefined' && window.location && window.location.protocol === 'https:';
+  const origin = isHttps ? window.location.origin : 'https://bomboni-enzogrigorios-projects.vercel.app';
   const cloudUrl = `${origin}/api/mcp`;
   const urlInput = $('mcp-cloud-url');
   if (urlInput) urlInput.value = cloudUrl;
@@ -2863,6 +2875,7 @@ window.addEventListener('popstate', () => {
 
 /* Boot application */
 applyLanguage();
+renderMcpPage();
 loadRestaurants();
 
 if (window.location.pathname === '/mcp' || window.location.hash === '#mcp') {
