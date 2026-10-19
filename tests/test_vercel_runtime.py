@@ -58,3 +58,41 @@ def test_json_handler_log_message():
     # JsonHandler should suppress logging (log_message does nothing)
     handler = vr.JsonHandler.__new__(vr.JsonHandler)
     assert handler.log_message("%s - - [%s] %s\n", "127.0.0.1", "date", "GET / HTTP/1.1") is None
+
+
+def test_api_mcp_vercel_handler(monkeypatch):
+    import io
+    import sys
+    from pathlib import Path
+    repo_root = str(Path(__file__).resolve().parents[1])
+    if repo_root not in sys.path:
+        sys.path.insert(0, repo_root)
+    from api.mcp import handler as McpHandler
+
+    # Mock services to avoid external HTTP calls
+    mock_service = MagicMock()
+    mock_service.today.return_value.isoformat.return_value = "2026-10-19"
+    monkeypatch.setattr("api.mcp.services", lambda: (mock_service, None))
+
+    h = McpHandler.__new__(McpHandler)
+    h.headers = {"Accept": "application/json"}
+    h.wfile = io.BytesIO()
+    h.send_response = MagicMock()
+    h.send_header = MagicMock()
+    h.end_headers = MagicMock()
+
+    h.do_GET()
+    h.send_response.assert_called_with(200)
+    data = json.loads(h.wfile.getvalue().decode("utf-8"))
+    assert data["status"] == "online"
+
+    # Test POST
+    post_body = json.dumps({"jsonrpc": "2.0", "id": 42, "method": "ping"}).encode("utf-8")
+    h.rfile = io.BytesIO(post_body)
+    h.headers = {"Content-Length": str(len(post_body)), "Content-Type": "application/json"}
+    h.wfile = io.BytesIO()
+    h.do_POST()
+    post_res = json.loads(h.wfile.getvalue().decode("utf-8"))
+    assert post_res["id"] == 42
+    assert post_res["result"] == {}
+

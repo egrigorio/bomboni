@@ -37,13 +37,13 @@ const imageSearchLabels = { pt:'Pesquisar imagens de', en:'Search images for', e
 const locationError = { pt:'Não foi possível obter a localização.', en:'Could not get your location.', es:'No se pudo obtener tu ubicación.', de:'Standort konnte nicht ermittelt werden.', it:'Impossibile ottenere la posizione.', fr:'Impossible d’obtenir la position.', ca:'No s’ha pogut obtenir la ubicació.' };
 const nearbyLabels = { pt:'Perto de si', en:'Near you', es:'Cerca de ti', de:'In deiner Nähe', it:'Vicino a te', fr:'Près de vous', ca:'A prop teu' };
 const mobileTabLabels = {
-  pt:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteio',profile:'Perfil'},
-  en:{explore:'Explore',favorites:'Saved',draw:'Decide',profile:'Profile'},
-  es:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteo',profile:'Perfil'},
-  de:{explore:'Entdecken',favorites:'Favoriten',draw:'Auslosen',profile:'Profil'},
-  it:{explore:'Esplora',favorites:'Preferiti',draw:'Estrai',profile:'Profilo'},
-  fr:{explore:'Explorer',favorites:'Favoris',draw:'Tirage',profile:'Profil'},
-  ca:{explore:'Explorar',favorites:'Preferits',draw:'Sorteig',profile:'Perfil'}
+  pt:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteio',profile:'Perfil',mcp:'IA na Nuvem'},
+  en:{explore:'Explore',favorites:'Saved',draw:'Decide',profile:'Profile',mcp:'Cloud AI'},
+  es:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteo',profile:'Perfil',mcp:'IA en la Nube'},
+  de:{explore:'Entdecken',favorites:'Favoriten',draw:'Auslosen',profile:'Profil',mcp:'Cloud-KI'},
+  it:{explore:'Esplora',favorites:'Preferiti',draw:'Estrai',profile:'Profilo',mcp:'IA nel Cloud'},
+  fr:{explore:'Explorer',favorites:'Favoris',draw:'Tirage',profile:'Profil',mcp:'IA dans le Cloud'},
+  ca:{explore:'Explorar',favorites:'Preferits',draw:'Sorteig',profile:'Perfil',mcp:'IA al Núvol'}
 };
 
 const featureCopy = {
@@ -646,6 +646,10 @@ function applyLanguage() {
   document.querySelectorAll('[data-tab-label]').forEach(label => {
     label.textContent = mobileTabLabels[state.language]?.[label.dataset.tabLabel] || mobileTabLabels.en[label.dataset.tabLabel];
   });
+  const mcpDesktopLabel = $('mcp-desktop-label');
+  if (mcpDesktopLabel) {
+    mcpDesktopLabel.textContent = mobileTabLabels[state.language]?.mcp || mobileTabLabels.en.mcp;
+  }
 
   for (const [id, key] of Object.entries({
     'draw-eyebrow':'drawEyebrow','draw-title':'drawTitle','draw-description':'drawDescription','draw-city-label':'city','draw-any-city':'anyCity',
@@ -785,9 +789,11 @@ function switchTab(name) {
   $('draw-page').hidden = name !== 'draw';
   $('favorites-page').hidden = name !== 'favorites';
   $('profile-page').hidden = name !== 'profile';
+  const mcpPage = $('mcp-page');
+  if (mcpPage) mcpPage.hidden = name !== 'mcp';
   const communityPage = $('community-page');
   if (communityPage) communityPage.hidden = name !== 'community';
-  $('footer').hidden = name !== 'explore';
+  $('footer').hidden = name !== 'explore' && name !== 'mcp';
 
   if (name !== 'explore') {
     state.selected = null;
@@ -804,8 +810,16 @@ function switchTab(name) {
     renderFavoritesPage();
   }
   if (name === 'profile') renderProfilePage();
+  if (name === 'mcp') {
+    renderMcpPage();
+    if (window.location.pathname !== '/mcp') {
+      try { history.pushState(null, '', '/mcp'); } catch {}
+    }
+  } else if (window.location.pathname === '/mcp') {
+    try { history.pushState(null, '', '/'); } catch {}
+  }
 
-  document.querySelectorAll('.mobile-tab').forEach(tab => {
+  document.querySelectorAll('.mobile-tab, .desktop-nav-link').forEach(tab => {
     const active = tab.dataset.tab === name;
     tab.classList.toggle('active', active);
     if (active) tab.setAttribute('aria-current', 'page'); else tab.removeAttribute('aria-current');
@@ -2719,9 +2733,141 @@ window.addEventListener('appinstalled', () => {
 });
 $('footer-install').addEventListener('click', installApp);
 
+/* MCP Page Integration & Helpers */
+let currentMcpSnippetTarget = 'cursor';
+
+function getMcpSnippets(cloudUrl) {
+  return {
+    cursor: {
+      file: '.cursor/mcp.json',
+      code: JSON.stringify({
+        mcpServers: {
+          bomboni: {
+            url: cloudUrl
+          }
+        }
+      }, null, 2)
+    },
+    claude: {
+      file: 'claude_desktop_config.json',
+      code: JSON.stringify({
+        mcpServers: {
+          bomboni: {
+            command: 'python',
+            args: ['-m', 'bomboni.adapters.mcp.server']
+          }
+        }
+      }, null, 2)
+    },
+    cli: {
+      file: 'Terminal / CLI',
+      code: `# Instalar dependências com suporte a MCP:\npip install -e '.[mcp]'\n\n# Rodar servidor via stdio:\nbomboni-mcp\n\n# Ou testar localmente com o MCP Inspector:\nmcp dev src/bomboni/adapters/mcp/server.py`
+    }
+  };
+}
+
+function renderMcpPage() {
+  const origin = window.location.origin || 'https://bomboni.vercel.app';
+  const cloudUrl = `${origin}/api/mcp`;
+  const urlInput = $('mcp-cloud-url');
+  if (urlInput) urlInput.value = cloudUrl;
+
+  const snippets = getMcpSnippets(cloudUrl);
+  const snippet = snippets[currentMcpSnippetTarget] || snippets.cursor;
+  const filenameEl = $('mcp-snippet-filename');
+  if (filenameEl) filenameEl.textContent = snippet.file;
+  const codeEl = $('mcp-code-display');
+  if (codeEl) codeEl.textContent = snippet.code;
+}
+
+$('desktop-nav')?.addEventListener('click', event => {
+  const button = event.target.closest('[data-tab]');
+  if (button) switchTab(button.dataset.tab);
+});
+
+$('footer-mcp-link')?.addEventListener('click', event => {
+  event.preventDefault();
+  switchTab('mcp');
+});
+
+$('mcp-copy-cloud-btn')?.addEventListener('click', async () => {
+  const url = $('mcp-cloud-url')?.value;
+  if (!url) return;
+  try {
+    await navigator.clipboard.writeText(url);
+    const textEl = $('mcp-copy-cloud-text');
+    if (textEl) {
+      const orig = textEl.textContent;
+      textEl.textContent = 'Copiado!';
+      setTimeout(() => { textEl.textContent = orig; }, 2000);
+    }
+    showToast('Link do servidor MCP copiado!');
+  } catch {
+    showToast(url);
+  }
+});
+
+$('mcp-ping-btn')?.addEventListener('click', async () => {
+  const feedback = $('mcp-ping-feedback');
+  if (!feedback) return;
+  feedback.hidden = false;
+  feedback.classList.remove('is-error');
+  feedback.textContent = 'A verificar conexão ao servidor MCP…';
+  const start = performance.now();
+  try {
+    const res = await fetch('/api/mcp');
+    const elapsed = Math.round(performance.now() - start);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    feedback.textContent = `✓ Conexão verificada (${elapsed}ms)! Servidor "${data.name}" ativo com ${data.tools?.length || 4} ferramentas prontas.`;
+  } catch (err) {
+    feedback.classList.add('is-error');
+    feedback.textContent = `Falha na verificação: ${err.message}.`;
+  }
+});
+
+document.querySelectorAll('.mcp-client-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentMcpSnippetTarget = btn.dataset.mcpTarget;
+    document.querySelectorAll('.mcp-client-tab').forEach(b => {
+      const active = b === btn;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-selected', String(active));
+    });
+    renderMcpPage();
+  });
+});
+
+$('mcp-copy-snippet-btn')?.addEventListener('click', async () => {
+  const code = $('mcp-code-display')?.textContent;
+  if (!code) return;
+  try {
+    await navigator.clipboard.writeText(code);
+    const btn = $('mcp-copy-snippet-btn');
+    const orig = btn.textContent;
+    btn.textContent = 'Copiado!';
+    setTimeout(() => { btn.textContent = orig; }, 2000);
+    showToast('Configuração copiada!');
+  } catch {
+    showToast('Não foi possível copiar.');
+  }
+});
+
+window.addEventListener('popstate', () => {
+  if (window.location.pathname === '/mcp') {
+    switchTab('mcp');
+  } else if (state.tab === 'mcp') {
+    switchTab('explore');
+  }
+});
+
 /* Boot application */
 applyLanguage();
 loadRestaurants();
+
+if (window.location.pathname === '/mcp' || window.location.hash === '#mcp') {
+  switchTab('mcp');
+}
 
 // Request real GPS coordinates on startup, update cache and resort by proximity
 if (navigator.geolocation) {

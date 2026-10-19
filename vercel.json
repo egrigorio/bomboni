@@ -26,6 +26,10 @@
     {
       "source": "/api/restaurants/:restaurantId/menu",
       "destination": "/api/menu?restaurant_id=:restaurantId"
+    },
+    {
+      "source": "/mcp",
+      "destination": "/index.html"
     }
   ],
   "headers": [
