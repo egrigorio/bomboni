@@ -19,6 +19,10 @@ class StaticWithMockApiHandler(SimpleHTTPRequestHandler):
 
     def do_GET(self) -> None:  # noqa: N802
         parsed = urlsplit(self.path)
+        if parsed.path == "/mcp":
+            self.path = "/index.html"
+            super().do_GET()
+            return
         if parsed.path.startswith("/api/"):
             self.send_response(200)
             self.send_header("Content-Type", "application/json; charset=utf-8")
@@ -193,3 +197,55 @@ def test_pwa_meal_picker_xss_protection(pwa_server: str) -> None:
         browser.close()
 
     assert not page_errors, f"Erros de JS durante o teste de XSS: {page_errors}"
+
+
+def test_pwa_mcp_desktop_page(pwa_server: str) -> None:
+    page_errors: list[str] = []
+    console_errors: list[str] = []
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        # Desktop viewport
+        context = browser.new_context(viewport={"width": 1280, "height": 800})
+        page = context.new_page()
+
+        page.on("pageerror", lambda err: page_errors.append(str(err)))
+        page.on(
+            "console",
+            lambda msg: console_errors.append(f"[{msg.type}] {msg.text}")
+            if msg.type == "error"
+            else None,
+        )
+
+        page.goto(pwa_server, wait_until="networkidle")
+
+        # Desktop nav should be visible on desktop viewport
+        desktop_nav = page.locator('#desktop-nav')
+        assert desktop_nav.is_visible()
+
+        # Click the MCP nav button
+        mcp_btn = page.locator('.desktop-nav-link[data-tab="mcp"]')
+        assert mcp_btn.count() > 0
+        mcp_btn.click()
+
+        # MCP page should now be visible
+        mcp_page = page.locator('#mcp-page')
+        mcp_page.wait_for(state="visible")
+        assert mcp_page.is_visible()
+
+        # Check URL updated to /mcp
+        assert "/mcp" in page.url
+
+        # Check cloud URL input contains /api/mcp
+        cloud_url_val = page.locator('#mcp-cloud-url').input_value()
+        assert "/api/mcp" in cloud_url_val
+
+        # Test direct URL load: navigate to /mcp directly
+        page.goto(f"{pwa_server}/mcp", wait_until="networkidle")
+        assert page.locator('#mcp-page').is_visible()
+
+        browser.close()
+
+    assert not page_errors, f"Erros de JS na página MCP: {page_errors}"
+    assert not console_errors, f"Erros de console na página MCP: {console_errors}"
+

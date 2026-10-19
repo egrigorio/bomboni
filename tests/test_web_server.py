@@ -109,17 +109,26 @@ def _make_test_client(service=None, translator=None):
     thread.daemon = True
     thread.start()
 
-    def request(path, method="GET"):
+    def request(path, method="GET", body=None, headers=None):
         url = f"http://127.0.0.1:{port}{path}"
-        req = Request(url, method=method)
+        data = body.encode("utf-8") if isinstance(body, str) else body
+        req = Request(url, data=data, method=method, headers=headers or {})
         try:
             with urlopen(req) as resp:
                 import json
-                return resp.status, json.loads(resp.read().decode("utf-8"))
+                raw = resp.read().decode("utf-8")
+                try:
+                    return resp.status, json.loads(raw)
+                except Exception:
+                    return resp.status, raw
         except Exception as exc:
             if hasattr(exc, "code") and hasattr(exc, "read"):
                 import json
-                return exc.code, json.loads(exc.read().decode("utf-8"))
+                raw = exc.read().decode("utf-8")
+                try:
+                    return exc.code, json.loads(raw)
+                except Exception:
+                    return exc.code, raw
             raise
 
     def close():
@@ -219,3 +228,38 @@ def test_do_get_invalid_params_returns_400() -> None:
         assert "error" in body
     finally:
         close()
+
+
+def test_do_get_mcp_metadata() -> None:
+    req, close = _make_test_client()
+    try:
+        status, body = req("/api/mcp")
+        assert status == 200
+        assert body["status"] == "online"
+        assert "search_restaurants" in body["tools"]
+    finally:
+        close()
+
+
+def test_do_post_mcp_rpc_initialize() -> None:
+    import json
+    req, close = _make_test_client()
+    try:
+        payload = json.dumps({"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}})
+        status, body = req("/api/mcp", method="POST", body=payload, headers={"Content-Type": "application/json"})
+        assert status == 200
+        assert body["id"] == 1
+        assert body["result"]["serverInfo"]["name"] == "bomboni"
+    finally:
+        close()
+
+
+def test_do_get_mcp_desktop_page() -> None:
+    req, close = _make_test_client()
+    try:
+        status, body = req("/mcp", headers={"Accept": "text/html"})
+        assert status == 200
+        assert "<!doctype html>" in body.lower()
+    finally:
+        close()
+

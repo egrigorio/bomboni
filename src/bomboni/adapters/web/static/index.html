@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=v33">
+    <link rel="stylesheet" href="/styles.css?v=v34">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body data-tab="explore">
@@ -21,6 +21,24 @@
         <a class="brand" href="/" aria-label="Bomboni início">
           <span class="brand-word">bomboni<span class="brand-period">.</span></span>
         </a>
+        <nav class="desktop-nav" id="desktop-nav" aria-label="Navegação desktop">
+          <button type="button" class="desktop-nav-link active" data-tab="explore">
+            <span data-tab-label="explore">Explorar</span>
+          </button>
+          <button type="button" class="desktop-nav-link" data-tab="favorites">
+            <span data-tab-label="favorites">Favoritos</span>
+          </button>
+          <button type="button" class="desktop-nav-link" data-tab="draw">
+            <span data-tab-label="draw">Sorteio</span>
+          </button>
+          <button type="button" class="desktop-nav-link cm-only" data-tab="community" hidden>
+            <span id="cm-desktop-label">Comunidade</span>
+          </button>
+          <button type="button" class="desktop-nav-link mcp-nav-btn" data-tab="mcp">
+            <span class="mcp-nav-badge">MCP</span>
+            <span id="mcp-desktop-label">IA na Nuvem</span>
+          </button>
+        </nav>
         <div class="topbar-actions">
           <label class="language-picker" aria-label="Idioma">
             <span class="globe" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M1.8 8h12.4M8 1.8a10 10 0 0 1 0 12.4M8 1.8a10 10 0 0 0 0 12.4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></span>
@@ -333,7 +351,170 @@
         </div>
         <div class="cm-view" id="cm-view" aria-live="polite"></div>
       </main>
-      <footer class="footer" id="footer"><button class="footer-install" id="footer-install" type="button">Instalar app</button><a href="https://www.studentska-prehrana.si/en/restaurant" target="_blank" rel="noreferrer" id="footer-source">Fonte oficial</a></footer>
+      <main class="app-page mcp-page" id="mcp-page" hidden>
+        <section class="page-heading">
+          <div class="page-eyebrow">MODEL CONTEXT PROTOCOL</div>
+          <h1 id="mcp-title">Conectar Bomboni à sua IA</h1>
+          <p id="mcp-subtitle">Use dados e cardápios oficiais de refeições de estudantes da Eslovênia diretamente no Google Gemini, Claude, Cursor ou outros assistentes de IA.</p>
+          <div class="mcp-status-pill">
+            <span class="mcp-status-dot"></span>
+            <span id="mcp-status-badge">Servidor MCP Ativo (v0.1.0)</span>
+            <span class="mcp-status-sep">•</span>
+            <span id="mcp-status-tools">4 Ferramentas Prontas</span>
+          </div>
+        </section>
+
+        <!-- Cloud MCP for Gemini (Highlighted Primary Card) -->
+        <section class="mcp-card mcp-cloud-card">
+          <div class="mcp-card-header">
+            <div class="mcp-card-badge-row">
+              <span class="mcp-badge-highlight" id="mcp-gemini-tag">Google Gemini • MCP na Nuvem</span>
+              <span class="mcp-badge-pill">Recomendado</span>
+            </div>
+            <h2 id="mcp-gemini-title">Integração Direta com Google Gemini</h2>
+            <p id="mcp-gemini-desc">Configure o Bomboni como um <strong>App Conectado Personalizado</strong> no Gemini e consulte cardápios e restaurantes diretamente durante qualquer conversa.</p>
+          </div>
+
+          <div class="mcp-steps-list">
+            <div class="mcp-step-item">
+              <span class="mcp-step-num">1</span>
+              <div class="mcp-step-content">
+                <strong id="mcp-step1-title">Acesse os Apps Conectados no Gemini</strong>
+                <p id="mcp-step1-desc">Abra o <a href="https://gemini.google.com" target="_blank" rel="noreferrer">Google Gemini</a>, clique em <strong>Personalizar</strong> no menu lateral e selecione <strong>Apps conectados</strong> (Conectores).</p>
+              </div>
+            </div>
+            <div class="mcp-step-item">
+              <span class="mcp-step-num">2</span>
+              <div class="mcp-step-content">
+                <strong id="mcp-step2-title">Crie um Novo Conector</strong>
+                <p id="mcp-step2-desc">Clique no botão <strong>Criar app personalizado</strong> e selecione o método <strong>MCP na nuvem</strong>.</p>
+              </div>
+            </div>
+            <div class="mcp-step-item">
+              <span class="mcp-step-num">3</span>
+              <div class="mcp-step-content">
+                <strong id="mcp-step3-title">Cole o Link do Servidor Bomboni</strong>
+                <p id="mcp-step3-desc">No campo <em>"Adicione um link de app personalizado"</em>, cole o endereço abaixo:</p>
+                
+                <div class="mcp-url-box">
+                  <div class="mcp-url-input-wrap">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="mcp-url-icon"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <input type="text" id="mcp-cloud-url" class="mcp-url-input" readonly value="https://bomboni.vercel.app/api/mcp" spellcheck="false" aria-label="URL do Servidor MCP">
+                  </div>
+                  <button type="button" class="mcp-btn-primary" id="mcp-copy-cloud-btn">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+                    <span id="mcp-copy-cloud-text">Copiar Link</span>
+                  </button>
+                </div>
+                <div class="mcp-url-sub">
+                  <span id="mcp-protocol-note">Transporte compatível com <strong>Streamable HTTP</strong> e <strong>SSE</strong> com JSON-RPC 2.0 padrão.</span>
+                  <button type="button" class="mcp-ping-link" id="mcp-ping-btn">Testar conexão ao vivo</button>
+                </div>
+                <div id="mcp-ping-feedback" class="mcp-ping-feedback" hidden></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mcp-prompts-box">
+            <h4 id="mcp-prompts-title">Exemplos do que você pode perguntar ao Gemini:</h4>
+            <div class="mcp-prompt-grid">
+              <div class="mcp-prompt-chip">
+                <span class="mcp-prompt-quote">“</span>
+                <p>Onde posso almoçar com boni em Ljubljana hoje por menos de 4 euros?</p>
+              </div>
+              <div class="mcp-prompt-chip">
+                <span class="mcp-prompt-quote">“</span>
+                <p>Quais restaurantes têm cardápio com peixe ou vegetariano aberto agora?</p>
+              </div>
+              <div class="mcp-prompt-chip">
+                <span class="mcp-prompt-quote">“</span>
+                <p>Veja o cardápio de hoje do Abi Falafel no Bomboni e traduza os pratos.</p>
+              </div>
+              <div class="mcp-prompt-chip">
+                <span class="mcp-prompt-quote">“</span>
+                <p>Tem opções de sushi perto do centro de Ljubljana com desconto de estudante?</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Local MCP Section (Claude Desktop, Cursor, CLI) -->
+        <section class="mcp-card mcp-local-card">
+          <div class="mcp-card-header">
+            <h2 id="mcp-local-title">Uso Local (Claude Desktop, Cursor & CLI)</h2>
+            <p id="mcp-local-desc">Se preferir rodar no seu computador ou conectar assistentes de código como Cursor ou Windsurf:</p>
+          </div>
+
+          <div class="mcp-client-tabs" role="tablist">
+            <button type="button" class="mcp-client-tab active" id="mcp-tab-cursor" role="tab" aria-selected="true" data-mcp-target="cursor">Cursor / Windsurf</button>
+            <button type="button" class="mcp-client-tab" id="mcp-tab-claude" role="tab" aria-selected="false" data-mcp-target="claude">Claude Desktop</button>
+            <button type="button" class="mcp-client-tab" id="mcp-tab-cli" role="tab" aria-selected="false" data-mcp-target="cli">Python CLI</button>
+          </div>
+
+          <div class="mcp-snippet-wrap">
+            <div class="mcp-snippet-header">
+              <span id="mcp-snippet-filename">.cursor/mcp.json</span>
+              <button type="button" class="mcp-snippet-copy-btn" id="mcp-copy-snippet-btn">Copiar configuração</button>
+            </div>
+            <pre class="mcp-code-block"><code id="mcp-code-display"></code></pre>
+          </div>
+        </section>
+
+        <!-- MCP Tools Reference -->
+        <section class="mcp-card mcp-tools-card">
+          <div class="mcp-card-header">
+            <h2 id="mcp-tools-title">Ferramentas Disponíveis na Integração</h2>
+            <p id="mcp-tools-desc">O servidor MCP expõe 4 ferramentas oficiais que os assistentes de IA usam de forma autônoma:</p>
+          </div>
+
+          <div class="mcp-tools-grid">
+            <div class="mcp-tool-item">
+              <div class="mcp-tool-head">
+                <code>search_restaurants</code>
+                <span class="mcp-tool-badge">Diretório</span>
+              </div>
+              <p class="mcp-tool-desc">Filtra restaurantes por cidade, nome do estabelecimento ou tags (ex: pizza, vegetariano, fast-food).</p>
+              <div class="mcp-tool-params">
+                <span><strong>Parâmetros:</strong> <code>city</code>, <code>name</code>, <code>tags</code>, <code>limit</code></span>
+              </div>
+            </div>
+
+            <div class="mcp-tool-item">
+              <div class="mcp-tool-head">
+                <code>get_restaurant</code>
+                <span class="mcp-tool-badge">Detalhes</span>
+              </div>
+              <p class="mcp-tool-desc">Obtém endereço completo, copagamento em euros, telefone, coordenadas e horários de funcionamento pelo ID oficial.</p>
+              <div class="mcp-tool-params">
+                <span><strong>Parâmetros:</strong> <code>restaurant_id</code> (obrigatório)</span>
+              </div>
+            </div>
+
+            <div class="mcp-tool-item">
+              <div class="mcp-tool-head">
+                <code>get_restaurant_menu</code>
+                <span class="mcp-tool-badge">Cardápio</span>
+              </div>
+              <p class="mcp-tool-desc">Busca os pratos publicados para uma data específica (padrão: hoje na Eslovênia), acompanhamentos e categorias.</p>
+              <div class="mcp-tool-params">
+                <span><strong>Parâmetros:</strong> <code>restaurant_id</code>, <code>menu_date</code> (YYYY-MM-DD)</span>
+              </div>
+            </div>
+
+            <div class="mcp-tool-item">
+              <div class="mcp-tool-head">
+                <code>search_menu_items</code>
+                <span class="mcp-tool-badge">Varredura</span>
+              </div>
+              <p class="mcp-tool-desc">Escaneia os cardápios de toda uma cidade por termo de busca (ex: "sushi", "hambúrguer") ou categoria ("Meat", "Fish", "Meatless").</p>
+              <div class="mcp-tool-params">
+                <span><strong>Parâmetros:</strong> <code>city</code> (obrigatório), <code>query</code>, <code>category</code>, <code>limit</code></span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer" id="footer"><button class="footer-install" id="footer-install" type="button">Instalar app</button><a href="/mcp" class="footer-link" id="footer-mcp-link">Integração MCP & IA</a><a href="https://www.studentska-prehrana.si/en/restaurant" target="_blank" rel="noreferrer" id="footer-source">Fonte oficial</a></footer>
     </div>
     <nav class="mobile-tab-bar" id="mobile-tab-bar" aria-label="Navegação principal">
       <button class="mobile-tab active" type="button" data-tab="explore" aria-current="page">
@@ -360,8 +541,8 @@
     </div>
     <input type="file" id="cm-photo-input" accept="image/*" capture="environment" hidden>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=v33" defer></script>
-    <script src="/community.js?v=v33" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v33').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=v34" defer></script>
+    <script src="/community.js?v=v34" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v34').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>
