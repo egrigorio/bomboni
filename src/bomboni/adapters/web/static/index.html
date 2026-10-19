@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=v34">
+    <link rel="stylesheet" href="/styles.css?v=v35">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body data-tab="explore">
@@ -399,7 +399,7 @@
                 <div class="mcp-url-box">
                   <div class="mcp-url-input-wrap">
                     <svg viewBox="0 0 24 24" aria-hidden="true" class="mcp-url-icon"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <input type="text" id="mcp-cloud-url" class="mcp-url-input" readonly value="https://bomboni.vercel.app/api/mcp" spellcheck="false" aria-label="URL do Servidor MCP">
+                    <input type="text" id="mcp-cloud-url" class="mcp-url-input" readonly value="https://bomboni-enzogrigorios-projects.vercel.app/api/mcp" spellcheck="false" aria-label="URL do Servidor MCP">
                   </div>
                   <button type="button" class="mcp-btn-primary" id="mcp-copy-cloud-btn">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
@@ -407,7 +407,7 @@
                   </button>
                 </div>
                 <div class="mcp-url-sub">
-                  <span id="mcp-protocol-note">Transporte compatível com <strong>Streamable HTTP</strong> e <strong>SSE</strong> com JSON-RPC 2.0 padrão.</span>
+                  <span id="mcp-protocol-note">Transporte <strong>Streamable HTTP</strong> oficial do Gemini (aceita tanto <code>/api/mcp</code> quanto <code>/mcp</code>).</span>
                   <button type="button" class="mcp-ping-link" id="mcp-ping-btn">Testar conexão ao vivo</button>
                 </div>
                 <div id="mcp-ping-feedback" class="mcp-ping-feedback" hidden></div>
@@ -441,13 +441,14 @@
         <!-- Local MCP Section (Claude Desktop, Cursor, CLI) -->
         <section class="mcp-card mcp-local-card">
           <div class="mcp-card-header">
-            <h2 id="mcp-local-title">Uso Local (Claude Desktop, Cursor & CLI)</h2>
+            <h2 id="mcp-local-title">Uso Local & Assistentes (Claude Desktop, Cursor & CLI)</h2>
             <p id="mcp-local-desc">Se preferir rodar no seu computador ou conectar assistentes de código como Cursor ou Windsurf:</p>
           </div>
 
           <div class="mcp-client-tabs" role="tablist">
             <button type="button" class="mcp-client-tab active" id="mcp-tab-cursor" role="tab" aria-selected="true" data-mcp-target="cursor">Cursor / Windsurf</button>
             <button type="button" class="mcp-client-tab" id="mcp-tab-claude" role="tab" aria-selected="false" data-mcp-target="claude">Claude Desktop</button>
+            <button type="button" class="mcp-client-tab" id="mcp-tab-gemini" role="tab" aria-selected="false" data-mcp-target="gemini">Gemini CLI / Cloud</button>
             <button type="button" class="mcp-client-tab" id="mcp-tab-cli" role="tab" aria-selected="false" data-mcp-target="cli">Python CLI</button>
           </div>
 
@@ -541,8 +542,8 @@
     </div>
     <input type="file" id="cm-photo-input" accept="image/*" capture="environment" hidden>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=v34" defer></script>
-    <script src="/community.js?v=v34" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v34').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=v35" defer></script>
+    <script src="/community.js?v=v35" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v35').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>

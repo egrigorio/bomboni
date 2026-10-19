@@ -91,8 +91,30 @@ def test_api_mcp_vercel_handler(monkeypatch):
     h.rfile = io.BytesIO(post_body)
     h.headers = {"Content-Length": str(len(post_body)), "Content-Type": "application/json"}
     h.wfile = io.BytesIO()
+    h.send_response.reset_mock()
     h.do_POST()
     post_res = json.loads(h.wfile.getvalue().decode("utf-8"))
     assert post_res["id"] == 42
     assert post_res["result"] == {}
+
+    # Test HEAD
+    h.headers = {"Accept": "application/json"}
+    h.wfile = io.BytesIO()
+    h.send_response.reset_mock()
+    h.do_HEAD()
+    h.send_response.assert_called_with(200)
+    assert h.wfile.getvalue() == b""
+
+    # Test OPTIONS
+    h.headers = {}
+    h.send_response.reset_mock()
+    h.do_OPTIONS()
+    h.send_response.assert_called_with(204)
+
+    # Test DELETE
+    h.headers = {}
+    h.send_response.reset_mock()
+    h.do_DELETE()
+    h.send_response.assert_called_with(204)
+
 

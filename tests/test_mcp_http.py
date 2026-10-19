@@ -186,3 +186,22 @@ def test_http_post_batch() -> None:
     data = json.loads(res.body.decode("utf-8"))
     assert isinstance(data, list)
     assert len(data) == 2
+
+
+def test_http_head() -> None:
+    svc = _mock_service()
+    res = handle_mcp_http(svc, "HEAD", {"Accept": "application/json"}, b"")
+    assert res.status == 200
+    assert len(res.body) > 0
+    assert "tools" in res.body.decode("utf-8")
+    assert res.headers["Access-Control-Allow-Origin"] == "*"
+
+
+def test_http_delete_session() -> None:
+    svc = _mock_service()
+    res = handle_mcp_http(svc, "DELETE", {"Mcp-Session-Id": "test-session-123"}, b"")
+    assert res.status == 204
+    assert res.body == b""
+    assert res.headers["Access-Control-Allow-Origin"] == "*"
+
+

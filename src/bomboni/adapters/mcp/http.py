@@ -169,7 +169,7 @@ class McpResponse:
 def _cors_headers() -> dict[str, str]:
     return {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, HEAD, DELETE",
         "Access-Control-Allow-Headers": "Content-Type, Authorization, Mcp-Session-Id, Mcp-Protocol-Version, X-Requested-With",
         "Access-Control-Expose-Headers": "Mcp-Session-Id, Mcp-Protocol-Version",
     }
@@ -266,7 +266,10 @@ def handle_mcp_http(
     if method == "OPTIONS":
         return McpResponse(status=204, body=b"", headers=cors)
 
-    if method == "GET":
+    if method == "DELETE":
+        return McpResponse(status=204, body=b"", headers=cors)
+
+    if method in ("GET", "HEAD"):
         accept = norm_headers.get("accept", "")
         if "text/event-stream" in accept:
             # SSE connection handshake for remote MCP
