@@ -205,3 +205,54 @@ def test_http_delete_session() -> None:
     assert res.headers["Access-Control-Allow-Origin"] == "*"
 
 
+def test_handle_single_rpc_request_invalid_non_dict_request() -> None:
+    svc = _mock_service()
+    for invalid_req in ["string_request", [1, 2, 3], 123, True, None]:
+        resp = handle_single_rpc_request(svc, invalid_req)
+        assert resp == {
+            "jsonrpc": "2.0",
+            "id": None,
+            "error": {"code": -32600, "message": "Invalid Request: expected a JSON object"},
+        }
+
+
+def test_handle_single_rpc_request_unknown_method_and_notifications() -> None:
+    svc = _mock_service()
+
+    # Unknown method
+    req_unknown = {"jsonrpc": "2.0", "id": 99, "method": "non_existent_method"}
+    resp = handle_single_rpc_request(svc, req_unknown)
+    assert resp == {
+        "jsonrpc": "2.0",
+        "id": 99,
+        "error": {"code": -32601, "message": "Method not found: 'non_existent_method'"},
+    }
+
+    # Notification without id (initialized notification)
+    req_notif = {"jsonrpc": "2.0", "method": "notifications/initialized"}
+    resp_notif = handle_single_rpc_request(svc, req_notif)
+    assert resp_notif is None
+
+    # Unknown notification without id returns None
+    req_unknown_notif = {"jsonrpc": "2.0", "method": "custom/notification"}
+    resp_unknown_notif = handle_single_rpc_request(svc, req_unknown_notif)
+    assert resp_unknown_notif is None
+
+
+def test_http_post_batch_with_invalid_request() -> None:
+    svc = _mock_service()
+    batch = [
+        "not a dict",
+        {"jsonrpc": "2.0", "id": 1, "method": "ping"},
+    ]
+    res = handle_mcp_http(svc, "POST", {"Content-Type": "application/json"}, json.dumps(batch).encode("utf-8"))
+    assert res.status == 200
+    data = json.loads(res.body.decode("utf-8"))
+    assert isinstance(data, list)
+    assert len(data) == 2
+    assert data[0] == {
+        "jsonrpc": "2.0",
+        "id": None,
+        "error": {"code": -32600, "message": "Invalid Request: expected a JSON object"},
+    }
+    assert data[1]["id"] == 1
