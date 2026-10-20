@@ -2,7 +2,10 @@ from datetime import date
 
 import pytest
 
+from bs4 import BeautifulSoup
+
 from bomboni.data_sources.studentska_prehrana.parser import (
+    _available_menu_dates,
     _price,
     parse_menu_fragment,
     parse_restaurant_index,
@@ -76,3 +79,24 @@ def test_parse_menu_fragment_reads_dish_category_from_title() -> None:
     assert dish.name == "GOVEJI IN JAGNJEČJI ŠIŠKEBAB, PRILOGA"
     assert dish.categories == ("Meat",)
     assert dish.sides == ("mešana", "jabolko")
+
+
+def test_available_menu_dates_parsing() -> None:
+    html = '''
+    <div id="menu">
+      <!-- Valid date button -->
+      <button id="btnDate" onclick="GetMenuForDate(1478, '10/25/2026', 'elementId')">Oct 25</button>
+      <!-- Non-matching onclick button -->
+      <button id="btnDate" onclick="otherFunction()">Invalid Onclick</button>
+      <!-- Missing onclick attribute -->
+      <button id="btnDate">No Onclick</button>
+      <!-- Matching regex but invalid strptime date (ValueError) -->
+      <button id="btnDate" onclick="GetMenuForDate(1478, '99/99/2026', 'elementId')">Bad Date 1</button>
+      <button id="btnDate" onclick="GetMenuForDate(1478, '02/31/2026', 'elementId')">Bad Date 2</button>
+      <!-- Another valid date button -->
+      <button id="btnDate" onclick="GetMenuForDate(1478, '10/26/2026', 'elementId')">Oct 26</button>
+    </div>
+    '''
+    soup = BeautifulSoup(html, "html.parser")
+    dates = _available_menu_dates(soup)
+    assert dates == (date(2026, 10, 25), date(2026, 10, 26))
