@@ -1,7 +1,13 @@
 from __future__ import annotations
 
+import unicodedata
 from dataclasses import asdict, dataclass
 from typing import Any
+
+
+def _normalize(value: str) -> str:
+    decomposed = unicodedata.normalize("NFKD", value.casefold())
+    return "".join(char for char in decomposed if not unicodedata.combining(char)).strip()
 
 
 @dataclass(frozen=True, slots=True)
@@ -45,11 +51,21 @@ class Dish:
     number: int | None
     categories: tuple[str, ...]
     sides: tuple[str, ...]
+    normalized_categories: tuple[str, ...] = ()
+
+    def __post_init__(self) -> None:
+        if not self.normalized_categories and self.categories:
+            object.__setattr__(
+                self,
+                "normalized_categories",
+                tuple(_normalize(category) for category in self.categories),
+            )
 
     def to_dict(self) -> dict[str, Any]:
         result = asdict(self)
         result["categories"] = list(self.categories)
         result["sides"] = list(self.sides)
+        result["normalized_categories"] = list(self.normalized_categories)
         return result
 
 
