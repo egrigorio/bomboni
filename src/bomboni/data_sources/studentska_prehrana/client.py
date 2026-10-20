@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-import http.cookiejar
 from datetime import date, datetime, timezone
+from http.cookiejar import Cookie, CookieJar
 from urllib.parse import urljoin
 
 import httpx
@@ -15,10 +15,10 @@ from bomboni.data_sources.studentska_prehrana.parser import (
 )
 
 
-class _StatelessCookieJar(http.cookiejar.CookieJar):
+class _StatelessCookieJar(CookieJar):
     """Ignores incoming Set-Cookie headers so ASP.NET session state does not pin menus across calls."""
 
-    def set_cookie(self, cookie: http.cookiejar.Cookie) -> None:
+    def set_cookie(self, cookie: Cookie) -> None:
         pass
 
 
