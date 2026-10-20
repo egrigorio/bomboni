@@ -83,7 +83,7 @@ class RestaurantService:
                 continue
             if name_query and name_query not in _normalize(restaurant.name):
                 continue
-            if tag_queries and not tag_queries.issubset({_normalize(t) for t in restaurant.tags}):
+            if tag_queries and not tag_queries.issubset(restaurant.normalized_tags):
                 continue
             found.append(restaurant)
             if len(found) >= max(1, limit):
