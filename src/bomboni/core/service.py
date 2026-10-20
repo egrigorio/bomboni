@@ -161,9 +161,7 @@ class RestaurantService:
                     errors += 1
                     continue
                 for dish in menu.dishes:
-                    if normalized_category and normalized_category not in {
-                        _normalize(value) for value in dish.categories
-                    }:
+                    if normalized_category and normalized_category not in dish.normalized_categories:
                         continue
                     eligible_restaurants[restaurant.id] = restaurant
                     dishes.append({
@@ -218,9 +216,7 @@ class RestaurantService:
                         if _normalize(term) in normalized_dish_name
                     ]
                     has_query = not query_terms or bool(matched_query_terms)
-                    has_category = normalized_category is None or normalized_category in {
-                        _normalize(value) for value in dish.categories
-                    }
+                    has_category = normalized_category is None or normalized_category in dish.normalized_categories
                     if has_query and has_category:
                         matches.append(
                             {
