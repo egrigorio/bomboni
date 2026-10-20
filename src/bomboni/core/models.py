@@ -23,10 +23,20 @@ class Restaurant:
     source_url: str
     latitude: float | None = None
     longitude: float | None = None
+    normalized_tags: tuple[str, ...] = ()
+
+    def __post_init__(self) -> None:
+        if not self.normalized_tags and self.tags:
+            object.__setattr__(
+                self,
+                "normalized_tags",
+                tuple(_normalize(tag) for tag in self.tags),
+            )
 
     def to_dict(self) -> dict[str, Any]:
         result = asdict(self)
         result["tags"] = list(self.tags)
+        result["normalized_tags"] = list(self.normalized_tags)
         return result
 
 
