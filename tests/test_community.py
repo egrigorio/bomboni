@@ -246,3 +246,35 @@ def test_signup_without_email_service_creates_unverified_account() -> None:
     assert json.loads(api.handle("GET", "/me", {}, b"", {"Authorization": f"Bearer {token}"}).body)["user"]["username"] == "ana"
     duplicate = api.handle("POST", "/auth/signup", {}, json.dumps({"email": "a@uni.si", "username": "other", "password": TEST_PASSWORD}).encode(), {})
     assert duplicate.status == 409
+
+
+def test_search_users_query_length_and_edge_cases(client: Client) -> None:
+    client.signup("ana_user")
+    client.signup("bob_user")
+
+    service = client.api.service
+    assert service is not None
+
+    # Edge cases with query length < 2 after stripping whitespace and leading @
+    short_queries = ["", "  ", "a", "@", "@a", " @ ", "   b   ", " @_ "]
+    for query in short_queries:
+        assert service.search_users(query) == {"results": []}
+        status, payload = client.call("GET", "/users", query={"q": query})
+        assert status == 200
+        assert payload == {"results": []}
+
+    # Valid queries with length >= 2
+    # Case insensitivity, leading @, and whitespace
+    res1 = service.search_users("@ANA")
+    assert [u["username"] for u in res1["results"]] == ["ana_user"]
+
+    res2 = client.call("GET", "/users", query={"q": "  ana_  "})[1]
+    assert [u["username"] for u in res2["results"]] == ["ana_user"]
+
+    # Queries containing SQL wildcard characters (% and _)
+    res3 = service.search_users("a%n_a")
+    assert [u["username"] for u in res3["results"]] == ["ana_user"]
+
+    # Non-matching query with length >= 2
+    res4 = service.search_users("xyz")
+    assert res4 == {"results": []}
