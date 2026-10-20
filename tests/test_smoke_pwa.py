@@ -249,3 +249,93 @@ def test_pwa_mcp_desktop_page(pwa_server: str) -> None:
     assert not page_errors, f"Erros de JS na página MCP: {page_errors}"
     assert not console_errors, f"Erros de console na página MCP: {console_errors}"
 
+
+def test_pwa_mcp_language_switching(pwa_server: str) -> None:
+    page_errors: list[str] = []
+    console_errors: list[str] = []
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context(viewport={"width": 1280, "height": 800})
+        page = context.new_page()
+
+        page.on("pageerror", lambda err: page_errors.append(str(err)))
+        page.on(
+            "console",
+            lambda msg: console_errors.append(f"[{msg.type}] {msg.text}")
+            if msg.type == "error"
+            else None,
+        )
+
+        page.goto(f"{pwa_server}/mcp", wait_until="networkidle")
+        assert page.locator('#mcp-page').is_visible()
+
+        # Switch to English
+        page.select_option('#language-select', 'en')
+        assert page.locator('#mcp-title').text_content() == 'Connect AI assistants'
+        assert page.locator('#mcp-url-card-title').text_content() == 'MCP Server Address'
+        assert page.locator('#mcp-copy-cloud-text').text_content() == 'Copy link'
+        assert page.locator('#mcp-ping-btn').text_content() == 'Test connection'
+        assert page.locator('#mcp-tab-universal').text_content() == 'Other AIs / HTTP'
+        assert page.locator('#mcp-tools-title').text_content() == 'Included tools'
+        assert '# Configuration for Gemini CLI / Projects:' in page.locator('#mcp-code-display').text_content()
+
+        # Switch to German
+        page.select_option('#language-select', 'de')
+        assert page.locator('#mcp-title').text_content() == 'KI-Assistenten verbinden'
+        assert page.locator('#mcp-url-card-title').text_content() == 'MCP-Server-Adresse'
+        assert page.locator('#mcp-copy-cloud-text').text_content() == 'Link kopieren'
+        assert page.locator('#mcp-ping-btn').text_content() == 'Verbindung testen'
+        assert page.locator('#mcp-tab-universal').text_content() == 'Andere KIs / HTTP'
+        assert '# Konfiguration für Gemini CLI / Projekte:' in page.locator('#mcp-code-display').text_content()
+
+        # Switch to Spanish
+        page.select_option('#language-select', 'es')
+        assert page.locator('#mcp-title').text_content() == 'Conectar asistentes de IA'
+        assert page.locator('#mcp-url-card-title').text_content() == 'Dirección del Servidor MCP'
+        assert page.locator('#mcp-copy-cloud-text').text_content() == 'Copiar enlace'
+        assert page.locator('#mcp-ping-btn').text_content() == 'Probar conexión'
+
+        # Switch to French
+        page.select_option('#language-select', 'fr')
+        assert page.locator('#mcp-title').text_content() == 'Connecter des assistants IA'
+        assert page.locator('#mcp-url-card-title').text_content() == 'Adresse du Serveur MCP'
+        assert page.locator('#mcp-copy-cloud-text').text_content() == 'Copier le lien'
+        assert page.locator('#mcp-ping-btn').text_content() == 'Tester la connexion'
+
+        # Switch to Italian
+        page.select_option('#language-select', 'it')
+        assert page.locator('#mcp-title').text_content() == 'Connetti assistenti IA'
+        assert page.locator('#mcp-url-card-title').text_content() == 'Indirizzo del Server MCP'
+        assert page.locator('#mcp-copy-cloud-text').text_content() == 'Copia link'
+        assert page.locator('#mcp-ping-btn').text_content() == 'Testa connessione'
+
+        # Switch to Catalan
+        page.select_option('#language-select', 'ca')
+        assert page.locator('#mcp-title').text_content() == 'Connectar assistents d’IA'
+        assert page.locator('#mcp-url-card-title').text_content() == 'Adreça del Servidor MCP'
+        assert page.locator('#mcp-copy-cloud-text').text_content() == 'Copiar enllaç'
+        assert page.locator('#mcp-ping-btn').text_content() == 'Provar connexió'
+
+        # Switch back to Portuguese
+        page.select_option('#language-select', 'pt')
+        assert page.locator('#mcp-title').text_content() == 'Conectar assistentes de IA'
+        assert page.locator('#mcp-url-card-title').text_content() == 'Endereço do Servidor MCP'
+        assert page.locator('#mcp-copy-cloud-text').text_content() == 'Copiar link'
+        assert page.locator('#mcp-ping-btn').text_content() == 'Testar conexão'
+        assert '# Configuração para Gemini CLI / Projetos:' in page.locator('#mcp-code-display').text_content()
+
+        # Switch client tabs and verify code snippet changes
+        page.locator('#mcp-tab-claude').click()
+        assert 'claude_desktop_config.json' in page.locator('#mcp-snippet-filename').text_content()
+        assert 'bomboni.adapters.mcp.server' in page.locator('#mcp-code-display').text_content()
+
+        page.locator('#mcp-tab-cursor').click()
+        assert '.cursor/mcp.json' in page.locator('#mcp-snippet-filename').text_content()
+
+        browser.close()
+
+    assert not page_errors, f"Erros de JS na troca de idioma da página MCP: {page_errors}"
+    assert not console_errors, f"Erros de console na troca de idioma da página MCP: {console_errors}"
+
+
