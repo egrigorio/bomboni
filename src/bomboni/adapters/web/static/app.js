@@ -37,13 +37,13 @@ const imageSearchLabels = { pt:'Pesquisar imagens de', en:'Search images for', e
 const locationError = { pt:'Não foi possível obter a localização.', en:'Could not get your location.', es:'No se pudo obtener tu ubicación.', de:'Standort konnte nicht ermittelt werden.', it:'Impossibile ottenere la posizione.', fr:'Impossible d’obtenir la position.', ca:'No s’ha pogut obtenir la ubicació.' };
 const nearbyLabels = { pt:'Perto de si', en:'Near you', es:'Cerca de ti', de:'In deiner Nähe', it:'Vicino a te', fr:'Près de vous', ca:'A prop teu' };
 const mobileTabLabels = {
-  pt:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteio',profile:'Perfil',mcp:'IA na Nuvem'},
-  en:{explore:'Explore',favorites:'Saved',draw:'Decide',profile:'Profile',mcp:'Cloud AI'},
-  es:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteo',profile:'Perfil',mcp:'IA en la Nube'},
-  de:{explore:'Entdecken',favorites:'Favoriten',draw:'Auslosen',profile:'Profil',mcp:'Cloud-KI'},
-  it:{explore:'Esplora',favorites:'Preferiti',draw:'Estrai',profile:'Profilo',mcp:'IA nel Cloud'},
-  fr:{explore:'Explorer',favorites:'Favoris',draw:'Tirage',profile:'Profil',mcp:'IA dans le Cloud'},
-  ca:{explore:'Explorar',favorites:'Preferits',draw:'Sorteig',profile:'Perfil',mcp:'IA al Núvol'}
+  pt:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteio',profile:'Perfil',mcp:'Conectar IA'},
+  en:{explore:'Explore',favorites:'Saved',draw:'Decide',profile:'Profile',mcp:'Connect AI'},
+  es:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteo',profile:'Perfil',mcp:'Conectar IA'},
+  de:{explore:'Entdecken',favorites:'Favoriten',draw:'Auslosen',profile:'Profil',mcp:'KI verbinden'},
+  it:{explore:'Esplora',favorites:'Preferiti',draw:'Estrai',profile:'Profilo',mcp:'Connetti IA'},
+  fr:{explore:'Explorer',favorites:'Favoris',draw:'Tirage',profile:'Profil',mcp:'Connecter IA'},
+  ca:{explore:'Explorar',favorites:'Preferits',draw:'Sorteig',profile:'Perfil',mcp:'Connectar IA'}
 };
 
 const featureCopy = {
@@ -2734,48 +2734,72 @@ window.addEventListener('appinstalled', () => {
 $('footer-install').addEventListener('click', installApp);
 
 /* MCP Page Integration & Helpers */
-let currentMcpSnippetTarget = 'cursor';
+let currentMcpSnippetTarget = 'gemini';
 const CANONICAL_CLOUD_MCP_URL = 'https://bomboni-enzogrigorios-projects.vercel.app/api/mcp';
 
-function getMcpSnippets(cloudUrl) {
-  return {
-    cursor: {
-      file: '.cursor/mcp.json',
-      code: JSON.stringify({
-        mcpServers: {
-          bomboni: {
-            url: cloudUrl
-          }
+const mcpClientGuides = {
+  gemini: {
+    file: 'Gemini (Web & CLI)',
+    steps: [
+      { num: '1', title: 'Acesse os Apps Conectados', text: 'No <a href="https://gemini.google.com" target="_blank" rel="noreferrer">Google Gemini</a>, acesse <strong>Personalizar</strong> no menu lateral e selecione <strong>Apps conectados</strong>.' },
+      { num: '2', title: 'Crie um Conector na Nuvem', text: 'Clique em <strong>Criar app personalizado</strong> e selecione o método <strong>MCP na nuvem</strong>.' },
+      { num: '3', title: 'Cole a URL do Bomboni', text: 'Cole a URL do servidor acima no campo do Gemini e clique em <strong>Avançar</strong> para concluir.' }
+    ],
+    code: (url) => `# Configuração para Gemini CLI / Projetos:\n` + JSON.stringify({
+      mcpServers: {
+        bomboni: {
+          url: url
         }
-      }, null, 2)
-    },
-    claude: {
-      file: 'claude_desktop_config.json',
-      code: JSON.stringify({
-        mcpServers: {
-          bomboni: {
-            command: 'python',
-            args: ['-m', 'bomboni.adapters.mcp.server']
-          }
+      }
+    }, null, 2)
+  },
+  claude: {
+    file: 'claude_desktop_config.json',
+    steps: [
+      { num: '1', title: 'Abra a Configuração do Claude', text: 'No Claude Desktop, acesse <strong>Settings > Developer > Edit Config</strong> para abrir o arquivo <code>claude_desktop_config.json</code>.' },
+      { num: '2', title: 'Adicione o Bomboni', text: 'Insira o servidor Bomboni dentro de <code>mcpServers</code> (usando o comando Python ou a URL remota).' },
+      { num: '3', title: 'Reinicie o Claude', text: 'Reinicie a aplicação. As 4 ferramentas de consulta e cardápios estarão ativas nas conversas.' }
+    ],
+    code: () => JSON.stringify({
+      mcpServers: {
+        bomboni: {
+          command: 'python',
+          args: ['-m', 'bomboni.adapters.mcp.server']
         }
-      }, null, 2)
-    },
-    gemini: {
-      file: 'Gemini (Nuvem ou CLI)',
-      code: `# Conectar no Gemini Web (Personalizar > Apps conectados > Criar app personalizado):\n# 1. Selecione "MCP na nuvem"\n# 2. Cole este link exato:\n${cloudUrl}\n# (Nota: o Gemini também aceita a rota curta: ${cloudUrl.replace('/api/mcp', '/mcp')})\n\n# Ou se estiver usando o Gemini CLI:\n` + JSON.stringify({
-        mcpServers: {
-          bomboni: {
-            url: cloudUrl
-          }
+      }
+    }, null, 2)
+  },
+  cursor: {
+    file: '.cursor/mcp.json',
+    steps: [
+      { num: '1', title: 'Abra as Configurações de MCP', text: 'No Cursor, vá em <strong>Settings > Features > MCP</strong> ou crie <code>.cursor/mcp.json</code> no seu repositório.' },
+      { num: '2', title: 'Adicione o Bomboni', text: 'Cadastre o Bomboni como servidor remoto apontando para a URL pública acima.' },
+      { num: '3', title: 'Use no Chat e Composer', text: 'O Cursor consultará restaurantes e cardápios de boni diretamente no chat.' }
+    ],
+    code: (url) => JSON.stringify({
+      mcpServers: {
+        bomboni: {
+          url: url
         }
-      }, null, 2)
-    },
-    cli: {
-      file: 'Terminal / CLI',
-      code: `# Instalar dependências com suporte a MCP:\npip install -e '.[mcp]'\n\n# Rodar servidor via stdio:\nbomboni-mcp\n\n# Ou testar localmente com o MCP Inspector:\nmcp dev src/bomboni/adapters/mcp/server.py`
-    }
-  };
-}
+      }
+    }, null, 2)
+  },
+  universal: {
+    file: 'mcp-config.json',
+    steps: [
+      { num: '1', title: 'Adicione um Servidor MCP', text: 'No seu cliente (LibreChat, Cline, Zed, etc.), escolha adicionar um servidor MCP remoto.' },
+      { num: '2', title: 'Selecione o Transporte', text: 'Configure o tipo <strong>Streamable HTTP</strong> ou <strong>SSE</strong> e insira a URL pública do Bomboni.' },
+      { num: '3', title: 'Pronto para Consultar', text: 'O cliente identificará automaticamente as ferramentas e parâmetros disponíveis.' }
+    ],
+    code: (url) => JSON.stringify({
+      mcpServers: {
+        bomboni: {
+          url: url
+        }
+      }
+    }, null, 2)
+  }
+};
 
 function renderMcpPage() {
   const isHttps = typeof window !== 'undefined' && window.location && window.location.protocol === 'https:';
@@ -2784,12 +2808,24 @@ function renderMcpPage() {
   const urlInput = $('mcp-cloud-url');
   if (urlInput) urlInput.value = cloudUrl;
 
-  const snippets = getMcpSnippets(cloudUrl);
-  const snippet = snippets[currentMcpSnippetTarget] || snippets.cursor;
+  const guide = mcpClientGuides[currentMcpSnippetTarget] || mcpClientGuides.gemini;
+  const container = $('mcp-steps-container');
+  if (container && guide.steps) {
+    container.innerHTML = guide.steps.map(s => `
+      <div class="mcp-step-item">
+        <span class="mcp-step-num">${s.num}.</span>
+        <div class="mcp-step-content">
+          <strong>${s.title}</strong>
+          <p>${s.text}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
   const filenameEl = $('mcp-snippet-filename');
-  if (filenameEl) filenameEl.textContent = snippet.file;
+  if (filenameEl) filenameEl.textContent = guide.file;
   const codeEl = $('mcp-code-display');
-  if (codeEl) codeEl.textContent = snippet.code;
+  if (codeEl) codeEl.textContent = typeof guide.code === 'function' ? guide.code(cloudUrl) : guide.code;
 }
 
 $('desktop-nav')?.addEventListener('click', event => {
