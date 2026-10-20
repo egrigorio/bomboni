@@ -55,7 +55,8 @@ const featureCopy = {
     loginTab:'Entrar',registerTab:'Criar conta',loginSuccess:'Sessão iniciada com sucesso!',registerSuccess:'Conta criada com sucesso!',logoutSuccess:'Sessão terminada.',authRequiredReview:'Inicia sessão no teu perfil para avaliar restaurantes.',calEmptyDay:'Nenhuma refeição registada neste dia.',calSavedMeal:'Refeição guardada no histórico!',calAddMeal:'+ Registar refeição neste dia',calCloseForm:'− Fechar formulário',
     mealPickerTitle:'O que comeste aqui hoje?',mealPickerSub:'Escolhe o prato para registar com precisão no teu histórico.',mealPickerNext:'Continuar',mealPickerRateTitle:'Como avalias este restaurante?',mealPickerRateSub:'Dá a tua nota em estrelas ou podes saltar este passo.',mealPickerSkip:'Saltar',mealPickerConfirmRate:'Avaliar e registar',mealPickerDailyMenu:'Menu do dia / Refeição',mealPickerOtherDish:'Outro prato / Opção livre',mealPickerCustomPrompt:'Qual prato comeste?',mealLoggedAndRated:'Refeição registada e avaliação guardada!',
     authUsernameLabel:'Nome de utilizador',authUsernamePlaceholder:'@o-teu-username',authEmailLabel:'Email',authEmailPlaceholder:'teu.email@exemplo.com',authPasswordLabel:'Palavra-passe',profileMemberBadge:'Membro Bomboni',profileLogout:'Sair',profileLogoutTitle:'Terminar sessão',calMonthBadge:'Histórico',calPrevMonth:'Mês anterior',calNextMonth:'Mês seguinte',calWeekdays:['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],calLogFormTitle:'Registar refeição',calLogRestLabel:'Restaurante',calLogChooseRest:'Escolhe um restaurante…',calLogDishLabel:'Prato / Comida',calLogChooseRestFirst:'Escolhe primeiro o restaurante…',calLogLoadingDishes:'A carregar pratos do menu…',calLogChooseDish:'Escolhe um prato…',calLogCustomDishPlaceholder:'Escreve o nome do prato',calLogFeeLabel:'Copagamento (€)',historyPrev:'Anterior',historyNext:'Seguinte',dishFavAddTitle:'Guardar prato nos favoritos',dishFavRemoveTitle:'Remover dos favoritos',dishLogMarkTitle:'Registar que comi este prato hoje',dishLogUnmarkTitle:'Desmarcar refeição de hoje',sourceLinkTitle:'Abrir fonte oficial',searchClearAria:'Limpar pesquisa',authUsernameMin:'Nome de utilizador deve ter pelo menos 3 caracteres.',authPasswordMin:'A palavra-passe deve ter pelo menos 6 caracteres.',authEmailExists:'Este email já está registado.',authUsernameExists:'Este nome de utilizador já existe.',authInvalidCreds:'Email ou palavra-passe incorretos.',
-    authVerifyTitle:'Verificar email',authVerifySub:'Insere o código de 4 dígitos enviado para',authVerifyCodeLabel:'Código de 4 dígitos',authVerifySubmitBtn:'Verificar e criar conta',authResendCodeBtn:'Reenviar código',authBackBtn:'Voltar',authCodeSentToast:'Código de verificação enviado para',authCodeResentToast:'Novo código de verificação enviado para',authInvalidCodeError:'Código de verificação incorreto.'
+    authVerifyTitle:'Verificar email',authVerifySub:'Insere o código de 4 dígitos enviado para',authVerifyCodeLabel:'Código de 4 dígitos',authVerifySubmitBtn:'Verificar e criar conta',authResendCodeBtn:'Reenviar código',authBackBtn:'Voltar',authCodeSentToast:'Código de verificação enviado para',authCodeResentToast:'Novo código de verificação enviado para',authInvalidCodeError:'Código de verificação incorreto.',
+    mcpEyebrow:'INTEGRAÇÃO MCP',mcpTitle:'Conectar assistentes de IA',mcpSubtitle:'Consulte cardápios, copagamentos e restaurantes de boni diretamente no Gemini, Claude, Cursor ou em qualquer cliente compatível com MCP.',mcpUrlTitle:'Endereço do Servidor MCP',mcpUrlDesc:'Cole esta URL no seu cliente ou assistente de IA para conectar o Bomboni na nuvem:',mcpCopyLink:'Copiar link',mcpCopied:'Copiado!',mcpProtocolNote:'Compatível com Streamable HTTP e SSE (aceita <code>/api/mcp</code> e <code>/mcp</code>).',mcpPingBtn:'Testar conexão',mcpGuideTitle:'Como configurar no seu assistente',mcpGuideDesc:'Selecione o assistente para ver as instruções diretas:',mcpTabUniversal:'Outras IAs / HTTP',mcpCopyConfig:'Copiar configuração',mcpPromptsTitle:'Exemplos de perguntas',mcpPromptsDesc:'Uma vez conectado, você pode perguntar em linguagem natural:',mcpQuery1:'“Onde almoçar com boni em Ljubljana hoje por menos de 4 euros?”',mcpQuery2:'“Quais restaurantes têm peixe ou opções vegetarianas abertos agora?”',mcpQuery3:'“Veja os pratos de hoje do Abi Falafel no Bomboni e traduza para português.”',mcpQuery4:'“Tem opções de sushi perto do centro com desconto de estudante?”',mcpToolsTitle:'Ferramentas incluídas',mcpToolsDesc:'O assistente consulta dados oficiais através de 4 funções:',mcpToolSearchRest:'Busca estabelecimentos por cidade, nome ou tags (pizza, vegetariano).',mcpToolGetRest:'Endereço, copagamento em euros, horários e telefone pelo ID.',mcpToolGetMenu:'Pratos do dia publicados no portal oficial (hoje ou datas específicas).',mcpToolSearchItems:'Varre cardápios da cidade por prato específico (ex: hambúrguer, salada).',mcpFooterLink:'Conectar IA (MCP)',mcpLinkCopiedToast:'Link do servidor MCP copiado!',mcpConfigCopiedToast:'Configuração copiada!',mcpCopyFail:'Não foi possível copiar.',mcpPingChecking:'A verificar conexão ao servidor MCP…',mcpPingSuccess:(ms, name, count) => `✓ Conexão verificada (${ms}ms)! Servidor "${name}" ativo com ${count} ferramentas prontas.`,mcpPingError:msg => `Falha na verificação: ${msg}.`
   },
   en:{
     drawEyebrow:'TODAY’S DECISION',drawTitle:'Let’s decide',drawDescription:'Choose a few filters or leave it to chance.',city:'City',anyCity:'Any city',food:'Food type',anyFood:'No preference',mode:'Pick a',restaurant:'Restaurant',dish:'Dish',price:'Maximum co-pay',noLimit:'No limit',draw:'Pick for me',searching:'Checking today’s menus…',noResult:'No options match those filters.',resultRestaurant:'Your restaurant',resultDish:'Your dish',openMenu:'View menu',drawError:'The draw failed. Please try again.',
@@ -65,7 +66,8 @@ const featureCopy = {
     loginTab:'Log in',registerTab:'Sign up',loginSuccess:'Logged in successfully!',registerSuccess:'Account created successfully!',logoutSuccess:'Logged out.',authRequiredReview:'Log in to your profile to rate restaurants.',calEmptyDay:'No meals logged on this day.',calSavedMeal:'Meal saved to history!',calAddMeal:'+ Log meal on this day',calCloseForm:'− Close form',
     mealPickerTitle:'What did you eat here today?',mealPickerSub:'Select the dish to log it accurately in your history.',mealPickerNext:'Continue',mealPickerRateTitle:'How would you rate this restaurant?',mealPickerRateSub:'Rate with stars or skip this step.',mealPickerSkip:'Skip',mealPickerConfirmRate:'Rate & log',mealPickerDailyMenu:'Daily menu / Meal',mealPickerOtherDish:'Other dish / Custom option',mealPickerCustomPrompt:'What dish did you eat?',mealLoggedAndRated:'Meal logged and review saved!',
     authUsernameLabel:'Username',authUsernamePlaceholder:'@your-username',authEmailLabel:'Email',authEmailPlaceholder:'your.email@example.com',authPasswordLabel:'Password',profileMemberBadge:'Bomboni Member',profileLogout:'Log out',profileLogoutTitle:'Log out',calMonthBadge:'History',calPrevMonth:'Previous month',calNextMonth:'Next month',calWeekdays:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],calLogFormTitle:'Log meal',calLogRestLabel:'Restaurant',calLogChooseRest:'Choose a restaurant…',calLogDishLabel:'Dish / Food',calLogChooseRestFirst:'Choose a restaurant first…',calLogLoadingDishes:'Loading menu dishes…',calLogChooseDish:'Choose a dish…',calLogCustomDishPlaceholder:'Enter dish name',calLogFeeLabel:'Co-pay (€)',historyPrev:'Previous',historyNext:'Next',dishFavAddTitle:'Save dish to favorites',dishFavRemoveTitle:'Remove from favorites',dishLogMarkTitle:'Log that I ate this dish today',dishLogUnmarkTitle:'Unlog today’s meal',sourceLinkTitle:'Open official source',searchClearAria:'Clear search',authUsernameMin:'Username must be at least 3 characters.',authPasswordMin:'Password must be at least 6 characters.',authEmailExists:'This email is already registered.',authUsernameExists:'This username is already taken.',authInvalidCreds:'Incorrect email or password.',
-    authVerifyTitle:'Verify email',authVerifySub:'Enter the 4-digit code sent to',authVerifyCodeLabel:'4-digit code',authVerifySubmitBtn:'Verify and create account',authResendCodeBtn:'Resend code',authBackBtn:'Back',authCodeSentToast:'Verification code sent to',authCodeResentToast:'New verification code sent to',authInvalidCodeError:'Incorrect verification code.'
+    authVerifyTitle:'Verify email',authVerifySub:'Enter the 4-digit code sent to',authVerifyCodeLabel:'4-digit code',authVerifySubmitBtn:'Verify and create account',authResendCodeBtn:'Resend code',authBackBtn:'Back',authCodeSentToast:'Verification code sent to',authCodeResentToast:'New verification code sent to',authInvalidCodeError:'Incorrect verification code.',
+    mcpEyebrow:'MCP INTEGRATION',mcpTitle:'Connect AI assistants',mcpSubtitle:'Check menus, co-pays and student meal restaurants directly in Gemini, Claude, Cursor, or any MCP-compatible client.',mcpUrlTitle:'MCP Server Address',mcpUrlDesc:'Paste this URL into your AI client or assistant to connect Bomboni in the cloud:',mcpCopyLink:'Copy link',mcpCopied:'Copied!',mcpProtocolNote:'Supports Streamable HTTP and SSE (accepts both <code>/api/mcp</code> and <code>/mcp</code>).',mcpPingBtn:'Test connection',mcpGuideTitle:'How to set up in your assistant',mcpGuideDesc:'Select your assistant to view setup instructions:',mcpTabUniversal:'Other AIs / HTTP',mcpCopyConfig:'Copy config',mcpPromptsTitle:'Example prompts',mcpPromptsDesc:'Once connected, you can ask in natural language:',mcpQuery1:'“Where can I have student lunch in Ljubljana today for under 4 euros?”',mcpQuery2:'“Which restaurants have fish or vegetarian options open right now?”',mcpQuery3:'“Show today’s menu from Abi Falafel in Bomboni and translate the dishes.”',mcpQuery4:'“Are there sushi options near the center with student discount?”',mcpToolsTitle:'Included tools',mcpToolsDesc:'The assistant queries official portal data through 4 functions:',mcpToolSearchRest:'Searches restaurants by city, name, or tags (pizza, vegetarian).',mcpToolGetRest:'Address, co-pay in euros, opening hours, and phone by ID.',mcpToolGetMenu:'Daily dishes published on the official portal (today or specific dates).',mcpToolSearchItems:'Scans city menus for specific dishes (e.g. burger, salad).',mcpFooterLink:'Connect AI (MCP)',mcpLinkCopiedToast:'MCP server link copied!',mcpConfigCopiedToast:'Configuration copied!',mcpCopyFail:'Could not copy.',mcpPingChecking:'Checking MCP server connection…',mcpPingSuccess:(ms, name, count) => `✓ Connection verified (${ms}ms)! Server "${name}" active with ${count} tools ready.`,mcpPingError:msg => `Verification failed: ${msg}.`
   },
   es:{
     drawEyebrow:'LA DECISIÓN DE HOY',drawTitle:'Vamos a sortear',drawDescription:'Elige algunos filtros o deja que decida el azar.',city:'Ciudad',anyCity:'Cualquier ciudad',food:'Tipo de comida',anyFood:'Sin preferencia',mode:'Sortear',restaurant:'Restaurante',dish:'Plato',price:'Copago máximo',noLimit:'Sin límite',draw:'Sortear',searching:'Buscando en los menús de hoy…',noResult:'No hay opciones con esos filtros.',resultRestaurant:'Tu restaurante',resultDish:'Tu plato',openMenu:'Ver menú',drawError:'No se pudo completar el sorteo.',
@@ -75,7 +77,8 @@ const featureCopy = {
     loginTab:'Iniciar sesión',registerTab:'Crear cuenta',loginSuccess:'¡Sesión iniciada con éxito!',registerSuccess:'¡Cuenta creada con éxito!',logoutSuccess:'Sesión cerrada.',authRequiredReview:'Inicia sesión en tu perfil para valorar restaurantes.',calEmptyDay:'Sin comidas registradas en este día.',calSavedMeal:'¡Comida guardada en el historial!',calAddMeal:'+ Registrar comida en este día',calCloseForm:'− Cerrar formulario',
     mealPickerTitle:'¿Qué comiste aquí hoy?',mealPickerSub:'Elige el plato para registrarlo con precisión en tu historial.',mealPickerNext:'Continuar',mealPickerRateTitle:'¿Cómo valoras este restaurante?',mealPickerRateSub:'Puntúa con estrellas o salta este paso.',mealPickerSkip:'Saltar',mealPickerConfirmRate:'Valorar y registrar',mealPickerDailyMenu:'Menú del día / Comida',mealPickerOtherDish:'Otro plato / Opción libre',mealPickerCustomPrompt:'¿Qué plato comiste?',mealLoggedAndRated:'¡Comida registrada y reseña guardada!',
     authUsernameLabel:'Nombre de usuario',authUsernamePlaceholder:'@tu-usuario',authEmailLabel:'Correo electrónico',authEmailPlaceholder:'tu.email@ejemplo.com',authPasswordLabel:'Contraseña',profileMemberBadge:'Miembro Bomboni',profileLogout:'Cerrar sesión',profileLogoutTitle:'Cerrar sesión',calMonthBadge:'Historial',calPrevMonth:'Mes anterior',calNextMonth:'Mes siguiente',calWeekdays:['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'],calLogFormTitle:'Registrar comida',calLogRestLabel:'Restaurante',calLogChooseRest:'Elige un restaurante…',calLogDishLabel:'Plato / Comida',calLogChooseRestFirst:'Elige primero el restaurante…',calLogLoadingDishes:'Cargando platos del menú…',calLogChooseDish:'Elige un plato…',calLogCustomDishPlaceholder:'Escribe el nombre del plato',calLogFeeLabel:'Copago (€)',historyPrev:'Anterior',historyNext:'Siguiente',dishFavAddTitle:'Guardar plato en favoritos',dishFavRemoveTitle:'Eliminar de favoritos',dishLogMarkTitle:'Registrar que comí este plato hoy',dishLogUnmarkTitle:'Desmarcar comida de hoy',sourceLinkTitle:'Abrir fuente oficial',searchClearAria:'Limpiar búsqueda',authUsernameMin:'El nombre de usuario debe tener al menos 3 caracteres.',authPasswordMin:'La contraseña debe tener al menos 6 caracteres.',authEmailExists:'Este correo ya está registrado.',authUsernameExists:'Este nombre de usuario ya existe.',authInvalidCreds:'Correo o contraseña incorrectos.',
-    authVerifyTitle:'Verificar correo',authVerifySub:'Introduce el código de 4 dígitos enviado a',authVerifyCodeLabel:'Código de 4 dígitos',authVerifySubmitBtn:'Verificar y crear cuenta',authResendCodeBtn:'Reenviar código',authBackBtn:'Volver',authCodeSentToast:'Código de verificación enviado a',authCodeResentToast:'Nuevo código de verificación enviado a',authInvalidCodeError:'Código de verificación incorrecto.'
+    authVerifyTitle:'Verificar correo',authVerifySub:'Introduce el código de 4 dígitos enviado a',authVerifyCodeLabel:'Código de 4 dígitos',authVerifySubmitBtn:'Verificar y crear cuenta',authResendCodeBtn:'Reenviar código',authBackBtn:'Volver',authCodeSentToast:'Código de verificación enviado a',authCodeResentToast:'Nuevo código de verificación enviado a',authInvalidCodeError:'Código de verificación incorrecto.',
+    mcpEyebrow:'INTEGRACIÓN MCP',mcpTitle:'Conectar asistentes de IA',mcpSubtitle:'Consulta menús, copagos y restaurantes de boni directamente en Gemini, Claude, Cursor o cualquier cliente compatible con MCP.',mcpUrlTitle:'Dirección del Servidor MCP',mcpUrlDesc:'Pega esta URL en tu cliente o asistente de IA para conectar Bomboni en la nube:',mcpCopyLink:'Copiar enlace',mcpCopied:'¡Copiado!',mcpProtocolNote:'Compatible con Streamable HTTP y SSE (acepta <code>/api/mcp</code> y <code>/mcp</code>).',mcpPingBtn:'Probar conexión',mcpGuideTitle:'Cómo configurar en tu asistente',mcpGuideDesc:'Selecciona tu asistente para ver las instrucciones:',mcpTabUniversal:'Otras IAs / HTTP',mcpCopyConfig:'Copiar configuración',mcpPromptsTitle:'Ejemplos de preguntas',mcpPromptsDesc:'Una vez conectado, puedes preguntar en lenguaje natural:',mcpQuery1:'“¿Dónde almorzar con boni en Liubliana hoy por menos de 4 euros?”',mcpQuery2:'“¿Qué restaurantes tienen pescado u opciones vegetarianas abiertos ahora?”',mcpQuery3:'“Consulta los platos de hoy de Abi Falafel en Bomboni y tradúcelos al español.”',mcpQuery4:'“¿Hay opciones de sushi cerca del centro con descuento de estudiante?”',mcpToolsTitle:'Herramientas incluidas',mcpToolsDesc:'El asistente consulta datos oficiales a través de 4 funciones:',mcpToolSearchRest:'Busca establecimientos por ciudad, nombre o etiquetas (pizza, vegetariano).',mcpToolGetRest:'Dirección, copago en euros, horarios y teléfono por ID.',mcpToolGetMenu:'Platos del día publicados en el portal oficial (hoy o fechas concretas).',mcpToolSearchItems:'Rastrea menús de la ciudad buscando platos específicos (ej: hamburguesa, ensalada).',mcpFooterLink:'Conectar IA (MCP)',mcpLinkCopiedToast:'¡Enlace del servidor MCP copiado!',mcpConfigCopiedToast:'¡Configuración copiada!',mcpCopyFail:'No se pudo copiar.',mcpPingChecking:'Comprobando conexión con el servidor MCP…',mcpPingSuccess:(ms, name, count) => `✓ ¡Conexión verificada (${ms}ms)! Servidor "${name}" activo con ${count} herramientas listas.`,mcpPingError:msg => `Fallo en la verificación: ${msg}.`
   },
   de:{
     drawEyebrow:'DIE ENTSCHEIDUNG DES TAGES',drawTitle:'Lass uns auslosen',drawDescription:'Wähle Filter oder lass den Zufall entscheiden.',city:'Stadt',anyCity:'Jede Stadt',food:'Essensart',anyFood:'Keine Präferenz',mode:'Auswählen',restaurant:'Restaurant',dish:'Gericht',price:'Maximaler Eigenanteil',noLimit:'Kein Limit',draw:'Auslosen',searching:'Heutige Menüs werden geprüft…',noResult:'Keine passenden Optionen gefunden.',resultRestaurant:'Dein Restaurant',resultDish:'Dein Gericht',openMenu:'Menü ansehen',drawError:'Die Auslosung ist fehlgeschlagen.',
@@ -85,7 +88,8 @@ const featureCopy = {
     loginTab:'Anmelden',registerTab:'Registrieren',loginSuccess:'Erfolgreich angemeldet!',registerSuccess:'Konto erfolgreich erstellt!',logoutSuccess:'Abgemeldet.',authRequiredReview:'Melde dich in deinem Profil an, um Restaurants zu bewerten.',calEmptyDay:'Keine Mahlzeiten an diesem Tag erfasst.',calSavedMeal:'Mahlzeit im Verlauf gespeichert!',calAddMeal:'+ Mahlzeit erfassen',calCloseForm:'− Formular schließen',
     mealPickerTitle:'Was hast du heute hier gegessen?',mealPickerSub:'Wähle das Gericht, um es genau im Verlauf zu erfassen.',mealPickerNext:'Weiter',mealPickerRateTitle:'Wie bewertest du dieses Restaurant?',mealPickerRateSub:'Gib eine Sternebewertung ab oder überspringe diesen Schritt.',mealPickerSkip:'Überspringen',mealPickerConfirmRate:'Bewerten & erfassen',mealPickerDailyMenu:'Tagesmenü',mealPickerOtherDish:'Anderes Gericht / Freie Option',mealPickerCustomPrompt:'Welches Gericht hast du gegessen?',mealLoggedAndRated:'Mahlzeit erfasst und Bewertung gespeichert!',
     authUsernameLabel:'Benutzername',authUsernamePlaceholder:'@dein-benutzername',authEmailLabel:'E-Mail',authEmailPlaceholder:'deine.email@beispiel.de',authPasswordLabel:'Passwort',profileMemberBadge:'Bomboni-Mitglied',profileLogout:'Abmelden',profileLogoutTitle:'Abmelden',calMonthBadge:'Verlauf',calPrevMonth:'Vorheriger Monat',calNextMonth:'Nächster Monat',calWeekdays:['Mo','Di','Mi','Do','Fr','Sa','So'],calLogFormTitle:'Mahlzeit erfassen',calLogRestLabel:'Restaurant',calLogChooseRest:'Wähle ein Restaurant…',calLogDishLabel:'Gericht / Speise',calLogChooseRestFirst:'Wähle zuerst das Restaurant…',calLogLoadingDishes:'Lade Menügerichte…',calLogChooseDish:'Wähle ein Gericht…',calLogCustomDishPlaceholder:'Gib den Namen des Gerichts ein',calLogFeeLabel:'Eigenanteil (€)',historyPrev:'Zurück',historyNext:'Weiter',dishFavAddTitle:'Gericht zu Favoriten hinzufügen',dishFavRemoveTitle:'Aus Favoriten entfernen',dishLogMarkTitle:'Erfassen, dass ich dieses Gericht heute gegessen habe',dishLogUnmarkTitle:'Heutige Mahlzeit abwählen',sourceLinkTitle:'Offizielle Quelle öffnen',searchClearAria:'Suche löschen',authUsernameMin:'Benutzername muss mindestens 3 Zeichen lang sein.',authPasswordMin:'Passwort muss mindestens 6 Zeichen lang sein.',authEmailExists:'Diese E-Mail ist bereits registriert.',authUsernameExists:'Dieser Benutzername ist bereits vergeben.',authInvalidCreds:'Falsche E-Mail oder falsches Passwort.',
-    authVerifyTitle:'E-Mail bestätigen',authVerifySub:'Gib den 4-stelligen Code ein, der gesendet wurde an',authVerifyCodeLabel:'4-stelliger Code',authVerifySubmitBtn:'Bestätigen & Konto erstellen',authResendCodeBtn:'Code erneut senden',authBackBtn:'Zurück',authCodeSentToast:'Bestätigungscode gesendet an',authCodeResentToast:'Neuer Bestätigungscode gesendet an',authInvalidCodeError:'Falscher Bestätigungscode.'
+    authVerifyTitle:'E-Mail bestätigen',authVerifySub:'Gib den 4-stelligen Code ein, der gesendet wurde an',authVerifyCodeLabel:'4-stelliger Code',authVerifySubmitBtn:'Bestätigen & Konto erstellen',authResendCodeBtn:'Code erneut senden',authBackBtn:'Zurück',authCodeSentToast:'Bestätigungscode gesendet an',authCodeResentToast:'Neuer Bestätigungscode gesendet an',authInvalidCodeError:'Falscher Bestätigungscode.',
+    mcpEyebrow:'MCP-INTEGRATION',mcpTitle:'KI-Assistenten verbinden',mcpSubtitle:'Prüfe Menüs, Zuzahlungen und Boni-Restaurants direkt in Gemini, Claude, Cursor oder jedem MCP-fähigen Client.',mcpUrlTitle:'MCP-Server-Adresse',mcpUrlDesc:'Füge diese URL in deinen KI-Client oder Assistenten ein, um Bomboni in der Cloud zu verbinden:',mcpCopyLink:'Link kopieren',mcpCopied:'Kopiert!',mcpProtocolNote:'Kompatibel mit Streamable HTTP und SSE (akzeptiert <code>/api/mcp</code> und <code>/mcp</code>).',mcpPingBtn:'Verbindung testen',mcpGuideTitle:'Einrichtung in deinem Assistenten',mcpGuideDesc:'Wähle deinen Assistenten für die passende Anleitung:',mcpTabUniversal:'Andere KIs / HTTP',mcpCopyConfig:'Konfiguration kopieren',mcpPromptsTitle:'Beispielfragen',mcpPromptsDesc:'Einmal verbunden, kannst du in natürlicher Sprache fragen:',mcpQuery1:'“Wo kann ich heute in Ljubljana mit Boni für unter 4 Euro zu Mittag essen?”',mcpQuery2:'“Welche Restaurants mit Fisch oder vegetarischen Optionen haben jetzt geöffnet?”',mcpQuery3:'“Zeige das heutige Menü von Abi Falafel im Bomboni und übersetze die Gerichte.”',mcpQuery4:'“Gibt es Sushi-Optionen in der Nähe des Zentrums mit Studentenrabatt?”',mcpToolsTitle:'Enthaltene Werkzeuge',mcpToolsDesc:'Der Assistent fragt offizielle Daten über 4 Funktionen ab:',mcpToolSearchRest:'Sucht Lokale nach Stadt, Name oder Tags (Pizza, vegetarisch).',mcpToolGetRest:'Adresse, Zuzahlung in Euro, Öffnungszeiten und Telefon über die ID.',mcpToolGetMenu:'Tagesgerichte aus dem offiziellen Portal (heute oder bestimmte Tage).',mcpToolSearchItems:'Durchsucht Menüs der Stadt nach bestimmten Gerichten (z. B. Burger, Salat).',mcpFooterLink:'KI verbinden (MCP)',mcpLinkCopiedToast:'MCP-Server-Link kopiert!',mcpConfigCopiedToast:'Konfiguration kopiert!',mcpCopyFail:'Kopieren fehlgeschlagen.',mcpPingChecking:'Verbindung zum MCP-Server wird geprüft…',mcpPingSuccess:(ms, name, count) => `✓ Verbindung bestätigt (${ms}ms)! Server „${name}“ aktiv mit ${count} Werkzeugen bereit.`,mcpPingError:msg => `Verifizierung fehlgeschlagen: ${msg}.`
   },
   it:{
     drawEyebrow:'LA SCELTA DI OGGI',drawTitle:'Facciamo decidere al caso',drawDescription:'Scegli qualche filtro oppure lascia fare al caso.',city:'Città',anyCity:'Qualsiasi città',food:'Tipo di cibo',anyFood:'Nessuna preferenza',mode:'Estrai',restaurant:'Ristorante',dish:'Piatto',price:'Quota massima',noLimit:'Nessun limite',draw:'Estrai',searching:'Controllo i menu di oggi…',noResult:'Nessuna opzione con questi filtri.',resultRestaurant:'Il tuo ristorante',resultDish:'Il tuo piatto',openMenu:'Vedi menu',drawError:'Estrazione non riuscita.',
@@ -95,7 +99,8 @@ const featureCopy = {
     loginTab:'Accedi',registerTab:'Registrati',loginSuccess:'Accesso effettuato con successo!',registerSuccess:'Account creato con successo!',logoutSuccess:'Disconnesso.',authRequiredReview:'Accedi al tuo profilo per valutare i ristoranti.',calEmptyDay:'Nessun pasto registrato in questo giorno.',calSavedMeal:'Pasto salvato nella cronologia!',calAddMeal:'+ Registra pasto in questo giorno',calCloseForm:'− Chiudi modulo',
     mealPickerTitle:'Cosa hai mangiato qui oggi?',mealPickerSub:'Scegli il piatto per registrarlo con precisione nella cronologia.',mealPickerNext:'Continua',mealPickerRateTitle:'Come valuti questo ristorante?',mealPickerRateSub:'Assegna delle stelle o salta questo passaggio.',mealPickerSkip:'Salta',mealPickerConfirmRate:'Valuta e registra',mealPickerDailyMenu:'Menu del giorno / Pasto',mealPickerOtherDish:'Altro piatto / Opzione libera',mealPickerCustomPrompt:'Che piatto hai mangiato?',mealLoggedAndRated:'Pasto registrato e recensione salvata!',
     authUsernameLabel:'Nome utente',authUsernamePlaceholder:'@tuo-username',authEmailLabel:'Email',authEmailPlaceholder:'tua.email@esempio.it',authPasswordLabel:'Password',profileMemberBadge:'Membro Bomboni',profileLogout:'Esci',profileLogoutTitle:'Disconnetti',calMonthBadge:'Cronologia',calPrevMonth:'Mese precedente',calNextMonth:'Mese successivo',calWeekdays:['Lun','Mar','Mer','Gio','Ven','Sab','Dom'],calLogFormTitle:'Registra pasto',calLogRestLabel:'Ristorante',calLogChooseRest:'Scegli un ristorante…',calLogDishLabel:'Piatto / Cibo',calLogChooseRestFirst:'Scegli prima il ristorante…',calLogLoadingDishes:'Caricamento piatti dal menu…',calLogChooseDish:'Scegli un piatto…',calLogCustomDishPlaceholder:'Scrivi il nome del piatto',calLogFeeLabel:'Quota (€)',historyPrev:'Precedente',historyNext:'Successivo',dishFavAddTitle:'Aggiungi piatto ai preferiti',dishFavRemoveTitle:'Rimuovi dai preferiti',dishLogMarkTitle:'Registra che ho mangiato questo piatto oggi',dishLogUnmarkTitle:'Deseleziona pasto di oggi',sourceLinkTitle:'Apri fonte ufficiale',searchClearAria:'Cancella ricerca',authUsernameMin:'Il nome utente deve contenere almeno 3 caratteri.',authPasswordMin:'La password deve contenere almeno 6 caratteri.',authEmailExists:'Questa email è già registrata.',authUsernameExists:'Questo nome utente è già occupato.',authInvalidCreds:'Email o password non corretti.',
-    authVerifyTitle:'Verifica email',authVerifySub:'Inserisci il codice a 4 cifre inviato a',authVerifyCodeLabel:'Codice a 4 cifre',authVerifySubmitBtn:'Verifica e crea account',authResendCodeBtn:'Reinvia codice',authBackBtn:'Indietro',authCodeSentToast:'Codice di verifica inviato a',authCodeResentToast:'Nuovo codice di verifica inviato a',authInvalidCodeError:'Codice di verifica errato.'
+    authVerifyTitle:'Verifica email',authVerifySub:'Inserisci il codice a 4 cifre inviato a',authVerifyCodeLabel:'Codice a 4 cifre',authVerifySubmitBtn:'Verifica e crea account',authResendCodeBtn:'Reinvia codice',authBackBtn:'Indietro',authCodeSentToast:'Codice di verifica inviato a',authCodeResentToast:'Nuovo codice di verifica inviato a',authInvalidCodeError:'Codice di verifica errato.',
+    mcpEyebrow:'INTEGRAZIONE MCP',mcpTitle:'Connetti assistenti IA',mcpSubtitle:'Consulta menu, quote e ristoranti con boni direttamente su Gemini, Claude, Cursor o qualsiasi client compatibile con MCP.',mcpUrlTitle:'Indirizzo del Server MCP',mcpUrlDesc:'Incolla questo URL nel tuo client o assistente IA per connettere Bomboni nel cloud:',mcpCopyLink:'Copia link',mcpCopied:'Copiato!',mcpProtocolNote:'Compatibile con Streamable HTTP e SSE (supporta <code>/api/mcp</code> e <code>/mcp</code>).',mcpPingBtn:'Testa connessione',mcpGuideTitle:'Come configurare nel tuo assistente',mcpGuideDesc:'Seleziona il tuo assistente per vedere le istruzioni:',mcpTabUniversal:'Altre IA / HTTP',mcpCopyConfig:'Copia configurazione',mcpPromptsTitle:'Esempi di domande',mcpPromptsDesc:'Una volta connesso, puoi fare domande in linguaggio naturale:',mcpQuery1:'“Dove posso pranzare con i boni a Lubiana oggi con meno di 4 euro?”',mcpQuery2:'“Quali ristoranti con pesce o opzioni vegetariane sono aperti adesso?”',mcpQuery3:'“Guarda i piatti di oggi di Abi Falafel su Bomboni e traducili in italiano.”',mcpQuery4:'“Ci sono opzioni sushi vicino al centro con sconto studenti?”',mcpToolsTitle:'Strumenti inclusi',mcpToolsDesc:'L’assistente consulta i dati ufficiali tramite 4 funzioni:',mcpToolSearchRest:'Cerca locali per città, nome o tag (pizza, vegetariano).',mcpToolGetRest:'Indirizzo, quota in euro, orari di apertura e telefono tramite ID.',mcpToolGetMenu:'Piatti del giorno pubblicati sul portale ufficiale (oggi o date specifiche).',mcpToolSearchItems:'Scansiona i menu della città per piatti specifici (es. hamburger, insalata).',mcpFooterLink:'Connetti IA (MCP)',mcpLinkCopiedToast:'Link del server MCP copiato!',mcpConfigCopiedToast:'Configurazione copiata!',mcpCopyFail:'Impossibile copiare.',mcpPingChecking:'Verifica della connessione al server MCP…',mcpPingSuccess:(ms, name, count) => `✓ Connessione verificata (${ms}ms)! Server "${name}" attivo con ${count} strumenti pronti.`,mcpPingError:msg => `Verifica non riuscita: ${msg}.`
   },
   fr:{
     drawEyebrow:'LA DÉCISION DU JOUR',drawTitle:'Laissons le hasard choisir',drawDescription:'Choisissez des filtres ou laissez faire le hasard.',city:'Ville',anyCity:'Toutes les villes',food:'Type de plat',anyFood:'Sans préférence',mode:'Tirer au sort',restaurant:'Restaurant',dish:'Plat',price:'Participation maximale',noLimit:'Sans limite',draw:'Tirer au sort',searching:'Recherche dans les menus du jour…',noResult:'Aucune option ne correspond à ces filtres.',resultRestaurant:'Votre restaurant',resultDish:'Votre plat',openMenu:'Voir le menu',drawError:'Le tirage au sort a échoué.',
@@ -105,7 +110,8 @@ const featureCopy = {
     loginTab:'Connexion',registerTab:'Créer un compte',loginSuccess:'Connexion réussie !',registerSuccess:'Compte créé avec succès !',logoutSuccess:'Déconnecté.',authRequiredReview:'Connectez-vous à votre profil pour noter les restaurants.',calEmptyDay:'Aucun repas enregistré ce jour-là.',calSavedMeal:'Repas enregistré dans l’historique !',calAddMeal:'+ Enregistrer un repas ce jour-là',calCloseForm:'− Fermer le formulaire',
     mealPickerTitle:'Qu’avez-vous mangé ici aujourd’hui ?',mealPickerSub:'Choisissez le plat pour l’enregistrer avec précision dans votre historique.',mealPickerNext:'Continuer',mealPickerRateTitle:'Comment évaluez-vous ce restaurant ?',mealPickerRateSub:'Donnez une note ou sautez cette étape.',mealPickerSkip:'Passer',mealPickerConfirmRate:'Évaluer et enregistrer',mealPickerDailyMenu:'Menu du jour / Plat',mealPickerOtherDish:'Autre plat / Option libre',mealPickerCustomPrompt:'Quel plat avez-vous mangé ?',mealLoggedAndRated:'Repas enregistré et avis sauvegardé !',
     authUsernameLabel:'Nom d’utilisateur',authUsernamePlaceholder:'@votre-nom',authEmailLabel:'E-mail',authEmailPlaceholder:'votre.email@exemple.fr',authPasswordLabel:'Mot de passe',profileMemberBadge:'Membre Bomboni',profileLogout:'Déconnexion',profileLogoutTitle:'Se déconnecter',calMonthBadge:'Historique',calPrevMonth:'Mois précédent',calNextMonth:'Mois suivant',calWeekdays:['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'],calLogFormTitle:'Enregistrer un repas',calLogRestLabel:'Restaurant',calLogChooseRest:'Choisissez un restaurant…',calLogDishLabel:'Plat / Nourriture',calLogChooseRestFirst:'Choisissez d’abord le restaurant…',calLogLoadingDishes:'Chargement des plats du menu…',calLogChooseDish:'Choisissez un plat…',calLogCustomDishPlaceholder:'Entrez le nom du plat',calLogFeeLabel:'Participation (€)',historyPrev:'Précédent',historyNext:'Suivant',dishFavAddTitle:'Ajouter le plat aux favoris',dishFavRemoveTitle:'Retirer des favoris',dishLogMarkTitle:'Enregistrer que j’ai mangé ce plat aujourd’hui',dishLogUnmarkTitle:'Désélectionner le repas d’aujourd’hui',sourceLinkTitle:'Ouvrir la source officielle',searchClearAria:'Effacer la recherche',authUsernameMin:'Le nom d’utilisateur doit comporter au moins 3 caractères.',authPasswordMin:'Le mot de passe doit comporter au moins 6 caractères.',authEmailExists:'Cet e-mail est déjà enregistré.',authUsernameExists:'Ce nom d’utilisateur est déjà pris.',authInvalidCreds:'E-mail ou mot de passe incorrect.',
-    authVerifyTitle:'Vérifier e-mail',authVerifySub:'Entrez le code à 4 chiffres envoyé à',authVerifyCodeLabel:'Code à 4 chiffres',authVerifySubmitBtn:'Vérifier et créer un compte',authResendCodeBtn:'Renvoyer le code',authBackBtn:'Retour',authCodeSentToast:'Code de vérification envoyé à',authCodeResentToast:'Nouveau code de vérification envoyé à',authInvalidCodeError:'Code de vérification incorrect.'
+    authVerifyTitle:'Vérifier e-mail',authVerifySub:'Entrez le code à 4 chiffres envoyé à',authVerifyCodeLabel:'Code à 4 chiffres',authVerifySubmitBtn:'Vérifier et créer un compte',authResendCodeBtn:'Renvoyer le code',authBackBtn:'Retour',authCodeSentToast:'Code de vérification envoyé à',authCodeResentToast:'Nouveau code de vérification envoyé à',authInvalidCodeError:'Code de vérification incorrect.',
+    mcpEyebrow:'INTÉGRATION MCP',mcpTitle:'Connecter des assistants IA',mcpSubtitle:'Consultez les menus, participations et restaurants boni directement dans Gemini, Claude, Cursor ou tout client compatible MCP.',mcpUrlTitle:'Adresse du Serveur MCP',mcpUrlDesc:'Collez cette URL dans votre client ou assistant IA pour connecter Bomboni dans le cloud :',mcpCopyLink:'Copier le lien',mcpCopied:'Copié !',mcpProtocolNote:'Compatible avec Streamable HTTP et SSE (accepte <code>/api/mcp</code> et <code>/mcp</code>).',mcpPingBtn:'Tester la connexion',mcpGuideTitle:'Comment configurer dans votre assistant',mcpGuideDesc:'Sélectionnez votre assistant pour voir les instructions :',mcpTabUniversal:'Autres IA / HTTP',mcpCopyConfig:'Copier la configuration',mcpPromptsTitle:'Exemples de questions',mcpPromptsDesc:'Une fois connecté, vous pouvez poser des questions en langage naturel :',mcpQuery1:'« Où déjeuner avec des boni à Ljubljana aujourd’hui pour moins de 4 euros ? »',mcpQuery2:'« Quels restaurants proposant du poisson ou des options végétariennes sont ouverts ? »',mcpQuery3:'« Affiche les plats du jour d’Abi Falafel dans Bomboni et traduis-les en français. »',mcpQuery4:'« Y a-t-il des options de sushi près du centre avec réduction étudiante ? »',mcpToolsTitle:'Outils inclus',mcpToolsDesc:'L’assistant consulte les données officielles via 4 fonctions :',mcpToolSearchRest:'Recherche des restaurants par ville, nom ou mot-clé (pizza, végétarien).',mcpToolGetRest:'Adresse, participation en euros, horaires et téléphone par ID.',mcpToolGetMenu:'Plats du jour publiés sur le portail officiel (aujourd’hui ou dates précises).',mcpToolSearchItems:'Scanne les menus de la ville pour un plat précis (ex. burger, salade).',mcpFooterLink:'Connecter IA (MCP)',mcpLinkCopiedToast:'Lien du serveur MCP copié !',mcpConfigCopiedToast:'Configuration copiée !',mcpCopyFail:'Impossible de copier.',mcpPingChecking:'Vérification de la connexion au serveur MCP…',mcpPingSuccess:(ms, name, count) => `✓ Connexion vérifiée (${ms}ms) ! Serveur « ${name} » actif avec ${count} outils prêts.`,mcpPingError:msg => `Échec de la vérification : ${msg}.`
   },
   ca:{
     drawEyebrow:'DECISIÓ DEL DIA',drawTitle:'Fem un sorteig',drawDescription:'Tria alguns filtres o deixa que decideixi l’atzar.',city:'Ciutat',anyCity:'Qualsevol ciutat',food:'Tipus de menjar',anyFood:'Sense preferència',mode:'Vull sortejar',restaurant:'Restaurant',dish:'Plat',price:'Copagament màxim',noLimit:'Sense límit',draw:'Sortejar',searching:'Cercant opcions als menús d’avui…',noResult:'No s’han trobat opcions amb aquests filtres.',resultRestaurant:'El teu restaurant',resultDish:'El teu plat',openMenu:'Veure menú',drawError:'No s’ha pogut completar el sorteig.',
@@ -115,7 +121,8 @@ const featureCopy = {
     loginTab:'Entrar',registerTab:'Crear compte',loginSuccess:'Sessió iniciada amb èxit!',registerSuccess:'Compte creat amb èxit!',logoutSuccess:'Sessió tancada.',authRequiredReview:'Inicia sessió al teu perfil per valorar restaurants.',calEmptyDay:'Cap àpat registrat en aquest dia.',calSavedMeal:'Àpat desat a l’historial!',calAddMeal:'+ Registrar àpat en aquest dia',calCloseForm:'− Tancar formulari',
     mealPickerTitle:'Què has menjat aquí avui?',mealPickerSub:'Tria el plat per registrar-lo amb precisió al teu historial.',mealPickerNext:'Continuar',mealPickerRateTitle:'Com valores aquest restaurant?',mealPickerRateSub:'Dona una nota amb estrelles o pots saltar aquest pas.',mealPickerSkip:'Saltar',mealPickerConfirmRate:'Valorar i registrar',mealPickerDailyMenu:'Menú del dia / Àpat',mealPickerOtherDish:'Altre plat / Opció lliure',mealPickerCustomPrompt:'Quin plat has menjat?',mealLoggedAndRated:'Àpat registrat i ressenya desada!',
     authUsernameLabel:'Nom d’usuari',authUsernamePlaceholder:'@el-teu-nom',authEmailLabel:'Correu electrònic',authEmailPlaceholder:'el.teu.email@exemple.cat',authPasswordLabel:'Contrasenya',profileMemberBadge:'Membre Bomboni',profileLogout:'Sortir',profileLogoutTitle:'Tancar sessió',calMonthBadge:'Historial',calPrevMonth:'Mes anterior',calNextMonth:'Mes següent',calWeekdays:['Dl','Dt','Dc','Dj','Dv','Ds','Dg'],calLogFormTitle:'Registrar àpat',calLogRestLabel:'Restaurant',calLogChooseRest:'Tria un restaurant…',calLogDishLabel:'Plat / Menjar',calLogChooseRestFirst:'Tria primer el restaurant…',calLogLoadingDishes:'Carregant plats del menú…',calLogChooseDish:'Escolhe um prato…',calLogCustomDishPlaceholder:'Escriu el nom del plat',calLogFeeLabel:'Copagament (€)',historyPrev:'Anterior',historyNext:'Següent',dishFavAddTitle:'Desar plat als preferits',dishFavRemoveTitle:'Eliminar dels preferits',dishLogMarkTitle:'Registrar que he menjat aquest plat avui',dishLogUnmarkTitle:'Desmarcar àpat d’avui',sourceLinkTitle:'Obrir font oficial',searchClearAria:'Netejar cerca',authUsernameMin:'El nom d’usuari ha de tenir almenys 3 caràcters.',authPasswordMin:'La contrasenya ha de tenir almenys 6 caràcters.',authEmailExists:'Aquest correu ja està registrat.',authUsernameExists:'Aquest nom d’usuari ja existeix.',authInvalidCreds:'Correu o contrasenya incorrectes.',
-    authVerifyTitle:'Verificar correu',authVerifySub:'Introdueix el codi de 4 dígits enviat a',authVerifyCodeLabel:'Codi de 4 dígits',authVerifySubmitBtn:'Verificar i crear compte',authResendCodeBtn:'Tornar a enviar codi',authBackBtn:'Tornar',authCodeSentToast:'Codi de verificació enviat a',authCodeResentToast:'Nou codi de verificació enviat a',authInvalidCodeError:'Codi de verificació incorrecte.'
+    authVerifyTitle:'Verificar correu',authVerifySub:'Introdueix el codi de 4 dígits enviat a',authVerifyCodeLabel:'Codi de 4 dígits',authVerifySubmitBtn:'Verificar i crear compte',authResendCodeBtn:'Tornar a enviar codi',authBackBtn:'Tornar',authCodeSentToast:'Codi de verificació enviat a',authCodeResentToast:'Nou codi de verificació enviat a',authInvalidCodeError:'Codi de verificació incorrecte.',
+    mcpEyebrow:'INTEGRACIÓ MCP',mcpTitle:'Connectar assistents d’IA',mcpSubtitle:'Consulta menús, copagaments i restaurants de boni directament a Gemini, Claude, Cursor o qualsevol client compatible amb MCP.',mcpUrlTitle:'Adreça del Servidor MCP',mcpUrlDesc:'Enganxa aquest URL al teu client o assistent d’IA per connectar Bomboni al núvol:',mcpCopyLink:'Copiar enllaç',mcpCopied:'Copiat!',mcpProtocolNote:'Compatible amb Streamable HTTP i SSE (accepta <code>/api/mcp</code> e <code>/mcp</code>).',mcpPingBtn:'Provar connexió',mcpGuideTitle:'Com configurar al teu assistent',mcpGuideDesc:'Selecciona el teu assistent per veure les instruccions:',mcpTabUniversal:'Altres IA / HTTP',mcpCopyConfig:'Copiar configuració',mcpPromptsTitle:'Exemples de preguntes',mcpPromptsDesc:'Un cop connectat, pots preguntar en llenguatge natural:',mcpQuery1:'“On dinar amb boni a Ljubljana avui per menys de 4 euros?”',mcpQuery2:'“Quins restaurants tenen peix o opcions vegetarianes oberts ara?”',mcpQuery3:'“Mira els plats d’avui d’Abi Falafel a Bomboni i tradueix-los al català.”',mcpQuery4:'“Hi ha opcions de sushi a prop del centre amb descompte d’estudiant?”',mcpToolsTitle:'Eines incloses',mcpToolsDesc:'L’assistent consulta les dades oficials mitjançant 4 funcions:',mcpToolSearchRest:'Cerca establiments per ciutat, nom o etiquetes (pizza, vegetarià).',mcpToolGetRest:'Adreça, copagament en euros, horaris i telèfon per ID.',mcpToolGetMenu:'Plats del dia publicats al portal oficial (avui o dates específiques).',mcpToolSearchItems:'Escaneja els menús de la ciutat per un plat específic (ex: hamburguesa, amanida).',mcpFooterLink:'Connectar IA (MCP)',mcpLinkCopiedToast:'Enllaç del servidor MCP copiat!',mcpConfigCopiedToast:'Configuració copiada!',mcpCopyFail:'No s’ha pogut copiar.',mcpPingChecking:'Comprovant connexió amb el servidor MCP…',mcpPingSuccess:(ms, name, count) => `✓ Connexió verificada (${ms}ms)! Servidor "${name}" actiu amb ${count} eines llestes.`,mcpPingError:msg => `Error de verificació: ${msg}.`
   }
 };
 
@@ -488,6 +495,7 @@ function clearAllLocalData() {
   if (state.searchMode === 'dishes') renderDishesSearch(); else renderRestaurants();
   if (state.tab === 'favorites') renderFavoritesPage();
   if (state.tab === 'profile') renderProfilePage();
+  renderMcpPage();
   if (state.selected) {
     updateFavoriteButtons(state.selected.id);
     updateVenueReviewUI();
@@ -674,10 +682,30 @@ function applyLanguage() {
     'profile-user-badge':'profileMemberBadge','profile-logout-text':'profileLogout',
     'cal-log-form-title':'calLogFormTitle','cal-log-rest-label':'calLogRestLabel','cal-log-dish-label':'calLogDishLabel',
     'cal-log-fee-label':'calLogFeeLabel','cal-log-cancel':'cancel','cal-log-save':'save',
-    'history-prev-btn':'historyPrev','history-next-btn':'historyNext'
+    'history-prev-btn':'historyPrev','history-next-btn':'historyNext',
+    'mcp-eyebrow':'mcpEyebrow','mcp-title':'mcpTitle','mcp-subtitle':'mcpSubtitle',
+    'mcp-url-card-title':'mcpUrlTitle','mcp-url-card-desc':'mcpUrlDesc',
+    'mcp-copy-cloud-text':'mcpCopyLink','mcp-ping-btn':'mcpPingBtn',
+    'mcp-guide-title':'mcpGuideTitle','mcp-guide-desc':'mcpGuideDesc',
+    'mcp-tab-universal':'mcpTabUniversal','mcp-copy-snippet-btn':'mcpCopyConfig',
+    'mcp-prompts-title':'mcpPromptsTitle','mcp-prompts-desc':'mcpPromptsDesc',
+    'mcp-query-1':'mcpQuery1','mcp-query-2':'mcpQuery2','mcp-query-3':'mcpQuery3','mcp-query-4':'mcpQuery4',
+    'mcp-tools-title':'mcpToolsTitle','mcp-tools-desc':'mcpToolsDesc',
+    'mcp-tool-search-restaurants':'mcpToolSearchRest','mcp-tool-get-restaurant':'mcpToolGetRest',
+    'mcp-tool-get-restaurant-menu':'mcpToolGetMenu','mcp-tool-search-menu-items':'mcpToolSearchItems',
+    'footer-mcp-link':'mcpFooterLink'
   })) {
     const el = $(id);
     if (el && feature[key]) el.textContent = feature[key];
+  }
+
+  const mcpProtoNote = $('mcp-protocol-note');
+  if (mcpProtoNote && feature.mcpProtocolNote) {
+    mcpProtoNote.innerHTML = feature.mcpProtocolNote;
+  }
+  const mcpCloudUrl = $('mcp-cloud-url');
+  if (mcpCloudUrl && feature.mcpUrlTitle) {
+    mcpCloudUrl.setAttribute('aria-label', feature.mcpUrlTitle);
   }
 
   // Update button states
@@ -771,6 +799,7 @@ function applyLanguage() {
   if (state.searchMode === 'dishes') renderDishesSearch(); else renderRestaurants();
   if (state.tab === 'favorites') renderFavoritesPage();
   if (state.tab === 'profile') renderProfilePage();
+  renderMcpPage();
   if (state.selected) {
     updateFavoriteButtons(state.selected.id);
     updateVenueReviewUI();
@@ -2737,68 +2766,287 @@ $('footer-install').addEventListener('click', installApp);
 let currentMcpSnippetTarget = 'gemini';
 const CANONICAL_CLOUD_MCP_URL = 'https://bomboni-enzogrigorios-projects.vercel.app/api/mcp';
 
-const mcpClientGuides = {
-  gemini: {
-    file: 'Gemini (Web & CLI)',
-    steps: [
-      { num: '1', title: 'Acesse os Apps Conectados', text: 'No <a href="https://gemini.google.com" target="_blank" rel="noreferrer">Google Gemini</a>, acesse <strong>Personalizar</strong> no menu lateral e selecione <strong>Apps conectados</strong>.' },
-      { num: '2', title: 'Crie um Conector na Nuvem', text: 'Clique em <strong>Criar app personalizado</strong> e selecione o método <strong>MCP na nuvem</strong>.' },
-      { num: '3', title: 'Cole a URL do Bomboni', text: 'Cole a URL do servidor acima no campo do Gemini e clique em <strong>Avançar</strong> para concluir.' }
-    ],
-    code: (url) => `# Configuração para Gemini CLI / Projetos:\n` + JSON.stringify({
-      mcpServers: {
-        bomboni: {
-          url: url
-        }
-      }
-    }, null, 2)
+const mcpClientGuidesByLang = {
+  pt: {
+    gemini: {
+      file: 'Gemini (Web e CLI)',
+      steps: [
+        { num: '1', title: 'Acesse os Apps Conectados', text: 'No <a href="https://gemini.google.com" target="_blank" rel="noreferrer">Google Gemini</a>, acesse <strong>Personalizar</strong> no menu lateral e selecione <strong>Apps conectados</strong>.' },
+        { num: '2', title: 'Crie um Conector na Nuvem', text: 'Clique em <strong>Criar app personalizado</strong> e selecione o método <strong>MCP na nuvem</strong>.' },
+        { num: '3', title: 'Cole a URL do Bomboni', text: 'Cole a URL do servidor acima no campo do Gemini e clique em <strong>Avançar</strong> para concluir.' }
+      ],
+      comment: '# Configuração para Gemini CLI / Projetos:\n'
+    },
+    claude: {
+      file: 'claude_desktop_config.json',
+      steps: [
+        { num: '1', title: 'Abra a Configuração do Claude', text: 'No Claude Desktop, acesse <strong>Settings > Developer > Edit Config</strong> para abrir o arquivo <code>claude_desktop_config.json</code>.' },
+        { num: '2', title: 'Adicione o Bomboni', text: 'Insira o servidor Bomboni dentro de <code>mcpServers</code> (usando o comando Python ou a URL remota).' },
+        { num: '3', title: 'Reinicie o Claude', text: 'Reinicie a aplicação. As 4 ferramentas de consulta e cardápios estarão ativas nas conversas.' }
+      ]
+    },
+    cursor: {
+      file: '.cursor/mcp.json',
+      steps: [
+        { num: '1', title: 'Abra as Configurações de MCP', text: 'No Cursor, vá em <strong>Settings > Features > MCP</strong> ou crie <code>.cursor/mcp.json</code> no seu repositório.' },
+        { num: '2', title: 'Adicione o Bomboni', text: 'Cadastre o Bomboni como servidor remoto apontando para a URL pública acima.' },
+        { num: '3', title: 'Use no Chat e Composer', text: 'O Cursor consultará restaurantes e cardápios de boni diretamente no chat.' }
+      ]
+    },
+    universal: {
+      file: 'mcp-config.json',
+      steps: [
+        { num: '1', title: 'Adicione um Servidor MCP', text: 'No seu cliente (LibreChat, Cline, Zed, etc.), escolha adicionar um servidor MCP remoto.' },
+        { num: '2', title: 'Selecione o Transporte', text: 'Configure o tipo <strong>Streamable HTTP</strong> ou <strong>SSE</strong> e insira a URL pública do Bomboni.' },
+        { num: '3', title: 'Pronto para Consultar', text: 'O cliente identificará automaticamente as ferramentas e parâmetros disponíveis.' }
+      ]
+    }
   },
-  claude: {
-    file: 'claude_desktop_config.json',
-    steps: [
-      { num: '1', title: 'Abra a Configuração do Claude', text: 'No Claude Desktop, acesse <strong>Settings > Developer > Edit Config</strong> para abrir o arquivo <code>claude_desktop_config.json</code>.' },
-      { num: '2', title: 'Adicione o Bomboni', text: 'Insira o servidor Bomboni dentro de <code>mcpServers</code> (usando o comando Python ou a URL remota).' },
-      { num: '3', title: 'Reinicie o Claude', text: 'Reinicie a aplicação. As 4 ferramentas de consulta e cardápios estarão ativas nas conversas.' }
-    ],
-    code: () => JSON.stringify({
-      mcpServers: {
-        bomboni: {
-          command: 'python',
-          args: ['-m', 'bomboni.adapters.mcp.server']
-        }
-      }
-    }, null, 2)
+  en: {
+    gemini: {
+      file: 'Gemini (Web & CLI)',
+      steps: [
+        { num: '1', title: 'Open Connected Apps', text: 'In <a href="https://gemini.google.com" target="_blank" rel="noreferrer">Google Gemini</a>, go to <strong>Customize</strong> in the sidebar and select <strong>Connected apps</strong>.' },
+        { num: '2', title: 'Create a Cloud Connector', text: 'Click <strong>Create custom app</strong> and select <strong>Cloud MCP</strong>.' },
+        { num: '3', title: 'Paste Bomboni URL', text: 'Paste the server URL above into Gemini and click <strong>Next</strong> to finish.' }
+      ],
+      comment: '# Configuration for Gemini CLI / Projects:\n'
+    },
+    claude: {
+      file: 'claude_desktop_config.json',
+      steps: [
+        { num: '1', title: 'Open Claude Settings', text: 'In Claude Desktop, go to <strong>Settings > Developer > Edit Config</strong> to open <code>claude_desktop_config.json</code>.' },
+        { num: '2', title: 'Add Bomboni', text: 'Add the Bomboni server entry inside <code>mcpServers</code> (using Python or remote URL).' },
+        { num: '3', title: 'Restart Claude', text: 'Restart the app. The 4 menu and restaurant search tools are now active in your chats.' }
+      ]
+    },
+    cursor: {
+      file: '.cursor/mcp.json',
+      steps: [
+        { num: '1', title: 'Open MCP Settings', text: 'In Cursor, go to <strong>Settings > Features > MCP</strong> or create <code>.cursor/mcp.json</code> in your project repository.' },
+        { num: '2', title: 'Add Bomboni', text: 'Register Bomboni as a remote server pointing to the public URL above.' },
+        { num: '3', title: 'Use in Chat & Composer', text: 'Cursor can now query boni restaurants and daily menus directly in chat.' }
+      ]
+    },
+    universal: {
+      file: 'mcp-config.json',
+      steps: [
+        { num: '1', title: 'Add an MCP Server', text: 'In your client (LibreChat, Cline, Zed, etc.), choose to add a remote MCP server.' },
+        { num: '2', title: 'Select Transport', text: 'Choose <strong>Streamable HTTP</strong> or <strong>SSE</strong> and paste Bomboni’s public URL.' },
+        { num: '3', title: 'Ready to Query', text: 'The client will automatically discover all available tools and parameters.' }
+      ]
+    }
   },
-  cursor: {
-    file: '.cursor/mcp.json',
-    steps: [
-      { num: '1', title: 'Abra as Configurações de MCP', text: 'No Cursor, vá em <strong>Settings > Features > MCP</strong> ou crie <code>.cursor/mcp.json</code> no seu repositório.' },
-      { num: '2', title: 'Adicione o Bomboni', text: 'Cadastre o Bomboni como servidor remoto apontando para a URL pública acima.' },
-      { num: '3', title: 'Use no Chat e Composer', text: 'O Cursor consultará restaurantes e cardápios de boni diretamente no chat.' }
-    ],
-    code: (url) => JSON.stringify({
-      mcpServers: {
-        bomboni: {
-          url: url
-        }
-      }
-    }, null, 2)
+  es: {
+    gemini: {
+      file: 'Gemini (Web y CLI)',
+      steps: [
+        { num: '1', title: 'Accede a Apps Conectadas', text: 'En <a href="https://gemini.google.com" target="_blank" rel="noreferrer">Google Gemini</a>, entra a <strong>Personalizar</strong> en el menú lateral y selecciona <strong>Apps conectadas</strong>.' },
+        { num: '2', title: 'Crea un Conector en la Nube', text: 'Haz clic en <strong>Crear app personalizada</strong> y elige <strong>MCP en la nube</strong>.' },
+        { num: '3', title: 'Pega la URL de Bomboni', text: 'Pega la URL del servidor anterior en Gemini y haz clic en <strong>Siguiente</strong> para completar.' }
+      ],
+      comment: '# Configuración para Gemini CLI / Proyectos:\n'
+    },
+    claude: {
+      file: 'claude_desktop_config.json',
+      steps: [
+        { num: '1', title: 'Abre la Configuración de Claude', text: 'En Claude Desktop, ve a <strong>Settings > Developer > Edit Config</strong> para abrir <code>claude_desktop_config.json</code>.' },
+        { num: '2', title: 'Añade Bomboni', text: 'Agrega el servidor Bomboni dentro de <code>mcpServers</code> (con Python o URL remota).' },
+        { num: '3', title: 'Reinicia Claude', text: 'Reinicia la aplicación. Las 4 herramientas de consulta y menús estarán activas en tus chats.' }
+      ]
+    },
+    cursor: {
+      file: '.cursor/mcp.json',
+      steps: [
+        { num: '1', title: 'Abre Ajustes de MCP', text: 'En Cursor, ve a <strong>Settings > Features > MCP</strong> o crea <code>.cursor/mcp.json</code> en tu proyecto.' },
+        { num: '2', title: 'Añade Bomboni', text: 'Registra Bomboni como servidor remoto apuntando a la URL pública arriba indicada.' },
+        { num: '3', title: 'Usa en Chat y Composer', text: 'Cursor consultará restaurantes y menús de boni directamente en el chat.' }
+      ]
+    },
+    universal: {
+      file: 'mcp-config.json',
+      steps: [
+        { num: '1', title: 'Añade un Servidor MCP', text: 'En tu cliente (LibreChat, Cline, Zed, etc.), elige añadir un servidor MCP remoto.' },
+        { num: '2', title: 'Selecciona el Transporte', text: 'Configura el tipo <strong>Streamable HTTP</strong> o <strong>SSE</strong> e introduce la URL pública de Bomboni.' },
+        { num: '3', title: 'Listo para Consultar', text: 'El cliente descubrirá automáticamente las herramientas y parámetros disponibles.' }
+      ]
+    }
   },
-  universal: {
-    file: 'mcp-config.json',
-    steps: [
-      { num: '1', title: 'Adicione um Servidor MCP', text: 'No seu cliente (LibreChat, Cline, Zed, etc.), escolha adicionar um servidor MCP remoto.' },
-      { num: '2', title: 'Selecione o Transporte', text: 'Configure o tipo <strong>Streamable HTTP</strong> ou <strong>SSE</strong> e insira a URL pública do Bomboni.' },
-      { num: '3', title: 'Pronto para Consultar', text: 'O cliente identificará automaticamente as ferramentas e parâmetros disponíveis.' }
-    ],
-    code: (url) => JSON.stringify({
-      mcpServers: {
-        bomboni: {
-          url: url
-        }
-      }
-    }, null, 2)
+  de: {
+    gemini: {
+      file: 'Gemini (Web & CLI)',
+      steps: [
+        { num: '1', title: 'Verbundene Apps öffnen', text: 'Gehe in <a href="https://gemini.google.com" target="_blank" rel="noreferrer">Google Gemini</a> auf <strong>Anpassen</strong> im Seitenmenü und wähle <strong>Verbundene Apps</strong>.' },
+        { num: '2', title: 'Cloud-Connector erstellen', text: 'Klicke auf <strong>Benutzerdefinierte App erstellen</strong> und wähle <strong>Cloud-MCP</strong>.' },
+        { num: '3', title: 'Bomboni-URL einfügen', text: 'Füge die obige Server-URL in Gemini ein und klicke auf <strong>Weiter</strong>.' }
+      ],
+      comment: '# Konfiguration für Gemini CLI / Projekte:\n'
+    },
+    claude: {
+      file: 'claude_desktop_config.json',
+      steps: [
+        { num: '1', title: 'Claude-Einstellungen öffnen', text: 'Gehe in Claude Desktop auf <strong>Settings > Developer > Edit Config</strong>, um <code>claude_desktop_config.json</code> zu öffnen.' },
+        { num: '2', title: 'Bomboni hinzufügen', text: 'Füge Bomboni unter <code>mcpServers</code> ein (über Python-Befehl oder Remote-URL).' },
+        { num: '3', title: 'Claude neu starten', text: 'Starte die App neu. Die 4 Such- und Menü-Tools stehen in Chats bereit.' }
+      ]
+    },
+    cursor: {
+      file: '.cursor/mcp.json',
+      steps: [
+        { num: '1', title: 'MCP-Einstellungen öffnen', text: 'Gehe im Cursor auf <strong>Settings > Features > MCP</strong> oder erstelle <code>.cursor/mcp.json</code> im Projekt.' },
+        { num: '2', title: 'Bomboni hinzufügen', text: 'Trage Bomboni als Remote-Server mit der obigen öffentlichen URL ein.' },
+        { num: '3', title: 'Im Chat & Composer nutzen', text: 'Cursor kann Boni-Restaurants und Tagesmenüs direkt im Chat abfragen.' }
+      ]
+    },
+    universal: {
+      file: 'mcp-config.json',
+      steps: [
+        { num: '1', title: 'MCP-Server hinzufügen', text: 'Wähle in deinem Client (LibreChat, Cline, Zed usw.) das Hinzufügen eines Remote-MCP-Servers.' },
+        { num: '2', title: 'Transport auswählen', text: 'Wähle <strong>Streamable HTTP</strong> oder <strong>SSE</strong> und gib die öffentliche Bomboni-URL ein.' },
+        { num: '3', title: 'Bereit zum Abfragen', text: 'Der Client erkennt die verfügbaren Werkzeuge und Parameter automatisch.' }
+      ]
+    }
+  },
+  it: {
+    gemini: {
+      file: 'Gemini (Web e CLI)',
+      steps: [
+        { num: '1', title: 'Apri le App Connesse', text: 'Su <a href="https://gemini.google.com" target="_blank" rel="noreferrer">Google Gemini</a>, vai su <strong>Personalizza</strong> nel menu laterale e scegli <strong>App connesse</strong>.' },
+        { num: '2', title: 'Crea un Connettore Cloud', text: 'Clicca su <strong>Crea app personalizzata</strong> e seleziona <strong>MCP su cloud</strong>.' },
+        { num: '3', title: 'Incolla l’URL di Bomboni', text: 'Incolla l’URL del server in Gemini e fai clic su <strong>Avanti</strong> per completare.' }
+      ],
+      comment: '# Configurazione per Gemini CLI / Progetti:\n'
+    },
+    claude: {
+      file: 'claude_desktop_config.json',
+      steps: [
+        { num: '1', title: 'Apri le Impostazioni di Claude', text: 'In Claude Desktop, vai su <strong>Settings > Developer > Edit Config</strong> per aprire <code>claude_desktop_config.json</code>.' },
+        { num: '2', title: 'Aggiungi Bomboni', text: 'Inserisci il server Bomboni all’interno di <code>mcpServers</code> (usando Python o URL remota).' },
+        { num: '3', title: 'Riavvia Claude', text: 'Riavvia l’applicazione. I 4 strumenti di ricerca e menu saranno attivi nelle conversazioni.' }
+      ]
+    },
+    cursor: {
+      file: '.cursor/mcp.json',
+      steps: [
+        { num: '1', title: 'Apri le Impostazioni MCP', text: 'In Cursor, vai su <strong>Settings > Features > MCP</strong> oppure crea <code>.cursor/mcp.json</code> nel repository.' },
+        { num: '2', title: 'Aggiungi Bomboni', text: 'Registra Bomboni come server remoto puntando all’URL pubblica sopra indicata.' },
+        { num: '3', title: 'Usa in Chat e Composer', text: 'Cursor consulterà ristoranti e menu del giorno con boni direttamente nella chat.' }
+      ]
+    },
+    universal: {
+      file: 'mcp-config.json',
+      steps: [
+        { num: '1', title: 'Aggiungi un Server MCP', text: 'Nel tuo client (LibreChat, Cline, Zed, ecc.), scegli di aggiungere un server MCP remoto.' },
+        { num: '2', title: 'Seleziona il Trasporto', text: 'Configura il tipo <strong>Streamable HTTP</strong> o <strong>SSE</strong> e inserisci l’URL pubblico di Bomboni.' },
+        { num: '3', title: 'Pronto a Consultare', text: 'Il client rileverà automaticamente gli strumenti e i parametri disponibili.' }
+      ]
+    }
+  },
+  fr: {
+    gemini: {
+      file: 'Gemini (Web & CLI)',
+      steps: [
+        { num: '1', title: 'Ouvrir les Applications Connectées', text: 'Dans <a href="https://gemini.google.com" target="_blank" rel="noreferrer">Google Gemini</a>, allez dans <strong>Personnaliser</strong> puis sélectionnez <strong>Applications connectées</strong>.' },
+        { num: '2', title: 'Créer un Connecteur Cloud', text: 'Cliquez sur <strong>Créer une application personnalisée</strong> et choisissez <strong>MCP Cloud</strong>.' },
+        { num: '3', title: 'Coller l’URL de Bomboni', text: 'Collez l’URL du serveur ci-dessus dans Gemini et cliquez sur <strong>Suivant</strong> pour terminer.' }
+      ],
+      comment: '# Configuration pour Gemini CLI / Projets :\n'
+    },
+    claude: {
+      file: 'claude_desktop_config.json',
+      steps: [
+        { num: '1', title: 'Ouvrir la Configuration de Claude', text: 'Dans Claude Desktop, allez dans <strong>Settings > Developer > Edit Config</strong> pour ouvrir <code>claude_desktop_config.json</code>.' },
+        { num: '2', title: 'Ajouter Bomboni', text: 'Ajoutez le serveur Bomboni sous <code>mcpServers</code> (avec Python ou l’URL distante).' },
+        { num: '3', title: 'Redémarrer Claude', text: 'Redémarrez l’application. Les 4 outils de recherche et de menus seront disponibles dans vos discussions.' }
+      ]
+    },
+    cursor: {
+      file: '.cursor/mcp.json',
+      steps: [
+        { num: '1', title: 'Ouvrir les Paramètres MCP', text: 'Dans Cursor, allez dans <strong>Settings > Features > MCP</strong> ou créez <code>.cursor/mcp.json</code> dans votre projet.' },
+        { num: '2', title: 'Ajouter Bomboni', text: 'Enregistrez Bomboni comme serveur distant pointant vers l’URL publique ci-dessus.' },
+        { num: '3', title: 'Utiliser dans Chat & Composer', text: 'Cursor pourra consulter les restaurants et menus boni directamente dans vos discussions.' }
+      ]
+    },
+    universal: {
+      file: 'mcp-config.json',
+      steps: [
+        { num: '1', title: 'Ajouter un Serveur MCP', text: 'Dans votre client (LibreChat, Cline, Zed, etc.), choisissez d’ajouter un serveur MCP distant.' },
+        { num: '2', title: 'Sélectionner le Transport', text: 'Configurez le type <strong>Streamable HTTP</strong> ou <strong>SSE</strong> et saisissez l’URL publique de Bomboni.' },
+        { num: '3', title: 'Prêt à Interroger', text: 'Le client découvrira automatiquement les outils et paramètres disponibles.' }
+      ]
+    }
+  },
+  ca: {
+    gemini: {
+      file: 'Gemini (Web i CLI)',
+      steps: [
+        { num: '1', title: 'Accedeix a les Apps Connectades', text: 'A <a href="https://gemini.google.com" target="_blank" rel="noreferrer">Google Gemini</a>, ves a <strong>Personalitzar</strong> al menú lateral i tria <strong>Apps connectades</strong>.' },
+        { num: '2', title: 'Crea un Connector al Núvol', text: 'Fes clic a <strong>Crear app personalitzada</strong> i selecciona <strong>MCP al núvol</strong>.' },
+        { num: '3', title: 'Enganxa l’URL de Bomboni', text: 'Enganxa l’URL del servidor anterior a Gemini i fes clic a <strong>Següent</strong>.' }
+      ],
+      comment: '# Configuració per a Gemini CLI / Projectes:\n'
+    },
+    claude: {
+      file: 'claude_desktop_config.json',
+      steps: [
+        { num: '1', title: 'Obre la Configuració de Claude', text: 'A Claude Desktop, ves a <strong>Settings > Developer > Edit Config</strong> per obrir <code>claude_desktop_config.json</code>.' },
+        { num: '2', title: 'Afegeix Bomboni', text: 'Afegeix el servidor Bomboni dins de <code>mcpServers</code> (amb Python o URL remota).' },
+        { num: '3', title: 'Reinicia Claude', text: 'Reinicia l’aplicació. Les 4 eines de cerca i menús estaran actives a les teves converses.' }
+      ]
+    },
+    cursor: {
+      file: '.cursor/mcp.json',
+      steps: [
+        { num: '1', title: 'Obre la Configuració de MCP', text: 'A Cursor, ves a <strong>Settings > Features > MCP</strong> o crea <code>.cursor/mcp.json</code> al teu projecte.' },
+        { num: '2', title: 'Afegeix Bomboni', text: 'Registra Bomboni com a servidor remot apuntant a l’URL pública anterior.' },
+        { num: '3', title: 'Fes servir al Xat i Composer', text: 'Cursor consultarà restaurants i menús de boni directament al xat.' }
+      ]
+    },
+    universal: {
+      file: 'mcp-config.json',
+      steps: [
+        { num: '1', title: 'Afegeix un Servidor MCP', text: 'Al teu client (LibreChat, Cline, Zed, etc.), tria afegir un servidor MCP remot.' },
+        { num: '2', title: 'Selecciona el Transport', text: 'Configura el tipus <strong>Streamable HTTP</strong> o <strong>SSE</strong> i introdueix l’URL pública de Bomboni.' },
+        { num: '3', title: 'A punt per Consultar', text: 'El client descobrirà automàticament les eines i paràmetres disponibles.' }
+      ]
+    }
   }
+};
+
+const mcpCodeGenerators = {
+  gemini: (url, lang) => {
+    const comment = mcpClientGuidesByLang[lang]?.gemini?.comment || mcpClientGuidesByLang.en.gemini.comment;
+    return comment + JSON.stringify({
+      mcpServers: {
+        bomboni: {
+          url: url
+        }
+      }
+    }, null, 2);
+  },
+  claude: () => JSON.stringify({
+    mcpServers: {
+      bomboni: {
+        command: 'python',
+        args: ['-m', 'bomboni.adapters.mcp.server']
+      }
+    }
+  }, null, 2),
+  cursor: (url) => JSON.stringify({
+    mcpServers: {
+      bomboni: {
+        url: url
+      }
+    }
+  }, null, 2),
+  universal: (url) => JSON.stringify({
+    mcpServers: {
+      bomboni: {
+        url: url
+      }
+    }
+  }, null, 2)
 };
 
 function renderMcpPage() {
@@ -2808,7 +3056,8 @@ function renderMcpPage() {
   const urlInput = $('mcp-cloud-url');
   if (urlInput) urlInput.value = cloudUrl;
 
-  const guide = mcpClientGuides[currentMcpSnippetTarget] || mcpClientGuides.gemini;
+  const langGuides = mcpClientGuidesByLang[state.language] || mcpClientGuidesByLang.en || mcpClientGuidesByLang.pt;
+  const guide = langGuides[currentMcpSnippetTarget] || langGuides.gemini;
   const container = $('mcp-steps-container');
   if (container && guide.steps) {
     container.innerHTML = guide.steps.map(s => `
@@ -2825,7 +3074,8 @@ function renderMcpPage() {
   const filenameEl = $('mcp-snippet-filename');
   if (filenameEl) filenameEl.textContent = guide.file;
   const codeEl = $('mcp-code-display');
-  if (codeEl) codeEl.textContent = typeof guide.code === 'function' ? guide.code(cloudUrl) : guide.code;
+  const codeFn = mcpCodeGenerators[currentMcpSnippetTarget] || mcpCodeGenerators.gemini;
+  if (codeEl) codeEl.textContent = codeFn(cloudUrl, state.language);
 }
 
 $('desktop-nav')?.addEventListener('click', event => {
@@ -2841,15 +3091,16 @@ $('footer-mcp-link')?.addEventListener('click', event => {
 $('mcp-copy-cloud-btn')?.addEventListener('click', async () => {
   const url = $('mcp-cloud-url')?.value;
   if (!url) return;
+  const feature = featureCopy[state.language] || featureCopy.en;
   try {
     await navigator.clipboard.writeText(url);
     const textEl = $('mcp-copy-cloud-text');
     if (textEl) {
       const orig = textEl.textContent;
-      textEl.textContent = 'Copiado!';
-      setTimeout(() => { textEl.textContent = orig; }, 2000);
+      textEl.textContent = feature.mcpCopied || 'Copiado!';
+      setTimeout(() => { textEl.textContent = feature.mcpCopyLink || orig; }, 2000);
     }
-    showToast('Link do servidor MCP copiado!');
+    showToast(feature.mcpLinkCopiedToast || 'Link do servidor MCP copiado!');
   } catch {
     showToast(url);
   }
@@ -2858,19 +3109,24 @@ $('mcp-copy-cloud-btn')?.addEventListener('click', async () => {
 $('mcp-ping-btn')?.addEventListener('click', async () => {
   const feedback = $('mcp-ping-feedback');
   if (!feedback) return;
+  const feature = featureCopy[state.language] || featureCopy.en;
   feedback.hidden = false;
   feedback.classList.remove('is-error');
-  feedback.textContent = 'A verificar conexão ao servidor MCP…';
+  feedback.textContent = feature.mcpPingChecking || 'A verificar conexão ao servidor MCP…';
   const start = performance.now();
   try {
     const res = await fetch('/api/mcp');
     const elapsed = Math.round(performance.now() - start);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    feedback.textContent = `✓ Conexão verificada (${elapsed}ms)! Servidor "${data.name}" ativo com ${data.tools?.length || 4} ferramentas prontas.`;
+    feedback.textContent = typeof feature.mcpPingSuccess === 'function'
+      ? feature.mcpPingSuccess(elapsed, data.name, data.tools?.length || 4)
+      : `✓ Conexão verificada (${elapsed}ms)! Servidor "${data.name}" ativo com ${data.tools?.length || 4} ferramentas prontas.`;
   } catch (err) {
     feedback.classList.add('is-error');
-    feedback.textContent = `Falha na verificação: ${err.message}.`;
+    feedback.textContent = typeof feature.mcpPingError === 'function'
+      ? feature.mcpPingError(err.message)
+      : `Falha na verificação: ${err.message}.`;
   }
 });
 
@@ -2889,15 +3145,16 @@ document.querySelectorAll('.mcp-client-tab').forEach(btn => {
 $('mcp-copy-snippet-btn')?.addEventListener('click', async () => {
   const code = $('mcp-code-display')?.textContent;
   if (!code) return;
+  const feature = featureCopy[state.language] || featureCopy.en;
   try {
     await navigator.clipboard.writeText(code);
     const btn = $('mcp-copy-snippet-btn');
     const orig = btn.textContent;
-    btn.textContent = 'Copiado!';
-    setTimeout(() => { btn.textContent = orig; }, 2000);
-    showToast('Configuração copiada!');
+    btn.textContent = feature.mcpCopied || 'Copiado!';
+    setTimeout(() => { btn.textContent = feature.mcpCopyConfig || orig; }, 2000);
+    showToast(feature.mcpConfigCopiedToast || 'Configuração copiada!');
   } catch {
-    showToast('Não foi possível copiar.');
+    showToast(feature.mcpCopyFail || 'Não foi possível copiar.');
   }
 });
 

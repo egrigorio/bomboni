@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=v36">
+    <link rel="stylesheet" href="/styles.css?v=v37">
     <title>Bomboni — refeições perto de si</title>
   </head>
   <body data-tab="explore">
@@ -352,7 +352,7 @@
       </main>
       <main class="app-page mcp-page" id="mcp-page" hidden>
         <section class="page-heading">
-          <div class="page-eyebrow">INTEGRAÇÃO MCP</div>
+          <div class="page-eyebrow" id="mcp-eyebrow">INTEGRAÇÃO MCP</div>
           <h1 id="mcp-title">Conectar assistentes de IA</h1>
           <p id="mcp-subtitle">Consulte cardápios, copagamentos e restaurantes de boni diretamente no Gemini, Claude, Cursor ou em qualquer cliente compatível com MCP.</p>
         </section>
@@ -407,10 +407,10 @@
           <p class="mcp-card-desc" id="mcp-prompts-desc">Uma vez conectado, você pode perguntar em linguagem natural:</p>
 
           <div class="mcp-queries-list">
-            <div class="mcp-query-item">“Onde almoçar com boni em Ljubljana hoje por menos de 4 euros?”</div>
-            <div class="mcp-query-item">“Quais restaurantes têm peixe ou opções vegetarianas abertos agora?”</div>
-            <div class="mcp-query-item">“Veja os pratos de hoje do Abi Falafel no Bomboni e traduza para português.”</div>
-            <div class="mcp-query-item">“Tem opções de sushi perto do centro com desconto de estudante?”</div>
+            <div class="mcp-query-item" id="mcp-query-1">“Onde almoçar com boni em Ljubljana hoje por menos de 4 euros?”</div>
+            <div class="mcp-query-item" id="mcp-query-2">“Quais restaurantes têm peixe ou opções vegetarianas abertos agora?”</div>
+            <div class="mcp-query-item" id="mcp-query-3">“Veja os pratos de hoje do Abi Falafel no Bomboni e traduza para português.”</div>
+            <div class="mcp-query-item" id="mcp-query-4">“Tem opções de sushi perto do centro com desconto de estudante?”</div>
           </div>
         </section>
 
@@ -422,19 +422,19 @@
           <div class="mcp-tools-list">
             <div class="mcp-tool-row">
               <code>search_restaurants</code>
-              <span>Busca estabelecimentos por cidade, nome ou tags (pizza, vegetariano).</span>
+              <span id="mcp-tool-search-restaurants">Busca estabelecimentos por cidade, nome ou tags (pizza, vegetariano).</span>
             </div>
             <div class="mcp-tool-row">
               <code>get_restaurant</code>
-              <span>Endereço, copagamento em euros, horários e telefone pelo ID.</span>
+              <span id="mcp-tool-get-restaurant">Endereço, copagamento em euros, horários e telefone pelo ID.</span>
             </div>
             <div class="mcp-tool-row">
               <code>get_restaurant_menu</code>
-              <span>Pratos do dia publicados no portal oficial (hoje ou datas específicas).</span>
+              <span id="mcp-tool-get-restaurant-menu">Pratos do dia publicados no portal oficial (hoje ou datas específicas).</span>
             </div>
             <div class="mcp-tool-row">
               <code>search_menu_items</code>
-              <span>Varre cardápios da cidade por prato específico (ex: hambúrguer, salada).</span>
+              <span id="mcp-tool-search-menu-items">Varre cardápios da cidade por prato específico (ex: hambúrguer, salada).</span>
             </div>
           </div>
         </section>
@@ -466,8 +466,8 @@
     </div>
     <input type="file" id="cm-photo-input" accept="image/*" capture="environment" hidden>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=v36" defer></script>
-    <script src="/community.js?v=v36" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v36').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=v37" defer></script>
+    <script src="/community.js?v=v37" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v37').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>
