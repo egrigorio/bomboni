@@ -9,7 +9,7 @@ from bomboni.adapters.mcp.http import (
     handle_mcp_http,
     handle_single_rpc_request,
 )
-from bomboni.core.models import DailyMenu, Restaurant
+from bomboni.core.models import Restaurant
 
 
 def _mock_service() -> MagicMock:
