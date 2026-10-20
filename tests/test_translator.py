@@ -80,3 +80,48 @@ def test_supports_catalan():
     translator, _ = _translator(lambda request: _reply("Sopa"))
 
     assert translator.translate_many(["juha"], "ca")["results"][0]["translated"] == "Sopa"
+
+
+def test_translate_one_handles_http_error():
+    translator, _ = _translator(lambda request: httpx.Response(500))
+    assert translator._translate_one("juha", "en") == {}
+
+
+def test_translate_one_handles_value_error():
+    # Non-200 status in JSON payload
+    translator, _ = _translator(
+        lambda request: httpx.Response(200, json={"responseStatus": 403, "responseData": {"translatedText": "Soup"}})
+    )
+    assert translator._translate_one("juha", "en") == {}
+
+    # Missing or empty translated text
+    translator, _ = _translator(
+        lambda request: httpx.Response(200, json={"responseStatus": 200, "responseData": {"translatedText": "   "}})
+    )
+    assert translator._translate_one("juha", "en") == {}
+
+    # Invalid responseStatus value that cannot be parsed as int
+    translator, _ = _translator(
+        lambda request: httpx.Response(200, json={"responseStatus": "bad_status", "responseData": {"translatedText": "Soup"}})
+    )
+    assert translator._translate_one("juha", "en") == {}
+
+
+def test_translate_one_handles_type_error():
+    # responseStatus type that causes TypeError during int conversion
+    translator, _ = _translator(
+        lambda request: httpx.Response(200, json={"responseStatus": ["invalid"], "responseData": {"translatedText": "Soup"}})
+    )
+    assert translator._translate_one("juha", "en") == {}
+
+
+def test_translate_one_handles_key_error():
+    translator, _ = _translator(lambda request: _reply("Soup"))
+    assert translator._translate_one("juha", "en", source="unsupported_source") == {}
+
+
+def test_translate_many_with_auto_source_handles_single_translation_failures():
+    translator, _ = _translator(lambda request: httpx.Response(500))
+    result = translator.translate_many(["juha"], "en", source="auto")
+
+    assert result["results"] == [{"original": "juha", "translated": "juha", "is_translated": False}]
