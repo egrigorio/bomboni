@@ -80,3 +80,57 @@ def test_supports_catalan():
     translator, _ = _translator(lambda request: _reply("Sopa"))
 
     assert translator.translate_many(["juha"], "ca")["results"][0]["translated"] == "Sopa"
+
+
+def test_falls_back_to_single_requests_when_batch_request_raises_exception():
+    def handler(request: httpx.Request) -> httpx.Response:
+        query = request.url.params["q"]
+        if "\n" in query:
+            return httpx.Response(500)
+        return _reply(query.upper())
+
+    translator, queries = _translator(handler)
+
+    result = translator.translate_many(["juha", "solata"], "en")
+
+    assert queries == ["juha\nsolata", "juha", "solata"]
+    assert result["results"] == [
+        {"original": "juha", "translated": "JUHA", "is_translated": True},
+        {"original": "solata", "translated": "SOLATA", "is_translated": True},
+    ]
+
+
+def test_handles_batch_exception_with_partial_single_request_failures():
+    def handler(request: httpx.Request) -> httpx.Response:
+        query = request.url.params["q"]
+        if "\n" in query or query == "napaka":
+            return httpx.Response(500)
+        return _reply(query.upper())
+
+    translator, queries = _translator(handler)
+
+    result = translator.translate_many(["juha", "napaka"], "en")
+
+    assert queries == ["juha\nnapaka", "juha", "napaka"]
+    assert result["results"] == [
+        {"original": "juha", "translated": "JUHA", "is_translated": True},
+        {"original": "napaka", "translated": "napaka", "is_translated": False},
+    ]
+
+
+def test_falls_back_to_single_requests_when_batch_returns_invalid_payload():
+    def handler(request: httpx.Request) -> httpx.Response:
+        query = request.url.params["q"]
+        if "\n" in query:
+            return httpx.Response(200, json={"responseStatus": 403, "responseData": None})
+        return _reply(query.upper())
+
+    translator, queries = _translator(handler)
+
+    result = translator.translate_many(["juha", "solata"], "de")
+
+    assert queries == ["juha\nsolata", "juha", "solata"]
+    assert result["results"] == [
+        {"original": "juha", "translated": "JUHA", "is_translated": True},
+        {"original": "solata", "translated": "SOLATA", "is_translated": True},
+    ]

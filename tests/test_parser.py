@@ -6,10 +6,24 @@ from bs4 import BeautifulSoup
 
 from bomboni.data_sources.studentska_prehrana.parser import (
     _available_menu_dates,
+    _coordinate,
     _price,
     parse_menu_fragment,
     parse_restaurant_index,
 )
+
+
+def test_coordinate_parsing() -> None:
+    assert _coordinate(None) is None
+    assert _coordinate("") is None
+    assert _coordinate("   ") is None
+    assert _coordinate("invalid_float") is None
+    assert _coordinate("14.5123") == 14.5123
+    assert _coordinate("-46.123") == -46.123
+    assert _coordinate("-180") == -180.0
+    assert _coordinate("180") == 180.0
+    assert _coordinate("-180.1") is None
+    assert _coordinate("180.1") is None
 
 
 def test_price_parsing() -> None:
