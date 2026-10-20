@@ -195,6 +195,7 @@ class RestaurantService:
         restaurants = self.search_restaurants(city=target_city, limit=10_000)
         normalized_query = _normalize(query) if query else None
         query_terms = MENU_QUERY_ALIASES.get(normalized_query or "", (query,) if query else ())
+        normalized_query_terms = [(_normalize(term), term) for term in query_terms]
         normalized_category = _normalize(category) if category else None
         matches: list[dict[str, object]] = []
         errors: list[dict[str, object]] = []
@@ -212,8 +213,8 @@ class RestaurantService:
                 for dish in result.dishes:
                     normalized_dish_name = _normalize(dish.name)
                     matched_query_terms = [
-                        term for term in query_terms
-                        if _normalize(term) in normalized_dish_name
+                        term for norm_term, term in normalized_query_terms
+                        if norm_term in normalized_dish_name
                     ]
                     has_query = not query_terms or bool(matched_query_terms)
                     has_category = normalized_category is None or normalized_category in dish.normalized_categories
