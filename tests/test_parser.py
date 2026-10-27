@@ -90,3 +90,41 @@ def test_parse_menu_fragment_reads_dish_category_from_title() -> None:
     assert dish.name == "GOVEJI IN JAGNJEČJI ŠIŠKEBAB, PRILOGA"
     assert dish.categories == ("Meat",)
     assert dish.sides == ("mešana", "jabolko")
+    assert dish.ingredients == ()
+    assert dish.allergens == ()
+    assert dish.composition_source_text is None
+
+
+@pytest.mark.parametrize(("name", "category", "ingredients", "allergens"), [
+    ("TUNA - PELATI, SIR, TUNA, KORUZA", "Pizza", ("PELATI", "SIR", "TUNA", "KORUZA"), ()),
+    ("4LETNI ČASI-PELATI, ŠUNKA, SIR", "Pizza", ("PELATI", "ŠUNKA", "SIR"), ()),
+    ("JUHA (sestavine: krompir, čebula)", "Mixed", ("krompir", "čebula"), ()),
+    ("CORDON BLUE (ALERGENI: GLUTEN, LAKTOZA, JAJCA), PRILOGA", "Meat", (), ("GLUTEN", "LAKTOZA", "JAJCA")),
+    ("ZREZEK - KROMPIR, SOLATA", "Meat", (), ()),
+    ("PIZZA S SIROM", "Pizza", (), ()),
+    ("PIZZA - GLUTEN, SIR (ALERGENI: GLUTEN)", "Pizza", (), ("GLUTEN",)),
+])
+def test_declared_composition_preserves_original_without_guessing(name, category, ingredients, allergens):
+    menu = parse_menu_fragment(
+        f'<div class="shadow-wrapper"><h5><strong>1 {name}</strong></h5><img title="{category}"></div>',
+        restaurant_id=1794, restaurant_name="Test", menu_date=date(2026, 10, 28), retrieved_at="now",
+    )
+    dish = menu.dishes[0]
+    assert dish.name == name
+    assert dish.ingredients == ingredients
+    assert dish.allergens == allergens
+    assert dish.to_dict()["ingredients"] == list(ingredients)
+    assert dish.composition_source_text == (name if ingredients or allergens else None)
+
+
+def test_side_allergens_are_declared_separately_from_ingredients():
+    menu = parse_menu_fragment(
+        '<div class="shadow-wrapper"><h5><strong>1 LAZANJA (ALERGENI: GLUTEN)</strong></h5>'
+        '<ul><li>juha (alergeni: GLUTEN, ZELENA)</li><li>solata</li></ul></div>',
+        restaurant_id=1090, restaurant_name="Test", menu_date=date(2026, 10, 28), retrieved_at="now",
+    )
+    dish = menu.dishes[0]
+    assert dish.allergens == ("GLUTEN", "ZELENA")
+    assert dish.ingredients == ()
+    assert "juha (alergeni: GLUTEN, ZELENA)" in dish.composition_source_text
+    assert len(dish.sides) == 2

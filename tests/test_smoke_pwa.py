@@ -13,6 +13,33 @@ sync_playwright = playwright.sync_playwright
 STATIC_DIR = Path(__file__).resolve().parents[1] / "src" / "bomboni" / "adapters" / "web" / "static"
 
 
+def test_dish_composition_is_safe_localized_and_explicit_about_missing_data(pwa_server: str):
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page(viewport={"width": 390, "height": 844})
+        page.goto(pwa_server, wait_until="networkidle")
+        for language in ("pt", "en", "es", "de", "it", "fr", "ca"):
+            page.evaluate("""language => {
+                state.language = language;
+                state.selected = {id: 1794};
+                renderMenuDishes({date: '2026-10-28', dishes: [
+                    {name: 'TUNA', ingredients: ['<img src=x onerror=alert(1)>'],
+                     allergens: ['GLUTEN'], composition_source_text: 'Original <b>text</b>'},
+                    {name: 'Unknown composition'}
+                ]}, activeMenuRequest, 1794);
+            }""", language)
+            details = page.locator('.dish-composition')
+            assert details.count() == 2
+            assert details.first.locator('li').all_text_contents() == ['<img src=x onerror=alert(1)>', 'GLUTEN']
+            assert details.first.locator('img, b').count() == 0
+            assert details.nth(1).locator('ul').count() == 0
+            expected = page.evaluate('compositionCopy[state.language]')
+            assert details.first.locator('summary').text_content() == expected[0]
+            assert expected[3] in details.nth(1).text_content()
+            assert expected[4] in details.nth(1).text_content()
+        browser.close()
+
+
 class StaticWithMockApiHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(STATIC_DIR), **kwargs)

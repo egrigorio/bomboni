@@ -1461,6 +1461,52 @@ async function openRestaurant(restaurant) {
   await loadMenu(restaurant.id, state.date, restaurant.name);
 }
 
+const compositionCopy = {
+  pt: ['Ingredientes e alérgenos', 'Composição publicada', 'Alérgenos declarados (inclui acompanhamentos)', 'Lista de ingredientes não informada.', 'Alérgenos não informados.', 'Informação publicada, possivelmente incompleta. Confirme ingredientes e alérgenos com o restaurante.', 'Texto original'],
+  en: ['Ingredients and allergens', 'Published composition', 'Declared allergens (includes sides)', 'Ingredient list not provided.', 'Allergens not provided.', 'Published information may be incomplete. Confirm ingredients and allergens with the restaurant.', 'Original text'],
+  es: ['Ingredientes y alérgenos', 'Composición publicada', 'Alérgenos declarados (incluye guarniciones)', 'Lista de ingredientes no facilitada.', 'Alérgenos no facilitados.', 'La información publicada puede estar incompleta. Confirma ingredientes y alérgenos con el restaurante.', 'Texto original'],
+  de: ['Zutaten und Allergene', 'Veröffentlichte Zusammensetzung', 'Angegebene Allergene (inklusive Beilagen)', 'Keine Zutatenliste angegeben.', 'Keine Allergene angegeben.', 'Die veröffentlichten Angaben können unvollständig sein. Zutaten und Allergene beim Restaurant bestätigen lassen.', 'Originaltext'],
+  it: ['Ingredienti e allergeni', 'Composizione pubblicata', 'Allergeni dichiarati (contorni inclusi)', 'Elenco ingredienti non fornito.', 'Allergeni non indicati.', 'Le informazioni pubblicate possono essere incomplete. Conferma ingredienti e allergeni con il ristorante.', 'Testo originale'],
+  fr: ['Ingrédients et allergènes', 'Composition publiée', 'Allergènes déclarés (accompagnements inclus)', 'Liste des ingrédients non fournie.', 'Allergènes non renseignés.', 'Les informations publiées peuvent être incomplètes. Confirmez les ingrédients et allergènes auprès du restaurant.', 'Texte original'],
+  ca: ['Ingredients i al·lèrgens', 'Composició publicada', 'Al·lèrgens declarats (inclou acompanyaments)', 'Llista d’ingredients no facilitada.', 'Al·lèrgens no indicats.', 'La informació publicada pot ser incompleta. Confirma els ingredients i al·lèrgens amb el restaurant.', 'Text original']
+};
+
+function renderDishComposition(dish, body) {
+  const copy = compositionCopy[state.language] || compositionCopy.en;
+  const details = document.createElement('details');
+  details.className = 'dish-composition';
+  const summary = document.createElement('summary');
+  summary.textContent = copy[0];
+  details.append(summary);
+  const translatedNodes = [];
+  [dish.ingredients || [], dish.allergens || []].forEach((values, index) => {
+    const label = document.createElement('p');
+    label.textContent = values.length ? copy[index + 1] : copy[index + 3];
+    details.append(label);
+    if (!values.length) return;
+    const list = document.createElement('ul');
+    values.forEach(value => {
+      const item = document.createElement('li');
+      item.textContent = state.translationCache[`${state.language}::${value}`] || value;
+      translatedNodes.push({ item, value });
+      list.append(item);
+    });
+    details.append(list);
+  });
+  if (dish.composition_source_text) {
+    const original = document.createElement('p');
+    original.className = 'dish-original';
+    original.textContent = `${copy[6]}: ${dish.composition_source_text}`;
+    details.append(original);
+  }
+  const note = document.createElement('p');
+  note.className = 'dish-status';
+  note.textContent = copy[5];
+  details.append(note);
+  body.append(details);
+  return translatedNodes;
+}
+
 function renderMenuDishes(menu, requestId, id) {
   state.currentMenuDishes = menu.dishes || [];
   $('menu-title').textContent = formatDate(menu.date);
@@ -1601,16 +1647,20 @@ function renderMenuDishes(menu, requestId, id) {
     body.append(footer);
     card.append(number, body);
     host.append(card);
-    dishNodes.push({ dish, title, originalNode, sideNode, sides });
+    const compositionNodes = renderDishComposition(dish, body);
+    dishNodes.push({ dish, title, originalNode, sideNode, sides, compositionNodes });
   });
   emit('menu-rendered', { restaurantId: id, dishes: menu.dishes });
 
   // Background progressive machine translation
-  const dishTexts = menu.dishes.flatMap(d => [d.name, ...(d.sides || [])]);
+  const dishTexts = menu.dishes.flatMap(d => [d.name, ...(d.sides || []), ...(d.ingredients || []), ...(d.allergens || [])]);
   translatedText(dishTexts).then(result => {
     if (requestId !== activeMenuRequest || state.selected?.id !== id) return;
     const map = new Map((result.results || []).map(item => [item.original, item]));
-    dishNodes.forEach(({ dish, title, originalNode, sideNode, sides }) => {
+    dishNodes.forEach(({ dish, title, originalNode, sideNode, sides, compositionNodes }) => {
+      compositionNodes.forEach(({ item, value }) => {
+        item.textContent = map.get(value)?.translated || value;
+      });
       const translated = map.get(dish.name);
       if (translated?.is_translated && translated.translated) {
         title.textContent = translated.translated;
