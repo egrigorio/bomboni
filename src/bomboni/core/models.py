@@ -62,6 +62,9 @@ class Dish:
     categories: tuple[str, ...]
     sides: tuple[str, ...]
     normalized_categories: tuple[str, ...] = ()
+    ingredients: tuple[str, ...] = ()
+    allergens: tuple[str, ...] = ()
+    composition_source_text: str | None = None
 
     def __post_init__(self) -> None:
         if not self.normalized_categories and self.categories:
@@ -75,6 +78,8 @@ class Dish:
         result = asdict(self)
         result["categories"] = list(self.categories)
         result["sides"] = list(self.sides)
+        result["ingredients"] = list(self.ingredients)
+        result["allergens"] = list(self.allergens)
         result["normalized_categories"] = list(self.normalized_categories)
         return result
 

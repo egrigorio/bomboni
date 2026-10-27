@@ -89,3 +89,17 @@ pytest
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Dish composition
+
+Menu responses expose `ingredients`, `allergens` and `composition_source_text` per dish.
+These are published declarations, not inferred recipes or a guarantee of completeness.
+The parser recognizes explicit parenthesized `sestavine:` / `ingredients:` lists and
+comma-separated pizza compositions after a dash. Unstructured descriptions remain
+in the original dish name rather than being guessed. Parenthesized `alergeni:` /
+`allergens:` declarations include accompanying courses and are shown separately.
+Empty arrays mean information unavailable, never absence of allergens.
+
+The PWA shows a collapsed ingredients/allergens section with translation, original
+source text and an explicit missing-information state. No additional third-party
+recipe service is called. Source/date/retrieval metadata remains attached to the menu.

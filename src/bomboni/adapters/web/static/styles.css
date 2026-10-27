@@ -1601,3 +1601,25 @@ body.cm-sheet-open{overflow:hidden}
   }
 }
 
+.dish-composition {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(36, 64, 47, 0.12);
+}
+
+.dish-composition summary {
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.dish-composition p,
+.dish-composition ul {
+  margin: 8px 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.dish-composition ul {
+  padding-left: 20px;
+}

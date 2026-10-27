@@ -11,6 +11,35 @@ BASE_URL = "https://www.studentska-prehrana.si"
 DETAIL_PATH_RE = re.compile(r"/restaurant/Details/(\d+)")
 MENU_DATE_RE = re.compile(r"GetMenuForDate\(\s*\d+\s*,\s*'([^']+)'\s*,")
 DISH_NAME_RE = re.compile(r"^\s*(\d+)\s+(.+?)\s*$", re.DOTALL)
+ALLERGEN_RE = re.compile(r"\((?:alergeni|allergens)\s*:\s*([^()]+)\)", re.IGNORECASE)
+INGREDIENT_RE = re.compile(r"\((?:sestavine|ingredients)\s*:\s*([^()]+)\)", re.IGNORECASE)
+
+
+def _composition(name: str, sides: tuple[str, ...], categories: tuple[str, ...]) -> dict:
+    """Extract declared lists only; never derive a recipe from a dish name.
+
+    Some pizza providers publish a comma-separated composition after a dash.
+    Unmarked prose and ordinary meal combinations remain untouched in the name.
+    Empty lists mean unknown, never allergen-free or a complete ingredient list.
+    """
+    allergens = []
+    for text in (name, *sides):
+        for match in ALLERGEN_RE.finditer(text):
+            allergens.extend(part.strip() for part in match[1].split(",") if part.strip())
+    declarations = [match[1] for match in INGREDIENT_RE.finditer(name)]
+    if not declarations and "Pizza" in categories:
+        # Require an actual list, not just a hyphenated dish name.
+        match = re.search(r"\s*[-–—]\s*([^()]+)$", name)
+        if match and "," in match[1] and not re.search(r"alergeni|allergens", match[1], re.I):
+            declarations = [match[1]]
+    ingredients = tuple(dict.fromkeys(
+        part.strip() for declaration in declarations for part in declaration.split(",") if part.strip()
+    ))
+    return {
+        "ingredients": ingredients,
+        "allergens": tuple(dict.fromkeys(allergens)),
+        "composition_source_text": " · ".join((name, *sides)) if ingredients or allergens else None,
+    }
 
 
 def _text(node: Tag | None) -> str:
@@ -115,7 +144,8 @@ def _parse_dishes(html: str) -> tuple[Dish, ...]:
             value for li in card.select("ul li")
             if (value := _text(li))
         )
-        dishes.append(Dish(name=name, number=number, categories=categories, sides=sides))
+        dishes.append(Dish(name=name, number=number, categories=categories, sides=sides,
+                           **_composition(name, sides, categories)))
     return tuple(dishes)
 
 
