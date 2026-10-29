@@ -1217,6 +1217,33 @@ body.cm-sheet-open{overflow:hidden}
 }
 @media(max-width:360px){.venue-app-link span{display:none}.venue-app-link{width:40px;padding:0;justify-content:center}}
 
+/* A guest can browse menus; account tools stay with the member experience. */
+.guest #profile-page .profile-stats,
+.guest #profile-page .profile-section,
+.guest #profile-page .profile-footer-actions,
+.guest .card-fav-btn,
+.guest .venue-actions,
+.guest .venue-review-box,
+.guest .venue-meal-picker,
+.guest .dish-fav-btn,
+.guest .dish-log-btn,
+.guest .cm-venue-summary,
+.guest .cm-chip-row,
+.guest .cm-dish-social,
+.guest .cm-camera,
+.guest #footer-mcp-link { display:none!important; }
+
+.guest-benefits{max-width:620px;margin:0 auto 18px;padding:20px 22px;border:1px solid #dce5d8;border-radius:18px;background:#eef3e9;color:var(--green)}
+.guest-benefits h2{margin:0 0 8px;font:700 19px Manrope,sans-serif}
+.guest-benefits p{margin:0 0 10px;font-size:13px;line-height:1.5;color:#566b59}
+.guest-benefits ul{margin:0;padding-left:20px;font-size:13px;line-height:1.75}
+.menu-language-picker{margin-left:auto;flex:none;height:40px;min-width:78px;justify-content:center}
+.menu-language-picker select{font-size:13px}
+@media(max-width:760px){
+  .menu-language-picker select{font-size:16px}
+  .guest-benefits{padding:18px;margin-bottom:14px}
+}
+
 .venue-meta .cm-venue-summary,.venue-meta .cm-chip-row{display:contents}
 .venue-meta .cm-chip{height:26px;padding:0 10px;border-radius:13px;font-size:12px}
 .venue-meta .cm-queue-picker,.venue-meta .cm-friends{flex-basis:100%}

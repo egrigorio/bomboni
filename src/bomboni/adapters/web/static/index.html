@@ -12,10 +12,10 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css?v=v37">
+    <link rel="stylesheet" href="/styles.css?v=v38">
     <title>Bomboni — refeições perto de si</title>
   </head>
-  <body data-tab="explore">
+  <body class="guest" data-tab="explore">
     <div class="app-shell">
       <header class="topbar">
         <a class="brand" href="/" aria-label="Bomboni início">
@@ -23,19 +23,22 @@
         </a>
         <nav class="desktop-nav" id="desktop-nav" aria-label="Navegação desktop">
           <button type="button" class="desktop-nav-link active" data-tab="explore">
-            <span data-tab-label="explore">Explorar</span>
+            <span data-tab-label="explore">Restaurantes</span>
           </button>
-          <button type="button" class="desktop-nav-link" data-tab="favorites">
+          <button type="button" class="desktop-nav-link member-only" data-tab="favorites" hidden>
             <span data-tab-label="favorites">Favoritos</span>
           </button>
-          <button type="button" class="desktop-nav-link" data-tab="draw">
+          <button type="button" class="desktop-nav-link member-only" data-tab="draw" hidden>
             <span data-tab-label="draw">Sorteio</span>
           </button>
           <button type="button" class="desktop-nav-link cm-only" data-tab="community" hidden>
             <span id="cm-desktop-label">Comunidade</span>
           </button>
-          <button type="button" class="desktop-nav-link mcp-nav-btn" data-tab="mcp">
+          <button type="button" class="desktop-nav-link member-only mcp-nav-btn" data-tab="mcp" hidden>
             <span id="mcp-desktop-label">Conectar IA</span>
+          </button>
+          <button type="button" class="desktop-nav-link" data-tab="profile">
+            <span data-tab-label="profile">Perfil</span>
           </button>
         </nav>
         <div class="topbar-actions">
@@ -77,6 +80,14 @@
           <div class="menu-content" id="menu-content" hidden>
             <div class="venue-topbar">
               <button class="back-button" id="back-button" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="back-label">Restaurantes</span></button>
+              <label class="language-picker menu-language-picker" aria-label="Idioma do cardápio">
+                <span class="globe" aria-hidden="true">🌐</span>
+                <select id="menu-language-select" aria-label="Idioma do cardápio">
+                  <option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option>
+                  <option value="de">DE</option><option value="it">IT</option><option value="fr">FR</option>
+                  <option value="ca">CA</option>
+                </select>
+              </label>
               <a class="venue-app-link" id="source-link" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10.5 18.5h3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span id="source-link-label">Usar boni</span></a>
             </div>
             <div class="venue-heading">
@@ -200,6 +211,16 @@
       <main class="app-page" id="profile-page" hidden>
         <section class="page-heading">
           <h1 id="profile-title">Perfil</h1>
+        </section>
+
+        <section class="guest-benefits" id="guest-benefits" aria-labelledby="guest-benefits-title">
+          <h2 id="guest-benefits-title">Mais possibilidades com uma conta</h2>
+          <p id="guest-benefits-copy">Continue a explorar restaurantes e pratos sem conta. Crie uma para aproveitar também:</p>
+          <ul>
+            <li id="guest-benefit-community">Participar na comunidade e partilhar experiências.</li>
+            <li id="guest-benefit-draw">Sortear um restaurante ou prato quando não sabe o que escolher.</li>
+            <li id="guest-benefit-favorites">Guardar favoritos e acompanhar refeições e avaliações.</li>
+          </ul>
         </section>
 
         <!-- Auth Card when not logged in -->
@@ -443,15 +464,15 @@
     </div>
     <nav class="mobile-tab-bar" id="mobile-tab-bar" aria-label="Navegação principal">
       <button class="mobile-tab active" type="button" data-tab="explore" aria-current="page">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span data-tab-label="explore">Explorar</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span data-tab-label="explore">Restaurantes</span>
       </button>
       <button class="mobile-tab cm-only" type="button" data-tab="community" hidden>
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A4.6 4.6 0 0 1 21 18.6"/></svg><span id="cm-tab-label">Comunidade</span>
       </button>
-      <button class="mobile-tab" type="button" data-tab="favorites">
+      <button class="mobile-tab member-only" type="button" data-tab="favorites" hidden>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg><span data-tab-label="favorites">Favoritos</span>
       </button>
-      <button class="mobile-tab" type="button" data-tab="draw">
+      <button class="mobile-tab member-only" type="button" data-tab="draw" hidden>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 1.5 6.5L20 7l-3.5 5 5.5 2.5-6.5 1L17 22l-5-4-4.5 4 1.5-6.5L3 14l6-2-3-5 6 1.5z"/><circle cx="12" cy="12" r="2.1"/></svg><span data-tab-label="draw">Sorteio</span>
       </button>
       <button class="mobile-tab" type="button" data-tab="profile">
@@ -466,8 +487,8 @@
     </div>
     <input type="file" id="cm-photo-input" accept="image/*" capture="environment" hidden>
     <div class="toast" id="toast" role="status"></div>
-    <script src="/app.js?v=v37" defer></script>
-    <script src="/community.js?v=v37" defer></script>
-    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v37').then(registration => registration.update()).catch(() => {}));</script>
+    <script src="/app.js?v=v38" defer></script>
+    <script src="/community.js?v=v38" defer></script>
+    <script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js?v=v38').then(registration => registration.update()).catch(() => {}));</script>
   </body>
 </html>

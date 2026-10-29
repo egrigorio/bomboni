@@ -37,13 +37,23 @@ const imageSearchLabels = { pt:'Pesquisar imagens de', en:'Search images for', e
 const locationError = { pt:'Não foi possível obter a localização.', en:'Could not get your location.', es:'No se pudo obtener tu ubicación.', de:'Standort konnte nicht ermittelt werden.', it:'Impossibile ottenere la posizione.', fr:'Impossible d’obtenir la position.', ca:'No s’ha pogut obtenir la ubicació.' };
 const nearbyLabels = { pt:'Perto de si', en:'Near you', es:'Cerca de ti', de:'In deiner Nähe', it:'Vicino a te', fr:'Près de vous', ca:'A prop teu' };
 const mobileTabLabels = {
-  pt:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteio',profile:'Perfil',mcp:'Conectar IA'},
-  en:{explore:'Explore',favorites:'Saved',draw:'Decide',profile:'Profile',mcp:'Connect AI'},
-  es:{explore:'Explorar',favorites:'Favoritos',draw:'Sorteo',profile:'Perfil',mcp:'Conectar IA'},
-  de:{explore:'Entdecken',favorites:'Favoriten',draw:'Auslosen',profile:'Profil',mcp:'KI verbinden'},
-  it:{explore:'Esplora',favorites:'Preferiti',draw:'Estrai',profile:'Profilo',mcp:'Connetti IA'},
-  fr:{explore:'Explorer',favorites:'Favoris',draw:'Tirage',profile:'Profil',mcp:'Connecter IA'},
-  ca:{explore:'Explorar',favorites:'Preferits',draw:'Sorteig',profile:'Perfil',mcp:'Connectar IA'}
+  pt:{explore:'Restaurantes',favorites:'Favoritos',draw:'Sorteio',profile:'Perfil',mcp:'Conectar IA'},
+  en:{explore:'Restaurants',favorites:'Saved',draw:'Decide',profile:'Profile',mcp:'Connect AI'},
+  es:{explore:'Restaurantes',favorites:'Favoritos',draw:'Sorteo',profile:'Perfil',mcp:'Conectar IA'},
+  de:{explore:'Restaurants',favorites:'Favoriten',draw:'Auslosen',profile:'Profil',mcp:'KI verbinden'},
+  it:{explore:'Ristoranti',favorites:'Preferiti',draw:'Estrai',profile:'Profilo',mcp:'Connetti IA'},
+  fr:{explore:'Restaurants',favorites:'Favoris',draw:'Tirage',profile:'Profil',mcp:'Connecter IA'},
+  ca:{explore:'Restaurants',favorites:'Preferits',draw:'Sorteig',profile:'Perfil',mcp:'Connectar IA'}
+};
+
+const guestBenefitsCopy = {
+  pt:['Mais possibilidades com uma conta','Continue a explorar restaurantes e pratos sem conta. Crie uma para aproveitar também:','Participar na comunidade e partilhar experiências.','Sortear um restaurante ou prato quando não sabe o que escolher.','Guardar favoritos e acompanhar refeições e avaliações.'],
+  en:['More with an account','Keep exploring restaurants and dishes without an account. Create one to:','Join the community and share experiences.','Draw a restaurant or dish when you cannot decide.','Save favorites and track meals and reviews.'],
+  es:['Más posibilidades con una cuenta','Sigue explorando restaurantes y platos sin cuenta. Crea una para:','Participar en la comunidad y compartir experiencias.','Sortear un restaurante o plato cuando no sepas qué elegir.','Guardar favoritos y seguir comidas y reseñas.'],
+  de:['Mehr Möglichkeiten mit einem Konto','Restaurants und Gerichte kannst du ohne Konto entdecken. Erstelle eines, um:','Der Community beizutreten und Erfahrungen zu teilen.','Ein Restaurant oder Gericht auszulosen.','Favoriten zu speichern und Mahlzeiten sowie Bewertungen zu verfolgen.'],
+  it:['Più possibilità con un account','Puoi esplorare ristoranti e piatti senza un account. Creane uno per:','Partecipare alla community e condividere esperienze.','Estrarre un ristorante o un piatto quando non sai cosa scegliere.','Salvare preferiti e seguire pasti e recensioni.'],
+  fr:['Plus de possibilités avec un compte','Explorez les restaurants et les plats sans compte. Créez-en un pour :','Participer à la communauté et partager vos expériences.','Tirer au sort un restaurant ou un plat.','Enregistrer vos favoris et suivre vos repas et avis.'],
+  ca:['Més possibilitats amb un compte','Continua explorant restaurants i plats sense compte. Crea’n un per:','Participar a la comunitat i compartir experiències.','Sortejar un restaurant o un plat quan no sàpigues què triar.','Desar preferits i seguir àpats i valoracions.']
 };
 
 const featureCopy = {
@@ -275,6 +285,18 @@ function setCurrentUser(user) {
     if (user) localStorage.setItem(STORAGE_AUTH_USER, JSON.stringify(user));
     else localStorage.removeItem(STORAGE_AUTH_USER);
   } catch {}
+  syncAccountUI();
+}
+
+function syncAccountUI() {
+  const signedIn = Boolean(getCurrentUser());
+  document.body.classList.toggle('guest', !signedIn);
+  document.querySelectorAll('.member-only').forEach(node => { node.hidden = !signedIn; });
+  document.querySelectorAll('.cm-only').forEach(node => {
+    node.hidden = !signedIn || !document.body.classList.contains('community-on');
+  });
+  $('guest-benefits').hidden = signedIn;
+  if (!signedIn && !['explore', 'profile', 'mcp'].includes(state.tab)) switchTab('explore');
 }
 
 function getFavorites() {
@@ -628,6 +650,11 @@ function applyLanguage() {
   const feature = featureCopy[state.language] || featureCopy.en;
   document.documentElement.lang = state.language;
   languageSelect.value = state.language;
+  $('menu-language-select').value = state.language;
+  const benefits = guestBenefitsCopy[state.language] || guestBenefitsCopy.en;
+  ['guest-benefits-title','guest-benefits-copy','guest-benefit-community','guest-benefit-draw','guest-benefit-favorites'].forEach((id, index) => {
+    $(id).textContent = benefits[index];
+  });
   $('search-mode-restaurants').textContent = searchModeLabels.restaurants[state.language] || searchModeLabels.restaurants.en;
   $('search-mode-dishes').textContent = searchModeLabels.dishes[state.language] || searchModeLabels.dishes.en;
   $('search-input').placeholder = state.searchMode === 'dishes' ? (dishSearchPlaceholders[state.language] || dishSearchPlaceholders.en) : (restaurantSearchPlaceholders[state.language] || restaurantSearchPlaceholders.en);
@@ -812,6 +839,7 @@ function emit(name, detail = {}) {
 }
 
 function switchTab(name) {
+  if (!getCurrentUser() && !['explore', 'profile', 'mcp'].includes(name)) name = 'explore';
   state.tab = name;
   document.body.dataset.tab = name;
   $('layout').hidden = name !== 'explore';
@@ -2138,6 +2166,7 @@ $('profile-logout-btn')?.addEventListener('click', () => {
 });
 
 function updateProfileAuthUI() {
+  syncAccountUI();
   const user = getCurrentUser();
   const authCard = $('profile-auth-card');
   const userCard = $('profile-user-card');
@@ -2645,12 +2674,14 @@ $('venue-review-box')?.addEventListener('submit', e => {
 $('profile-reset-btn')?.addEventListener('click', clearAllLocalData);
 
 /* Global Event Listeners */
-languageSelect.addEventListener('change', () => {
-  state.language = languageSelect.value;
+function changeLanguage(language) {
+  state.language = language;
   localStorage.setItem('bomboni-language', state.language);
   applyLanguage();
   if (state.selected) loadMenu(state.selected.id, state.date, state.selected.name);
-});
+}
+languageSelect.addEventListener('change', () => changeLanguage(languageSelect.value));
+$('menu-language-select').addEventListener('change', () => changeLanguage($('menu-language-select').value));
 $('search-input').addEventListener('input', () => {
   $('restaurant-scroll-area')?.scrollTo({ top: 0, behavior: 'instant' });
   if (state.searchMode === 'dishes') handleDishSearch(); else renderRestaurants();
@@ -3167,6 +3198,7 @@ window.addEventListener('popstate', () => {
 });
 
 /* Boot application */
+syncAccountUI();
 applyLanguage();
 renderMcpPage();
 loadRestaurants();

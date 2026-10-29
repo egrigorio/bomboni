@@ -902,7 +902,7 @@
     if (status?.enabled !== true) return;
     C.enabled = true;
     document.body.classList.add('community-on');
-    document.querySelectorAll('.cm-only').forEach(node => { node.hidden = false; });
+    syncAccountUI();
     interceptAuth();
     bindEvents();
     applyCommunityLanguage();
