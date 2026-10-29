@@ -111,21 +111,13 @@ def test_pwa_smoke_load(pwa_server: str) -> None:
         assert response is not None
         assert response.status == 200
 
-        # Verify main navigation tabs in the DOM (Explorar, Favoritos, Sorteio, Perfil)
-        explore_tab = page.locator('[data-tab="explore"]')
-        favorites_tab = page.locator('[data-tab="favorites"]')
-        draw_tab = page.locator('[data-tab="draw"]')
-        profile_tab = page.locator('[data-tab="profile"]')
-
-        assert explore_tab.count() > 0, "Aba Explorar não encontrada no DOM"
-        assert favorites_tab.count() > 0, "Aba Favoritos não encontrada no DOM"
-        assert draw_tab.count() > 0, "Aba Sorteio não encontrada no DOM"
-        assert profile_tab.count() > 0, "Aba Perfil não encontrada no DOM"
-
-        assert "Explorar" in (explore_tab.first.text_content() or "")
-        assert "Favoritos" in (favorites_tab.first.text_content() or "")
-        assert "Sorteio" in (draw_tab.first.text_content() or "")
-        assert "Perfil" in (profile_tab.first.text_content() or "")
+        # Guests have exactly two visible destinations on each screen size.
+        for selector in ('.desktop-nav-link', '.mobile-tab'):
+            tabs = page.locator(selector)
+            visible = [tab.get_attribute('data-tab') for tab in tabs.all() if tab.is_visible()]
+            expected = ['explore', 'profile'] if selector == '.desktop-nav-link' else []
+            assert visible == expected
+        assert page.locator('.desktop-nav-link[data-tab="explore"]').text_content().strip() == 'Restaurantes'
 
         browser.close()
 
@@ -146,7 +138,10 @@ def test_pwa_account_creation_mail_verification(pwa_server: str) -> None:
         page.goto(pwa_server, wait_until="networkidle")
 
         # Switch to Profile tab
+        assert [tab.get_attribute('data-tab') for tab in page.locator('.mobile-tab').all() if tab.is_visible()] == ['explore', 'profile']
         page.locator('.mobile-tab[data-tab="profile"]').click()
+        assert page.locator('#guest-benefits').is_visible()
+        assert not page.locator('#profile-calendar-section').is_visible()
 
         # Click Sign Up tab ("Criar conta")
         page.locator('#auth-tab-register').click()
@@ -179,10 +174,41 @@ def test_pwa_account_creation_mail_verification(pwa_server: str) -> None:
         user_card.wait_for(state="visible")
         assert "@aluno123" in (page.locator('#profile-user-title').text_content() or "")
         assert "aluno@estudante.pt" in (page.locator('#profile-user-email').text_content() or "")
+        assert not page.locator('#guest-benefits').is_visible()
+        assert page.locator('.mobile-tab[data-tab="favorites"]').is_visible()
+        assert page.locator('.mobile-tab[data-tab="draw"]').is_visible()
+
+        page.locator('#profile-logout-btn').click()
+        assert page.locator('#guest-benefits').is_visible()
+        assert not page.locator('.mobile-tab[data-tab="favorites"]').is_visible()
+        assert not page.locator('.mobile-tab[data-tab="draw"]').is_visible()
 
         browser.close()
 
     assert not page_errors, f"Erros de JS durante a verificação de conta: {page_errors}"
+
+
+def test_guest_can_change_language_inside_menu(pwa_server: str) -> None:
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context(viewport={"width": 390, "height": 844}, service_workers="block")
+        page = context.new_page()
+        page.route(
+            "**/api/restaurants/101/menu?**",
+            lambda route: route.fulfill(json={"date": "2026-10-29", "dishes": [{"name": "Juha"}]}),
+        )
+        page.goto(pwa_server, wait_until="networkidle")
+        page.evaluate("openRestaurant({id: 101, name: 'Test Restaurant', address: 'Street', city: 'Ljubljana', additional_fee_eur: 3.5})")
+        page.locator('.dish-card').wait_for(state="visible")
+        assert page.locator('#menu-language-select').is_visible()
+        assert not page.locator('#venue-fav-btn').is_visible()
+
+        page.select_option('#menu-language-select', 'en')
+        assert page.locator('#language-select').input_value() == 'en'
+        assert page.locator('#menu-panel').is_visible()
+        assert page.locator('#venue-name').text_content() == 'Test Restaurant'
+        assert page.locator('.dish-card').is_visible()
+        browser.close()
 
 
 def test_pwa_meal_picker_xss_protection(pwa_server: str) -> None:
@@ -200,6 +226,7 @@ def test_pwa_meal_picker_xss_protection(pwa_server: str) -> None:
         malicious_name = '<img src=x onerror="window.__xss_executed=true">'
         page.evaluate(
             """(maliciousName) => {
+                setCurrentUser({username: 'member', email: 'member@example.com'});
             document.getElementById('menu-panel').hidden = false;
             document.getElementById('menu-content').hidden = false;
             state.selected = { id: 100, name: "Test Venue", address: "Rua Teste", city: "Ljubljana", additional_fee_eur: 3.5 };
@@ -249,6 +276,8 @@ def test_pwa_mcp_desktop_page(pwa_server: str) -> None:
         # Desktop nav should be visible on desktop viewport
         desktop_nav = page.locator('#desktop-nav')
         assert desktop_nav.is_visible()
+
+        page.evaluate("setCurrentUser({username: 'member', email: 'member@example.com'})")
 
         # Click the MCP nav button
         mcp_btn = page.locator('.desktop-nav-link[data-tab="mcp"]')
