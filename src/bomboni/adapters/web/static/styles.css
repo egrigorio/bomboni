@@ -1650,3 +1650,31 @@ body.cm-sheet-open{overflow:hidden}
 .dish-composition ul {
   padding-left: 20px;
 }
+
+.location-control {
+  flex: none;
+  margin: 10px 0 6px;
+}
+
+.location-control button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+}
+
+.location-control button:disabled {
+  cursor: wait;
+}
+
+.location-control .bonbon-spinner {
+  width: 20px;
+  height: 20px;
+}
+
+.location-control p {
+  margin: 4px 0 0;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.4;
+}
