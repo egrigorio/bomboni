@@ -3,6 +3,8 @@
    Activates only when /api/community/status reports a configured database;
    otherwise the app keeps its device-only behaviour. */
 (() => {
+  // Skip account restoration and all community requests during the menu-only launch.
+  if (document.body.classList.contains('menu-only')) return;
   const SESSION_KEY = 'bomboni-session';
   const IMPORTED_KEY = 'bomboni-community-imported';
 

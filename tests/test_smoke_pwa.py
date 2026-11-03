@@ -111,11 +111,11 @@ def test_pwa_smoke_load(pwa_server: str) -> None:
         assert response is not None
         assert response.status == 200
 
-        # Guests have exactly two visible destinations on each screen size.
+        # The menu-only launch has no account navigation on either screen size.
         for selector in ('.desktop-nav-link', '.mobile-tab'):
             tabs = page.locator(selector)
             visible = [tab.get_attribute('data-tab') for tab in tabs.all() if tab.is_visible()]
-            expected = ['explore', 'profile'] if selector == '.desktop-nav-link' else []
+            expected = []
             assert visible == expected
         assert page.locator('.desktop-nav-link[data-tab="explore"]').text_content().strip() == 'Restaurantes'
 
@@ -125,67 +125,32 @@ def test_pwa_smoke_load(pwa_server: str) -> None:
     assert not console_errors, f"Erros de console registrados durante o carregamento: {console_errors}"
 
 
-def test_pwa_account_creation_mail_verification(pwa_server: str) -> None:
-    page_errors: list[str] = []
-
+@pytest.mark.parametrize("width", [390, 1280])
+def test_menu_only_ignores_saved_accounts_and_skips_community(pwa_server: str, width: int) -> None:
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        context = browser.new_context(viewport={"width": 390, "height": 844})
+        context = browser.new_context(viewport={"width": width, "height": 844}, service_workers="block")
+        context.add_init_script("""
+            localStorage.setItem('bomboni-auth-user', JSON.stringify({username: 'existing', email: 'existing@example.com'}));
+        """)
         page = context.new_page()
-
-        page.on("pageerror", lambda err: page_errors.append(str(err)))
-
+        requests: list[str] = []
+        page.on("request", lambda request: requests.append(request.url))
         page.goto(pwa_server, wait_until="networkidle")
 
-        # Switch to Profile tab
-        assert [tab.get_attribute('data-tab') for tab in page.locator('.mobile-tab').all() if tab.is_visible()] == ['explore', 'profile']
-        page.locator('.mobile-tab[data-tab="profile"]').click()
-        assert page.locator('#guest-benefits').is_visible()
-        assert not page.locator('#profile-calendar-section').is_visible()
-
-        # Click Sign Up tab ("Criar conta")
-        page.locator('#auth-tab-register').click()
-
-        # Fill out sign up form
-        page.locator('#auth-username').fill('aluno123')
-        page.locator('#auth-email').fill('aluno@estudante.pt')
-        page.locator('#auth-password').fill('senha123')
-
-        # Click submit to register
-        page.locator('#auth-submit-btn').click()
-
-        # Verification form should now be visible
-        verify_form = page.locator('#auth-verify-form')
-        verify_form.wait_for(state="visible")
-
-        # Try incorrect code first
-        page.locator('#auth-verify-code').fill('0000')
-        page.locator('#auth-verify-submit-btn').click()
-
-        verify_error = page.locator('#auth-verify-error')
-        verify_error.wait_for(state="visible")
-
-        # Type correct code (mocked as '1234')
-        page.locator('#auth-verify-code').fill('1234')
-        page.locator('#auth-verify-submit-btn').click()
-
-        # User profile card should now be visible with username and email
-        user_card = page.locator('#profile-user-card')
-        user_card.wait_for(state="visible")
-        assert "@aluno123" in (page.locator('#profile-user-title').text_content() or "")
-        assert "aluno@estudante.pt" in (page.locator('#profile-user-email').text_content() or "")
-        assert not page.locator('#guest-benefits').is_visible()
-        assert page.locator('.mobile-tab[data-tab="favorites"]').is_visible()
-        assert page.locator('.mobile-tab[data-tab="draw"]').is_visible()
-
-        page.locator('#profile-logout-btn').click()
-        assert page.locator('#guest-benefits').is_visible()
-        assert not page.locator('.mobile-tab[data-tab="favorites"]').is_visible()
-        assert not page.locator('.mobile-tab[data-tab="draw"]').is_visible()
-
+        assert page.locator('#layout').is_visible()
+        assert not page.locator('#auth-form').is_visible()
+        assert not page.locator('.desktop-nav').is_visible()
+        assert not page.locator('#mobile-tab-bar').is_visible()
+        assert not any('/api/community' in url or '/api/send-code' in url for url in requests)
+        assert page.evaluate('getCurrentUser()') is None
+        # Keep saved data available for a future account launch.
+        assert page.evaluate("JSON.parse(localStorage.getItem('bomboni-auth-user')).username") == 'existing'
+        for tab in ('profile', 'favorites', 'draw', 'community'):
+            page.evaluate('tab => switchTab(tab)', tab)
+            assert page.locator('#layout').is_visible()
+            assert page.evaluate('state.tab') == 'explore'
         browser.close()
-
-    assert not page_errors, f"Erros de JS durante a verificação de conta: {page_errors}"
 
 
 def test_guest_can_change_language_inside_menu(pwa_server: str) -> None:
@@ -220,6 +185,11 @@ def test_pwa_meal_picker_xss_protection(pwa_server: str) -> None:
         page = context.new_page()
 
         page.on("pageerror", lambda err: page_errors.append(str(err)))
+        # Exercise the dormant account feature's escaping in isolation.
+        page.route(pwa_server + "/", lambda route: route.fulfill(
+            content_type="text/html",
+            body=(STATIC_DIR / "index.html").read_text().replace('class="guest menu-only"', 'class="guest"'),
+        ))
         page.goto(pwa_server, wait_until="networkidle")
 
         # Inject state and open meal picker with malicious dish payload
@@ -273,16 +243,9 @@ def test_pwa_mcp_desktop_page(pwa_server: str) -> None:
 
         page.goto(pwa_server, wait_until="networkidle")
 
-        # Desktop nav should be visible on desktop viewport
-        desktop_nav = page.locator('#desktop-nav')
-        assert desktop_nav.is_visible()
-
-        page.evaluate("setCurrentUser({username: 'member', email: 'member@example.com'})")
-
-        # Click the MCP nav button
-        mcp_btn = page.locator('.desktop-nav-link[data-tab="mcp"]')
-        assert mcp_btn.count() > 0
-        mcp_btn.click()
+        # The public launch hides navigation; the existing MCP documentation URL remains usable.
+        assert not page.locator('#desktop-nav').is_visible()
+        page.goto(f"{pwa_server}/mcp", wait_until="networkidle")
 
         # MCP page should now be visible
         mcp_page = page.locator('#mcp-page')

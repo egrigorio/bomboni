@@ -1,3 +1,6 @@
+// Temporarily expose restaurant and menu browsing only. Existing account data is preserved.
+const MENU_ONLY = document.body.classList.contains('menu-only');
+
 const translations = {
   pt:{eyebrow:'ALMOÇO COM BONI, SEM BARREIRAS',heroA:'Uma boa refeição',heroB:'fica',heroEm:'mais perto.',heroCopy:'Restaurantes de boni à sua volta, com os pratos no seu idioma.',search:'Restaurante…',near:'Perto de si',sorting:'A ordenar pela sua localização',enable:'Ativar localização para ordenar por distância.',loading:'A encontrar restaurantes…',loadingDishes:'A procurar pratos nos cardápios de hoje…',more:'Ver mais restaurantes',emptyKicker:'A SUA PRÓXIMA PARAGEM',emptyTitle:'Escolha um restaurante',emptyCopy:'Veja o menu de boni do dia, traduzido para si. O nome original fica sempre disponível.',emptyFoot:'Menus oficiais · tradução automática',back:'Todos os restaurantes',venueKicker:'RESTAURANTE DE BONI',menuOverline:'MENU DE BONI',today:'Pratos do dia',fee:'Copagamento',noMenu:'Não há pratos publicados para esta data.',menuSource:'Menu publicado para',retrieved:'consultado às',disclaimer:'Tradução automática. Confirme ingredientes e alergénios diretamente com o restaurante.',footer:'Dados de refeições estudantis · Eslovénia',source:'Fonte oficial',locating:'A obter localização…',locationReady:'A ordenar pela distância',locationFallback:'Ljubljana · localização não permitida',noResults:'Nenhum restaurante encontrado.',noDishResults:'Nenhum restaurante com este prato hoje.',searchDishPrompt:'Pesquise por um prato para ver quais restaurantes o servem hoje.',error:'Não foi possível carregar os dados. Tente novamente.',translationMissing:'Sem tradução automática disponível',restaurantCount:'restaurantes',categories:{Meat:'Carne',Fish:'Peixe',Meatless:'Sem carne',Mixed:'Misto','Salad bar':'Saladas','Fast food':'Rápido'}},
   en:{eyebrow:'STUDENT MEALS, WITHOUT THE LANGUAGE BARRIER',heroA:'A good meal',heroB:'is',heroEm:'closer than you think.',heroCopy:'Student meal restaurants around you, with dishes in your language.',search:'Restaurant…',near:'Near you',sorting:'Sorted by your location',enable:'Enable location to sort by distance.',loading:'Finding nearby restaurants…',loadingDishes:'Searching today’s menus for dishes…',more:'Show more restaurants',emptyKicker:'YOUR NEXT STOP',emptyTitle:'Choose a restaurant',emptyCopy:'See today’s student meal menu translated for you. The original name is always available.',emptyFoot:'Official menus · machine translated',back:'All restaurants',venueKicker:'STUDENT MEAL RESTAURANT',menuOverline:'STUDENT MENU',today:'Today’s dishes',fee:'Student co-pay',noMenu:'No dishes are published for this date.',menuSource:'Menu published for',retrieved:'checked at',disclaimer:'Machine translation. Check ingredients and allergens with the restaurant.',footer:'Student meal listings · Slovenia',source:'Official source',locating:'Getting location…',locationReady:'Sorted by distance',locationFallback:'Ljubljana · location unavailable',noResults:'No restaurants found.',noDishResults:'No restaurants found with this dish today.',searchDishPrompt:'Search for a dish to see which restaurants have it today.',error:'Could not load the data. Please try again.',translationMissing:'Translation unavailable',restaurantCount:'restaurants',categories:{Meat:'Meat',Fish:'Fish',Meatless:'Meatless',Mixed:'Mixed','Salad bar':'Salad bar','Fast food':'Fast food'}},
@@ -278,6 +281,7 @@ function saveUsers(data) {
   } catch {}
 }
 function getCurrentUser() {
+  if (MENU_ONLY) return null;
   try { return JSON.parse(localStorage.getItem(STORAGE_AUTH_USER) || 'null'); } catch { return null; }
 }
 function setCurrentUser(user) {
@@ -839,6 +843,7 @@ function emit(name, detail = {}) {
 }
 
 function switchTab(name) {
+  if (MENU_ONLY && name !== 'mcp') name = 'explore';
   if (!getCurrentUser() && !['explore', 'profile', 'mcp'].includes(name)) name = 'explore';
   state.tab = name;
   document.body.dataset.tab = name;

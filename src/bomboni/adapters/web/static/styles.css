@@ -1650,3 +1650,20 @@ body.cm-sheet-open{overflow:hidden}
 .dish-composition ul {
   padding-left: 20px;
 }
+
+/* Temporarily keep the public interface focused on restaurants and menus. */
+.menu-only .desktop-nav,
+.menu-only .mobile-tab-bar,
+.menu-only #profile-page,
+.menu-only #favorites-page,
+.menu-only #draw-page,
+.menu-only #community-page {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .menu-only .restaurant-scroll-area,
+  .menu-only .menu-panel {
+    padding-bottom: calc(20px + env(safe-area-inset-bottom)) !important;
+  }
+}
