@@ -395,3 +395,98 @@ def test_pwa_mcp_language_switching(pwa_server: str) -> None:
     assert not console_errors, f"Erros de console na troca de idioma da página MCP: {console_errors}"
 
 
+
+
+@pytest.mark.parametrize('error_code, message', [
+    (1, 'Localização bloqueada'),
+    (2, 'Localização indisponível'),
+    (3, 'A localização demorou demasiado'),
+])
+def test_location_failure_can_retry_from_click(pwa_server: str, error_code: int, message: str) -> None:
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page(viewport={"width": 390, "height": 844})
+        page.add_init_script(f"""
+            window.locationAttempts = 0;
+            Object.defineProperty(navigator, 'geolocation', {{ value: {{
+                getCurrentPosition(success, failure) {{
+                    window.locationAttempts++;
+                    if (window.locationAttempts === 1) failure({{code: {error_code}}});
+                    else {{
+                        window.locationWasGesture = navigator.userActivation.isActive;
+                        setTimeout(() => success({{coords: {{latitude: 46.55, longitude: 15.65}}}}), 100);
+                    }}
+                }}
+            }} }});
+        """)
+        requests = []
+        page.on('request', lambda request: requests.append(request.url))
+        page.goto(pwa_server, wait_until='networkidle')
+        assert message in page.locator('#location-status').inner_text()
+        assert 'centro de Ljubljana' in page.locator('#location-status').inner_text()
+        page.locator('#location-button').click()
+        page.wait_for_function("document.querySelector('#location-status').textContent === 'A ordenar pela distância'")
+        assert page.evaluate('window.locationWasGesture') is True
+        assert any('lat=46.55&lon=15.65' in url for url in requests)
+        assert page.evaluate("JSON.parse(localStorage.getItem('bomboni-location')).latitude") == 46.55
+        page.select_option('#language-select', 'en')
+        assert page.locator('#location-button').inner_text() == 'Use my location'
+        assert page.locator('#location-status').inner_text() == 'Sorted by distance'
+        browser.close()
+
+
+def test_location_startup_success_survives_storage_failure(pwa_server: str) -> None:
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+        page.add_init_script("""
+            Object.defineProperty(navigator, 'geolocation', { value: {
+                getCurrentPosition(success) {
+                    setTimeout(() => success({coords: {latitude: 46.55, longitude: 15.65}}), 100);
+                }
+            } });
+            Storage.prototype.setItem = () => { throw new Error('Storage unavailable'); };
+        """)
+        requests = []
+        page.on('request', lambda request: requests.append(request.url))
+        page.goto(pwa_server, wait_until='networkidle')
+        assert page.locator('#location-status').inner_text() == 'A ordenar pela distância'
+        assert page.locator('#location-button').is_enabled()
+        assert any('lat=46.55&lon=15.65' in url for url in requests)
+        browser.close()
+
+
+def test_location_result_is_not_overwritten_by_startup_request(pwa_server: str) -> None:
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+        page.add_init_script("""
+            const originalFetch = window.fetch;
+            window.fetch = async (url, ...args) => {
+                if (String(url).startsWith('/api/restaurants?')) {
+                    const isCurrent = new URL(url, location.origin).searchParams.get('lat') === '46.55';
+                    if (!isCurrent) await new Promise(resolve => { window.finishFallback = resolve; });
+                    return new Response(JSON.stringify({results: [{
+                        id: isCurrent ? 'near' : 'fallback', name: isCurrent ? 'Nearby restaurant' : 'Old fallback',
+                        city: 'Maribor', address: 'Test street', additional_fee_eur: 3, distance_km: 0.5
+                    }]}), {headers: {'Content-Type': 'application/json'}});
+                }
+                return originalFetch(url, ...args);
+            };
+            Object.defineProperty(navigator, 'geolocation', { value: {
+                getCurrentPosition(success) {
+                    window.completeLocation = () => success({coords: {latitude: 46.55, longitude: 15.65}});
+                }
+            } });
+        """)
+        page.goto(pwa_server, wait_until='domcontentloaded')
+        page.wait_for_function('typeof window.completeLocation === "function"')
+        assert page.locator('#location-button').is_disabled()
+        assert page.locator('#location-button .bonbon-spinner').is_visible()
+        page.evaluate('window.completeLocation()')
+        page.wait_for_selector('.restaurant-card[data-id="near"]')
+        page.evaluate('window.finishFallback()')
+        page.wait_for_load_state('networkidle')
+        assert page.locator('.restaurant-card').count() == 1
+        assert page.locator('.restaurant-card').get_attribute('data-id') == 'near'
+        browser.close()

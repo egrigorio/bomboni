@@ -35,6 +35,15 @@ const restaurantSearchPlaceholders = {
 
 const imageSearchLabels = { pt:'Pesquisar imagens de', en:'Search images for', es:'Buscar imágenes de', de:'Bilder suchen für', it:'Cerca immagini di', fr:'Rechercher des images de', ca:'Cercar imatges de' };
 const locationError = { pt:'Não foi possível obter a localização.', en:'Could not get your location.', es:'No se pudo obtener tu ubicación.', de:'Standort konnte nicht ermittelt werden.', it:'Impossibile ottenere la posizione.', fr:'Impossible d’obtenir la position.', ca:'No s’ha pogut obtenir la ubicació.' };
+const locationCopy = {
+  pt: { action:'Usar minha localização', fallback:'Distâncias a partir do centro de Ljubljana.', denied:'Localização bloqueada. Permita o acesso nas definições do navegador ou dispositivo e tente novamente.', unavailable:'Localização indisponível. Tente novamente.', timeout:'A localização demorou demasiado. Tente novamente.' },
+  en: { action:'Use my location', fallback:'Distances from central Ljubljana.', denied:'Location blocked. Allow access in your browser or device settings and try again.', unavailable:'Location unavailable. Try again.', timeout:'Location timed out. Try again.' },
+  es: { action:'Usar mi ubicación', fallback:'Distancias desde el centro de Ljubljana.', denied:'Ubicación bloqueada. Permite el acceso en los ajustes del navegador o dispositivo e inténtalo de nuevo.', unavailable:'Ubicación no disponible. Inténtalo de nuevo.', timeout:'La ubicación tardó demasiado. Inténtalo de nuevo.' },
+  de: { action:'Meinen Standort verwenden', fallback:'Entfernungen ab dem Zentrum von Ljubljana.', denied:'Standort blockiert. Erlaube den Zugriff in den Browser- oder Geräteeinstellungen und versuche es erneut.', unavailable:'Standort nicht verfügbar. Versuche es erneut.', timeout:'Standortabfrage abgelaufen. Versuche es erneut.' },
+  it: { action:'Usa la mia posizione', fallback:'Distanze dal centro di Ljubljana.', denied:'Posizione bloccata. Consenti l’accesso nelle impostazioni del browser o del dispositivo e riprova.', unavailable:'Posizione non disponibile. Riprova.', timeout:'La richiesta di posizione è scaduta. Riprova.' },
+  fr: { action:'Utiliser ma position', fallback:'Distances depuis le centre de Ljubljana.', denied:'Localisation bloquée. Autorisez l’accès dans les réglages du navigateur ou de l’appareil et réessayez.', unavailable:'Localisation indisponible. Réessayez.', timeout:'La localisation a pris trop de temps. Réessayez.' },
+  ca: { action:'Usa la meva ubicació', fallback:'Distàncies des del centre de Ljubljana.', denied:'Ubicació bloquejada. Permet l’accés als ajustos del navegador o dispositiu i torna-ho a provar.', unavailable:'Ubicació no disponible. Torna-ho a provar.', timeout:'La ubicació ha trigat massa. Torna-ho a provar.' }
+};
 const nearbyLabels = { pt:'Perto de si', en:'Near you', es:'Cerca de ti', de:'In deiner Nähe', it:'Vicino a te', fr:'Près de vous', ca:'A prop teu' };
 const mobileTabLabels = {
   pt:{explore:'Restaurantes',favorites:'Favoritos',draw:'Sorteio',profile:'Perfil',mcp:'Conectar IA'},
@@ -180,6 +189,7 @@ const BONBON_SPINNER_HTML = '<span class="bonbon-spinner" aria-hidden="true"><sv
 
 let deferredInstallPrompt = null;
 let activeMenuRequest = 0;
+let activeRestaurantRequest = 0;
 let dishSearchTimer = null;
 const restaurantHours = {};
 const loadingHours = new Set();
@@ -197,6 +207,7 @@ const state = {
   language: translations[savedLanguage] ? savedLanguage : 'pt',
   location: savedLocation || DEFAULT_COORDS,
   locationLabel: '',
+  locationStatus: 'idle',
   restaurants: [],
   visible: 15,
   selected: null,
@@ -647,6 +658,7 @@ function showToast(message) {
 
 function applyLanguage() {
   const t = tr();
+  renderLocationControl();
   const feature = featureCopy[state.language] || featureCopy.en;
   document.documentElement.lang = state.language;
   languageSelect.value = state.language;
@@ -1197,7 +1209,55 @@ function renderDishesSearch() {
 /* -------------------------------------------------------------
    Load Restaurants (Default Proximity Sorted)
    ------------------------------------------------------------- */
+function renderLocationControl() {
+  const copy = locationCopy[state.language] || locationCopy.en;
+  const pending = state.locationStatus === 'pending';
+  const button = $('location-button');
+  button.disabled = pending;
+  button.setAttribute('aria-busy', String(pending));
+  button.innerHTML = pending ? BONBON_SPINNER_HTML : '';
+  button.append(document.createTextNode(pending ? tr().locating : copy.action));
+  const message = state.locationStatus === 'ready' ? tr().locationReady
+    : state.locationStatus === 'pending' ? ''
+    : [copy[state.locationStatus], copy.fallback].filter(Boolean).join(' ');
+  $('location-status').textContent = message;
+}
+
+function requestLocation() {
+  if (state.locationStatus === 'pending') return;
+  const fail = error => {
+    state.locationStatus = error?.code === 1 ? 'denied' : error?.code === 3 ? 'timeout' : 'unavailable';
+    // Never present a stale saved position as the current location after failure.
+    state.location = DEFAULT_COORDS;
+    try { localStorage.removeItem('bomboni-location'); } catch {}
+    renderLocationControl();
+    void loadRestaurants();
+  };
+  if (!navigator.geolocation || !window.isSecureContext) {
+    fail();
+    return;
+  }
+  state.locationStatus = 'pending';
+  renderLocationControl();
+  try {
+    navigator.geolocation.getCurrentPosition(position => {
+      const loc = { latitude: position.coords.latitude, longitude: position.coords.longitude };
+      state.location = loc;
+      state.locationStatus = 'ready';
+      try { localStorage.setItem('bomboni-location', JSON.stringify(loc)); } catch {}
+      $('restaurant-scroll-area').scrollTop = 0;
+      renderLocationControl();
+      void loadRestaurants();
+    }, fail, { enableHighAccuracy: false, timeout: 15000, maximumAge: 300000 });
+  } catch {
+    fail();
+  }
+}
+
+$('location-button').addEventListener('click', requestLocation);
+
 async function loadRestaurants() {
+  const request = ++activeRestaurantRequest;
   $('restaurant-list').innerHTML = `<div class="loading-card">${BONBON_SPINNER_HTML}<span>${tr().loading}</span></div>`;
   const params = new URLSearchParams({ limit: '500' });
   if (state.location) {
@@ -1208,6 +1268,7 @@ async function loadRestaurants() {
     const response = await fetch(`/api/restaurants?${params}`);
     if (!response.ok) throw new Error('restaurants');
     const data = await response.json();
+    if (request !== activeRestaurantRequest) return;
     state.restaurants = data.results || [];
     state.visible = 15;
     renderDrawCities();
@@ -1217,6 +1278,7 @@ async function loadRestaurants() {
     }
     if (state.searchMode === 'dishes') renderDishesSearch(); else renderRestaurants();
   } catch {
+    if (request !== activeRestaurantRequest) return;
     showToast(tr().error);
     $('restaurant-list').innerHTML = `<div class="loading-card">${tr().error}</div>`;
   }
@@ -3257,23 +3319,5 @@ if (window.location.pathname === '/mcp' || window.location.hash === '#mcp') {
   switchTab('mcp');
 }
 
-// Request real GPS coordinates on startup, update cache and resort by proximity
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    p => {
-      const loc = { latitude: p.coords.latitude, longitude: p.coords.longitude };
-      state.location = loc;
-      try { localStorage.setItem('bomboni-location', JSON.stringify(loc)); } catch {}
-      loadRestaurants();
-    },
-    () => {
-      state.locationLabel = nearbyLabels[state.language] || nearbyLabels.en;
-      if (!state.restaurants || !state.restaurants.length) {
-        loadRestaurants();
-      } else {
-        if (state.searchMode === 'dishes') renderDishesSearch(); else renderRestaurants();
-      }
-    },
-    { enableHighAccuracy: false, timeout: 5000, maximumAge: 300000 }
-  );
-}
+// Keep startup lookup, with an explicit retry directly from a user gesture.
+requestLocation();
